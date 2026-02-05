@@ -8,217 +8,33 @@
 <style>
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #F4F6F9;
-  padding-bottom: 70px;
+  font-family: system-ui, sans-serif;
+  background: #f5f7fa;
 }
 
-/* ===== Page ===== */
-.page {
-  display: none;
+header {
+  background: #0D47A1;
+  color: white;
+  text-align: center;
   padding: 16px;
 }
 
-.page.active {
+main {
+  padding: 16px;
+  padding-bottom: 80px;
+}
+
+section {
+  display: none;
+}
+
+section.active {
   display: block;
 }
 
-/* ===== Header ===== */
-.header {
-  background: #1C2F4A;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-
-.header img {
-  max-width: 120px;
-}
-
-/* ===== Poster ===== */
-.poster {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 12px;
-}
-
-/* ===== Menu button ===== */
-.menu-item {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 10px;
-  font-size: 16px;
-  border-radius: 10px;
-  border: none;
-  background: white;
-  text-align: left;
-}
-
-/* ===== e-Filing ===== */
-.version-box {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.version-btn {
-  padding: 18px;
-  font-size: 18px;
-  border-radius: 12px;
-  border: none;
-  color: white;
-}
-
-.version-btn.v3 {
-  background: #4A6FA5;
-}
-
-.version-btn.v4 {
-  background: #1C2F4A;
-}
-
-/* ===== Bottom bar ===== */
-.bottom-bar {
+/* Bottom bar */
+nav {
   position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #1C2F4A;
-  display: flex;
-}
-
-.bottom-bar button {
-  flex: 1;
-  background: none;
-  border: none;
-  padding: 8px 0;
-  color: #C8D6E5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 12px;
-}
-
-.bottom-bar button.active {
-  color: white;
-}
-
-.bottom-bar span {
-  font-size: 18px;
-}
-</style>
-</head>
-
-<body>
-
-<!-- ===== หน้าแรก ===== -->
-<section id="home" class="page active">
-  <div class="header">
-    <img src="https://via.placeholder.com/120x120?text=CKC" alt="logo">
-    <h2>CKC Connect</h2>
-  </div>
-
-  <div class="poster" onclick="showPage('poster1')">
-    📢 ประกาศการให้บริการ e-Filing
-  </div>
-
-  <div class="poster" onclick="showPage('poster2')">
-    📢 ข่าวประชาสัมพันธ์ศาลแขวงชลบุรี
-  </div>
-</section>
-
-<!-- ===== รายละเอียดโปสเตอร์ ===== -->
-<section id="poster1" class="page">
-  <h3>ประกาศการให้บริการ e-Filing</h3>
-  <p>รายละเอียดประกาศ…</p>
-</section>
-
-<section id="poster2" class="page">
-  <h3>ข่าวประชาสัมพันธ์</h3>
-  <p>รายละเอียดข่าว…</p>
-</section>
-
-<!-- ===== บริการ ===== -->
-<section id="service" class="page">
-  <h2>บริการ</h2>
-
-  <button class="menu-item" onclick="showPage('efiling')">e-Filing</button>
-  <button class="menu-item" onclick="openLink('https://cios.coj.go.th')">CIOS</button>
-  <button class="menu-item" onclick="openLink('https://coj.go.th')">COJ</button>
-</section>
-
-<!-- ===== e-Filing เลือกเวอร์ชัน ===== -->
-<section id="efiling" class="page">
-  <h2>ระบบ e-Filing</h2>
-  <p>กรุณาเลือกเวอร์ชันที่ต้องการใช้งาน</p>
-
-  <div class="version-box">
-    <button class="version-btn v3"
-      onclick="openLink('https://efiling3.coj.go.th')">
-      e-Filing v.3
-    </button>
-
-    <button class="version-btn v4"
-      onclick="openLink('https://efiling.coj.go.th')">
-      e-Filing v.4
-    </button>
-  </div>
-</section>
-
-<!-- ===== คลังความรู้ ===== -->
-<section id="knowledge" class="page">
-  <h2>คลังความรู้</h2>
-  <p>คำศัพท์กฎหมาย / อินโฟกราฟิก</p>
-</section>
-
-<!-- ===== เพิ่มเติม ===== -->
-<section id="other" class="page">
-  <h2>เพิ่มเติม</h2>
-  <p>FAQ / ดาวน์โหลดแบบฟอร์ม</p>
-</section>
-
-<!-- ===== ติดต่อ ===== -->
-<section id="contact" class="page">
-  <h2>ติดต่อเรา</h2>
-  <p>ศาลแขวงชลบุรี</p>
-</section>
-
-<!-- ===== Bottom Bar ===== -->
-<nav class="bottom-bar">
-  <button class="active" onclick="showPage('home',this)">
-    <span>🏠</span>หน้าแรก
-  </button>
-  <button onclick="showPage('service',this)">
-    <span>🛠</span>บริการ
-  </button>
-  <button onclick="showPage('knowledge',this)">
-    <span>📚</span>ความรู้
-  </button>
-  <button onclick="showPage('other',this)">
-    <span>➕</span>เพิ่มเติม
-  </button>
-  <button onclick="showPage('contact',this)">
-    <span>📞</span>ติดต่อ
-  </button>
-</nav>
-
-<script>
-function showPage(id, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-
-  document.querySelectorAll('.bottom-bar button').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-}
-
-function openLink(url) {
-  window.open(url, '_blank');
-}
-</script>
-
-</body>
-</html>  position: fixed;
   bottom: 0;
   width: 100%;
   background: white;
@@ -254,6 +70,30 @@ nav button.active {
   border-radius: 14px;
   font-size: 16px;
 }
+
+/* ===== e-Filing เลือกเวอร์ชัน ===== */
+.version-box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.version-btn {
+  padding: 18px;
+  font-size: 18px;
+  border-radius: 14px;
+  border: none;
+  color: white;
+}
+
+.version-btn.v3 {
+  background: #547DBF;
+}
+
+.version-btn.v4 {
+  background: #0D47A1;
+}
 </style>
 </head>
 
@@ -275,10 +115,29 @@ nav button.active {
   <section id="service">
     <h3>บริการ</h3>
     <div class="menu-grid">
-      <button onclick="openLink('https://efiling.coj.go.th')">e-Filing</button>
+      <!-- เปลี่ยน e-Filing จาก openLink → showPage -->
+      <button onclick="showPage('efiling')">e-Filing</button>
       <button onclick="openLink('https://cios.coj.go.th')">CIOS</button>
       <button onclick="openLink('https://www.coj.go.th')">COJ</button>
       <button onclick="showPage('fee')">คำนวณค่าธรรมเนียม</button>
+    </div>
+  </section>
+
+  <!-- e-Filing เลือกเวอร์ชัน -->
+  <section id="efiling">
+    <h3>ระบบ e-Filing</h3>
+    <p>กรุณาเลือกเวอร์ชันที่ต้องการใช้งาน</p>
+
+    <div class="version-box">
+      <button class="version-btn v3"
+        onclick="openLink('https://efiling3.coj.go.th')">
+        e-Filing v.3
+      </button>
+
+      <button class="version-btn v4"
+        onclick="openLink('https://efiling.coj.go.th')">
+        e-Filing v.4
+      </button>
     </div>
   </section>
 
