@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
@@ -70,30 +70,6 @@ nav button.active {
   border-radius: 14px;
   font-size: 16px;
 }
-
-/* ===== e-Filing เลือกเวอร์ชัน ===== */
-.version-box {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.version-btn {
-  padding: 18px;
-  font-size: 18px;
-  border-radius: 14px;
-  border: none;
-  color: white;
-}
-
-.version-btn.v3 {
-  background: #547DBF;
-}
-
-.version-btn.v4 {
-  background: #0D47A1;
-}
 </style>
 </head>
 
@@ -115,29 +91,10 @@ nav button.active {
   <section id="service">
     <h3>บริการ</h3>
     <div class="menu-grid">
-      <!-- เปลี่ยน e-Filing จาก openLink → showPage -->
-      <button onclick="showPage('efiling')">e-Filing</button>
+      <button onclick="openLink('https://efiling.coj.go.th')">e-Filing</button>
       <button onclick="openLink('https://cios.coj.go.th')">CIOS</button>
       <button onclick="openLink('https://www.coj.go.th')">COJ</button>
       <button onclick="showPage('fee')">คำนวณค่าธรรมเนียม</button>
-    </div>
-  </section>
-
-  <!-- e-Filing เลือกเวอร์ชัน -->
-  <section id="efiling">
-    <h3>ระบบ e-Filing</h3>
-    <p>กรุณาเลือกเวอร์ชันที่ต้องการใช้งาน</p>
-
-    <div class="version-box">
-      <button class="version-btn v3"
-        onclick="openLink('https://efiling3.coj.go.th')">
-        e-Filing v.3
-      </button>
-
-      <button class="version-btn v4"
-        onclick="openLink('https://efiling.coj.go.th')">
-        e-Filing v.4
-      </button>
     </div>
   </section>
 
