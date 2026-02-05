@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CKC Connect</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f5f7fa;
+}
+
+header {
+  background: #0D47A1;
+  color: white;
+  text-align: center;
+  padding: 16px;
+}
+
+main {
+  padding: 16px;
+  padding-bottom: 80px;
+}
+
+section {
+  display: none;
+}
+
+section.active {
+  display: block;
+}
+
+/* Bottom bar */
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+nav button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: none;
+  font-size: 14px;
+}
+
+nav button.active {
+  color: #0D47A1;
+  font-weight: bold;
+}
+
+/* เมนูย่อย */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.menu-grid button {
+  background: #0D47A1;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png" alt="logo" width="60"><br>
+  <b>CKC Connect</b>
+</header>
+
+<main>
+  <!-- หน้าแรก -->
+  <section id="home" class="active">
+    <h3>ประกาศศาล</h3>
+    <p>พื้นที่โปสเตอร์ / ประกาศ</p>
+  </section>
+
+  <!-- บริการ -->
+  <section id="service">
+    <h3>บริการ</h3>
+    <div class="menu-grid">
+      <button onclick="openLink('https://efiling.coj.go.th')">e-Filing</button>
+      <button onclick="openLink('https://cios.coj.go.th')">CIOS</button>
+      <button onclick="openLink('https://www.coj.go.th')">COJ</button>
+      <button onclick="showPage('fee')">คำนวณค่าธรรมเนียม</button>
+    </div>
+  </section>
+
+  <!-- คลังความรู้ -->
+  <section id="knowledge">
+    <h3>คลังความรู้</h3>
+    <p>คำศัพท์ / ขั้นตอน / อินโฟกราฟิก</p>
+  </section>
+
+  <!-- เพิ่มเติม -->
+  <section id="other">
+    <h3>เพิ่มเติม</h3>
+    <p>FAQ / แบบประเมิน / ลิงก์ที่เกี่ยวข้อง</p>
+  </section>
+
+  <!-- ติดต่อ -->
+  <section id="contact">
+    <h3>ติดต่อเรา</h3>
+    <p>ศาลแขวงชลบุรี</p>
+  </section>
+
+  <!-- คำนวณค่าธรรมเนียม -->
+  <section id="fee">
+    <h3>คำนวณค่าธรรมเนียมศาล</h3>
+    <input type="number" id="amount" placeholder="ทุนทรัพย์"><br><br>
+    <button onclick="calcFee()">คำนวณ</button>
+    <p id="result"></p>
+  </section>
+</main>
+
+<nav>
+  <button class="active" onclick="showPage('home',this)">หน้าแรก</button>
+  <button onclick="showPage('service',this)">บริการ</button>
+  <button onclick="showPage('knowledge',this)">คลังความรู้</button>
+  <button onclick="showPage('other',this)">เพิ่มเติม</button>
+  <button onclick="showPage('contact',this)">ติดต่อ</button>
+</nav>
+
+<script>
+function showPage(id, btn){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+}
+
+function openLink(url){
+  window.open(url,"_blank");
+}
+
+function calcFee(){
+  let a = document.getElementById("amount").value;
+  let fee = a * 0.02;
+  document.getElementById("result").innerText =
+    "ค่าธรรมเนียมประมาณ: " + fee.toLocaleString() + " บาท";
+}
+</script>
+
+</body>
+</html>
