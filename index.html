@@ -1,11 +1,11 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 
-<!-- ICON -->
+<!-- Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
@@ -15,10 +15,6 @@ body {
   font-family: system-ui, sans-serif;
   background: #f3f5f9;
   color: #222;
-}
-
-h3 {
-  margin-top: 0;
 }
 
 /* ---------- HEADER ---------- */
@@ -38,7 +34,7 @@ header img {
 /* ---------- MAIN ---------- */
 main {
   padding: 16px;
-  padding-bottom: 96px;
+  padding-bottom: 110px;
 }
 
 section {
@@ -75,7 +71,6 @@ section.active {
   display: block;
   font-size: 28px;
   margin-bottom: 6px;
-  color: #0D47A1;
 }
 
 /* ---------- INPUT ---------- */
@@ -98,33 +93,50 @@ button.calc {
   font-size: 16px;
 }
 
-/* ---------- BOTTOM BAR ---------- */
+/* ---------- BOTTOM BAR (REF STYLE) ---------- */
 nav {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #ffffff;
+  background: #fff;
   display: flex;
+  padding: 8px 6px;
   border-top: 1px solid #eee;
   box-shadow: 0 -6px 18px rgba(0,0,0,.1);
 }
 
 nav button {
   flex: 1;
-  padding: 8px 0;
   border: none;
   background: none;
-  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  border-radius: 16px;
   color: #777;
+  transition: all .25s ease;
 }
 
-nav button span {
-  display: block;
-  font-size: 24px;
+nav button .icon {
+  font-size: 26px;
 }
 
+nav button .label {
+  font-size: 11px;
+  margin-top: 4px;
+  display: none;
+}
+
+/* ACTIVE STATE */
 nav button.active {
+  background: #E3F2FD;
   color: #0D47A1;
+}
+
+nav button.active .label {
+  display: block;
   font-weight: 600;
 }
 </style>
@@ -171,10 +183,9 @@ nav button.active {
     </div>
   </section>
 
-  <!-- E-FILING SELECT -->
+  <!-- E-FILING -->
   <section id="efiling">
     <h3>เลือกระบบ e-Filing</h3>
-
     <div class="menu-grid">
       <button onclick="openLink('https://efiling3.coj.go.th')">
         <span class="material-icons">layers</span>
@@ -219,33 +230,37 @@ nav button.active {
 <!-- BOTTOM BAR -->
 <nav>
   <button class="active" onclick="showPage('home',this)">
-    <span class="material-icons">home</span>
-    หน้าแรก
+    <span class="material-icons icon">home</span>
+    <span class="label">หน้าแรก</span>
   </button>
+
   <button onclick="showPage('service',this)">
-    <span class="material-icons">apps</span>
-    บริการ
+    <span class="material-icons icon">apps</span>
+    <span class="label">บริการ</span>
   </button>
+
   <button onclick="showPage('knowledge',this)">
-    <span class="material-icons">menu_book</span>
-    ความรู้
+    <span class="material-icons icon">menu_book</span>
+    <span class="label">ความรู้</span>
   </button>
+
   <button onclick="showPage('other',this)">
-    <span class="material-icons">more_horiz</span>
-    เพิ่มเติม
+    <span class="material-icons icon">more_horiz</span>
+    <span class="label">เพิ่มเติม</span>
   </button>
+
   <button onclick="showPage('contact',this)">
-    <span class="material-icons">call</span>
-    ติดต่อ
+    <span class="material-icons icon">call</span>
+    <span class="label">ติดต่อ</span>
   </button>
 </nav>
 
 <script>
 function showPage(id, btn){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
   if(btn) btn.classList.add("active");
 }
 
