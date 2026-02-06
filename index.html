@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
-/* ---------- BASE ---------- */
+/* ===== BASE ===== */
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
@@ -17,7 +17,7 @@ body {
   color: #222;
 }
 
-/* ---------- HEADER ---------- */
+/* ===== HEADER ===== */
 header {
   background: linear-gradient(135deg, #0D47A1, #1565C0);
   color: white;
@@ -31,10 +31,10 @@ header img {
   margin-bottom: 6px;
 }
 
-/* ---------- MAIN ---------- */
+/* ===== MAIN ===== */
 main {
   padding: 16px;
-  padding-bottom: 110px;
+  padding-bottom: 120px;
 }
 
 section {
@@ -49,7 +49,7 @@ section.active {
   box-shadow: 0 8px 20px rgba(0,0,0,.08);
 }
 
-/* ---------- SERVICE GRID ---------- */
+/* ===== SERVICE GRID ===== */
 .menu-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -57,7 +57,7 @@ section.active {
 }
 
 .menu-grid button {
-  background: #ffffff;
+  background: #fff;
   border: none;
   border-radius: 18px;
   padding: 20px 12px;
@@ -73,7 +73,7 @@ section.active {
   margin-bottom: 6px;
 }
 
-/* ---------- INPUT ---------- */
+/* ===== INPUT ===== */
 input {
   width: 100%;
   padding: 12px;
@@ -93,45 +93,46 @@ button.calc {
   font-size: 16px;
 }
 
-/* ---------- BOTTOM BAR (REF STYLE) ---------- */
+/* ===== BOTTOM BAR (REF STYLE – FIXED) ===== */
 nav {
   position: fixed;
   bottom: 0;
   width: 100%;
   background: #fff;
   display: flex;
-  padding: 8px 6px;
+  padding: 10px 8px;
   border-top: 1px solid #eee;
   box-shadow: 0 -6px 18px rgba(0,0,0,.1);
 }
 
 nav button {
   flex: 1;
+  height: 56px;                 /* สำคัญ */
   border: none;
-  background: none;
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 8px 4px;
-  border-radius: 16px;
+  border-radius: 18px;          /* ทำ pill */
   color: #777;
   transition: all .25s ease;
 }
 
 nav button .icon {
   font-size: 26px;
+  line-height: 1;
 }
 
 nav button .label {
   font-size: 11px;
   margin-top: 4px;
-  display: none;
+  display: none;               /* ยังไม่กด = ซ่อนชื่อ */
 }
 
-/* ACTIVE STATE */
+/* ===== ACTIVE STATE ===== */
 nav button.active {
-  background: #E3F2FD;
+  background: #E3F2FD;         /* พื้นหลังขึ้นชัด */
   color: #0D47A1;
 }
 
