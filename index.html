@@ -12,56 +12,65 @@
 body{
   margin:0;
   font-family:system-ui,sans-serif;
-  background:#ffffff;
+  background:#f2f4f7;
   color:#222;
 }
-h3{margin-top:0}
+h3{margin:0 0 12px}
 
 /* ===== HEADER ===== */
-header{
-  position:relative;
-  padding:0;
-}
-.header-banner{
-  width:100%;
-  height:auto;
-  display:block;
-}
+header{position:relative}
+.header-banner{width:100%;display:block}
 
 /* search */
 .search-btn{
-  position:absolute;
-  top:12px;
-  right:12px;
-  color:#fff;
-  font-size:26px;
-  cursor:pointer;
+  position:absolute;top:12px;right:12px;
+  color:#fff;font-size:26px;cursor:pointer;
 }
 .search-box{
-  position:absolute;
-  top:52px;
-  right:12px;
-  display:none;
+  position:absolute;top:52px;right:12px;display:none;
 }
 .search-box input{
-  padding:8px 12px;
-  border-radius:20px;
-  border:1px solid #ccc;
-  background:rgba(255,255,255,.9);
+  padding:8px 14px;border-radius:20px;border:1px solid #ccc;
 }
 
 /* ===== MAIN ===== */
 main{
-  background:#ffffff;
   padding:16px;
   padding-bottom:130px;
 }
 section{display:none}
-section.active{
-  display:block;
-  background:#e3e3e3;
+section.active{display:block}
+
+/* ===== SECTION CARD ===== */
+.section-card{
+  background:#fff;
+  border-radius:22px;
   padding:16px;
+  margin-bottom:18px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+
+/* ===== QUICK SERVICE (บริการหลัก) ===== */
+.quick-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.quick-item{
+  background:linear-gradient(135deg,#0a3083,#1549b8);
+  color:#fff;
   border-radius:20px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
+.quick-item span{
+  font-size:34px;
+}
+.quick-item small{
+  opacity:.9;
 }
 
 /* ===== SERVICE LIST ===== */
@@ -71,57 +80,46 @@ section.active{
   gap:12px;
 }
 .service-item{
-  background:#ffffff;
-  border-radius:16px;
-  padding:14px;
+  background:#fff;
+  border-radius:18px;
+  padding:14px 16px;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
   color:#0a3083;
   font-weight:600;
+  box-shadow:0 4px 14px rgba(0,0,0,.05);
   cursor:pointer;
 }
-.service-item span.material-icons{
-  font-size:26px;
-}
+.service-item span{font-size:26px}
 
 /* ===== BOTTOM BAR ===== */
 nav{
   position:fixed;
-  bottom:0;
-  width:100%;
+  bottom:0;width:100%;
   background:#0a3083;
   display:flex;
   padding:10px 6px;
 }
 nav button{
-  flex:1;
-  border:none;
-  background:transparent;
+  flex:1;border:none;background:transparent;
   color:#fff;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:2px;
-  font-size:11px;
-  border-radius:18px;
+  display:flex;flex-direction:column;
+  align-items:center;gap:2px;
+  font-size:11px;border-radius:18px;
 }
 nav button.active{
-  background:rgba(1,116,242,.35);
+  background:rgba(255,255,255,.25);
 }
-nav span{
-  font-size:24px;
-}
+nav span{font-size:24px}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
   <img class="header-banner"
    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
-  
   <span class="material-icons search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
@@ -131,78 +129,100 @@ nav span{
 <main>
 
 <section id="home" class="active">
-  <h3>ประกาศศาล</h3>
+  <div class="section-card">
+    <h3>บริการที่ใช้บ่อย</h3>
+    <div class="quick-grid">
+      <div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
+        <span class="material-icons">search</span>
+        ตรวจสอบสถานะคดี
+        <small>ติดตามคดีออนไลน์</small>
+      </div>
+      <div class="quick-item" onclick="showPage('efiling')">
+        <span class="material-icons">gavel</span>
+        e-Filing
+        <small>ยื่นคำร้องทางอิเล็กทรอนิกส์</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <h3>ประกาศศาล</h3>
+  </div>
 </section>
 
 <section id="service">
-  <h3>บริการ</h3>
-  <div class="service-list">
-    <div class="service-item" onclick="showPage('fee')"><span class="material-icons">calculate</span>อัตราค่าธรรมเนียมขึ้นศาล</div>
-    <div class="service-item"><span class="material-icons">list_alt</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง</div>
-    <div class="service-item" onclick="openLink('https://cios.coj.go.th/tracking/')"><span class="material-icons">search</span>ตรวจสอบสถานะคดี</div>
-    <div class="service-item" onclick="showPage('efiling')"><span class="material-icons">gavel</span>e-filing</div>
-    <div class="service-item" onclick="openLink('https://cios.coj.go.th')"><span class="material-icons">description</span>CIOS</div>
-    <div class="service-item" onclick="openLink('https://www.coj.go.th')"><span class="material-icons">account_balance</span>COJ</div>
-    <div class="service-item"><span class="material-icons">handshake</span>ไกล่เกลี่ย/นัดพิจารณาคดีทางอิเล็กทรอนิกส์</div>
-    <div class="service-item"><span class="material-icons">download</span>ดาวน์โหลดแบบฟอร์ม</div>
+  <div class="section-card">
+    <h3>บริการอิเล็กทรอนิกส์</h3>
+    <div class="service-list">
+      <div class="service-item" onclick="showPage('fee')">
+        <span class="material-icons">calculate</span>อัตราค่าธรรมเนียมขึ้นศาล
+      </div>
+      <div class="service-item">
+        <span class="material-icons">list_alt</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง
+      </div>
+      <div class="service-item" onclick="openLink('https://cios.coj.go.th')">
+        <span class="material-icons">description</span>CIOS
+      </div>
+      <div class="service-item" onclick="openLink('https://www.coj.go.th')">
+        <span class="material-icons">account_balance</span>COJ
+      </div>
+      <div class="service-item">
+        <span class="material-icons">download</span>ดาวน์โหลดแบบฟอร์ม
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="efiling">
-  <h3>เลือกระบบ e-Filing</h3>
-  <div class="service-list">
-    <div class="service-item" onclick="openLink('https://efiling3.coj.go.th')">e-finling v.3</div>
-    <div class="service-item" onclick="openLink('https://efiling4.coj.go.th')">e-filing v.4</div>
+  <div class="section-card">
+    <h3>เลือกระบบ e-Filing</h3>
+    <div class="service-list">
+      <div class="service-item" onclick="openLink('https://efiling3.coj.go.th')">e-Filing v.3</div>
+      <div class="service-item" onclick="openLink('https://efiling4.coj.go.th')">e-Filing v.4</div>
+    </div>
   </div>
 </section>
 
-<section id="fee">
-  <h3>คำนวณค่าธรรมเนียม</h3>
-</section>
-
-<section id="knowledge"><h3>คลังความรู้</h3></section>
-<section id="other"><h3>เพิ่มเติม</h3></section>
-<section id="contact"><h3>ติดต่อ</h3></section>
+<section id="fee"><div class="section-card"><h3>คำนวณค่าธรรมเนียม</h3></div></section>
+<section id="knowledge"><div class="section-card"><h3>คลังความรู้</h3></div></section>
+<section id="other"><div class="section-card"><h3>เพิ่มเติม</h3></div></section>
+<section id="contact"><div class="section-card"><h3>ติดต่อ</h3></div></section>
 
 </main>
 
 <nav>
-  <button class="active" onclick="showPage('home',this)"><span class="material-icons">home</span>หน้าแรก</button>
-  <button onclick="showPage('service',this)"><span class="material-icons">apps</span>บริการ</button>
-  <button onclick="showPage('knowledge',this)"><span class="material-icons">menu_book</span>คลังความรู้</button>
-  <button onclick="showPage('other',this)"><span class="material-icons">more_horiz</span>เพิ่มเติม</button>
-  <button onclick="showPage('contact',this)"><span class="material-icons">person</span>ติดต่อ</button>
+  <button class="active" onclick="showPage('home',this)">
+    <span class="material-icons">home</span>หน้าแรก
+  </button>
+  <button onclick="showPage('service',this)">
+    <span class="material-icons">apps</span>บริการ
+  </button>
+  <button onclick="showPage('knowledge',this)">
+    <span class="material-icons">menu_book</span>คลังความรู้
+  </button>
+  <button onclick="showPage('other',this)">
+    <span class="material-icons">more_horiz</span>เพิ่มเติม
+  </button>
+  <button onclick="showPage('contact',this)">
+    <span class="material-icons">person</span>ติดต่อ
+  </button>
 </nav>
 
 <script>
-let historyStack=[];
-
 function showPage(id,btn){
-  let current=document.querySelector("section.active");
-  if(current && current.id!==id) historyStack.push(current.id);
-
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-
   document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
   if(btn) btn.classList.add("active");
 }
-
-window.onpopstate=()=> {
-  let prev=historyStack.pop();
-  if(prev) showPage(prev);
-}
-
 function openLink(url){window.open(url,"_blank")}
-
 function toggleSearch(){
   let b=document.getElementById("searchBox");
   b.style.display=b.style.display==="block"?"none":"block";
 }
-
 function doSearch(e){
   if(e.key==="Enter"){
-    let q=e.target.value.toLowerCase();
+    let q=e.target.value;
     if(q.includes("fil")) showPage("efiling");
     if(q.includes("ค่")) showPage("fee");
   }
