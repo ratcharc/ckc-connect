@@ -11,198 +11,146 @@
 body{
   margin:0;
   font-family:system-ui,sans-serif;
-  background:#e6e8ee;
-  color:#222;
+  background:#e5e7eb;
 }
 
-/* ===== HEADER ===== */
+/* ---------- HEADER ---------- */
 header{
   position:relative;
-  background:#0a3083;
+  overflow:hidden;
 }
-
-.header-banner{
+header img{
   width:100%;
   height:auto;
   display:block;
 }
-
-/* search icon */
 .search-btn{
   position:absolute;
   top:12px;
   right:12px;
-  color:#fff;
+  color:white;
   font-size:28px;
   cursor:pointer;
 }
 
+/* ---------- SEARCH ---------- */
 .search-box{
-  position:absolute;
-  top:54px;
-  right:12px;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
   display:none;
+  align-items:center;
+  justify-content:center;
 }
-
 .search-box input{
-  padding:8px 12px;
-  border-radius:8px;
+  width:80%;
+  max-width:400px;
+  padding:14px;
+  font-size:16px;
   border:none;
+  border-radius:14px;
   outline:none;
-  font-size:14px;
 }
 
-/* ===== MAIN ===== */
+/* ---------- MAIN ---------- */
 main{
   padding:16px;
-  padding-bottom:120px;
+  padding-bottom:110px;
 }
-
 section{display:none;}
 section.active{
   display:block;
+  background:#e5e7eb;
+}
+
+/* ---------- SERVICE LIST ---------- */
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.list button{
   background:#fff;
-  border-radius:20px;
+  border:none;
+  border-radius:16px;
   padding:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
-}
-
-/* ===== GRID ===== */
-.menu-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.menu-grid button{
-  background:#0a3083;
-  color:#fff;
-  border:none;
-  border-radius:18px;
-  padding:18px 12px;
-  font-size:14px;
-  font-weight:600;
-  box-shadow:0 6px 14px rgba(0,0,0,.15);
-}
-
-.menu-grid button span{
-  display:block;
-  font-size:26px;
-  margin-bottom:6px;
-  color:#fff;
-}
-
-/* ===== INPUT ===== */
-input{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #ccc;
+  display:flex;
+  align-items:center;
+  gap:12px;
   font-size:15px;
+  color:#0a3083;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
 }
+.list span{font-size:24px;}
 
-button.calc{
-  margin-top:12px;
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  border:none;
-  background:#0a3083;
-  color:#fff;
-  font-size:16px;
-}
-
-/* ===== BOTTOM BAR ===== */
+/* ---------- BOTTOM BAR ---------- */
 nav{
   position:fixed;
   bottom:0;
   width:100%;
   background:#fff;
   display:flex;
-  border-top:1px solid #eee;
-  box-shadow:0 -6px 18px rgba(0,0,0,.1);
   padding:10px 6px;
+  box-shadow:0 -6px 18px rgba(0,0,0,.1);
 }
-
 nav button{
   flex:1;
+  background:none;
   border:none;
-  background:transparent;
-  font-size:11px;
   color:#0a3083;
+  font-size:11px;
   display:flex;
   flex-direction:column;
   align-items:center;
   border-radius:999px;
 }
-
-nav button span{
-  font-size:24px;
-}
-
 nav button.active{
   background:#0a3083;
   color:#fff;
-  font-weight:600;
 }
+nav span{font-size:24px;}
 </style>
 </head>
 
 <body>
 
 <header>
-  <img class="header-banner"
-    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
-  <span class="material-icons search-btn" onclick="toggleSearch()">search</span>
-  <div class="search-box" id="searchBox">
-    <input id="searchInput" placeholder="ค้นหา..." onkeydown="doSearch(event)">
-  </div>
+  <img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+  <span class="material-icons search-btn" onclick="openSearch()">search</span>
 </header>
+
+<div class="search-box" id="searchBox" onclick="closeSearch()">
+  <input placeholder="ค้นหา..." onkeydown="doSearch(event)">
+</div>
 
 <main>
 
-<section id="home" class="active">
-  <h3>ประกาศศาล</h3>
-</section>
+<section id="home" class="active"></section>
 
 <section id="service">
-  <h3>บริการ</h3>
-  <div class="menu-grid">
+  <div class="list">
     <button onclick="showPage('fee')"><span class="material-icons">calculate</span>อัตราค่าธรรมเนียมขึ้นศาล</button>
-    <button><span class="material-icons">list_alt</span>ขั้นตอนการฟ้อง / ยื่นคำร้อง</button>
-    <button onclick="openLink('https://script.google.com/macros/s/AKfycbwICVLJxNrUbK9iZqP_0OaXY-CWmH3386AndO9fvHU6L4Mral4QsMglMhAZox_h3-icAQ/exec?page=displayonline')">
-      <span class="material-icons">search</span>ตรวจสอบสถานะคดี
-    </button>
+    <button><span class="material-icons">article</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง</button>
+    <button onclick="openLink('https://script.google.com/macros/s/AKfycbwICVLJxNrUbK9iZqP_0OaXY-CWmH3386AndO9fvHU6L4Mral4QsMglMhAZox_h3-icAQ/exec?page=displayonline')"><span class="material-icons">search</span>ตรวจสอบสถานะคดี</button>
     <button onclick="showPage('efiling')"><span class="material-icons">gavel</span>e-Filing</button>
     <button onclick="openLink('https://cios.coj.go.th')"><span class="material-icons">description</span>CIOS</button>
     <button onclick="openLink('https://www.coj.go.th')"><span class="material-icons">account_balance</span>COJ</button>
-    <button><span class="material-icons">groups</span>ไกล่เกลี่ย / นัดพิจารณาคดี</button>
+    <button><span class="material-icons">handshake</span>ไกล่เกลี่ย/นัดพิจารณาคดีทางอิเล็กทรอนิกส์</button>
     <button><span class="material-icons">download</span>ดาวน์โหลดแบบฟอร์ม</button>
   </div>
 </section>
 
 <section id="efiling">
-  <h3>เลือกระบบ e-Filing</h3>
-  <div class="menu-grid">
-    <button onclick="openLink('https://efiling3.coj.go.th')">
-      <span class="material-icons">layers</span>e-Filing v.3
-    </button>
-    <button onclick="openLink('https://efiling4.coj.go.th')">
-      <span class="material-icons">rocket_launch</span>e-Filing v.4
-    </button>
+  <div class="list">
+    <button onclick="openLink('https://efiling3.coj.go.th')">e-Filing v.3</button>
+    <button onclick="openLink('https://efiling4.coj.go.th')">e-Filing v.4</button>
   </div>
 </section>
 
-<section id="knowledge"><h3>คลังความรู้</h3></section>
-<section id="other"><h3>เพิ่มเติม</h3></section>
-<section id="contact"><h3>ติดต่อเรา</h3></section>
-
-<section id="fee">
-  <h3>คำนวณค่าธรรมเนียมศาล</h3>
-  <input id="amount" placeholder="ทุนทรัพย์ (บาท)">
-  <button class="calc" onclick="calcFee()">คำนวณ</button>
-  <p id="result"></p>
-</section>
+<section id="fee"></section>
+<section id="knowledge"></section>
+<section id="other"></section>
+<section id="contact"></section>
 
 </main>
 
@@ -218,35 +166,28 @@ nav button.active{
 let historyStack=[];
 
 function showPage(id,btn){
-  historyStack.push(document.querySelector("section.active").id);
+  let current=document.querySelector("section.active");
+  if(current) historyStack.push(current.id);
+
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+
   document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
   if(btn) btn.classList.add("active");
 }
 
-window.onpopstate=function(){
-  let prev=historyStack.pop();
-  if(prev) showPage(prev);
-};
+function openLink(url){window.open(url,"_blank");}
 
-function toggleSearch(){
-  document.getElementById("searchBox").style.display="block";
-}
+function openSearch(){document.getElementById("searchBox").style.display="flex";}
+function closeSearch(){document.getElementById("searchBox").style.display="none";}
 
 function doSearch(e){
   if(e.key==="Enter"){
     let q=e.target.value.toLowerCase();
-    if(q.includes("fil")) showPage("efiling");
+    if(q.includes("e")) showPage("efiling");
     if(q.includes("ค่")) showPage("fee");
-    if(q.includes("รู้")) showPage("knowledge");
+    closeSearch();
   }
-}
-
-function openLink(url){window.open(url,"_blank");}
-function calcFee(){
-  let a=+amount.value||0;
-  result.innerText="ค่าธรรมเนียมประมาณ: "+(a*0.02).toLocaleString()+" บาท";
 }
 </script>
 
