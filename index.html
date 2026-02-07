@@ -26,29 +26,28 @@ header{position:relative}
 .header-banner{
   width:100%;
   display:block;
-  filter:saturate(.75) brightness(.95);
+  filter:saturate(.75) brightness(.95); /* ดรอปเหลืองส้ม */
 }
 .search-btn{
   position:absolute;
-  top:14px;
-  right:14px;
-  color:#fff;
+  top:14px;right:14px;
+  color:#e5edff;
   font-size:26px;
   cursor:pointer;
 }
 .search-box{
   position:absolute;
-  top:56px;
-  right:14px;
+  top:56px;right:14px;
   display:none;
 }
 .search-box input{
-  padding:10px 16px;
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,.35);
-  background:rgba(255,255,255,.25);
+  padding:10px 14px;
+  border:none;
+  background:rgba(255,255,255,.85);
   backdrop-filter:blur(8px);
-  color:#111;
+  border-radius:14px;
+  outline:none;
+  box-shadow:0 10px 26px rgba(15,23,42,.25);
 }
 
 /* ===== MAIN ===== */
@@ -56,21 +55,21 @@ main{padding:16px;padding-bottom:120px}
 section{display:none}
 section.active{display:block}
 
-/* ===== SECTION BOX (เงาชัดขึ้น) ===== */
+/* ===== SECTION BOX ===== */
 .section-box{
-  background:linear-gradient(145deg,#ffffff,#e7edff);
+  background:linear-gradient(145deg,#ffffff,#e8efff);
   border-radius:26px;
   padding:18px;
   box-shadow:
-    0 20px 44px rgba(15,23,42,.22),
-    inset 0 1px 0 rgba(255,255,255,.9);
-  border:1px solid rgba(59,130,246,.14);
+    0 18px 40px rgba(15,23,42,.22),
+    inset 0 1px 0 rgba(255,255,255,.95);
+  border:1px solid rgba(59,130,246,.12);
 }
 
 /* ===== FEED ===== */
 .feed{display:flex;flex-direction:column;gap:14px}
 .feed-item{
-  background:linear-gradient(145deg,#ffffff,#eef3ff);
+  background:linear-gradient(145deg,#ffffff,#edf2ff);
   border-radius:18px;
   padding:14px;
   box-shadow:0 14px 32px rgba(15,23,42,.22);
@@ -83,60 +82,56 @@ section.active{display:block}
   gap:14px;
 }
 .service-card{
-  background:linear-gradient(145deg,#ffffff,#eaf0ff);
-  border-radius:24px;
+  background:linear-gradient(145deg,#ffffff,#e9f0ff);
+  border-radius:22px;
   padding:16px;
-  box-shadow:
-    0 16px 36px rgba(15,23,42,.25),
-    inset 0 1px 0 rgba(255,255,255,.9);
+  box-shadow:0 16px 34px rgba(15,23,42,.24);
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:12px;
   font-weight:600;
   cursor:pointer;
   color:#0a3083;
 }
 
-/* ===== ICON (น้ำเงินเข้ม + ทอง ไล่สีชัด ไม่มี pill) ===== */
+/* ===== ICON (น้ำเงินเข้ม → ทอง ชัด + เงา) ===== */
 .service-card span,
-.icon-gradient{
+.icon-only{
   font-size:28px;
   background:linear-gradient(
     135deg,
     #0a3083 0%,
     #1e40af 45%,
-    #c9a24d 100%
+    #c8a24a 75%,
+    #f1d27a 100%
   );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 6px 14px rgba(10,48,131,.55));
+  filter:drop-shadow(0 6px 10px rgba(10,48,131,.45))
+         drop-shadow(0 2px 3px rgba(180,150,90,.45));
 }
 
-/* ===== e-FILING (ไม่มี pill ใช้ card เหมือน service) ===== */
-.efiling-card{
-  background:linear-gradient(145deg,#ffffff,#eaf0ff);
-  border-radius:24px;
-  padding:16px;
-  box-shadow:
-    0 16px 36px rgba(15,23,42,.25),
-    inset 0 1px 0 rgba(255,255,255,.9);
+/* ===== e-FILING ICON LIST (ไม่ใช้ pill) ===== */
+.efiling-list{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.efiling-item{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
   font-weight:700;
   color:#0a3083;
   cursor:pointer;
-  margin-bottom:14px;
 }
 
 /* ===== CALCULATOR ===== */
 .calc-box{
-  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  background:linear-gradient(145deg,#ffffff,#e9f0ff);
   border-radius:24px;
   padding:16px;
-  box-shadow:
-    0 18px 40px rgba(15,23,42,.25),
-    inset 0 1px 0 rgba(255,255,255,.9);
+  box-shadow:0 18px 36px rgba(15,23,42,.25);
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -155,7 +150,7 @@ section.active{display:block}
   font-weight:700;
 }
 .calc-result{
-  background:#eaf0ff;
+  background:linear-gradient(145deg,#edf2ff,#e0e9ff);
   padding:12px;
   border-radius:14px;
   font-weight:700;
@@ -168,10 +163,10 @@ section.active{display:block}
   gap:14px;
 }
 .preview-card{
-  background:linear-gradient(145deg,#ffffff,#eef3ff);
-  border-radius:22px;
+  background:linear-gradient(145deg,#ffffff,#e9f0ff);
+  border-radius:20px;
   overflow:hidden;
-  box-shadow:0 16px 36px rgba(15,23,42,.25);
+  box-shadow:0 16px 34px rgba(15,23,42,.25);
 }
 .preview-card img{width:100%;display:block}
 .preview-card div{
@@ -233,42 +228,34 @@ nav span{font-size:24px}
   <div class="section-box">
     <h3>ข้อมูลบริการ</h3>
     <div class="service-grid">
-
       <div class="service-card" onclick="navigate('fee')">
         <span class="material-icons-outlined">calculate</span>
         อัตราค่าธรรมเนียมขึ้นศาล
       </div>
-
       <div class="service-card">
         <span class="material-icons-outlined">list_alt</span>
         ขั้นตอนการฟ้อง / ยื่นคำร้อง
       </div>
-
       <div class="service-card" onclick="navigate('efiling')">
         <span class="material-icons-outlined">gavel</span>
         e-Filing
       </div>
-
       <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
         <span class="material-icons-outlined">description</span>
         CIOS
       </div>
-
       <div class="service-card" onclick="openLink('https://www.coj.go.th')">
         <span class="material-icons-outlined">account_balance</span>
         COJ
       </div>
-
       <div class="service-card">
         <span class="material-icons-outlined">handshake</span>
         ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
       </div>
-
       <div class="service-card" onclick="navigate('download')">
         <span class="material-icons-outlined">download</span>
         ดาวน์โหลดแบบฟอร์ม
       </div>
-
     </div>
   </div>
 </section>
@@ -276,15 +263,15 @@ nav span{font-size:24px}
 <section id="efiling">
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
-
-    <div class="efiling-card" onclick="openLink('https://efiling3.coj.go.th')">
-      <span class="material-icons-outlined">gavel</span>
-      e-Filing v.3
-    </div>
-
-    <div class="efiling-card" onclick="openLink('https://efiling4.coj.go.th')">
-      <span class="material-icons-outlined">rocket_launch</span>
-      e-Filing v.4
+    <div class="efiling-list">
+      <div class="efiling-item" onclick="openLink('https://efiling3.coj.go.th')">
+        <span class="material-icons-outlined icon-only">gavel</span>
+        e-Filing v.3
+      </div>
+      <div class="efiling-item" onclick="openLink('https://efiling4.coj.go.th')">
+        <span class="material-icons-outlined icon-only">rocket_launch</span>
+        e-Filing v.4
+      </div>
     </div>
   </div>
 </section>
@@ -338,7 +325,7 @@ nav span{font-size:24px}
 
 <script>
 function navigate(id,btn){
-  history.pushState({page:id}, "", "#"+id);
+  history.pushState({page:id},"","#"+id);
   showPage(id,btn);
 }
 function showPage(id,btn){
@@ -349,9 +336,9 @@ function showPage(id,btn){
     btn.classList.add("active");
   }
 }
-window.onpopstate=function(e){
-  if(e.state && e.state.page){ showPage(e.state.page); }
-}
+window.onpopstate=e=>{
+  if(e.state&&e.state.page) showPage(e.state.page);
+};
 function openLink(url){window.open(url,"_blank")}
 function toggleSearch(){
   let b=document.getElementById("searchBox");
