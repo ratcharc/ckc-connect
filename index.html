@@ -46,23 +46,23 @@ main{
 section{display:none}
 section.active{display:block}
 
-/* ===== SECTION BOX (ปรับให้มีมิติขึ้น) ===== */
+/* ===== SECTION BOX ===== */
 .section-box{
-  background:linear-gradient(135deg,#ffffff,#f5f8ff);
+  background:linear-gradient(135deg,#ffffff,#f6f8ff);
   border-radius:22px;
   padding:16px;
-  border:1px solid rgba(99,102,241,.12); /* NEW */
-  box-shadow:0 14px 34px rgba(0,0,0,.10); /* NEW */
+  border:1px solid #dbe3ff;
+  box-shadow:0 14px 30px rgba(15,23,42,.12);
 }
 
 /* ===== FEED ===== */
 .feed{display:flex;flex-direction:column;gap:14px}
 .feed-item{
   background:#fff;
-  border-radius:18px;
+  border-radius:16px;
   padding:14px;
-  border:1px solid rgba(0,0,0,.06); /* NEW */
-  box-shadow:0 10px 22px rgba(0,0,0,.10); /* NEW */
+  border:1px solid #e5ebff;
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
 }
 
 /* ===== SERVICE GRID ===== */
@@ -72,61 +72,88 @@ section.active{display:block}
   gap:14px;
 }
 .service-card{
-  background:linear-gradient(135deg,#ffffff,#eef2ff);
+  background:linear-gradient(135deg,#ffffff,#eef3ff);
   border-radius:20px;
   padding:16px;
-  border:1px solid rgba(99,102,241,.15); /* NEW */
-  box-shadow:0 14px 30px rgba(0,0,0,.12); /* NEW */
+  border:1px solid #dbe3ff;
+  box-shadow:0 14px 28px rgba(15,23,42,.14);
   display:flex;
-  flex-direction:column;
-  gap:10px;
+  gap:12px;
+  align-items:center;
   color:#0a3083;
   font-weight:600;
   cursor:pointer;
 }
 .service-card span{
   font-size:26px;
-  width:44px;height:44px;               /* NEW */
-  border-radius:14px;                  /* NEW */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#dbeafe,#e0e7ff); /* NEW */
-  color:#1e40af;
+  background:#e8edff;
+  color:#0a3083;
+  padding:10px;
+  border-radius:50%;
 }
 
 /* ===== e-filing pill ===== */
 .pill{
-  background:#0a3083;
+  background:linear-gradient(135deg,#0a3083,#163fa3);
   color:#fff;
-  border-radius:32px;
+  border-radius:999px;
   padding:14px 18px;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
   font-weight:700;
-  box-shadow:0 12px 26px rgba(10,48,131,.45);
+  box-shadow:0 10px 26px rgba(10,48,131,.45);
 }
 
-/* ===== CALC ===== */
+/* ===== FEE CALCULATOR ===== */
 .calc-box{
   background:#fff;
-  border-radius:22px;
+  border-radius:20px;
   padding:16px;
-  border:1px solid rgba(99,102,241,.12); /* NEW */
-  box-shadow:0 14px 34px rgba(0,0,0,.10); /* NEW */
+  border:1px solid #dbe3ff;
+  box-shadow:0 14px 28px rgba(15,23,42,.14);
   display:flex;
   flex-direction:column;
   gap:12px;
 }
+.calc-box input{
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #c7d2fe;
+}
+.calc-box button{
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  background:#0a3083;
+  color:#fff;
+  font-weight:700;
+}
+.calc-result{
+  background:#eef3ff;
+  padding:12px;
+  border-radius:14px;
+  font-weight:700;
+}
 
-/* ===== DOWNLOAD ===== */
+/* ===== DOWNLOAD PREVIEW ===== */
+.preview-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
 .preview-card{
   background:#fff;
-  border-radius:18px;
+  border-radius:16px;
   overflow:hidden;
-  border:1px solid rgba(0,0,0,.06); /* NEW */
-  box-shadow:0 12px 26px rgba(0,0,0,.12); /* NEW */
+  border:1px solid #e1e8ff;
+  box-shadow:0 12px 26px rgba(15,23,42,.14);
+}
+.preview-card img{width:100%;display:block}
+.preview-card div{
+  padding:10px;
+  font-size:13px;
+  font-weight:600;
 }
 
 /* ===== BOTTOM BAR ===== */
@@ -136,7 +163,8 @@ nav{
   width:100%;
   background:#0a3083;
   display:flex;
-  padding:10px 6px;
+  padding:10px;
+  gap:6px;
 }
 nav button{
   flex:1;
@@ -146,12 +174,14 @@ nav button{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:2px;
   font-size:11px;
-  border-radius:18px;
+  border-radius:999px;
+  padding:8px 0;
 }
 nav button.active{
-  background:rgba(255,255,255,.25);
+  background:#fff;
+  color:#0a3083;
+  box-shadow:0 6px 16px rgba(0,0,0,.25);
 }
 nav span{font-size:24px}
 </style>
@@ -159,38 +189,57 @@ nav span{font-size:24px}
 
 <body>
 
+<header>
+  <img class="header-banner"
+   src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+  <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
+  <div class="search-box" id="searchBox">
+    <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
+  </div>
+</header>
+
 <main>
 
-<section id="service" class="active">
+<section id="home" class="active">
+  <div class="section-box">
+    <h3>รายการโพส</h3>
+    <div class="feed">
+      <div class="feed-item">ประกาศศาลรายการที่ 1</div>
+      <div class="feed-item">ประกาศศาลรายการที่ 2</div>
+    </div>
+  </div>
+</section>
+
+<section id="service">
   <div class="section-box">
     <h3>ข้อมูลบริการ</h3>
     <div class="service-grid">
-
-      <div class="service-card">
-        <span class="material-icons-outlined">calculate</span>
-        อัตราค่าธรรมเนียมขึ้นศาล
+      <div class="service-card" onclick="showPage('fee')">
+        <span class="material-icons-outlined">calculate</span>อัตราค่าธรรมเนียมขึ้นศาล
       </div>
-
       <div class="service-card">
-        <span class="material-icons-outlined">list_alt</span>
-        ขั้นตอนการฟ้อง/ยื่นคำร้อง
+        <span class="material-icons-outlined">assignment</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง
       </div>
-
-      <div class="service-card">
-        <span class="material-icons-outlined">gavel</span>
-        e-filing
+      <div class="service-card" onclick="showPage('efiling')">
+        <span class="material-icons-outlined">gavel</span>e-Filing
       </div>
-
-      <div class="service-card">
-        <span class="material-icons-outlined">forum</span>
-        ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
+      <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
+        <span class="material-icons-outlined">description</span>CIOS
       </div>
-
+      <div class="service-card" onclick="openLink('https://www.coj.go.th')">
+        <span class="material-icons-outlined">account_balance</span>COJ
+      </div>
       <div class="service-card">
-        <span class="material-icons-outlined">event_available</span>
+        <span class="material-icons-outlined">handshake</span>
+        ไกล่เกลี่ย/พิจารณาคดีทางอิเล็กทรอนิกส์
+      </div>
+      <div class="service-card">
+        <span class="material-icons-outlined">event_note</span>
         บัญชีนัดพิจารณาคดี / พิจารณาทางอิเล็กทรอนิกส์
       </div>
-
+      <div class="service-card" onclick="showPage('download')">
+        <span class="material-icons-outlined">download</span>ดาวน์โหลดแบบฟอร์ม
+      </div>
     </div>
   </div>
 </section>
@@ -198,21 +247,37 @@ nav span{font-size:24px}
 <section id="efiling">
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
-
-    <div class="pill">
-      <span class="material-icons-outlined">gavel</span>
-      e-filing v.3
+    <div class="pill" onclick="openLink('https://efiling3.coj.go.th')">
+      <span class="material-icons-outlined">gavel</span> e-Filing v.3
     </div><br>
-
-    <div class="pill">
-      <span class="material-icons-outlined">rocket_launch</span>
-      e-filing v.4
+    <div class="pill" onclick="openLink('https://efiling4.coj.go.th')">
+      <span class="material-icons-outlined">upload_file</span> e-Filing v.4
     </div>
-
   </div>
 </section>
 
 </main>
+
+<script>
+function showPage(id,btn){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+}
+function openLink(url){window.open(url,"_blank")}
+function toggleSearch(){
+  let b=document.getElementById("searchBox");
+  b.style.display=b.style.display==="block"?"none":"block";
+}
+function doSearch(e){
+  if(e.key==="Enter"){
+    let q=e.target.value;
+    if(q.includes("fil")) showPage("efiling");
+    if(q.includes("ค่")) showPage("fee");
+  }
+}
+</script>
 
 </body>
 </html>
