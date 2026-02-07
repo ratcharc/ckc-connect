@@ -21,22 +21,28 @@ h3 {
   margin-top: 0;
 }
 
-/* ---------- HEADER ---------- */
+/* ---------- HEADER (BANNER) ---------- */
 header {
+  position: relative;
+  height: 160px; /* ความสูงแบนเนอร์ */
   background:
     linear-gradient(rgba(10,48,131,.55), rgba(10,48,131,.55)),
     url("Purple illustrative space technology subject google classroom header_20260204_012541_0000.png");
   background-size: cover;
   background-position: center;
-  color: white;
-  text-align: center;
-  padding: 28px 16px 44px;
   border-bottom-left-radius: 28px;
   border-bottom-right-radius: 28px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 18px;
 }
 
 header b {
+  color: #fff;
   font-size: 20px;
+  letter-spacing: .5px;
 }
 
 /* ---------- MAIN ---------- */
@@ -125,7 +131,7 @@ nav button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 999px; /* pill มนขึ้น */
+  border-radius: 999px;
   transition: all .25s ease;
 }
 
@@ -184,7 +190,7 @@ nav button.active {
     </div>
   </section>
 
-  <!-- E-FILING SELECT -->
+  <!-- E-FILING -->
   <section id="efiling">
     <h3>เลือกระบบ e-Filing</h3>
     <div class="menu-grid">
@@ -228,7 +234,6 @@ nav button.active {
 
 </main>
 
-<!-- BOTTOM BAR -->
 <nav>
   <button class="active" onclick="showPage('home',this)">
     <span class="material-icons">home</span>
