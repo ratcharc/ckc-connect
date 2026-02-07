@@ -9,26 +9,38 @@
 
 <style>
 /* ===== BASE ===== */
+:root{
+  --primary:#0a3083;
+  --text:#1f2937;
+}
 body{
   margin:0;
   font-family:system-ui,sans-serif;
-  background:#f2f4f8;
-  color:#222;
-}
-h3{
-  margin:0 0 12px;
-  font-size:18px;
-  font-weight:700;
+  background:#f4f6f8;
+  color:var(--text);
+  font-size:clamp(14px,3.5vw,16px);
 }
 
 /* ===== HEADER ===== */
 header{position:relative}
 .header-banner{width:100%;display:block}
-.search-btn{
+
+.search-btn,
+.lang-btn{
   position:absolute;
-  top:12px;right:12px;
-  color:#fff;font-size:26px;
+  top:12px;
+  color:#fff;
+  cursor:pointer;
 }
+.search-btn{right:48px;font-size:24px}
+.lang-btn{
+  right:12px;
+  font-size:13px;
+  background:rgba(255,255,255,.2);
+  padding:4px 10px;
+  border-radius:14px;
+}
+
 .search-box{
   position:absolute;
   top:52px;right:12px;
@@ -37,123 +49,124 @@ header{position:relative}
 .search-box input{
   padding:8px 14px;
   border-radius:20px;
-  border:1px solid #ccc;
+  border:none;
 }
 
 /* ===== MAIN ===== */
 main{
-  padding:16px;
+  padding:14px;
   padding-bottom:120px;
 }
-section{display:none}
+section{
+  display:none;
+  animation:fadeUp .25s ease;
+}
 section.active{display:block}
 
-/* ===== SECTION WRAPPER ===== */
-.section-box{
-  background:#fff;
-  border-radius:22px;
-  padding:18px;
-  box-shadow:0 8px 20px rgba(0,0,0,.05);
+/* ===== SECTION HEADER ===== */
+.section-header{
+  font-weight:700;
+  font-size:clamp(16px,4vw,18px);
+  margin-bottom:12px;
+  color:var(--primary);
 }
 
-/* ===== FEED (ประกาศศาล) ===== */
-.feed{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-.feed-item{
-  background:#fff;
-  border-radius:18px;
-  padding:14px;
-  box-shadow:0 6px 16px rgba(0,0,0,.06);
-}
-
-/* ===== SERVICE ===== */
-.service-main{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin-bottom:18px;
-}
-.service-card{
-  background:#0a3083;
-  color:#fff;
-  border-radius:20px;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-.service-card span{
-  font-size:28px;
-}
-
-.service-list{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.service-item{
+/* ===== FEED ===== */
+.feed{display:flex;flex-direction:column;gap:12px}
+.feed-card{
   background:#fff;
   border-radius:16px;
   padding:14px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:600;
   box-shadow:0 4px 12px rgba(0,0,0,.05);
-  cursor:pointer;
 }
-.service-item span{font-size:24px;color:#0a3083}
 
-/* ===== DOWNLOAD PREVIEW ===== */
+/* ===== SERVICE ===== */
+.service-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.service-card{
+  background:#fff;
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+  cursor:pointer;
+  color:var(--primary);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.service-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
+}
+.service-card span{
+  font-size:24px;
+  display:block;
+  margin-bottom:6px;
+}
+
+/* ===== FORM PREVIEW ===== */
 .preview-list{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:14px;
+  gap:12px;
 }
 .preview-card{
   background:#fff;
-  border-radius:18px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 6px 16px rgba(0,0,0,.06);
-}
-.preview-card img{
-  width:100%;
-  display:block;
+  box-shadow:0 4px 14px rgba(0,0,0,.06);
 }
 .preview-card div{
   padding:10px;
-  font-size:14px;
-  font-weight:600;
+  font-size:13px;
+}
+
+/* ===== FEE ===== */
+.fee-box{
+  background:#fff;
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+.fee-box input{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  margin-top:6px;
 }
 
 /* ===== BOTTOM BAR ===== */
 nav{
   position:fixed;
-  bottom:0;
-  width:100%;
-  background:#0a3083;
+  bottom:0;width:100%;
+  background:var(--primary);
   display:flex;
-  padding:10px 6px;
+  padding:8px 4px;
 }
 nav button{
-  flex:1;
-  border:none;
-  background:transparent;
-  color:#fff;
+  flex:1;border:none;background:none;
+  color:#cbd5f5;
+  font-size:10px;
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:2px;
-  font-size:11px;
-  border-radius:20px;
+  border-radius:16px;
+  transition:background .2s ease,color .2s ease;
 }
 nav button.active{
-  background:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.15);
+  color:#fff;
 }
-nav span{font-size:24px}
+nav span{font-size:22px}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
 </style>
 </head>
 
@@ -162,7 +175,10 @@ nav span{font-size:24px}
 <header>
 <img class="header-banner"
 src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+
 <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
+<div class="lang-btn" onclick="toggleLang()">TH | EN</div>
+
 <div class="search-box" id="searchBox">
 <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
 </div>
@@ -171,90 +187,101 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 <main>
 
 <section id="home" class="active">
-<div class="section-box">
-<h3>รายการโพส</h3>
+<div class="section-header" data-th="รายการโพส" data-en="Announcements"></div>
 <div class="feed">
-  <div class="feed-item">ประกาศศาลรายการที่ 1</div>
-  <div class="feed-item">ประกาศศาลรายการที่ 2</div>
-</div>
+<div class="feed-card">ประกาศศาล เรื่องการนัดพิจารณาคดี</div>
+<div class="feed-card">ประกาศศาล เรื่องวันหยุดราชการ</div>
 </div>
 </section>
 
 <section id="service">
-<div class="section-box">
-<h3>ข้อมูลบริการ</h3>
-
-<div class="service-main">
-  <div class="service-card" onclick="showPage('fee')">
-    <span class="material-icons-outlined">calculate</span>
-    อัตราค่าธรรมเนียมขึ้นศาล
-  </div>
-  <div class="service-card" onclick="showPage('efiling')">
-    <span class="material-icons-outlined">gavel</span>
-    e-filing
-  </div>
-</div>
-
-<div class="service-list">
-  <div class="service-item"><span class="material-icons-outlined">list_alt</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง</div>
-  <div class="service-item" onclick="openLink('https://cios.coj.go.th/tracking/')"><span class="material-icons-outlined">search</span>ตรวจสอบสถานะคดี</div>
-  <div class="service-item" onclick="openLink('https://cios.coj.go.th')"><span class="material-icons-outlined">description</span>CIOS</div>
-  <div class="service-item" onclick="openLink('https://www.coj.go.th')"><span class="material-icons-outlined">account_balance</span>COJ</div>
-  <div class="service-item"><span class="material-icons-outlined">download</span>ดาวน์โหลดแบบฟอร์ม</div>
-</div>
-
+<div class="section-header" data-th="ข้อมูลบริการ" data-en="Services"></div>
+<div class="service-grid">
+<div class="service-card" onclick="showPage('fee')"><span class="material-icons-outlined">calculate</span><span data-th="อัตราค่าธรรมเนียมขึ้นศาล" data-en="Court Fee"></span></div>
+<div class="service-card"><span class="material-icons-outlined">list_alt</span><span data-th="ขั้นตอนการฟ้อง/ยื่นคำร้อง" data-en="Procedure"></span></div>
+<div class="service-card" onclick="showPage('efiling')"><span class="material-icons-outlined">gavel</span>e-Filing</div>
+<div class="service-card" onclick="openLink('https://cios.coj.go.th')"><span class="material-icons-outlined">description</span>CIOS</div>
+<div class="service-card" onclick="openLink('https://www.coj.go.th')"><span class="material-icons-outlined">account_balance</span>COJ</div>
+<div class="service-card" onclick="showPage('forms')"><span class="material-icons-outlined">download</span><span data-th="ดาวน์โหลดแบบฟอร์ม" data-en="Forms"></span></div>
 </div>
 </section>
 
 <section id="efiling">
-<div class="section-box">
-<h3>เลือกระบบ e-Filing</h3>
-<div class="service-list">
-  <div class="service-item" onclick="openLink('https://efiling3.coj.go.th')">e-finling v.3</div>
-  <div class="service-item" onclick="openLink('https://efiling4.coj.go.th')">e-filing v.4</div>
-</div>
+<div class="section-header">เลือกระบบ e-Filing</div>
+<div class="service-grid">
+<div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">e-filing v.3</div>
+<div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">e-filing v.4</div>
 </div>
 </section>
 
 <section id="fee">
-<div class="section-box">
-<h3>คำนวณค่าธรรมเนียม</h3>
+<div class="section-header">คำนวณค่าธรรมเนียม</div>
+<div class="fee-box">
+<label>จำนวนทุนทรัพย์ที่ฟ้อง (บาท)</label>
+<input type="number" id="money" oninput="calcFee()">
+<p id="result"></p>
 </div>
 </section>
 
-<section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
-<section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
-<section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
+<section id="forms">
+<div class="section-header">ดาวน์โหลดแบบฟอร์ม</div>
+<div class="preview-list">
+<div class="preview-card">
+<img src="https://via.placeholder.com/400x550">
+<div>คำร้องทั่วไป</div>
+</div>
+<div class="preview-card">
+<img src="https://via.placeholder.com/400x550">
+<div>คำขอคัดสำเนาคำพิพากษา</div>
+</div>
+</div>
+</section>
 
 </main>
 
 <nav>
 <button class="active" onclick="showPage('home',this)"><span class="material-icons-outlined">home</span>หน้าแรก</button>
 <button onclick="showPage('service',this)"><span class="material-icons-outlined">apps</span>บริการ</button>
-<button onclick="showPage('knowledge',this)"><span class="material-icons-outlined">menu_book</span>คลังความรู้</button>
-<button onclick="showPage('other',this)"><span class="material-icons-outlined">more_horiz</span>เพิ่มเติม</button>
-<button onclick="showPage('contact',this)"><span class="material-icons-outlined">person</span>ติดต่อ</button>
+<button><span class="material-icons-outlined">menu_book</span>คลังความรู้</button>
+<button><span class="material-icons-outlined">more_horiz</span>เพิ่มเติม</button>
+<button><span class="material-icons-outlined">person</span>ติดต่อ</button>
 </nav>
 
 <script>
+let lang="th";
+
 function showPage(id,btn){
-document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-if(btn) btn.classList.add("active");
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
 }
+
 function openLink(url){window.open(url,"_blank")}
+
 function toggleSearch(){
-let b=document.getElementById("searchBox");
-b.style.display=b.style.display==="block"?"none":"block";
+  let b=document.getElementById("searchBox");
+  b.style.display=b.style.display==="block"?"none":"block";
 }
+
 function doSearch(e){
-if(e.key==="Enter"){
-let q=e.target.value;
-if(q.includes("fil")) showPage("efiling");
-if(q.includes("ค่")) showPage("fee");
+  if(e.key==="Enter" && e.target.value.includes("ค่")) showPage("fee");
 }
+
+function calcFee(){
+  let m=document.getElementById("money").value;
+  let fee=m?Math.min(m*0.02,200000):0;
+  document.getElementById("result").innerText=
+  "ค่าธรรมเนียมโดยประมาณ: "+fee.toLocaleString()+" บาท";
 }
+
+function toggleLang(){
+  lang = lang==="th"?"en":"th";
+  document.querySelectorAll("[data-th]").forEach(el=>{
+    el.innerText = el.dataset[lang];
+  });
+}
+toggleLang(); toggleLang();
 </script>
 
 </body>
