@@ -41,24 +41,24 @@ main{padding:16px;padding-bottom:120px}
 section{display:none}
 section.active{display:block}
 
-/* ===== SECTION BOX ===== */
+/* ===== SECTION BOX (เข้ม + มีมิติขึ้น) ===== */
 .section-box{
-  background:linear-gradient(145deg,#ffffff,#eef3ff);
-  border-radius:24px;
+  background:linear-gradient(160deg,#ffffff,#e9efff);
+  border-radius:26px;
   padding:18px;
   box-shadow:
-    0 16px 36px rgba(15,23,42,.18),
-    inset 0 1px 0 rgba(255,255,255,.9);
-  border:1px solid rgba(59,130,246,.1);
+    0 20px 44px rgba(15,23,42,.22),
+    inset 0 2px 0 rgba(255,255,255,.9);
+  border:1px solid rgba(30,64,175,.14);
 }
 
 /* ===== FEED ===== */
 .feed{display:flex;flex-direction:column;gap:14px}
 .feed-item{
-  background:#fff;
+  background:linear-gradient(145deg,#ffffff,#eef2ff);
   border-radius:18px;
   padding:14px;
-  box-shadow:0 12px 28px rgba(15,23,42,.18);
+  box-shadow:0 14px 30px rgba(15,23,42,.2);
 }
 
 /* ===== SERVICE GRID ===== */
@@ -68,10 +68,12 @@ section.active{display:block}
   gap:14px;
 }
 .service-card{
-  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  background:linear-gradient(150deg,#ffffff,#e8eeff);
   border-radius:22px;
   padding:16px;
-  box-shadow:0 14px 30px rgba(15,23,42,.2);
+  box-shadow:
+    0 18px 36px rgba(15,23,42,.25),
+    inset 0 1px 0 rgba(255,255,255,.8);
   display:flex;
   flex-direction:column;
   gap:10px;
@@ -80,34 +82,46 @@ section.active{display:block}
   color:#0a3083;
 }
 
-/* ===== ICON (น้ำเงินเฉดเดียว + น้ำเงินหม่น / ไม่มี pill) ===== */
-.icon-blue{
+/* ===== ICON (ไม่มี pill / ไล่สีน้ำเงิน-ทองชัด) ===== */
+.service-card span,
+.ef-icon{
   font-size:28px;
-  background:linear-gradient(135deg,#2563eb,#1e3a8a);
+  background:linear-gradient(
+    135deg,
+    #0a3083 0%,
+    #3b82f6 45%,
+    #b59b5b 100%
+  );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 4px 6px rgba(10,48,131,.35));
 }
 
-/* ===== e-FILING CARD (ใช้ style เดียวกับ service-card) ===== */
-.efiling-card{
-  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+/* ===== e-FILING CARD (แทน pill เดิม) ===== */
+.ef-card{
+  background:linear-gradient(150deg,#ffffff,#e8eeff);
   border-radius:22px;
-  padding:16px;
-  box-shadow:0 14px 30px rgba(15,23,42,.2);
+  padding:18px;
+  box-shadow:
+    0 18px 36px rgba(15,23,42,.25),
+    inset 0 1px 0 rgba(255,255,255,.85);
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
   font-weight:700;
   color:#0a3083;
   cursor:pointer;
 }
+.ef-card + .ef-card{margin-top:14px}
 
 /* ===== CALCULATOR ===== */
 .calc-box{
-  background:#fff;
+  background:linear-gradient(150deg,#ffffff,#e9efff);
   border-radius:22px;
   padding:16px;
-  box-shadow:0 16px 34px rgba(15,23,42,.2);
+  box-shadow:
+    0 18px 38px rgba(15,23,42,.25),
+    inset 0 1px 0 rgba(255,255,255,.85);
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -126,7 +140,7 @@ section.active{display:block}
   font-weight:700;
 }
 .calc-result{
-  background:#eaf0ff;
+  background:linear-gradient(145deg,#eef2ff,#e0e7ff);
   padding:12px;
   border-radius:14px;
   font-weight:700;
@@ -139,10 +153,10 @@ section.active{display:block}
   gap:14px;
 }
 .preview-card{
-  background:#fff;
+  background:linear-gradient(145deg,#ffffff,#eef2ff);
   border-radius:20px;
   overflow:hidden;
-  box-shadow:0 14px 30px rgba(15,23,42,.2);
+  box-shadow:0 18px 36px rgba(15,23,42,.25);
 }
 .preview-card img{width:100%;display:block}
 .preview-card div{
@@ -205,37 +219,37 @@ nav span{font-size:24px}
     <h3>ข้อมูลบริการ</h3>
     <div class="service-grid">
       <div class="service-card" onclick="navigate('fee')">
-        <span class="material-icons-outlined icon-blue">calculate</span>
+        <span class="material-icons-outlined">calculate</span>
         อัตราค่าธรรมเนียมขึ้นศาล
       </div>
 
       <div class="service-card">
-        <span class="material-icons-outlined icon-blue">list_alt</span>
+        <span class="material-icons-outlined">list_alt</span>
         ขั้นตอนการฟ้อง / ยื่นคำร้อง
       </div>
 
       <div class="service-card" onclick="navigate('efiling')">
-        <span class="material-icons-outlined icon-blue">gavel</span>
+        <span class="material-icons-outlined">gavel</span>
         e-Filing
       </div>
 
       <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
-        <span class="material-icons-outlined icon-blue">description</span>
+        <span class="material-icons-outlined">description</span>
         CIOS
       </div>
 
       <div class="service-card" onclick="openLink('https://www.coj.go.th')">
-        <span class="material-icons-outlined icon-blue">account_balance</span>
+        <span class="material-icons-outlined">account_balance</span>
         COJ
       </div>
 
       <div class="service-card">
-        <span class="material-icons-outlined icon-blue">handshake</span>
+        <span class="material-icons-outlined">handshake</span>
         ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
       </div>
 
       <div class="service-card" onclick="navigate('download')">
-        <span class="material-icons-outlined icon-blue">download</span>
+        <span class="material-icons-outlined">download</span>
         ดาวน์โหลดแบบฟอร์ม
       </div>
     </div>
@@ -246,15 +260,16 @@ nav span{font-size:24px}
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
 
-    <div class="efiling-card" onclick="openLink('https://efiling3.coj.go.th')">
-      <span class="material-icons-outlined icon-blue">gavel</span>
+    <div class="ef-card" onclick="openLink('https://efiling3.coj.go.th')">
+      <span class="material-icons-outlined ef-icon">gavel</span>
       e-Filing v.3
-    </div><br>
+    </div>
 
-    <div class="efiling-card" onclick="openLink('https://efiling4.coj.go.th')">
-      <span class="material-icons-outlined icon-blue">rocket_launch</span>
+    <div class="ef-card" onclick="openLink('https://efiling4.coj.go.th')">
+      <span class="material-icons-outlined ef-icon">rocket_launch</span>
       e-Filing v.4
     </div>
+
   </div>
 </section>
 
@@ -319,9 +334,7 @@ function showPage(id,btn){
   }
 }
 window.onpopstate=function(e){
-  if(e.state && e.state.page){
-    showPage(e.state.page);
-  }
+  if(e.state && e.state.page){showPage(e.state.page);}
 };
 function openLink(url){window.open(url,"_blank")}
 function toggleSearch(){
