@@ -41,21 +41,21 @@ main{padding:16px;padding-bottom:120px}
 section{display:none}
 section.active{display:block}
 
-/* ===== SECTION BOX (เข้มขึ้นอีกนิด) ===== */
+/* ===== SECTION BOX ===== */
 .section-box{
   background:linear-gradient(145deg,#ffffff,#e9efff);
   border-radius:24px;
   padding:18px;
   box-shadow:
-    0 20px 42px rgba(15,23,42,.22),
-    inset 0 1px 0 rgba(255,255,255,.95);
-  border:1px solid rgba(59,130,246,.12);
+    0 18px 40px rgba(15,23,42,.22),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  border:1px solid rgba(30,64,175,.15);
 }
 
 /* ===== FEED ===== */
 .feed{display:flex;flex-direction:column;gap:14px}
 .feed-item{
-  background:linear-gradient(145deg,#ffffff,#f1f5ff);
+  background:linear-gradient(145deg,#ffffff,#eef3ff);
   border-radius:18px;
   padding:14px;
   box-shadow:0 14px 32px rgba(15,23,42,.22);
@@ -68,10 +68,12 @@ section.active{display:block}
   gap:14px;
 }
 .service-card{
-  background:linear-gradient(145deg,#ffffff,#edf2ff);
+  background:linear-gradient(145deg,#ffffff,#e6eeff);
   border-radius:22px;
   padding:16px;
-  box-shadow:0 18px 36px rgba(15,23,42,.24);
+  box-shadow:
+    0 18px 36px rgba(15,23,42,.25),
+    inset 0 1px 0 rgba(255,255,255,.85);
   display:flex;
   flex-direction:column;
   gap:10px;
@@ -80,41 +82,33 @@ section.active{display:block}
   color:#0a3083;
 }
 
-/* ===== ICON STYLE (ไอคอนเปล่า ไล่สีชัด) ===== */
-.service-card span,
-.pill span{
+/* ===== ICON (NO PILL / STRONG GRADIENT) ===== */
+.service-card span{
   font-size:28px;
   background:linear-gradient(
     135deg,
     #0a3083 0%,
-    #3b5fbf 45%,
-    #c8a24a 100%
+    #5b6fa8 45%,
+    #c7a45d 100%
   );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 6px 10px rgba(15,23,42,.35));
+  filter:drop-shadow(0 6px 10px rgba(10,48,131,.45));
 }
 
-/* ===== e-FILING CARD (เหมือน service-card) ===== */
-.pill{
-  background:linear-gradient(145deg,#ffffff,#edf2ff);
-  color:#0a3083;
-  border-radius:22px;
-  padding:16px;
-  display:flex;
-  align-items:center;
+/* ===== e-FILING CARDS (แทน pill) ===== */
+.efiling-grid{
+  display:grid;
+  grid-template-columns:1fr;
   gap:14px;
-  font-weight:700;
-  box-shadow:0 18px 36px rgba(15,23,42,.24);
-  cursor:pointer;
 }
 
 /* ===== CALCULATOR ===== */
 .calc-box{
-  background:linear-gradient(145deg,#ffffff,#edf2ff);
+  background:linear-gradient(145deg,#ffffff,#e9efff);
   border-radius:22px;
   padding:16px;
-  box-shadow:0 18px 38px rgba(15,23,42,.25);
+  box-shadow:0 18px 36px rgba(15,23,42,.25);
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -133,7 +127,7 @@ section.active{display:block}
   font-weight:700;
 }
 .calc-result{
-  background:#eaf0ff;
+  background:linear-gradient(145deg,#eef3ff,#dfe7ff);
   padding:12px;
   border-radius:14px;
   font-weight:700;
@@ -146,7 +140,7 @@ section.active{display:block}
   gap:14px;
 }
 .preview-card{
-  background:linear-gradient(145deg,#ffffff,#edf2ff);
+  background:linear-gradient(145deg,#ffffff,#eef3ff);
   border-radius:20px;
   overflow:hidden;
   box-shadow:0 18px 36px rgba(15,23,42,.25);
@@ -215,32 +209,26 @@ nav span{font-size:24px}
         <span class="material-icons-outlined">calculate</span>
         อัตราค่าธรรมเนียมขึ้นศาล
       </div>
-
       <div class="service-card">
         <span class="material-icons-outlined">list_alt</span>
         ขั้นตอนการฟ้อง / ยื่นคำร้อง
       </div>
-
       <div class="service-card" onclick="navigate('efiling')">
         <span class="material-icons-outlined">gavel</span>
         e-Filing
       </div>
-
       <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
         <span class="material-icons-outlined">description</span>
         CIOS
       </div>
-
       <div class="service-card" onclick="openLink('https://www.coj.go.th')">
         <span class="material-icons-outlined">account_balance</span>
         COJ
       </div>
-
       <div class="service-card">
         <span class="material-icons-outlined">handshake</span>
         ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
       </div>
-
       <div class="service-card" onclick="navigate('download')">
         <span class="material-icons-outlined">download</span>
         ดาวน์โหลดแบบฟอร์ม
@@ -252,13 +240,15 @@ nav span{font-size:24px}
 <section id="efiling">
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
-    <div class="pill" onclick="openLink('https://efiling3.coj.go.th')">
-      <span class="material-icons-outlined">gavel</span>
-      e-Filing v.3
-    </div><br>
-    <div class="pill" onclick="openLink('https://efiling4.coj.go.th')">
-      <span class="material-icons-outlined">rocket_launch</span>
-      e-Filing v.4
+    <div class="efiling-grid">
+      <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
+        <span class="material-icons-outlined">gavel</span>
+        e-Filing v.3
+      </div>
+      <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
+        <span class="material-icons-outlined">rocket_launch</span>
+        e-Filing v.4
+      </div>
     </div>
   </div>
 </section>
