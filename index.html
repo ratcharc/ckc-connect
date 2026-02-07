@@ -8,17 +8,19 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
-/* ===== BASE ===== */
+:root{
+  --blue:#0a3083;
+  --gray:#d9d8d8;
+}
+
+/* ---------- BASE ---------- */
 body{
   margin:0;
   font-family:system-ui,sans-serif;
   background:#ffffff;
-  color:#222;
 }
 
-h3{margin-top:0}
-
-/* ===== HEADER ===== */
+/* ---------- HEADER ---------- */
 header{
   position:relative;
   overflow:hidden;
@@ -35,120 +37,108 @@ header{
   position:absolute;
   top:12px;
   right:12px;
-  background:rgba(0,0,0,.35);
-  border:none;
-  border-radius:50%;
-  padding:8px;
   color:#fff;
+  font-size:28px;
+  cursor:pointer;
 }
 
-/* search overlay */
-.search-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  display:none;
-  align-items:flex-start;
-  justify-content:center;
-  padding-top:80px;
-  z-index:999;
-}
-
+/* search box */
 .search-box{
-  width:90%;
-  background:transparent;
-  border:1px solid #fff;
-  border-radius:14px;
-  padding:14px;
-  color:#fff;
-  font-size:16px;
+  display:none;
+  position:absolute;
+  top:56px;
+  right:12px;
+  background:rgba(255,255,255,.9);
+  border-radius:12px;
+  padding:8px 12px;
 }
 
-/* ===== MAIN LAYERS ===== */
-.main-wrap{
+.search-box input{
+  border:none;
+  outline:none;
+  font-size:14px;
+  background:transparent;
+}
+
+/* ---------- MAIN ---------- */
+main{
   background:#ffffff;
+  padding:16px;
+  padding-bottom:120px;
 }
 
 .layer-gray{
-  background:#d9d8d8;
-  padding:16px;
+  background:var(--gray);
+  border-radius:20px;
+  padding:12px;
 }
 
-.layer-white{
+section{
+  display:none;
+}
+
+section.active{
+  display:block;
+}
+
+/* ---------- SERVICE LIST ---------- */
+.service-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.service-item{
   background:#ffffff;
-  border-radius:22px;
-  padding:16px;
-}
-
-/* ===== SECTIONS ===== */
-section{display:none}
-section.active{display:block}
-
-/* ===== SERVICE MENU (vertical) ===== */
-.service-list button{
-  width:100%;
-  background:#fff;
-  border:none;
   border-radius:18px;
   padding:14px;
-  margin-bottom:12px;
   display:flex;
   align-items:center;
   gap:12px;
-  color:#0a3083;
-  font-size:15px;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
-  text-align:left;
+  color:var(--blue);
+  font-weight:600;
+  box-shadow:0 4px 10px rgba(0,0,0,.08);
+  cursor:pointer;
 }
 
-.service-list span{
-  font-size:24px;
+.service-item span{
+  font-size:22px;
 }
 
-/* ===== INPUT ===== */
-input{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #ccc;
-}
-
-button.calc{
-  margin-top:12px;
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  border:none;
-  background:#0a3083;
-  color:#fff;
-}
-
-/* ===== BOTTOM BAR ===== */
+/* ---------- BOTTOM BAR ---------- */
 nav{
   position:fixed;
   bottom:0;
   width:100%;
-  background:#0a3083;
+  background:var(--blue);
   display:flex;
-  padding:10px 6px;
+  padding:8px 4px;
 }
 
 nav button{
   flex:1;
-  background:transparent;
   border:none;
+  background:transparent;
   color:#fff;
-  font-size:11px;
   display:flex;
   flex-direction:column;
   align-items:center;
-  transition:.2s;
+  font-size:11px;
+  transition:.25s;
 }
 
-nav button span{font-size:24px}
+nav button span{
+  font-size:22px;
+}
 
-nav button.active span{font-size:28px}
-nav button.active{font-weight:600}
+nav button.active span,
+nav button.active{
+  font-size:14px;
+}
+
+nav button.active span{
+  font-size:28px;
+}
 </style>
 </head>
 
@@ -157,73 +147,119 @@ nav button.active{font-weight:600}
 <header>
   <img class="header-banner"
     src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
-  <button class="search-btn" onclick="openSearch()">
-    <span class="material-icons">search</span>
-  </button>
+  <span class="material-icons search-btn" onclick="toggleSearch()">search</span>
+
+  <div class="search-box" id="searchBox">
+    <input id="searchInput" placeholder="ค้นหา..." onkeydown="doSearch(event)">
+  </div>
 </header>
 
-<div class="search-overlay" id="searchOverlay">
-  <input class="search-box" placeholder="ค้นหา..." onkeydown="doSearch(event)">
-</div>
-
-<div class="main-wrap">
-<div class="layer-gray">
-<div class="layer-white">
+<main>
 
 <section id="home" class="active">
-  <h3>ประกาศศาล</h3>
+  <div class="layer-gray">
+    <h3>ประกาศศาล</h3>
+  </div>
 </section>
 
 <section id="service">
-  <h3>บริการ</h3>
-  <div class="service-list">
-    <button onclick="showPage('fee')"><span class="material-icons">calculate</span>อัตราค่าธรรมเนียมขึ้นศาล</button>
-    <button><span class="material-icons">list_alt</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง</button>
-    <button onclick="openLink('https://cios.coj.go.th/tracking/')"><span class="material-icons">search</span>ตรวจสอบสถานะคดี</button>
-    <button onclick="showPage('efiling')"><span class="material-icons">gavel</span>e-Filing</button>
-    <button onclick="openLink('https://cios.coj.go.th')"><span class="material-icons">description</span>CIOS</button>
-    <button onclick="openLink('https://www.coj.go.th')"><span class="material-icons">account_balance</span>COJ</button>
-    <button style="text-align:left"><span class="material-icons">handshake</span>ไกล่เกลี่ย/นัดพิจารณาคดีทางอิเล็กทรอนิกส์</button>
-    <button><span class="material-icons">download</span>ดาวน์โหลดแบบฟอร์ม</button>
+  <div class="layer-gray">
+    <h3>บริการ</h3>
+
+    <div class="service-list">
+      <div class="service-item" onclick="showPage('fee')">
+        <span class="material-icons">calculate</span>
+        อัตราค่าธรรมเนียมขึ้นศาล
+      </div>
+
+      <div class="service-item">
+        <span class="material-icons">article</span>
+        ขั้นตอนการฟ้อง/ยื่นคำร้อง
+      </div>
+
+      <div class="service-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
+        <span class="material-icons">search</span>
+        ตรวจสอบสถานะคดี
+      </div>
+
+      <div class="service-item" onclick="showPage('efiling')">
+        <span class="material-icons">gavel</span>
+        e-filing
+      </div>
+
+      <div class="service-item" onclick="openLink('https://cios.coj.go.th')">
+        <span class="material-icons">description</span>
+        CIOS
+      </div>
+
+      <div class="service-item" onclick="openLink('https://www.coj.go.th')">
+        <span class="material-icons">account_balance</span>
+        COJ
+      </div>
+
+      <div class="service-item">
+        <span class="material-icons">handshake</span>
+        ไกล่เกลี่ย/นัดพิจารณาคดีทางอิเล็กทรอนิกส์
+      </div>
+
+      <div class="service-item">
+        <span class="material-icons">download</span>
+        ดาวน์โหลดแบบฟอร์ม
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="efiling">
-  <h3>e-Filing</h3>
-  <div class="service-list">
-    <button onclick="openLink('https://efiling3.coj.go.th')">e-Filing v.3</button>
-    <button onclick="openLink('https://efiling4.coj.go.th')">e-Filing v.4</button>
+  <div class="layer-gray">
+    <h3>เลือกระบบ e-Filing</h3>
+
+    <div class="service-list">
+      <div class="service-item" onclick="openLink('https://efiling3.coj.go.th')">
+        e-Filing v.3
+      </div>
+
+      <div class="service-item" onclick="openLink('https://efiling4.coj.go.th')">
+        e-Filing v.4
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="knowledge"><h3>คลังความรู้</h3></section>
-<section id="other"><h3>เพิ่มเติม</h3></section>
-<section id="contact"><h3>ติดต่อ</h3></section>
-
 <section id="fee">
-  <h3>คำนวณค่าธรรมเนียม</h3>
-  <input id="amount" placeholder="ทุนทรัพย์">
-  <button class="calc" onclick="calcFee()">คำนวณ</button>
-  <p id="result"></p>
+  <div class="layer-gray">
+    <h3>คำนวณค่าธรรมเนียม</h3>
+    <input type="number" id="amount" placeholder="ทุนทรัพย์ (บาท)">
+    <button onclick="calcFee()">คำนวณ</button>
+    <p id="result"></p>
+  </div>
 </section>
 
-</div>
-</div>
-</div>
+</main>
 
 <nav>
-  <button class="active" onclick="showPage('home',this)"><span class="material-icons">home</span>หน้าแรก</button>
-  <button onclick="showPage('service',this)"><span class="material-icons">apps</span>บริการ</button>
-  <button onclick="showPage('knowledge',this)"><span class="material-icons">menu_book</span>คลังความรู้</button>
-  <button onclick="showPage('other',this)"><span class="material-icons">more_horiz</span>เพิ่มเติม</button>
-  <button onclick="showPage('contact',this)"><span class="material-icons">person</span>ติดต่อ</button>
+  <button class="active" onclick="showPage('home',this)">
+    <span class="material-icons">home</span>หน้าแรก
+  </button>
+  <button onclick="showPage('service',this)">
+    <span class="material-icons">apps</span>บริการ
+  </button>
+  <button onclick="showPage('knowledge',this)">
+    <span class="material-icons">menu_book</span>คลังความรู้
+  </button>
+  <button onclick="showPage('other',this)">
+    <span class="material-icons">more_horiz</span>เพิ่มเติม
+  </button>
+  <button onclick="showPage('contact',this)">
+    <span class="material-icons">person</span>ติดต่อ
+  </button>
 </nav>
 
 <script>
-let historyStack=[];
+let historyStack = [];
 
 function showPage(id,btn){
-  const current=document.querySelector("section.active");
+  let current = document.querySelector("section.active");
   if(current) historyStack.push(current.id);
 
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
@@ -233,31 +269,35 @@ function showPage(id,btn){
   if(btn) btn.classList.add("active");
 }
 
-window.onpopstate=()=>goBack();
-function goBack(){
-  const prev=historyStack.pop();
-  if(prev) showPage(prev);
-}
+window.onpopstate = ()=> {
+  let prev = historyStack.pop();
+  if(prev){
+    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+    document.getElementById(prev).classList.add("active");
+  }
+};
 
-function openLink(u){window.open(u,"_blank")}
-
-function calcFee(){
-  let a=document.getElementById("amount").value||0;
-  document.getElementById("result").innerText=
-    "ค่าธรรมเนียมประมาณ: "+(a*0.02).toLocaleString()+" บาท";
-}
-
-function openSearch(){
-  document.getElementById("searchOverlay").style.display="flex";
+function toggleSearch(){
+  let box = document.getElementById("searchBox");
+  box.style.display = box.style.display==="block" ? "none" : "block";
 }
 
 function doSearch(e){
   if(e.key==="Enter"){
-    const q=e.target.value;
-    document.getElementById("searchOverlay").style.display="none";
+    let q = e.target.value;
+    if(q.includes("บริการ")) showPage("service");
     if(q.includes("e")) showPage("efiling");
-    if(q.includes("ค่าธรรมเนียม")) showPage("fee");
   }
+}
+
+function openLink(url){
+  window.open(url,"_blank");
+}
+
+function calcFee(){
+  let a=document.getElementById("amount").value||0;
+  document.getElementById("result").innerText =
+    "ค่าธรรมเนียมประมาณ: "+(a*0.02).toLocaleString()+" บาท";
 }
 </script>
 
