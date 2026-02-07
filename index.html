@@ -21,9 +21,9 @@ h3 {
   margin-top: 0;
 }
 
-/* ---------- HEADER (BANNER ตามขนาดภาพจริง) ---------- */
+/* ---------- HEADER (FIXED BANNER SIZE) ---------- */
 header {
-  padding: 0;
+  height: 180px;                 /* <<< ความสูงแบนเนอร์ */
   background: #0a3083;
   border-bottom-left-radius: 28px;
   border-bottom-right-radius: 28px;
@@ -32,7 +32,8 @@ header {
 
 .header-banner {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;             /* <<< บังคับให้รูปเต็ม */
   display: block;
 }
 
