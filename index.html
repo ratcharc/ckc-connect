@@ -26,27 +26,29 @@ header{position:relative}
 .header-banner{
   width:100%;
   display:block;
-  filter:saturate(.85) brightness(.95); /* ลดความจัดของเหลืองส้ม */
+  filter:saturate(.75) brightness(.95);
 }
 .search-btn{
   position:absolute;
-  top:12px;
-  right:12px;
+  top:14px;
+  right:14px;
   color:#fff;
   font-size:26px;
-  cursor:pointer
+  cursor:pointer;
 }
 .search-box{
   position:absolute;
-  top:52px;
-  right:12px;
-  display:none
+  top:56px;
+  right:14px;
+  display:none;
 }
 .search-box input{
-  padding:8px 14px;
-  border-radius:20px;
-  border:1px solid #d1d5db;
-  background:#fff
+  padding:10px 16px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(8px);
+  color:#111;
 }
 
 /* ===== MAIN ===== */
@@ -54,21 +56,21 @@ main{padding:16px;padding-bottom:120px}
 section{display:none}
 section.active{display:block}
 
-/* ===== SECTION BOX ===== */
+/* ===== SECTION BOX (เงาชัดขึ้น) ===== */
 .section-box{
-  background:linear-gradient(160deg,#ffffff,#e9efff);
-  border-radius:24px;
+  background:linear-gradient(145deg,#ffffff,#e7edff);
+  border-radius:26px;
   padding:18px;
   box-shadow:
-    0 18px 42px rgba(15,23,42,.22),
+    0 20px 44px rgba(15,23,42,.22),
     inset 0 1px 0 rgba(255,255,255,.9);
-  border:1px solid rgba(59,130,246,.12);
+  border:1px solid rgba(59,130,246,.14);
 }
 
 /* ===== FEED ===== */
 .feed{display:flex;flex-direction:column;gap:14px}
 .feed-item{
-  background:#fff;
+  background:linear-gradient(145deg,#ffffff,#eef3ff);
   border-radius:18px;
   padding:14px;
   box-shadow:0 14px 32px rgba(15,23,42,.22);
@@ -81,42 +83,46 @@ section.active{display:block}
   gap:14px;
 }
 .service-card{
-  background:linear-gradient(155deg,#ffffff,#e6eeff);
-  border-radius:22px;
+  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  border-radius:24px;
   padding:16px;
-  box-shadow:0 16px 36px rgba(15,23,42,.25);
+  box-shadow:
+    0 16px 36px rgba(15,23,42,.25),
+    inset 0 1px 0 rgba(255,255,255,.9);
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:10px;
   font-weight:600;
   cursor:pointer;
   color:#0a3083;
 }
 
-/* ===== ICON (ไม่มี pill / ไล่สีชัด / มีเงา) ===== */
+/* ===== ICON (น้ำเงินเข้ม + ทอง ไล่สีชัด ไม่มี pill) ===== */
 .service-card span,
-.ef-icon{
+.icon-gradient{
   font-size:28px;
   background:linear-gradient(
     135deg,
     #0a3083 0%,
-    #c9a24d 55%,
-    #f1d58a 100%
+    #1e40af 45%,
+    #c9a24d 100%
   );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 6px 12px rgba(10,48,131,.45));
+  filter:drop-shadow(0 6px 14px rgba(10,48,131,.55));
 }
 
-/* ===== e-FILING (ตัด pill ออก เหลือ card) ===== */
-.ef-card{
-  background:linear-gradient(155deg,#ffffff,#e6eeff);
-  border-radius:22px;
+/* ===== e-FILING (ไม่มี pill ใช้ card เหมือน service) ===== */
+.efiling-card{
+  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  border-radius:24px;
   padding:16px;
-  box-shadow:0 16px 36px rgba(15,23,42,.25);
+  box-shadow:
+    0 16px 36px rgba(15,23,42,.25),
+    inset 0 1px 0 rgba(255,255,255,.9);
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:12px;
   font-weight:700;
   color:#0a3083;
   cursor:pointer;
@@ -125,10 +131,12 @@ section.active{display:block}
 
 /* ===== CALCULATOR ===== */
 .calc-box{
-  background:linear-gradient(160deg,#ffffff,#e6eeff);
-  border-radius:22px;
+  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  border-radius:24px;
   padding:16px;
-  box-shadow:0 18px 40px rgba(15,23,42,.25);
+  box-shadow:
+    0 18px 40px rgba(15,23,42,.25),
+    inset 0 1px 0 rgba(255,255,255,.9);
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -147,11 +155,10 @@ section.active{display:block}
   font-weight:700;
 }
 .calc-result{
-  background:linear-gradient(145deg,#e6eeff,#dfe7ff);
+  background:#eaf0ff;
   padding:12px;
   border-radius:14px;
   font-weight:700;
-  box-shadow:inset 0 2px 6px rgba(15,23,42,.15);
 }
 
 /* ===== DOWNLOAD ===== */
@@ -161,8 +168,8 @@ section.active{display:block}
   gap:14px;
 }
 .preview-card{
-  background:#fff;
-  border-radius:20px;
+  background:linear-gradient(145deg,#ffffff,#eef3ff);
+  border-radius:22px;
   overflow:hidden;
   box-shadow:0 16px 36px rgba(15,23,42,.25);
 }
@@ -270,16 +277,15 @@ nav span{font-size:24px}
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
 
-    <div class="ef-card" onclick="openLink('https://efiling3.coj.go.th')">
-      <span class="material-icons-outlined ef-icon">gavel</span>
+    <div class="efiling-card" onclick="openLink('https://efiling3.coj.go.th')">
+      <span class="material-icons-outlined">gavel</span>
       e-Filing v.3
     </div>
 
-    <div class="ef-card" onclick="openLink('https://efiling4.coj.go.th')">
-      <span class="material-icons-outlined ef-icon">rocket_launch</span>
+    <div class="efiling-card" onclick="openLink('https://efiling4.coj.go.th')">
+      <span class="material-icons-outlined">rocket_launch</span>
       e-Filing v.4
     </div>
-
   </div>
 </section>
 
@@ -344,10 +350,8 @@ function showPage(id,btn){
   }
 }
 window.onpopstate=function(e){
-  if(e.state && e.state.page){
-    showPage(e.state.page);
-  }
-};
+  if(e.state && e.state.page){ showPage(e.state.page); }
+}
 function openLink(url){window.open(url,"_blank")}
 function toggleSearch(){
   let b=document.getElementById("searchBox");
