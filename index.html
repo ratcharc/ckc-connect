@@ -21,9 +21,9 @@ h3 {
   margin-top: 0;
 }
 
-/* ---------- HEADER (FIXED BANNER SIZE) ---------- */
+/* ---------- HEADER (REAL IMAGE SIZE) ---------- */
 header {
-  height: 180px;                 /* <<< ความสูงแบนเนอร์ */
+  padding: 0;
   background: #0a3083;
   border-bottom-left-radius: 28px;
   border-bottom-right-radius: 28px;
@@ -32,8 +32,7 @@ header {
 
 .header-banner {
   width: 100%;
-  height: 100%;
-  object-fit: cover;             /* <<< บังคับให้รูปเต็ม */
+  height: auto;   /* ใช้สัดส่วนจริงของภาพ */
   display: block;
 }
 
@@ -148,19 +147,17 @@ nav button.active {
 <header>
   <img
     class="header-banner"
-    src="225_20260207124534.png"
+    src="https://drive.google.com/uc?export=view&id=1tOISdJCtOTtnYiZfUsBQUzVOQ67HxADz"
     alt="CKC Connect Banner">
 </header>
 
 <main>
 
-  <!-- HOME -->
   <section id="home" class="active">
     <h3>ประกาศศาล</h3>
     <p>พื้นที่ประชาสัมพันธ์ / โปสเตอร์</p>
   </section>
 
-  <!-- SERVICE -->
   <section id="service">
     <h3>บริการ</h3>
     <div class="menu-grid">
@@ -168,17 +165,14 @@ nav button.active {
         <span class="material-icons">gavel</span>
         e-Filing
       </button>
-
       <button onclick="openLink('https://cios.coj.go.th')">
         <span class="material-icons">description</span>
         CIOS
       </button>
-
       <button onclick="openLink('https://www.coj.go.th')">
         <span class="material-icons">account_balance</span>
         COJ
       </button>
-
       <button onclick="showPage('fee')">
         <span class="material-icons">calculate</span>
         ค่าธรรมเนียม
@@ -186,7 +180,6 @@ nav button.active {
     </div>
   </section>
 
-  <!-- E-FILING -->
   <section id="efiling">
     <h3>เลือกระบบ e-Filing</h3>
     <div class="menu-grid">
@@ -194,7 +187,6 @@ nav button.active {
         <span class="material-icons">layers</span>
         e-Filing v.3
       </button>
-
       <button onclick="openLink('https://efiling4.coj.go.th')">
         <span class="material-icons">rocket_launch</span>
         e-Filing v.4
@@ -202,25 +194,21 @@ nav button.active {
     </div>
   </section>
 
-  <!-- KNOWLEDGE -->
   <section id="knowledge">
     <h3>คลังความรู้</h3>
     <p>คำศัพท์ / ขั้นตอน / อินโฟกราฟิก</p>
   </section>
 
-  <!-- OTHER -->
   <section id="other">
     <h3>เพิ่มเติม</h3>
     <p>FAQ / แบบประเมิน / ลิงก์ที่เกี่ยวข้อง</p>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <h3>ติดต่อเรา</h3>
     <p>ศาลแขวงชลบุรี</p>
   </section>
 
-  <!-- FEE -->
   <section id="fee">
     <h3>คำนวณค่าธรรมเนียมศาล</h3>
     <input type="number" id="amount" placeholder="ทุนทรัพย์ (บาท)">
@@ -230,27 +218,21 @@ nav button.active {
 
 </main>
 
-<!-- BOTTOM BAR -->
 <nav>
   <button class="active" onclick="showPage('home',this)">
-    <span class="material-icons">home</span>
-    หน้าแรก
+    <span class="material-icons">home</span>หน้าแรก
   </button>
   <button onclick="showPage('service',this)">
-    <span class="material-icons">apps</span>
-    บริการ
+    <span class="material-icons">apps</span>บริการ
   </button>
   <button onclick="showPage('knowledge',this)">
-    <span class="material-icons">menu_book</span>
-    คลังความรู้
+    <span class="material-icons">menu_book</span>คลังความรู้
   </button>
   <button onclick="showPage('other',this)">
-    <span class="material-icons">more_horiz</span>
-    เพิ่มเติม
+    <span class="material-icons">more_horiz</span>เพิ่มเติม
   </button>
   <button onclick="showPage('contact',this)">
-    <span class="material-icons">person</span>
-    ติดต่อ
+    <span class="material-icons">person</span>ติดต่อ
   </button>
 </nav>
 
