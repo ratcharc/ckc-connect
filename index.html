@@ -8,28 +8,29 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
+/* ---------- BASE ---------- */
 body{
   margin:0;
   font-family:system-ui,sans-serif;
-  background:#f3f5f9;
+  background:#eef0f4;
+  color:#222;
 }
 
 h3{margin-top:0}
 
-/* ===== HEADER ===== */
+/* ---------- HEADER ---------- */
 header{
   position:relative;
-  overflow:hidden;
-  border-bottom-left-radius:28px;
-  border-bottom-right-radius:28px;
+  background:#0a3083;
 }
 
 header img{
   width:100%;
+  height:auto;
   display:block;
 }
 
-/* SEARCH ICON */
+/* search icon */
 .search-btn{
   position:absolute;
   top:12px;
@@ -39,11 +40,12 @@ header img{
   cursor:pointer;
 }
 
+/* search box */
 .search-box{
-  position:absolute;
-  top:56px;
-  right:12px;
   display:none;
+  position:absolute;
+  top:50px;
+  right:12px;
 }
 
 .search-box input{
@@ -51,17 +53,15 @@ header img{
   border-radius:20px;
   border:none;
   outline:none;
-  width:200px;
 }
 
-/* ===== MAIN ===== */
+/* ---------- MAIN ---------- */
 main{
   padding:16px;
-  padding-bottom:110px;
+  padding-bottom:120px;
 }
 
 section{display:none}
-
 section.active{
   display:block;
   background:#fff;
@@ -70,7 +70,7 @@ section.active{
   box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
-/* ===== GRID ===== */
+/* ---------- GRID ---------- */
 .menu-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -78,61 +78,47 @@ section.active{
 }
 
 .menu-grid button{
+  background:#fff;
   border:none;
   border-radius:18px;
   padding:18px 10px;
   font-size:14px;
   font-weight:600;
-  background:#fff;
   color:#0a3083;
   box-shadow:0 6px 14px rgba(0,0,0,.1);
 }
 
 .menu-grid span{
   display:block;
-  font-size:26px;
+  font-size:28px;
   margin-bottom:6px;
 }
 
-/* ===== INPUT ===== */
-input{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #ccc;
-}
-
-.calc{
-  margin-top:12px;
-  width:100%;
-  padding:14px;
-  border-radius:14px;
-  border:none;
-  background:#0a3083;
-  color:#fff;
-}
-
-/* ===== NAV ===== */
+/* ---------- BOTTOM BAR ---------- */
 nav{
   position:fixed;
   bottom:0;
   width:100%;
   background:#fff;
   display:flex;
-  padding:10px 6px;
   border-top:1px solid #eee;
+  padding:10px 6px;
 }
 
 nav button{
   flex:1;
   border:none;
-  background:none;
+  background:transparent;
   font-size:11px;
   color:#0a3083;
   display:flex;
   flex-direction:column;
   align-items:center;
   border-radius:999px;
+}
+
+nav button span{
+  font-size:24px;
 }
 
 nav button.active{
@@ -147,7 +133,7 @@ nav button.active{
 <header>
   <img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-icons search-btn" onclick="toggleSearch()">search</span>
-  <div class="search-box">
+  <div class="search-box" id="searchBox">
     <input id="searchInput" placeholder="ค้นหา..." onkeydown="doSearch(event)">
   </div>
 </header>
@@ -156,18 +142,19 @@ nav button.active{
 
 <section id="home" class="active">
   <h3>ประกาศศาล</h3>
+  <p>พื้นที่ประชาสัมพันธ์</p>
 </section>
 
 <section id="service">
   <h3>บริการ</h3>
   <div class="menu-grid">
-    <button onclick="showPage('fee')"><span class="material-icons">calculate</span>อัตราค่าธรรมเนียมขึ้นศาล</button>
-    <button><span class="material-icons">assignment</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง</button>
-    <button onclick="openLink('https://efiling.coj.go.th')"><span class="material-icons">search</span>ตรวจสอบสถานะคดี</button>
-    <button onclick="showPage('efiling')"><span class="material-icons">gavel</span>e-Filing</button>
+    <button onclick="go('fee')"><span class="material-icons">calculate</span>อัตราค่าธรรมเนียมขึ้นศาล</button>
+    <button><span class="material-icons">list_alt</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง</button>
+    <button onclick="openLink('https://service.coj.go.th')"><span class="material-icons">search</span>ตรวจสอบสถานะคดี</button>
+    <button onclick="go('efiling')"><span class="material-icons">gavel</span>e-Filing</button>
     <button onclick="openLink('https://cios.coj.go.th')"><span class="material-icons">description</span>CIOS</button>
     <button onclick="openLink('https://www.coj.go.th')"><span class="material-icons">account_balance</span>COJ</button>
-    <button><span class="material-icons">groups</span>ไกล่เกลี่ย/นัดพิจารณาฯ</button>
+    <button><span class="material-icons">video_call</span>ไกล่เกลี่ย/นัดพิจารณาฯ</button>
     <button><span class="material-icons">download</span>ดาวน์โหลดแบบฟอร์ม</button>
   </div>
 </section>
@@ -175,65 +162,73 @@ nav button.active{
 <section id="efiling">
   <h3>เลือกระบบ e-Filing</h3>
   <div class="menu-grid">
-    <button onclick="openLink('https://efiling3.coj.go.th')">
-      <span class="material-icons">layers</span>e-Filing v.3
-    </button>
-    <button onclick="openLink('https://efiling4.coj.go.th')">
-      <span class="material-icons">rocket_launch</span>e-Filing v.4
-    </button>
+    <button onclick="openLink('https://efiling3.coj.go.th')"><span class="material-icons">layers</span>e-Filing v.3</button>
+    <button onclick="openLink('https://efiling4.coj.go.th')"><span class="material-icons">rocket_launch</span>e-Filing v.4</button>
   </div>
 </section>
 
+<section id="knowledge">
+  <h3>คลังความรู้</h3>
+</section>
+
+<section id="other">
+  <h3>เพิ่มเติม</h3>
+</section>
+
 <section id="fee">
-  <h3>คำนวณค่าธรรมเนียม</h3>
+  <h3>คำนวณค่าธรรมเนียมศาล</h3>
   <input id="amount" placeholder="ทุนทรัพย์ (บาท)">
-  <button class="calc" onclick="calcFee()">คำนวณ</button>
+  <button onclick="calcFee()">คำนวณ</button>
   <p id="result"></p>
 </section>
 
 </main>
 
 <nav>
-  <button class="active" onclick="showPage('home',this)"><span class="material-icons">home</span>หน้าแรก</button>
-  <button onclick="showPage('service',this)"><span class="material-icons">apps</span>บริการ</button>
-  <button onclick="showPage('contact',this)"><span class="material-icons">person</span>ติดต่อ</button>
+  <button class="active" onclick="go('home',this)"><span class="material-icons">home</span>หน้าแรก</button>
+  <button onclick="go('service',this)"><span class="material-icons">apps</span>บริการ</button>
+  <button onclick="go('knowledge',this)"><span class="material-icons">menu_book</span>คลังความรู้</button>
+  <button onclick="go('other',this)"><span class="material-icons">more_horiz</span>เพิ่มเติม</button>
 </nav>
 
 <script>
-function showPage(id,btn){
-  history.pushState({page:id},"");
+let historyStack=[];
+
+function go(id,btn){
+  let current=document.querySelector("section.active");
+  if(current) historyStack.push(current.id);
+
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+
   document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
   if(btn) btn.classList.add("active");
 }
 
-window.onpopstate=function(e){
-  if(e.state){
-    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-    document.getElementById(e.state.page).classList.add("active");
-  }
-}
+window.onpopstate=()=>{
+  let last=historyStack.pop();
+  if(last) go(last);
+};
 
 function toggleSearch(){
-  document.querySelector(".search-box").style.display =
-    document.querySelector(".search-box").style.display==="block"?"none":"block";
+  let b=document.getElementById("searchBox");
+  b.style.display=b.style.display==="block"?"none":"block";
 }
 
 function doSearch(e){
   if(e.key==="Enter"){
-    const q=e.target.value.toLowerCase();
-    if(q.includes("e")) showPage("efiling");
-    if(q.includes("ค่")) showPage("fee");
-    if(q.includes("บริการ")) showPage("service");
+    let v=e.target.value;
+    if(v.includes("e")) go("efiling");
+    if(v.includes("ค่าธรรมเนียม")) go("fee");
   }
 }
 
-function openLink(u){window.open(u,"_blank")}
+function openLink(url){window.open(url,"_blank")}
 
 function calcFee(){
-  let a=+amount.value||0;
-  result.innerText="ค่าธรรมเนียมประมาณ "+(a*0.02).toLocaleString()+" บาท";
+  let a=+document.getElementById("amount").value||0;
+  document.getElementById("result").innerText=
+    "ค่าธรรมเนียมประมาณ "+(a*0.02).toLocaleString()+" บาท";
 }
 </script>
 
