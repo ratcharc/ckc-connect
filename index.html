@@ -15,101 +15,118 @@ body{
   background:#f2f4f8;
   color:#222;
 }
-h3{margin:0 0 12px 0}
+h3{
+  margin:0 0 12px;
+  font-size:18px;
+  font-weight:700;
+}
 
 /* ===== HEADER ===== */
-header{
-  position:relative;
-}
-.header-banner{
-  width:100%;
-  display:block;
-}
-
-/* search */
+header{position:relative}
+.header-banner{width:100%;display:block}
 .search-btn{
   position:absolute;
-  top:14px;
-  right:14px;
-  color:#fff;
-  font-size:26px;
-  cursor:pointer;
+  top:12px;right:12px;
+  color:#fff;font-size:26px;
 }
 .search-box{
   position:absolute;
-  top:56px;
-  right:14px;
+  top:52px;right:12px;
   display:none;
 }
 .search-box input{
-  padding:10px 14px;
+  padding:8px 14px;
   border-radius:20px;
   border:1px solid #ccc;
-  background:#fff;
 }
 
 /* ===== MAIN ===== */
 main{
   padding:16px;
-  padding-bottom:130px;
+  padding-bottom:120px;
 }
 section{display:none}
-section.active{
-  display:block;
+section.active{display:block}
+
+/* ===== SECTION WRAPPER ===== */
+.section-box{
+  background:#fff;
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,.05);
 }
 
-/* ===== SECTION CARD ===== */
-.section-card{
-  background:#ffffff;
-  border-radius:24px;
-  padding:20px;
-  box-shadow:0 6px 20px rgba(0,0,0,.06);
-  margin-bottom:20px;
-}
-
-/* ===== SECTION HEADER ===== */
-.section-header{
-  font-size:15px;
-  font-weight:700;
-  color:#0a3083;
-  margin-bottom:14px;
+/* ===== FEED (ประกาศศาล) ===== */
+.feed{
   display:flex;
-  align-items:center;
-  gap:6px;
+  flex-direction:column;
+  gap:14px;
 }
-
-/* ===== SERVICE GRID ===== */
-.service-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-.service-item{
-  background:#ffffff;
+.feed-item{
+  background:#fff;
   border-radius:18px;
   padding:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+
+/* ===== SERVICE ===== */
+.service-main{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-bottom:18px;
+}
+.service-card{
+  background:#0a3083;
+  color:#fff;
+  border-radius:20px;
+  padding:18px;
   display:flex;
-  align-items:center;
-  gap:10px;
-  color:#0a3083;
-  font-weight:600;
-  cursor:pointer;
-  box-shadow:0 4px 14px rgba(0,0,0,.05);
+  flex-direction:column;
+  gap:6px;
 }
-.service-item span{
-  font-size:26px;
+.service-card span{
+  font-size:28px;
 }
 
-/* full width item */
-.service-item.full{
-  grid-column:1/3;
-}
-
-/* ===== SUB LIST ===== */
 .service-list{
   display:flex;
   flex-direction:column;
   gap:12px;
+}
+.service-item{
+  background:#fff;
+  border-radius:16px;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:600;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+  cursor:pointer;
+}
+.service-item span{font-size:24px;color:#0a3083}
+
+/* ===== DOWNLOAD PREVIEW ===== */
+.preview-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.preview-card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.preview-card img{
+  width:100%;
+  display:block;
+}
+.preview-card div{
+  padding:10px;
+  font-size:14px;
+  font-weight:600;
 }
 
 /* ===== BOTTOM BAR ===== */
@@ -125,158 +142,118 @@ nav button{
   flex:1;
   border:none;
   background:transparent;
-  color:#dbe6ff;
+  color:#fff;
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:2px;
   font-size:11px;
-  border-radius:18px;
+  border-radius:20px;
 }
 nav button.active{
   background:rgba(255,255,255,.18);
-  color:#ffffff;
 }
-nav span{
-  font-size:24px;
-}
+nav span{font-size:24px}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
-  <img class="header-banner"
-   src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
-
-  <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
-  <div class="search-box" id="searchBox">
-    <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
-  </div>
+<img class="header-banner"
+src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+<span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
+<div class="search-box" id="searchBox">
+<input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
+</div>
 </header>
 
 <main>
 
-<!-- HOME -->
 <section id="home" class="active">
-  <div class="section-card">
-    <div class="section-header">📌 รายการโพส</div>
-    <h3>ประกาศศาล</h3>
-  </div>
+<div class="section-box">
+<h3>รายการโพส</h3>
+<div class="feed">
+  <div class="feed-item">ประกาศศาลรายการที่ 1</div>
+  <div class="feed-item">ประกาศศาลรายการที่ 2</div>
+</div>
+</div>
 </section>
 
-<!-- SERVICE -->
 <section id="service">
-  <div class="section-card">
-    <div class="section-header">📂 ข้อมูลบริการ</div>
+<div class="section-box">
+<h3>ข้อมูลบริการ</h3>
 
-    <div class="service-grid">
-      <div class="service-item" onclick="showPage('fee')">
-        <span class="material-icons-outlined">calculate</span>
-        อัตราค่าธรรมเนียมขึ้นศาล
-      </div>
-
-      <div class="service-item">
-        <span class="material-icons-outlined">list_alt</span>
-        ขั้นตอนการฟ้อง/ยื่นคำร้อง
-      </div>
-
-      <div class="service-item full" onclick="showPage('efiling')">
-        <span class="material-icons-outlined">gavel</span>
-        e-filing
-      </div>
-
-      <div class="service-item" onclick="openLink('https://cios.coj.go.th')">
-        <span class="material-icons-outlined">description</span>
-        CIOS
-      </div>
-
-      <div class="service-item" onclick="openLink('https://www.coj.go.th')">
-        <span class="material-icons-outlined">account_balance</span>
-        COJ
-      </div>
-
-      <div class="service-item full">
-        <span class="material-icons-outlined">download</span>
-        ดาวน์โหลดแบบฟอร์ม
-      </div>
-    </div>
+<div class="service-main">
+  <div class="service-card" onclick="showPage('fee')">
+    <span class="material-icons-outlined">calculate</span>
+    อัตราค่าธรรมเนียมขึ้นศาล
   </div>
+  <div class="service-card" onclick="showPage('efiling')">
+    <span class="material-icons-outlined">gavel</span>
+    e-filing
+  </div>
+</div>
+
+<div class="service-list">
+  <div class="service-item"><span class="material-icons-outlined">list_alt</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง</div>
+  <div class="service-item" onclick="openLink('https://cios.coj.go.th/tracking/')"><span class="material-icons-outlined">search</span>ตรวจสอบสถานะคดี</div>
+  <div class="service-item" onclick="openLink('https://cios.coj.go.th')"><span class="material-icons-outlined">description</span>CIOS</div>
+  <div class="service-item" onclick="openLink('https://www.coj.go.th')"><span class="material-icons-outlined">account_balance</span>COJ</div>
+  <div class="service-item"><span class="material-icons-outlined">download</span>ดาวน์โหลดแบบฟอร์ม</div>
+</div>
+
+</div>
 </section>
 
-<!-- EFILING -->
 <section id="efiling">
-  <div class="section-card">
-    <h3>เลือกระบบ e-Filing</h3>
-    <div class="service-list">
-      <div class="service-item" onclick="openLink('https://efiling3.coj.go.th')">
-        e-finling v.3
-      </div>
-      <div class="service-item" onclick="openLink('https://efiling4.coj.go.th')">
-        e-filing v.4
-      </div>
-    </div>
-  </div>
+<div class="section-box">
+<h3>เลือกระบบ e-Filing</h3>
+<div class="service-list">
+  <div class="service-item" onclick="openLink('https://efiling3.coj.go.th')">e-finling v.3</div>
+  <div class="service-item" onclick="openLink('https://efiling4.coj.go.th')">e-filing v.4</div>
+</div>
+</div>
 </section>
 
 <section id="fee">
-  <div class="section-card">
-    <h3>คำนวณค่าธรรมเนียม</h3>
-  </div>
+<div class="section-box">
+<h3>คำนวณค่าธรรมเนียม</h3>
+</div>
 </section>
 
-<section id="knowledge"><div class="section-card"><h3>คลังความรู้</h3></div></section>
-<section id="other"><div class="section-card"><h3>เพิ่มเติม</h3></div></section>
-<section id="contact"><div class="section-card"><h3>ติดต่อ</h3></div></section>
+<section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
+<section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
+<section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
 
 </main>
 
 <nav>
-  <button class="active" onclick="showPage('home',this)">
-    <span class="material-icons-outlined">home</span>หน้าแรก
-  </button>
-  <button onclick="showPage('service',this)">
-    <span class="material-icons-outlined">apps</span>บริการ
-  </button>
-  <button onclick="showPage('knowledge',this)">
-    <span class="material-icons-outlined">menu_book</span>คลังความรู้
-  </button>
-  <button onclick="showPage('other',this)">
-    <span class="material-icons-outlined">more_horiz</span>เพิ่มเติม
-  </button>
-  <button onclick="showPage('contact',this)">
-    <span class="material-icons-outlined">person</span>ติดต่อ
-  </button>
+<button class="active" onclick="showPage('home',this)"><span class="material-icons-outlined">home</span>หน้าแรก</button>
+<button onclick="showPage('service',this)"><span class="material-icons-outlined">apps</span>บริการ</button>
+<button onclick="showPage('knowledge',this)"><span class="material-icons-outlined">menu_book</span>คลังความรู้</button>
+<button onclick="showPage('other',this)"><span class="material-icons-outlined">more_horiz</span>เพิ่มเติม</button>
+<button onclick="showPage('contact',this)"><span class="material-icons-outlined">person</span>ติดต่อ</button>
 </nav>
 
 <script>
-let historyStack=[];
-
 function showPage(id,btn){
-  let current=document.querySelector("section.active");
-  if(current && current.id!==id) historyStack.push(current.id);
-
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+if(btn) btn.classList.add("active");
 }
-
 function openLink(url){window.open(url,"_blank")}
-
 function toggleSearch(){
-  let b=document.getElementById("searchBox");
-  b.style.display=b.style.display==="block"?"none":"block";
+let b=document.getElementById("searchBox");
+b.style.display=b.style.display==="block"?"none":"block";
 }
-
 function doSearch(e){
-  if(e.key==="Enter"){
-    let q=e.target.value.toLowerCase();
-    if(q.includes("fil")) showPage("efiling");
-    if(q.includes("ค่")) showPage("fee");
-  }
+if(e.key==="Enter"){
+let q=e.target.value;
+if(q.includes("fil")) showPage("efiling");
+if(q.includes("ค่")) showPage("fee");
+}
 }
 </script>
 
