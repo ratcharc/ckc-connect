@@ -21,28 +21,19 @@ h3 {
   margin-top: 0;
 }
 
-/* ---------- HEADER (BANNER) ---------- */
+/* ---------- HEADER (REAL IMAGE SIZE BANNER) ---------- */
 header {
-  position: relative;
-  height: 160px; /* ความสูงแบนเนอร์ */
-  background:
-    linear-gradient(rgba(10,48,131,.55), rgba(10,48,131,.55)),
-    url("Purple illustrative space technology subject google classroom header_20260204_012541_0000.png");
-  background-size: cover;
-  background-position: center;
+  padding: 0;
+  background: #0a3083;
   border-bottom-left-radius: 28px;
   border-bottom-right-radius: 28px;
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 18px;
 }
 
-header b {
-  color: #fff;
-  font-size: 20px;
-  letter-spacing: .5px;
+.header-banner {
+  width: 100%;
+  height: auto;     /* ใช้ขนาดจริงของภาพ */
+  display: block;
 }
 
 /* ---------- MAIN ---------- */
@@ -131,7 +122,7 @@ nav button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
+  border-radius: 999px; /* pill มน */
   transition: all .25s ease;
 }
 
@@ -152,8 +143,12 @@ nav button.active {
 
 <body>
 
+<!-- HEADER -->
 <header>
-  <b>CKC Connect</b>
+  <img
+    class="header-banner"
+    src="Purple illustrative space technology subject google classroom header_20260204_012541_0000.png"
+    alt="CKC Connect Banner">
 </header>
 
 <main>
@@ -234,6 +229,7 @@ nav button.active {
 
 </main>
 
+<!-- BOTTOM BAR -->
 <nav>
   <button class="active" onclick="showPage('home',this)">
     <span class="material-icons">home</span>
@@ -259,10 +255,10 @@ nav button.active {
 
 <script>
 function showPage(id, btn){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
   if(btn) btn.classList.add("active");
 }
 
