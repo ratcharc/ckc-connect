@@ -5,138 +5,121 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 
-<!-- ICON -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
-/* ---------- BASE ---------- */
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #f3f5f9;
-  color: #222;
+body{
+  margin:0;
+  font-family:system-ui,sans-serif;
+  background:#f3f5f9;
+  color:#222;
 }
 
-h3 {
-  margin-top: 0;
+h3{margin-top:0}
+
+header{
+  padding:0;
+  background:#0a3083;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+  overflow:hidden;
 }
 
-/* ---------- HEADER (REAL IMAGE SIZE) ---------- */
-header {
-  padding: 0;
-  background: #0a3083;
-  border-bottom-left-radius: 28px;
-  border-bottom-right-radius: 28px;
-  overflow: hidden;
+.header-banner{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
-.header-banner {
-  width: 100%;
-  height: auto;   /* ใช้สัดส่วนจริงของภาพ */
-  display: block;
+main{
+  padding:16px;
+  padding-bottom:110px;
 }
 
-/* ---------- MAIN ---------- */
-main {
-  padding: 16px;
-  padding-bottom: 110px;
+section{display:none}
+
+section.active{
+  display:block;
+  background:#fff;
+  border-radius:20px;
+  padding:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
-section {
-  display: none;
+.menu-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
 }
 
-section.active {
-  display: block;
-  background: #fff;
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+.menu-grid button{
+  background:#fff;
+  border:none;
+  border-radius:18px;
+  padding:20px 12px;
+  font-size:14px;
+  font-weight:600;
+  color:#0a3083;
+  box-shadow:0 6px 14px rgba(0,0,0,.1);
 }
 
-/* ---------- SERVICE GRID ---------- */
-.menu-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+.menu-grid button span{
+  display:block;
+  font-size:28px;
+  margin-bottom:6px;
 }
 
-.menu-grid button {
-  background: #ffffff;
-  border: none;
-  border-radius: 18px;
-  padding: 20px 12px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #0a3083;
-  box-shadow: 0 6px 14px rgba(0,0,0,.1);
+input{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  font-size:15px;
 }
 
-.menu-grid button span {
-  display: block;
-  font-size: 28px;
-  margin-bottom: 6px;
-  color: #0a3083;
+button.calc{
+  margin-top:12px;
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:none;
+  background:#0a3083;
+  color:#fff;
+  font-size:16px;
 }
 
-/* ---------- INPUT ---------- */
-input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-size: 15px;
+nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#fff;
+  display:flex;
+  border-top:1px solid #eee;
+  box-shadow:0 -6px 18px rgba(0,0,0,.1);
+  padding:10px 6px;
 }
 
-button.calc {
-  margin-top: 12px;
-  width: 100%;
-  padding: 14px;
-  border-radius: 14px;
-  border: none;
-  background: #0a3083;
-  color: white;
-  font-size: 16px;
+nav button{
+  flex:1;
+  border:none;
+  background:transparent;
+  font-size:11px;
+  color:#0a3083;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
 }
 
-/* ---------- BOTTOM BAR ---------- */
-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #ffffff;
-  display: flex;
-  border-top: 1px solid #eee;
-  box-shadow: 0 -6px 18px rgba(0,0,0,.1);
-  padding: 10px 6px;
+nav button span{
+  font-size:24px;
 }
 
-nav button {
-  flex: 1;
-  padding: 10px 0;
-  border: none;
-  background: transparent;
-  font-size: 11px;
-  color: #0a3083;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 999px;
-  transition: all .25s ease;
-}
-
-nav button span {
-  display: block;
-  font-size: 24px;
-  margin-bottom: 2px;
-}
-
-/* ---------- ACTIVE ---------- */
-nav button.active {
-  background: #0a3083;
-  color: #ffffff;
-  font-weight: 600;
+nav button.active{
+  background:#0a3083;
+  color:#fff;
+  font-weight:600;
 }
 </style>
 </head>
@@ -147,113 +130,68 @@ nav button.active {
 <header>
   <img
     class="header-banner"
-    src="https://drive.google.com/uc?export=view&id=1tOISdJCtOTtnYiZfUsBQUzVOQ67HxADz"
+    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20225_20260207124534.png"
     alt="CKC Connect Banner">
 </header>
 
 <main>
 
-  <section id="home" class="active">
-    <h3>ประกาศศาล</h3>
-    <p>พื้นที่ประชาสัมพันธ์ / โปสเตอร์</p>
-  </section>
+<section id="home" class="active">
+  <h3>ประกาศศาล</h3>
+  <p>พื้นที่ประชาสัมพันธ์ / โปสเตอร์</p>
+</section>
 
-  <section id="service">
-    <h3>บริการ</h3>
-    <div class="menu-grid">
-      <button onclick="showPage('efiling')">
-        <span class="material-icons">gavel</span>
-        e-Filing
-      </button>
-      <button onclick="openLink('https://cios.coj.go.th')">
-        <span class="material-icons">description</span>
-        CIOS
-      </button>
-      <button onclick="openLink('https://www.coj.go.th')">
-        <span class="material-icons">account_balance</span>
-        COJ
-      </button>
-      <button onclick="showPage('fee')">
-        <span class="material-icons">calculate</span>
-        ค่าธรรมเนียม
-      </button>
-    </div>
-  </section>
+<section id="service">
+  <h3>บริการ</h3>
+  <div class="menu-grid">
+    <button onclick="showPage('efiling')"><span class="material-icons">gavel</span>e-Filing</button>
+    <button onclick="openLink('https://cios.coj.go.th')"><span class="material-icons">description</span>CIOS</button>
+    <button onclick="openLink('https://www.coj.go.th')"><span class="material-icons">account_balance</span>COJ</button>
+    <button onclick="showPage('fee')"><span class="material-icons">calculate</span>ค่าธรรมเนียม</button>
+  </div>
+</section>
 
-  <section id="efiling">
-    <h3>เลือกระบบ e-Filing</h3>
-    <div class="menu-grid">
-      <button onclick="openLink('https://efiling3.coj.go.th')">
-        <span class="material-icons">layers</span>
-        e-Filing v.3
-      </button>
-      <button onclick="openLink('https://efiling4.coj.go.th')">
-        <span class="material-icons">rocket_launch</span>
-        e-Filing v.4
-      </button>
-    </div>
-  </section>
+<section id="efiling">
+  <h3>เลือกระบบ e-Filing</h3>
+  <div class="menu-grid">
+    <button onclick="openLink('https://efiling3.coj.go.th')"><span class="material-icons">layers</span>v.3</button>
+    <button onclick="openLink('https://efiling4.coj.go.th')"><span class="material-icons">rocket_launch</span>v.4</button>
+  </div>
+</section>
 
-  <section id="knowledge">
-    <h3>คลังความรู้</h3>
-    <p>คำศัพท์ / ขั้นตอน / อินโฟกราฟิก</p>
-  </section>
+<section id="knowledge"><h3>คลังความรู้</h3></section>
+<section id="other"><h3>เพิ่มเติม</h3></section>
+<section id="contact"><h3>ติดต่อเรา</h3></section>
 
-  <section id="other">
-    <h3>เพิ่มเติม</h3>
-    <p>FAQ / แบบประเมิน / ลิงก์ที่เกี่ยวข้อง</p>
-  </section>
-
-  <section id="contact">
-    <h3>ติดต่อเรา</h3>
-    <p>ศาลแขวงชลบุรี</p>
-  </section>
-
-  <section id="fee">
-    <h3>คำนวณค่าธรรมเนียมศาล</h3>
-    <input type="number" id="amount" placeholder="ทุนทรัพย์ (บาท)">
-    <button class="calc" onclick="calcFee()">คำนวณ</button>
-    <p id="result"></p>
-  </section>
+<section id="fee">
+  <h3>คำนวณค่าธรรมเนียมศาล</h3>
+  <input id="amount" type="number" placeholder="ทุนทรัพย์ (บาท)">
+  <button class="calc" onclick="calcFee()">คำนวณ</button>
+  <p id="result"></p>
+</section>
 
 </main>
 
 <nav>
-  <button class="active" onclick="showPage('home',this)">
-    <span class="material-icons">home</span>หน้าแรก
-  </button>
-  <button onclick="showPage('service',this)">
-    <span class="material-icons">apps</span>บริการ
-  </button>
-  <button onclick="showPage('knowledge',this)">
-    <span class="material-icons">menu_book</span>คลังความรู้
-  </button>
-  <button onclick="showPage('other',this)">
-    <span class="material-icons">more_horiz</span>เพิ่มเติม
-  </button>
-  <button onclick="showPage('contact',this)">
-    <span class="material-icons">person</span>ติดต่อ
-  </button>
+  <button class="active" onclick="showPage('home',this)"><span class="material-icons">home</span>หน้าแรก</button>
+  <button onclick="showPage('service',this)"><span class="material-icons">apps</span>บริการ</button>
+  <button onclick="showPage('knowledge',this)"><span class="material-icons">menu_book</span>คลังความรู้</button>
+  <button onclick="showPage('other',this)"><span class="material-icons">more_horiz</span>เพิ่มเติม</button>
+  <button onclick="showPage('contact',this)"><span class="material-icons">person</span>ติดต่อ</button>
 </nav>
 
 <script>
-function showPage(id, btn){
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+function showPage(id,btn){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-
-  document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
   if(btn) btn.classList.add("active");
 }
-
-function openLink(url){
-  window.open(url, "_blank");
-}
-
+function openLink(u){window.open(u,"_blank")}
 function calcFee(){
-  let a = document.getElementById("amount").value || 0;
-  let fee = a * 0.02;
-  document.getElementById("result").innerText =
-    "ค่าธรรมเนียมประมาณ: " + fee.toLocaleString() + " บาท";
+  let a=document.getElementById("amount").value||0;
+  document.getElementById("result").innerText=
+  "ค่าธรรมเนียมประมาณ: "+(a*0.02).toLocaleString()+" บาท";
 }
 </script>
 
