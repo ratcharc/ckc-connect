@@ -41,7 +41,7 @@ main{padding:16px;padding-bottom:120px}
 section{display:none}
 section.active{display:block}
 
-/* ===== SECTION BOX (เข้มขึ้น) ===== */
+/* ===== SECTION BOX ===== */
 .section-box{
   background:linear-gradient(145deg,#ffffff,#eef3ff);
   border-radius:24px;
@@ -80,36 +80,25 @@ section.active{display:block}
   color:#0a3083;
 }
 
-/* ===== ICON STYLE (น้ำเงินหม่น + ทอง) ===== */
-.service-card span,
-.pill span{
-  font-size:26px;
-  background:linear-gradient(
-    135deg,
-    rgba(37,99,235,.85),
-    rgba(180,150,90,.85)
-  );
-  color:#fff;
-  width:46px;
-  height:46px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 8px 20px rgba(30,64,175,.35);
+/* ===== ICON (น้ำเงินเฉดเดียว + น้ำเงินหม่น / ไม่มี pill) ===== */
+.icon-blue{
+  font-size:28px;
+  background:linear-gradient(135deg,#2563eb,#1e3a8a);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
-/* ===== e-FILING PILL ===== */
-.pill{
-  background:linear-gradient(135deg,#0a3083,#1e40af);
-  color:#fff;
-  border-radius:36px;
-  padding:14px 20px;
+/* ===== e-FILING CARD (ใช้ style เดียวกับ service-card) ===== */
+.efiling-card{
+  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 14px 30px rgba(15,23,42,.2);
   display:flex;
   align-items:center;
   gap:12px;
   font-weight:700;
-  box-shadow:0 14px 30px rgba(10,48,131,.5);
+  color:#0a3083;
   cursor:pointer;
 }
 
@@ -216,37 +205,37 @@ nav span{font-size:24px}
     <h3>ข้อมูลบริการ</h3>
     <div class="service-grid">
       <div class="service-card" onclick="navigate('fee')">
-        <span class="material-icons-outlined">calculate</span>
+        <span class="material-icons-outlined icon-blue">calculate</span>
         อัตราค่าธรรมเนียมขึ้นศาล
       </div>
 
       <div class="service-card">
-        <span class="material-icons-outlined">list_alt</span>
+        <span class="material-icons-outlined icon-blue">list_alt</span>
         ขั้นตอนการฟ้อง / ยื่นคำร้อง
       </div>
 
       <div class="service-card" onclick="navigate('efiling')">
-        <span class="material-icons-outlined">gavel</span>
+        <span class="material-icons-outlined icon-blue">gavel</span>
         e-Filing
       </div>
 
       <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
-        <span class="material-icons-outlined">description</span>
+        <span class="material-icons-outlined icon-blue">description</span>
         CIOS
       </div>
 
       <div class="service-card" onclick="openLink('https://www.coj.go.th')">
-        <span class="material-icons-outlined">account_balance</span>
+        <span class="material-icons-outlined icon-blue">account_balance</span>
         COJ
       </div>
 
       <div class="service-card">
-        <span class="material-icons-outlined">handshake</span>
+        <span class="material-icons-outlined icon-blue">handshake</span>
         ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
       </div>
 
       <div class="service-card" onclick="navigate('download')">
-        <span class="material-icons-outlined">download</span>
+        <span class="material-icons-outlined icon-blue">download</span>
         ดาวน์โหลดแบบฟอร์ม
       </div>
     </div>
@@ -256,12 +245,14 @@ nav span{font-size:24px}
 <section id="efiling">
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
-    <div class="pill" onclick="openLink('https://efiling3.coj.go.th')">
-      <span class="material-icons-outlined">gavel</span>
+
+    <div class="efiling-card" onclick="openLink('https://efiling3.coj.go.th')">
+      <span class="material-icons-outlined icon-blue">gavel</span>
       e-Filing v.3
     </div><br>
-    <div class="pill" onclick="openLink('https://efiling4.coj.go.th')">
-      <span class="material-icons-outlined">rocket_launch</span>
+
+    <div class="efiling-card" onclick="openLink('https://efiling4.coj.go.th')">
+      <span class="material-icons-outlined icon-blue">rocket_launch</span>
       e-Filing v.4
     </div>
   </div>
@@ -315,12 +306,10 @@ nav span{font-size:24px}
 </nav>
 
 <script>
-/* ===== NAVIGATION WITH HISTORY ===== */
 function navigate(id,btn){
   history.pushState({page:id}, "", "#"+id);
   showPage(id,btn);
 }
-
 function showPage(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -329,20 +318,16 @@ function showPage(id,btn){
     btn.classList.add("active");
   }
 }
-
 window.onpopstate=function(e){
   if(e.state && e.state.page){
     showPage(e.state.page);
   }
 };
-
 function openLink(url){window.open(url,"_blank")}
-
 function toggleSearch(){
   let b=document.getElementById("searchBox");
   b.style.display=b.style.display==="block"?"none":"block";
 }
-
 function doSearch(e){
   if(e.key==="Enter"){
     let q=e.target.value;
@@ -350,7 +335,6 @@ function doSearch(e){
     if(q.includes("ค่")) navigate("fee");
   }
 }
-
 function calcFee(){
   let m=document.getElementById("money").value;
   let fee=Math.max(100,Math.floor(m*0.02));
