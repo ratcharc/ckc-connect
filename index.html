@@ -12,50 +12,49 @@
 body{
   margin:0;
   font-family:system-ui,sans-serif;
-  background:#f4f6f9;
+  background:#f2f5fa;
   color:#1f2937;
 }
 h3{
   margin:0 0 12px;
-  font-size:18px;
-}
-.section-header{
+  font-size:16px;
   font-weight:700;
-  margin-bottom:14px;
-  padding-bottom:6px;
-  border-bottom:1px solid #e5e7eb;
-  color:#374151;
+  letter-spacing:.2px;
 }
 
 /* ===== HEADER ===== */
 header{position:relative}
 .header-banner{width:100%;display:block}
 
-/* ===== SEARCH ===== */
+/* search */
 .search-btn{
-  position:absolute;
-  top:12px;right:12px;
-  color:#fff;font-size:26px;
+  position:absolute;top:12px;right:12px;
+  color:#fff;font-size:26px;cursor:pointer
 }
 .search-box{
-  position:absolute;
-  top:52px;right:12px;
-  display:none;
+  position:absolute;top:52px;right:12px;display:none
 }
 .search-box input{
-  padding:8px 14px;
-  border-radius:20px;
-  border:1px solid #d1d5db;
+  padding:8px 14px;border-radius:20px;
+  border:1px solid #d1d5db;background:#fff
 }
 
 /* ===== MAIN ===== */
 main{
   padding:16px;
-  padding-bottom:130px;
+  padding-bottom:120px;
 }
 section{display:none}
 section.active{
   display:block;
+}
+
+/* section header */
+.section-box{
+  background:linear-gradient(135deg,#ffffff,#f0f4ff);
+  border-radius:20px;
+  padding:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.06);
 }
 
 /* ===== FEED (ประกาศศาล) ===== */
@@ -64,11 +63,11 @@ section.active{
   flex-direction:column;
   gap:14px;
 }
-.feed-card{
+.feed-item{
   background:#fff;
-  border-radius:18px;
+  border-radius:16px;
   padding:14px;
-  box-shadow:0 6px 20px rgba(0,0,0,.06);
+  box-shadow:0 6px 16px rgba(0,0,0,.05);
 }
 
 /* ===== SERVICE GRID ===== */
@@ -78,37 +77,32 @@ section.active{
   gap:14px;
 }
 .service-card{
-  background:linear-gradient(135deg,#ffffff,#f1f5ff);
-  border-radius:20px;
-  padding:18px 14px;
-  box-shadow:0 8px 24px rgba(0,0,0,.08);
+  background:linear-gradient(135deg,#ffffff,#eef2ff);
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 10px 22px rgba(0,0,0,.06);
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:8px;
+  color:#0a3083;
+  font-weight:600;
   cursor:pointer;
 }
 .service-card span{
   font-size:28px;
-  color:#0a3083;
-}
-.service-card b{
-  font-size:14px;
-  color:#0a3083;
 }
 
-/* ===== E-FILING PILL ===== */
-.efiling-pill{
+/* ===== e-filing pill ===== */
+.pill{
   background:#0a3083;
   color:#fff;
-  padding:14px;
-  border-radius:999px;
+  border-radius:30px;
+  padding:14px 18px;
   display:flex;
   align-items:center;
   gap:10px;
-  justify-content:center;
-  font-weight:600;
-  box-shadow:0 8px 20px rgba(10,48,131,.4);
-  cursor:pointer;
+  font-weight:700;
+  box-shadow:0 8px 20px rgba(10,48,131,.35);
 }
 
 /* ===== FEE CALCULATOR ===== */
@@ -116,36 +110,52 @@ section.active{
   background:#fff;
   border-radius:20px;
   padding:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  box-shadow:0 10px 25px rgba(0,0,0,.06);
   display:flex;
   flex-direction:column;
   gap:12px;
 }
-.calc-box input, .calc-box button{
-  padding:10px;
-  border-radius:12px;
-  border:1px solid #d1d5db;
+.calc-box input{
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #c7d2fe;
 }
 .calc-box button{
+  padding:12px;
+  border:none;
+  border-radius:14px;
   background:#0a3083;
   color:#fff;
-  border:none;
+  font-weight:700;
+}
+.calc-result{
+  background:#eef2ff;
+  padding:12px;
+  border-radius:14px;
+  font-weight:700;
 }
 
 /* ===== DOWNLOAD PREVIEW ===== */
-.download-list{
-  display:flex;
-  flex-direction:column;
-  gap:16px;
+.preview-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
 }
-.download-item{
+.preview-card{
   background:#fff;
-  border-radius:18px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  box-shadow:0 8px 18px rgba(0,0,0,.05);
 }
-.download-item img{width:100%}
-.download-item div{padding:12px}
+.preview-card img{
+  width:100%;
+  display:block;
+}
+.preview-card div{
+  padding:10px;
+  font-size:13px;
+  font-weight:600;
+}
 
 /* ===== BOTTOM BAR ===== */
 nav{
@@ -160,15 +170,16 @@ nav button{
   flex:1;
   border:none;
   background:transparent;
-  color:#dbeafe;
+  color:#fff;
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:2px;
   font-size:11px;
+  border-radius:18px;
 }
 nav button.active{
-  color:#fff;
+  background:rgba(255,255,255,.2);
 }
 nav span{
   font-size:24px;
@@ -179,7 +190,8 @@ nav span{
 <body>
 
 <header>
-  <img class="header-banner" src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+  <img class="header-banner"
+   src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
@@ -188,60 +200,69 @@ nav span{
 
 <main>
 
-<!-- HOME -->
 <section id="home" class="active">
-  <div class="section-header">รายการโพส</div>
-  <div class="feed">
-    <div class="feed-card">ประกาศศาล เรื่องที่ 1</div>
-    <div class="feed-card">ประกาศศาล เรื่องที่ 2</div>
-  </div>
-</section>
-
-<!-- SERVICE -->
-<section id="service">
-  <div class="section-header">ข้อมูลบริการ</div>
-  <div class="service-grid">
-    <div class="service-card" onclick="showPage('fee')"><span class="material-icons-outlined">calculate</span><b>อัตราค่าธรรมเนียมขึ้นศาล</b></div>
-    <div class="service-card"><span class="material-icons-outlined">list_alt</span><b>ขั้นตอนการฟ้อง/ยื่นคำร้อง</b></div>
-    <div class="service-card" onclick="showPage('efiling')"><span class="material-icons-outlined">gavel</span><b>e-filing</b></div>
-    <div class="service-card" onclick="openLink('https://cios.coj.go.th')"><span class="material-icons-outlined">description</span><b>CIOS</b></div>
-    <div class="service-card" onclick="openLink('https://www.coj.go.th')"><span class="material-icons-outlined">account_balance</span><b>COJ</b></div>
-    <div class="service-card"><span class="material-icons-outlined">handshake</span><b>ไกล่เกลี่ย/นัดพิจารณาคดีทางอิเล็กทรอนิกส์</b></div>
-    <div class="service-card" onclick="showPage('download')"><span class="material-icons-outlined">download</span><b>ดาวน์โหลดแบบฟอร์ม</b></div>
-  </div>
-</section>
-
-<!-- E-FILING -->
-<section id="efiling">
-  <div class="section-header">เลือกระบบ e-Filing</div>
-  <div class="efiling-pill" onclick="openLink('https://efiling3.coj.go.th')">
-    <span class="material-icons-outlined">cloud</span> e-filing v.3
-  </div><br>
-  <div class="efiling-pill" onclick="openLink('https://efiling4.coj.go.th')">
-    <span class="material-icons-outlined">cloud</span> e-filing v.4
-  </div>
-</section>
-
-<!-- FEE -->
-<section id="fee">
-  <div class="section-header">คำนวณค่าธรรมเนียม</div>
-  <div class="calc-box">
-    <input id="capital" type="number" placeholder="กรอกจำนวนทุนทรัพย์">
-    <button onclick="calcFee()">คำนวณ</button>
-    <input id="feeResult" readonly placeholder="ค่าธรรมเนียมที่ต้องชำระ">
-  </div>
-</section>
-
-<!-- DOWNLOAD -->
-<section id="download">
-  <div class="section-header">ดาวน์โหลดแบบฟอร์ม</div>
-  <div class="download-list">
-    <div class="download-item">
-      <img src="https://via.placeholder.com/400x250">
-      <div>คำร้องทั่วไป</div>
+  <div class="section-box">
+    <h3>รายการโพส</h3>
+    <div class="feed">
+      <div class="feed-item">ประกาศศาลรายการที่ 1</div>
+      <div class="feed-item">ประกาศศาลรายการที่ 2</div>
     </div>
   </div>
 </section>
+
+<section id="service">
+  <div class="section-box">
+    <h3>ข้อมูลบริการ</h3>
+    <div class="service-grid">
+      <div class="service-card" onclick="showPage('fee')"><span class="material-icons-outlined">calculate</span>อัตราค่าธรรมเนียมขึ้นศาล</div>
+      <div class="service-card"><span class="material-icons-outlined">list_alt</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง</div>
+      <div class="service-card" onclick="showPage('efiling')"><span class="material-icons-outlined">gavel</span>e-filing</div>
+      <div class="service-card" onclick="openLink('https://cios.coj.go.th')"><span class="material-icons-outlined">description</span>CIOS</div>
+      <div class="service-card" onclick="openLink('https://www.coj.go.th')"><span class="material-icons-outlined">account_balance</span>COJ</div>
+      <div class="service-card"><span class="material-icons-outlined">handshake</span>ไกล่เกลี่ย/นัดพิจารณาคดีทางอิเล็กทรอนิกส์</div>
+      <div class="service-card" onclick="showPage('download')"><span class="material-icons-outlined">download</span>ดาวน์โหลดแบบฟอร์ม</div>
+    </div>
+  </div>
+</section>
+
+<section id="efiling">
+  <div class="section-box">
+    <h3>เลือกระบบ e-Filing</h3>
+    <div class="pill" onclick="openLink('https://efiling3.coj.go.th')">
+      <span class="material-icons-outlined">gavel</span> e-filing v.3
+    </div><br>
+    <div class="pill" onclick="openLink('https://efiling4.coj.go.th')">
+      <span class="material-icons-outlined">gavel</span> e-filing v.4
+    </div>
+  </div>
+</section>
+
+<section id="fee">
+  <div class="section-box">
+    <h3>คำนวณค่าธรรมเนียม</h3>
+    <div class="calc-box">
+      <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
+      <button onclick="calcFee()">คำนวณ</button>
+      <div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="section-box">
+    <h3>ดาวน์โหลดแบบฟอร์ม</h3>
+    <div class="preview-list">
+      <div class="preview-card">
+        <img src="https://via.placeholder.com/300x200">
+        <div>คำร้องทั่วไป</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
+<section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
+<section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
 
 </main>
 
@@ -273,9 +294,9 @@ function doSearch(e){
   }
 }
 function calcFee(){
-  let c=document.getElementById("capital").value;
-  let fee=c*0.02;
-  document.getElementById("feeResult").value=fee.toFixed(2)+" บาท";
+  let m=document.getElementById("money").value;
+  let fee=Math.max(100,Math.floor(m*0.02));
+  document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
 }
 </script>
 
