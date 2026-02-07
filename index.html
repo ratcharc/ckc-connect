@@ -5,189 +5,177 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <style>
+:root{
+  --blue:#1f4fd8;
+  --gray:#e6e6e6;
+}
+
 body{
   margin:0;
-  font-family:system-ui,sans-serif;
-  background:#e5e7eb;
+  font-family: system-ui, -apple-system, sans-serif;
+  background:#fff;
 }
 
-/* ---------- HEADER ---------- */
-header{
+/* HEADER */
+.header{
   position:relative;
-  overflow:hidden;
 }
-header img{
+.header img{
   width:100%;
-  height:auto;
   display:block;
 }
 .search-btn{
   position:absolute;
-  top:12px;
-  right:12px;
-  color:white;
-  font-size:28px;
-  cursor:pointer;
-}
-
-/* ---------- SEARCH ---------- */
-.search-box{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.5);
-  display:none;
-  align-items:center;
-  justify-content:center;
-}
-.search-box input{
-  width:80%;
-  max-width:400px;
-  padding:14px;
-  font-size:16px;
-  border:none;
-  border-radius:14px;
-  outline:none;
-}
-
-/* ---------- MAIN ---------- */
-main{
-  padding:16px;
-  padding-bottom:110px;
-}
-section{display:none;}
-section.active{
-  display:block;
-  background:#e5e7eb;
-}
-
-/* ---------- SERVICE LIST ---------- */
-.list{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.list button{
-  background:#fff;
-  border:none;
-  border-radius:16px;
-  padding:16px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-size:15px;
-  color:#0a3083;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
-}
-.list span{font-size:24px;}
-
-/* ---------- BOTTOM BAR ---------- */
-nav{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#fff;
-  display:flex;
-  padding:10px 6px;
-  box-shadow:0 -6px 18px rgba(0,0,0,.1);
-}
-nav button{
-  flex:1;
+  top:15px;
+  right:15px;
+  font-size:22px;
+  color:#fff;
   background:none;
   border:none;
-  color:#0a3083;
-  font-size:11px;
+}
+
+/* SEARCH */
+#searchBox{
+  display:none;
+  position:absolute;
+  top:60px;
+  right:15px;
+  left:15px;
+  border:1px solid #fff;
+  background:rgba(255,255,255,0.2);
+  color:#fff;
+  padding:10px;
+  border-radius:8px;
+}
+
+/* CONTENT */
+.app-bg{
+  background:#fff;
+  min-height:100vh;
+}
+.gray-bg{
+  background:var(--gray);
+  padding:15px;
+}
+.menu{
   display:flex;
   flex-direction:column;
+  gap:10px;
+}
+.pill{
+  background:#fff;
+  padding:14px;
+  border-radius:12px;
+  display:flex;
   align-items:center;
-  border-radius:999px;
+  gap:10px;
+  color:var(--blue);
+  font-weight:500;
 }
-nav button.active{
-  background:#0a3083;
+
+/* HIDE */
+.page{display:none;}
+.page.active{display:block;}
+
+/* BOTTOM BAR */
+.bottom-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--blue);
+  display:flex;
+  justify-content:space-around;
+  padding:8px 0;
+}
+.bottom-bar button{
+  background:none;
+  border:none;
   color:#fff;
+  font-size:12px;
 }
-nav span{font-size:24px;}
 </style>
 </head>
 
 <body>
 
-<header>
+<!-- HEADER -->
+<div class="header">
   <img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
-  <span class="material-icons search-btn" onclick="openSearch()">search</span>
-</header>
-
-<div class="search-box" id="searchBox" onclick="closeSearch()">
-  <input placeholder="ค้นหา..." onkeydown="doSearch(event)">
+  <button class="search-btn" onclick="toggleSearch()">🔍</button>
+  <input id="searchBox" placeholder="ค้นหา..." onkeyup="doSearch(this.value)">
 </div>
 
-<main>
+<!-- CONTENT -->
+<div class="app-bg">
 
-<section id="home" class="active"></section>
-
-<section id="service">
-  <div class="list">
-    <button onclick="showPage('fee')"><span class="material-icons">calculate</span>อัตราค่าธรรมเนียมขึ้นศาล</button>
-    <button><span class="material-icons">article</span>ขั้นตอนการฟ้อง/ยื่นคำร้อง</button>
-    <button onclick="openLink('https://script.google.com/macros/s/AKfycbwICVLJxNrUbK9iZqP_0OaXY-CWmH3386AndO9fvHU6L4Mral4QsMglMhAZox_h3-icAQ/exec?page=displayonline')"><span class="material-icons">search</span>ตรวจสอบสถานะคดี</button>
-    <button onclick="showPage('efiling')"><span class="material-icons">gavel</span>e-Filing</button>
-    <button onclick="openLink('https://cios.coj.go.th')"><span class="material-icons">description</span>CIOS</button>
-    <button onclick="openLink('https://www.coj.go.th')"><span class="material-icons">account_balance</span>COJ</button>
-    <button><span class="material-icons">handshake</span>ไกล่เกลี่ย/นัดพิจารณาคดีทางอิเล็กทรอนิกส์</button>
-    <button><span class="material-icons">download</span>ดาวน์โหลดแบบฟอร์ม</button>
+<!-- บริการ -->
+<div id="service" class="page active">
+  <div class="gray-bg">
+    <div class="menu">
+      <div class="pill" onclick="go('fee')">อัตราค่าธรรมเนียมขึ้นศาล</div>
+      <div class="pill">ขั้นตอนการฟ้อง/ยื่นคำร้อง</div>
+      <div class="pill" onclick="window.open('https://script.google.com/macros/s/AKfycbwICVLJxNrUbK9iZqP_0OaXY-CWmH3386AndO9fvHU6L4Mral4QsMglMhAZox_h3-icAQ/exec?page=displayonline')">ตรวจสอบสถานะคดี</div>
+      <div class="pill" onclick="go('efiling')">e-filing</div>
+      <div class="pill">CIOS</div>
+      <div class="pill">COJ</div>
+      <div class="pill">ไกล่เกลี่ย/นัดพิจารณาคดีทางอิเล็กทรอนิกส์</div>
+      <div class="pill">ดาวน์โหลดแบบฟอร์ม</div>
+    </div>
   </div>
-</section>
+</div>
 
-<section id="efiling">
-  <div class="list">
-    <button onclick="openLink('https://efiling3.coj.go.th')">e-Filing v.3</button>
-    <button onclick="openLink('https://efiling4.coj.go.th')">e-Filing v.4</button>
+<!-- e-filing -->
+<div id="efiling" class="page">
+  <div class="gray-bg">
+    <div class="menu">
+      <div class="pill">e-filing v.3</div>
+      <div class="pill">e-filing v.4</div>
+    </div>
   </div>
-</section>
+</div>
 
-<section id="fee"></section>
-<section id="knowledge"></section>
-<section id="other"></section>
-<section id="contact"></section>
+<!-- ค่าธรรมเนียม -->
+<div id="fee" class="page">
+  <div class="gray-bg">
+    <div class="pill">หน้าคำนวณค่าธรรมเนียม</div>
+  </div>
+</div>
 
-</main>
+</div>
 
-<nav>
-  <button class="active" onclick="showPage('home',this)"><span class="material-icons">home</span>หน้าแรก</button>
-  <button onclick="showPage('service',this)"><span class="material-icons">apps</span>บริการ</button>
-  <button onclick="showPage('knowledge',this)"><span class="material-icons">menu_book</span>คลังความรู้</button>
-  <button onclick="showPage('other',this)"><span class="material-icons">more_horiz</span>เพิ่มเติม</button>
-  <button onclick="showPage('contact',this)"><span class="material-icons">person</span>ติดต่อ</button>
-</nav>
+<!-- BOTTOM BAR -->
+<div class="bottom-bar">
+  <button onclick="go('service')">บริการ</button>
+  <button>คลังความรู้</button>
+  <button>เพิ่มเติม</button>
+  <button>ติดต่อ</button>
+</div>
 
 <script>
-let historyStack=[];
+let historyStack=['service'];
 
-function showPage(id,btn){
-  let current=document.querySelector("section.active");
-  if(current) historyStack.push(current.id);
-
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
+function go(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  historyStack.push(page);
 }
 
-function openLink(url){window.open(url,"_blank");}
+window.onpopstate=()=>{
+  historyStack.pop();
+  let last=historyStack[historyStack.length-1] || 'service';
+  go(last);
+}
 
-function openSearch(){document.getElementById("searchBox").style.display="flex";}
-function closeSearch(){document.getElementById("searchBox").style.display="none";}
+function toggleSearch(){
+  let s=document.getElementById('searchBox');
+  s.style.display = s.style.display==='block'?'none':'block';
+}
 
-function doSearch(e){
-  if(e.key==="Enter"){
-    let q=e.target.value.toLowerCase();
-    if(q.includes("e")) showPage("efiling");
-    if(q.includes("ค่")) showPage("fee");
-    closeSearch();
-  }
+function doSearch(val){
+  if(val.includes('e')) go('efiling');
+  if(val.includes('ค่า')) go('fee');
 }
 </script>
 
