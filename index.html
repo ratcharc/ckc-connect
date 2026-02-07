@@ -5,99 +5,94 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 
+<!-- Material Icons -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
-:root{
-  --blue:#0a3083;
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f5f7fa;
+  padding-bottom: 90px;
 }
 
-body{
-  margin:0;
-  font-family:system-ui, sans-serif;
-  background:#f5f7fa;
+header {
+  background: #0a3083;
+  color: white;
+  text-align: center;
+  padding: 16px;
 }
 
-header{
-  background:var(--blue);
-  color:#fff;
-  text-align:center;
-  padding:16px;
+main {
+  padding: 16px;
 }
 
-main{
-  padding:16px;
-  padding-bottom:110px;
+section {
+  display: none;
+}
+section.active {
+  display: block;
 }
 
-section{
-  display:none;
+/* -------- MENU GRID -------- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.menu-grid button {
+  background: #0a3083;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 16px;
 }
 
-section.active{
-  display:block;
+/* -------- BOTTOM BAR -------- */
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  padding: 10px 8px;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -6px 18px rgba(0,0,0,.1);
 }
 
-/* ---------- SERVICE GRID ---------- */
-.menu-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+nav button {
+  flex: 1;
+  height: 58px;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  color: #0a3083;
+  transition: all .25s ease;
 }
 
-.menu-grid button{
-  background:var(--blue);
-  color:#fff;
-  border:none;
-  padding:16px;
-  border-radius:14px;
-  font-size:16px;
+nav button .icon {
+  font-size: 26px;
 }
 
-/* ---------- BOTTOM BAR ---------- */
-nav{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:var(--blue);
-  display:flex;
-  padding:10px 8px;
-  box-shadow:0 -6px 18px rgba(0,0,0,.25);
+nav button .label {
+  font-size: 11px;
+  margin-top: 4px;
+  display: none;
 }
 
-nav button{
-  flex:1;
-  height:60px;
-  border:none;
-  background:transparent;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  border-radius:18px;
-  color:var(--blue);              /* ยังไม่กด */
-  transition:.25s;
+/* ACTIVE */
+nav button.active {
+  background: #0a3083;
+  color: white;
 }
-
-nav button .icon{
-  font-size:26px;
-}
-
-nav button .label{
-  font-size:11px;
-  margin-top:4px;
-  display:none;
-}
-
-/* ---------- ACTIVE ---------- */
-nav button.active{
-  background:var(--blue);
-  color:#fff;                     /* กดแล้วขาว */
-}
-
-nav button.active .label{
-  display:block;
-  font-weight:600;
+nav button.active .label {
+  display: block;
+  font-weight: 600;
 }
 </style>
 </head>
@@ -133,7 +128,7 @@ nav button.active .label{
 
 <section id="other">
   <h3>เพิ่มเติม</h3>
-  <p>FAQ / แบบประเมิน / ลิงก์ที่เกี่ยวข้อง</p>
+  <p>FAQ / แบบประเมิน</p>
 </section>
 
 <section id="contact">
@@ -151,6 +146,7 @@ nav button.active .label{
 
 </main>
 
+<!-- -------- BOTTOM NAV -------- -->
 <nav>
   <button class="active" onclick="showPage('home',this)">
     <span class="material-icons icon">home</span>
@@ -168,7 +164,7 @@ nav button.active .label{
   </button>
 
   <button onclick="showPage('other',this)">
-    <span class="material-icons icon">more_horiz</span>
+    <span class="material-icons icon">info</span>
     <span class="label">เพิ่มเติม</span>
   </button>
 
@@ -180,24 +176,24 @@ nav button.active .label{
 
 <script>
 function showPage(id, btn){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
   if(btn) btn.classList.add("active");
 }
 
 function openLink(url){
-  window.open(url,"_blank");
+  window.open(url, "_blank");
 }
 
 function calcFee(){
-  let a=document.getElementById("amount").value||0;
-  let fee=a*0.02;
-  document.getElementById("result").innerText=
-    "ค่าธรรมเนียมประมาณ: "+fee.toLocaleString()+" บาท";
+  let a = document.getElementById("amount").value || 0;
+  let fee = a * 0.02;
+  document.getElementById("result").innerText =
+    "ค่าธรรมเนียมประมาณ: " + fee.toLocaleString() + " บาท";
 }
 </script>
 
 </body>
-</html>
+      </html>
