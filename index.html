@@ -19,39 +19,26 @@ h3{margin:0 0 14px;font-size:16px;font-weight:700}
 header{position:relative}
 .header-banner{width:100%;display:block}
 
-/* ===== SEARCH ICON ===== */
+/* ===== SEARCH ===== */
 .search-btn{
   position:absolute;
   top:14px;right:14px;
   font-size:26px;
   color:#fff;
   cursor:pointer;
-  z-index:5;
 }
-
-/* ===== SEARCH BOX (โผล่เฉพาะตอนกด) ===== */
 .search-box{
   position:absolute;
-  top:60px;
-  right:14px;
+  top:58px;right:14px;
   display:none;
-  z-index:6;
 }
-
 .search-box input{
-  width:220px;
-  padding:12px 14px;
-  border:none;
-  border-bottom:2px solid rgba(10,48,131,.35);
-  background:rgba(255,255,255,.65);
-  backdrop-filter:blur(10px);
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.6);
+  background:rgba(255,255,255,.55);
+  backdrop-filter:blur(8px);
   outline:none;
-
-  font-size:14px;
-  color:#0a3083;
-
-  box-shadow:
-    0 14px 30px rgba(10,48,131,.28);
 }
 
 /* ===== MAIN ===== */
@@ -61,13 +48,10 @@ section.active{display:block}
 
 /* ===== CARD หลัก ===== */
 .section-box{
-  background:
-    linear-gradient(165deg,#ffffff 0%,#eef3ff 55%,#e3ebff 100%);
+  background:linear-gradient(165deg,#ffffff 0%,#eef3ff 55%,#e3ebff 100%);
   border-radius:26px;
   padding:20px;
-  box-shadow:
-    0 22px 46px rgba(15,23,42,.25),
-    inset 0 1px 0 rgba(255,255,255,.9);
+  box-shadow:0 22px 46px rgba(15,23,42,.25);
 }
 
 /* ===== SERVICE ===== */
@@ -77,13 +61,10 @@ section.active{display:block}
   gap:14px;
 }
 .service-card{
-  background:
-    linear-gradient(160deg,#ffffff 0%,#eef3ff 55%,#e6ecff 100%);
+  background:linear-gradient(160deg,#ffffff 0%,#eef3ff 55%,#e6ecff 100%);
   border-radius:24px;
   padding:16px;
-  box-shadow:
-    0 18px 40px rgba(15,23,42,.28),
-    inset 0 1px 0 rgba(255,255,255,.85);
+  box-shadow:0 18px 40px rgba(15,23,42,.28);
   display:flex;
   flex-direction:column;
   gap:10px;
@@ -92,16 +73,10 @@ section.active{display:block}
   color:#0a3083;
 }
 
-/* ===== ICON ไล่สี น้ำเงิน → ทอง ===== */
+/* ===== ICON = ไอคอนล้วน (ไม่มี pill / ไม่มีพื้นหลัง) ===== */
 .service-card span{
-  width:48px;
-  height:48px;
-  font-size:28px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
+  font-size:30px;
+  color:transparent;
 
   background:linear-gradient(
     135deg,
@@ -110,11 +85,12 @@ section.active{display:block}
     #b8922b 75%,
     #ffd66b 100%
   );
+  -webkit-background-clip:text;
+  background-clip:text;
 
-  box-shadow:
-    0 12px 26px rgba(10,48,131,.55),
-    0 6px 14px rgba(184,146,43,.55),
-    inset 0 1px 0 rgba(255,255,255,.45);
+  text-shadow:
+    0 3px 6px rgba(10,48,131,.45),
+    0 2px 4px rgba(184,146,43,.35);
 }
 
 /* ===== BOTTOM BAR ===== */
@@ -146,9 +122,8 @@ nav span{font-size:24px}
 
 <header>
   <img class="header-banner"
-    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
-
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
   </div>
@@ -204,11 +179,25 @@ nav span{font-size:24px}
   </div>
 </section>
 
-<section id="efiling"><div class="section-box"><h3>e-Filing</h3></div></section>
-<section id="fee"><div class="section-box"><h3>อัตราค่าธรรมเนียม</h3></div></section>
-<section id="download"><div class="section-box"><h3>ดาวน์โหลด</h3></div></section>
-<section id="blank"><div class="section-box"><h3>อยู่ระหว่างจัดทำ</h3></div></section>
-<section id="search"><div class="section-box"><h3>ผลการค้นหา</h3></div></section>
+<section id="efiling">
+  <div class="section-box"><h3>e-Filing</h3></div>
+</section>
+
+<section id="fee">
+  <div class="section-box"><h3>อัตราค่าธรรมเนียม</h3></div>
+</section>
+
+<section id="download">
+  <div class="section-box"><h3>ดาวน์โหลด</h3></div>
+</section>
+
+<section id="blank">
+  <div class="section-box"><h3>อยู่ระหว่างจัดทำ</h3></div>
+</section>
+
+<section id="search">
+  <div class="section-box"><h3>ผลการค้นหา</h3></div>
+</section>
 
 </main>
 
@@ -230,17 +219,11 @@ function navigate(id,btn){
     btn.classList.add("active");
   }
 }
-
 function openLink(url){window.open(url,"_blank")}
-
 function toggleSearch(){
-  const box=document.getElementById("searchBox");
-  box.style.display = box.style.display==="block" ? "none" : "block";
-  if(box.style.display==="block"){
-    box.querySelector("input").focus();
-  }
+  const b=document.getElementById("searchBox");
+  b.style.display=b.style.display==="block"?"none":"block";
 }
-
 function doSearch(e){
   if(e.key==="Enter"){
     document.getElementById("searchBox").style.display="none";
