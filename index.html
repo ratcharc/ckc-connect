@@ -5,43 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 
-<!-- ICON -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
-/* ===== BASE ===== */
 body{
   margin:0;
   font-family:system-ui,sans-serif;
   background:#f2f5fa;
   color:#111827;
 }
-h3{
-  margin:0 0 14px;
-  font-size:16px;
-  font-weight:800;
-  color:#1e3a8a;
-}
 
 /* ===== HEADER ===== */
 header{
   position:relative;
-  overflow:hidden;
 }
 .header-banner{
   width:100%;
   display:block;
-}
-header::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    180deg,
-    rgba(30,58,138,.15),
-    rgba(30,58,138,.45)
-  );
+  -webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 80%,transparent 100%);
 }
 .search-btn{
   position:absolute;
@@ -50,20 +33,17 @@ header::after{
   color:#fff;
   font-size:26px;
   cursor:pointer;
-  z-index:2;
 }
 .search-box{
   position:absolute;
   top:52px;
   right:12px;
   display:none;
-  z-index:2;
 }
 .search-box input{
   padding:8px 14px;
   border-radius:14px;
   border:none;
-  background:rgba(255,255,255,.95);
 }
 
 /* ===== MAIN ===== */
@@ -74,20 +54,22 @@ main{
 section{display:none}
 section.active{display:block}
 
-/* ===== SECTION BOX ===== */
+/* ===== BOX ===== */
 .section-box{
-  background:#ffffff;
+  background:#fff;
   border-radius:26px;
   padding:18px;
   box-shadow:0 20px 50px rgba(0,0,0,.12);
 }
+h3{
+  margin:0 0 14px;
+  font-size:16px;
+  font-weight:800;
+  color:#1e3a8a;
+}
 
 /* ===== FEED ===== */
-.feed{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
+.feed{display:flex;flex-direction:column;gap:14px}
 .feed-item{
   background:#f9fafb;
   border-radius:18px;
@@ -102,68 +84,31 @@ section.active{display:block}
   gap:16px;
 }
 .service-card{
-  background:linear-gradient(180deg,#ffffff,#e5e7eb);
+  background:linear-gradient(180deg,#ffffff,#eaf0ff);
   border-radius:24px;
   padding:22px 14px;
   border:1px solid #dbeafe;
-  box-shadow:
-    0 18px 36px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.95);
+  box-shadow:0 20px 46px rgba(0,0,0,.2);
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
   gap:12px;
   font-weight:700;
-  cursor:pointer;
   text-align:center;
-  color:#0f172a;
-  transition:.2s ease;
+  cursor:pointer;
+  transition:.2s;
 }
-.service-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 24px 52px rgba(0,0,0,.25);
-}
+.service-card:active{transform:scale(.97)}
 .service-card span{
   font-size:44px;
   color:#1e40af;
 }
 
-/* ===== E-FILING GRID ===== */
+/* ===== E-FILING ===== */
 .efiling-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:16px;
-}
-
-/* ===== CALCULATOR ===== */
-.calc-box{
-  background:#f9fafb;
-  border-radius:22px;
-  padding:16px;
-  box-shadow:0 16px 34px rgba(0,0,0,.14);
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.calc-box input{
-  padding:12px;
-  border-radius:14px;
-  border:1px solid #d1d5db;
-}
-.calc-box button{
-  padding:12px;
-  border:none;
-  border-radius:14px;
-  background:#1e3a8a;
-  color:#fff;
-  font-weight:700;
-}
-.calc-result{
-  background:#eef2ff;
-  padding:12px;
-  border-radius:14px;
-  font-weight:700;
 }
 
 /* ===== DOWNLOAD ===== */
@@ -176,18 +121,10 @@ section.active{display:block}
   background:#fff;
   border-radius:20px;
   overflow:hidden;
-  border:1px solid #e5e7eb;
   box-shadow:0 18px 40px rgba(0,0,0,.2);
 }
-.preview-card img{
-  width:100%;
-  display:block;
-}
-.preview-card div{
-  padding:10px;
-  font-size:13px;
-  font-weight:700;
-}
+.preview-card img{width:100%;display:block}
+.preview-card div{padding:10px;font-weight:700}
 
 /* ===== BOTTOM BAR ===== */
 nav{
@@ -210,24 +147,19 @@ nav button{
   font-size:11px;
   border-radius:18px;
 }
-nav button.active{
-  background:rgba(255,255,255,.22);
-}
-nav .material-symbols-rounded{
-  font-size:26px;
-}
+nav button.active{background:rgba(255,255,255,.22)}
+nav span{font-size:26px}
 </style>
 </head>
 
 <body>
 
 <header>
-  <!-- ✅ URL HEADER ถูกจริง -->
   <img class="header-banner"
     src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
-    <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
+    <input id="searchInput" type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
   </div>
 </header>
 
@@ -235,10 +167,10 @@ nav .material-symbols-rounded{
 
 <section id="home" class="active">
   <div class="section-box">
-    <h3>รายการโพส</h3>
+    <h3>ประกาศ / ข่าวสาร</h3>
     <div class="feed">
-      <div class="feed-item">ประกาศศาลรายการที่ 1</div>
-      <div class="feed-item">ประกาศศาลรายการที่ 2</div>
+      <div class="feed-item">ประกาศศาลชลบุรี เรื่องการยื่นคำร้อง</div>
+      <div class="feed-item">ประชาสัมพันธ์ระบบ e-Filing เวอร์ชันใหม่</div>
     </div>
   </div>
 </section>
@@ -248,17 +180,17 @@ nav .material-symbols-rounded{
     <h3>ข้อมูลบริการ</h3>
     <div class="service-grid">
 
-      <div class="service-card" onclick="navigate('fee')">
+      <div class="service-card" onclick="go('fee')">
         <span class="material-icons-outlined">calculate</span>
-        อัตราค่าธรรมเนียม / ค่าขึ้นศาล
+        อัตราค่าธรรมเนียม
       </div>
 
-      <div class="service-card">
+      <div class="service-card" onclick="go('blank')">
         <span class="material-icons-outlined">list_alt</span>
-        ขั้นตอนการฟ้อง / ยื่นคำร้อง
+        ขั้นตอนการยื่นคำร้อง
       </div>
 
-      <div class="service-card" onclick="navigate('efiling')">
+      <div class="service-card" onclick="go('efiling')">
         <span class="material-icons-outlined">gavel</span>
         e-Filing
       </div>
@@ -273,17 +205,17 @@ nav .material-symbols-rounded{
         COJ
       </div>
 
-      <div class="service-card">
+      <div class="service-card" onclick="go('blank')">
         <span class="material-icons-outlined">handshake</span>
-        ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
+        ไกล่เกลี่ย
       </div>
 
-      <div class="service-card">
+      <div class="service-card" onclick="go('blank')">
         <span class="material-icons-outlined">event_note</span>
-        บัญชีนัดพิจารณาคดี / พิจารณาคดีทางอิเล็กทรอนิกส์
+        บัญชีนัด
       </div>
 
-      <div class="service-card" onclick="navigate('download')">
+      <div class="service-card" onclick="go('download')">
         <span class="material-icons-outlined">download</span>
         ดาวน์โหลดแบบฟอร์ม
       </div>
@@ -296,75 +228,53 @@ nav .material-symbols-rounded{
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
     <div class="efiling-grid">
-
-      <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
-        <span class="material-icons-outlined">gavel</span>
-        e-Filing v.3
-      </div>
-
-      <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
-        <span class="material-icons-outlined">rocket_launch</span>
-        e-Filing v.4
-      </div>
-
+      <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">e-Filing v.3</div>
+      <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">e-Filing v.4</div>
     </div>
   </div>
 </section>
 
-<section id="fee">
-  <div class="section-box">
-    <h3>คำนวณค่าธรรมเนียม</h3>
-    <div class="calc-box">
-      <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
-      <button onclick="calcFee()">คำนวณ</button>
-      <div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
-    </div>
-  </div>
-</section>
-
-<section id="download">
-  <div class="section-box">
-    <h3>ดาวน์โหลดแบบฟอร์ม</h3>
-    <div class="preview-list">
-      <div class="preview-card">
-        <img src="https://via.placeholder.com/300x200">
-        <div>คำร้องทั่วไป</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
+<section id="fee"><div class="section-box"><h3>คำนวณค่าธรรมเนียม</h3></div></section>
+<section id="download"><div class="section-box"><h3>ดาวน์โหลดแบบฟอร์ม</h3></div></section>
 <section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
 <section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
-<section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
+<section id="contact"><div class="section-box"><h3>ติดต่อเรา</h3></div></section>
+<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
 
 </main>
 
 <nav>
-  <button class="active" onclick="navigate('home',this)">
+  <button class="active" onclick="go('home',this)">
     <span class="material-symbols-rounded">home</span>หน้าแรก
   </button>
-  <button onclick="navigate('service',this)">
+  <button onclick="go('service',this)">
     <span class="material-symbols-rounded">apps</span>บริการ
   </button>
-  <button onclick="navigate('knowledge',this)">
+  <button onclick="go('knowledge',this)">
     <span class="material-symbols-rounded">menu_book</span>คลังความรู้
   </button>
-  <button onclick="navigate('other',this)">
+  <button onclick="go('other',this)">
     <span class="material-symbols-rounded">more_horiz</span>เพิ่มเติม
   </button>
-  <button onclick="navigate('contact',this)">
+  <button onclick="go('contact',this)">
     <span class="material-symbols-rounded">person</span>ติดต่อ
   </button>
 </nav>
 
 <script>
-function navigate(id,btn){
-  history.pushState({page:id}, "", "#"+id);
-  showPage(id,btn);
+const routes={
+  "fil":"efiling",
+  "ค่":"fee",
+  "ดาว":"download",
+  "บริการ":"service",
+  "หน้าแรก":"home"
+};
+
+function go(id,btn){
+  history.pushState({page:id},"",`#${id}`);
+  show(id,btn);
 }
-function showPage(id,btn){
+function show(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   if(btn){
@@ -372,23 +282,22 @@ function showPage(id,btn){
     btn.classList.add("active");
   }
 }
-function openLink(url){
-  window.open(url,"_blank");
-}
+window.onpopstate=e=>{
+  if(e.state) show(e.state.page);
+};
+
 function toggleSearch(){
-  let b=document.getElementById("searchBox");
-  b.style.display=b.style.display==="block"?"none":"block";
+  searchBox.style.display=searchBox.style.display==="block"?"none":"block";
 }
 function doSearch(e){
-  if(e.key==="Enter"){
-    navigate("blank");
+  if(e.key!=="Enter")return;
+  let q=e.target.value;
+  for(let k in routes){
+    if(q.includes(k)){go(routes[k]);return;}
   }
+  go("blank");
 }
-function calcFee(){
-  let m=document.getElementById("money").value;
-  let fee=Math.max(100,Math.floor(m*0.02));
-  document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
-}
+function openLink(url){window.open(url,"_blank")}
 </script>
 
 </body>
