@@ -39,8 +39,8 @@ header::after{
   inset:0;
   background:linear-gradient(
     180deg,
-    rgba(30,58,138,.12),
-    rgba(30,58,138,.35)
+    rgba(30,58,138,.15),
+    rgba(30,58,138,.45)
   );
 }
 .search-btn{
@@ -63,7 +63,7 @@ header::after{
   padding:8px 14px;
   border-radius:14px;
   border:none;
-  background:rgba(255,255,255,.9);
+  background:rgba(255,255,255,.95);
 }
 
 /* ===== MAIN ===== */
@@ -79,7 +79,7 @@ section.active{display:block}
   background:#ffffff;
   border-radius:26px;
   padding:18px;
-  box-shadow:0 18px 40px rgba(0,0,0,.08);
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
 }
 
 /* ===== FEED ===== */
@@ -92,34 +92,40 @@ section.active{display:block}
   background:#f9fafb;
   border-radius:18px;
   padding:14px;
-  box-shadow:0 10px 22px rgba(0,0,0,.08);
+  box-shadow:0 12px 26px rgba(0,0,0,.12);
 }
 
 /* ===== SERVICE GRID ===== */
 .service-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:14px;
+  gap:16px;
 }
 .service-card{
-  background:linear-gradient(180deg,#f9fafb,#e5e7eb);
-  border-radius:22px;
-  padding:18px 12px;
+  background:linear-gradient(180deg,#ffffff,#e5e7eb);
+  border-radius:24px;
+  padding:22px 14px;
+  border:1px solid #dbeafe;
   box-shadow:
-    0 12px 26px rgba(0,0,0,.12),
-    inset 0 1px 0 rgba(255,255,255,.9);
+    0 18px 36px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.95);
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:10px;
-  font-weight:600;
+  gap:12px;
+  font-weight:700;
   cursor:pointer;
   text-align:center;
-  color:#111827;
+  color:#0f172a;
+  transition:.2s ease;
+}
+.service-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 24px 52px rgba(0,0,0,.25);
 }
 .service-card span{
-  font-size:42px;
+  font-size:44px;
   color:#1e40af;
 }
 
@@ -127,7 +133,7 @@ section.active{display:block}
 .efiling-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:14px;
+  gap:16px;
 }
 
 /* ===== CALCULATOR ===== */
@@ -135,7 +141,7 @@ section.active{display:block}
   background:#f9fafb;
   border-radius:22px;
   padding:16px;
-  box-shadow:0 14px 30px rgba(0,0,0,.1);
+  box-shadow:0 16px 34px rgba(0,0,0,.14);
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -170,7 +176,8 @@ section.active{display:block}
   background:#fff;
   border-radius:20px;
   overflow:hidden;
-  box-shadow:0 14px 30px rgba(0,0,0,.12);
+  border:1px solid #e5e7eb;
+  box-shadow:0 18px 40px rgba(0,0,0,.2);
 }
 .preview-card img{
   width:100%;
@@ -179,7 +186,7 @@ section.active{display:block}
 .preview-card div{
   padding:10px;
   font-size:13px;
-  font-weight:600;
+  font-weight:700;
 }
 
 /* ===== BOTTOM BAR ===== */
@@ -215,8 +222,9 @@ nav .material-symbols-rounded{
 <body>
 
 <header>
+  <!-- ✅ URL HEADER ถูกจริง -->
   <img class="header-banner"
-    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
@@ -326,12 +334,7 @@ nav .material-symbols-rounded{
   </div>
 </section>
 
-<section id="blank">
-  <div class="section-box">
-    <h3>อยู่ระหว่างพัฒนา</h3>
-  </div>
-</section>
-
+<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
 <section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
 <section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
 <section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
