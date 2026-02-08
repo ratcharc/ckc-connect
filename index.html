@@ -47,13 +47,13 @@ section.active{display:block}
 
 /* ===== SECTION BOX ===== */
 .section-box{
-  background:linear-gradient(145deg,#ffffff,#e9efff);
+  background:linear-gradient(160deg,#ffffff,#eef3ff);
   border-radius:24px;
   padding:18px;
   box-shadow:
-    0 18px 40px rgba(15,23,42,.22),
-    inset 0 1px 0 rgba(255,255,255,.9);
-  border:1px solid rgba(59,130,246,.12);
+    0 14px 32px rgba(15,23,42,.18),
+    inset 0 1px 0 rgba(255,255,255,.85);
+  border:1px solid rgba(59,130,246,.1);
 }
 
 /* ===== FEED ===== */
@@ -62,7 +62,7 @@ section.active{display:block}
   background:#fff;
   border-radius:18px;
   padding:14px;
-  box-shadow:0 14px 30px rgba(15,23,42,.2);
+  box-shadow:0 12px 26px rgba(15,23,42,.18);
 }
 
 /* ===== SERVICE GRID ===== */
@@ -72,42 +72,44 @@ section.active{display:block}
   gap:14px;
 }
 .service-card{
-  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  background:linear-gradient(160deg,#ffffff,#eef3ff);
   border-radius:22px;
   padding:16px;
-  box-shadow:0 16px 36px rgba(15,23,42,.25);
+  box-shadow:
+    0 10px 24px rgba(15,23,42,.16),
+    inset 0 1px 0 rgba(255,255,255,.8);
   display:flex;
   flex-direction:column;
   gap:10px;
   font-weight:600;
   cursor:pointer;
-  color:#0a3083;
+  color:#1e3a8a;
+  transition:.25s;
+}
+.service-card:active{
+  transform:scale(.98);
 }
 
-/* ===== ICON (ไม่มี pill | ไล่สีชัด | มีมิติ) ===== */
+/* ===== ICON (ซอฟต์ + ฟ้าอ่อน) ===== */
 .service-card span{
   font-size:30px;
-  color:#fff;
   background:linear-gradient(
     135deg,
-    #081f4d 0%,
-    #1e3a8a 40%,
-    #b8922b 70%,
-    #ffd66b 100%
+    #3b82f6 0%,
+    #60a5fa 50%,
+    #93c5fd 100%
   );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:
-    drop-shadow(0 6px 10px rgba(8,31,77,.55))
-    drop-shadow(0 3px 6px rgba(184,146,43,.45));
+  filter:drop-shadow(0 3px 6px rgba(59,130,246,.35));
 }
 
 /* ===== CALCULATOR ===== */
 .calc-box{
-  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  background:linear-gradient(160deg,#ffffff,#eef3ff);
   border-radius:22px;
   padding:16px;
-  box-shadow:0 18px 38px rgba(15,23,42,.25);
+  box-shadow:0 14px 30px rgba(15,23,42,.18);
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -121,7 +123,7 @@ section.active{display:block}
   padding:12px;
   border:none;
   border-radius:14px;
-  background:#0a3083;
+  background:#1e3a8a;
   color:#fff;
   font-weight:700;
 }
@@ -142,7 +144,7 @@ section.active{display:block}
   background:#fff;
   border-radius:20px;
   overflow:hidden;
-  box-shadow:0 16px 34px rgba(15,23,42,.25);
+  box-shadow:0 14px 30px rgba(15,23,42,.18);
 }
 .preview-card img{width:100%;display:block}
 .preview-card div{
@@ -235,14 +237,14 @@ nav span{font-size:24px}
         ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
       </div>
 
-      <div class="service-card" onclick="navigate('download')">
-        <span class="material-icons-outlined">download</span>
-        ดาวน์โหลดแบบฟอร์ม
-      </div>
-
       <div class="service-card" onclick="navigate('blank')">
         <span class="material-icons-outlined">event_note</span>
         บัญชีนัดพิจารณาคดี / พิจารณาคดีทางอิเล็กทรอนิกส์
+      </div>
+
+      <div class="service-card" onclick="navigate('download')">
+        <span class="material-icons-outlined">download</span>
+        ดาวน์โหลดแบบฟอร์ม
       </div>
 
     </div>
@@ -262,7 +264,6 @@ nav span{font-size:24px}
       <span class="material-icons-outlined">rocket_launch</span>
       e-Filing v.4
     </div>
-
   </div>
 </section>
 
@@ -341,9 +342,7 @@ function toggleSearch(){
   b.style.display=b.style.display==="block"?"none":"block";
 }
 function doSearch(e){
-  if(e.key==="Enter"){
-    navigate("blank");
-  }
+  if(e.key==="Enter"){navigate("blank");}
 }
 function calcFee(){
   let m=document.getElementById("money").value;
