@@ -25,23 +25,17 @@ h3{
 header{position:relative}
 .header-banner{width:100%;display:block}
 .search-btn{
-  position:absolute;
-  top:12px;
-  right:12px;
-  color:#fff;
-  font-size:26px;
-  cursor:pointer;
+  position:absolute;top:12px;right:12px;
+  color:#fff;font-size:26px;cursor:pointer
 }
 .search-box{
-  position:absolute;
-  top:52px;
-  right:12px;
+  position:absolute;top:52px;right:12px;
   display:none;
 }
 .search-box input{
-  padding:8px 12px;
-  border:none;
-  outline:none;
+  padding:8px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.6);
   background:rgba(255,255,255,.85);
   backdrop-filter:blur(6px);
 }
@@ -56,42 +50,86 @@ section.active{display:block}
   background:linear-gradient(145deg,#ffffff,#e9efff);
   border-radius:24px;
   padding:18px;
-  box-shadow:0 18px 40px rgba(15,23,42,.22);
+  box-shadow:
+    0 18px 40px rgba(15,23,42,.22),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  border:1px solid rgba(59,130,246,.12);
+}
+
+/* ===== FEED ===== */
+.feed{display:flex;flex-direction:column;gap:14px}
+.feed-item{
+  background:#fff;
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 14px 30px rgba(15,23,42,.2);
 }
 
 /* ===== SERVICE GRID ===== */
 .service-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:18px;
+  gap:14px;
 }
 .service-card{
-  background:none;
-  box-shadow:none;
-  padding:0;
+  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 16px 36px rgba(15,23,42,.25);
   display:flex;
   flex-direction:column;
-  gap:8px;
+  gap:10px;
   font-weight:600;
   cursor:pointer;
   color:#0a3083;
 }
 
-/* ===== ICON : NO PILL / ไล่สีน้ำเงิน + ทองทุกไอคอน ===== */
+/* ===== ICON (ไม่มี pill | ไล่สีชัด | มีมิติ) ===== */
 .service-card span{
-  font-size:36px;
+  font-size:30px;
+  color:#fff;
   background:linear-gradient(
     135deg,
     #081f4d 0%,
-    #1e3a8a 45%,
-    #b8922b 75%,
+    #1e3a8a 40%,
+    #b8922b 70%,
     #ffd66b 100%
   );
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   filter:
     drop-shadow(0 6px 10px rgba(8,31,77,.55))
-    drop-shadow(0 3px 6px rgba(184,146,43,.55));
+    drop-shadow(0 3px 6px rgba(184,146,43,.45));
+}
+
+/* ===== CALCULATOR ===== */
+.calc-box{
+  background:linear-gradient(145deg,#ffffff,#eaf0ff);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 18px 38px rgba(15,23,42,.25);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.calc-box input{
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #c7d2fe;
+}
+.calc-box button{
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  background:#0a3083;
+  color:#fff;
+  font-weight:700;
+}
+.calc-result{
+  background:#eaf0ff;
+  padding:12px;
+  border-radius:14px;
+  font-weight:700;
 }
 
 /* ===== DOWNLOAD ===== */
@@ -132,6 +170,7 @@ nav button{
   align-items:center;
   gap:2px;
   font-size:11px;
+  border-radius:18px;
 }
 nav button.active{background:rgba(255,255,255,.22)}
 nav span{font-size:24px}
@@ -142,7 +181,7 @@ nav span{font-size:24px}
 
 <header>
   <img class="header-banner"
-    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+   src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
@@ -154,14 +193,16 @@ nav span{font-size:24px}
 <section id="home" class="active">
   <div class="section-box">
     <h3>รายการโพส</h3>
-    <div>ประกาศศาล</div>
+    <div class="feed">
+      <div class="feed-item">ประกาศศาลรายการที่ 1</div>
+      <div class="feed-item">ประกาศศาลรายการที่ 2</div>
+    </div>
   </div>
 </section>
 
 <section id="service">
   <div class="section-box">
     <h3>ข้อมูลบริการ</h3>
-
     <div class="service-grid">
 
       <div class="service-card" onclick="navigate('fee')">
@@ -170,9 +211,8 @@ nav span{font-size:24px}
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
-        <span class="material-icons-outlined">event</span>
-        บัญชีนัดพิจารณาคดี /
-        พิจารณาคดีทางอิเล็กทรอนิกส์
+        <span class="material-icons-outlined">list_alt</span>
+        ขั้นตอนการฟ้อง / ยื่นคำร้อง
       </div>
 
       <div class="service-card" onclick="navigate('efiling')">
@@ -190,9 +230,19 @@ nav span{font-size:24px}
         COJ
       </div>
 
+      <div class="service-card" onclick="navigate('blank')">
+        <span class="material-icons-outlined">handshake</span>
+        ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
+      </div>
+
       <div class="service-card" onclick="navigate('download')">
         <span class="material-icons-outlined">download</span>
         ดาวน์โหลดแบบฟอร์ม
+      </div>
+
+      <div class="service-card" onclick="navigate('blank')">
+        <span class="material-icons-outlined">event_note</span>
+        บัญชีนัดพิจารณาคดี / พิจารณาคดีทางอิเล็กทรอนิกส์
       </div>
 
     </div>
@@ -202,12 +252,28 @@ nav span{font-size:24px}
 <section id="efiling">
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
+
+    <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
+      <span class="material-icons-outlined">gavel</span>
+      e-Filing v.3
+    </div><br>
+
+    <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
+      <span class="material-icons-outlined">rocket_launch</span>
+      e-Filing v.4
+    </div>
+
   </div>
 </section>
 
 <section id="fee">
   <div class="section-box">
     <h3>คำนวณค่าธรรมเนียม</h3>
+    <div class="calc-box">
+      <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
+      <button onclick="calcFee()">คำนวณ</button>
+      <div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
+    </div>
   </div>
 </section>
 
@@ -225,13 +291,7 @@ nav span{font-size:24px}
 
 <section id="blank">
   <div class="section-box">
-    <h3>กำลังพัฒนา</h3>
-  </div>
-</section>
-
-<section id="search">
-  <div class="section-box">
-    <h3>ผลการค้นหา</h3>
+    <h3>อยู่ระหว่างพัฒนา</h3>
   </div>
 </section>
 
@@ -261,6 +321,10 @@ nav span{font-size:24px}
 
 <script>
 function navigate(id,btn){
+  history.pushState({page:id}, "", "#"+id);
+  showPage(id,btn);
+}
+function showPage(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   if(btn){
@@ -268,18 +332,23 @@ function navigate(id,btn){
     btn.classList.add("active");
   }
 }
-function openLink(url){
-  window.open(url,"_blank");
-}
+window.onpopstate=function(e){
+  if(e.state && e.state.page){showPage(e.state.page);}
+};
+function openLink(url){window.open(url,"_blank")}
 function toggleSearch(){
-  const b=document.getElementById("searchBox");
-  b.style.display = b.style.display==="block" ? "none" : "block";
+  let b=document.getElementById("searchBox");
+  b.style.display=b.style.display==="block"?"none":"block";
 }
 function doSearch(e){
   if(e.key==="Enter"){
-    navigate("search");
-    document.getElementById("searchBox").style.display="none";
+    navigate("blank");
   }
+}
+function calcFee(){
+  let m=document.getElementById("money").value;
+  let fee=Math.max(100,Math.floor(m*0.02));
+  document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
 }
 </script>
 
