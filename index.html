@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
-/* ===== BASE ===== */
 body{
   margin:0;
   font-family:system-ui,sans-serif;
@@ -22,12 +21,13 @@ h3{
   color:#0a2a6b;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header{
   position:relative;
   height:240px;
   background:linear-gradient(180deg,#0a3083,#0e3aa0);
   overflow:hidden;
+  z-index:1;
 }
 .header-banner{
   width:100%;
@@ -55,42 +55,44 @@ header{
   padding:10px 16px;
   border-radius:16px;
   border:none;
-  width:190px;
+  width:200px;
 }
 
-/* ===== MAIN ===== */
+/* MAIN */
 main{
+  position:relative;
+  z-index:2;
+  margin-top:-80px;
   padding:16px;
   padding-bottom:120px;
-  margin-top:-80px;
 }
 section{display:none}
 section.active{display:block}
 
-/* ===== FLOAT CARD ===== */
+/* FLOAT CARD */
 .section-box{
-  background:#ffffff;
+  background:#f1f5f9;
   border-radius:28px;
   padding:20px;
   box-shadow:0 25px 60px rgba(0,0,0,.18);
 }
 
-/* ===== FEED ===== */
+/* FEED */
 .feed{display:flex;flex-direction:column;gap:14px}
 .feed-item{
-  background:#f9fafb;
+  background:#ffffff;
   border-radius:18px;
   padding:14px;
 }
 
-/* ===== SERVICE GRID ===== */
+/* SERVICE GRID */
 .service-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:18px;
 }
 .service-card{
-  background:#f8fafc;
+  background:#ffffff;
   border-radius:26px;
   padding:22px 14px;
   box-shadow:0 18px 40px rgba(0,0,0,.18);
@@ -112,57 +114,7 @@ section.active{display:block}
   filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
 }
 
-/* ===== CALCULATOR ===== */
-.calc-box{
-  background:#f9fafb;
-  border-radius:22px;
-  padding:16px;
-  box-shadow:0 16px 34px rgba(0,0,0,.14);
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-.calc-box input{
-  padding:12px;
-  border-radius:14px;
-  border:1px solid #d1d5db;
-}
-.calc-box button{
-  padding:12px;
-  border:none;
-  border-radius:14px;
-  background:#1e3a8a;
-  color:#fff;
-  font-weight:700;
-}
-.calc-result{
-  background:#eef2ff;
-  padding:12px;
-  border-radius:14px;
-  font-weight:700;
-}
-
-/* ===== DOWNLOAD ===== */
-.preview-list{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-.preview-card{
-  background:#fff;
-  border-radius:20px;
-  overflow:hidden;
-  border:1px solid #e5e7eb;
-  box-shadow:0 18px 40px rgba(0,0,0,.2);
-}
-.preview-card img{width:100%;display:block}
-.preview-card div{
-  padding:10px;
-  font-size:13px;
-  font-weight:700;
-}
-
-/* ===== BOTTOM BAR ===== */
+/* BOTTOM BAR */
 nav{
   position:fixed;
   bottom:0;
@@ -243,9 +195,9 @@ nav button.active{
         COJ
       </div>
 
-      <div class="service-card" onclick="navigate('blank')">
-        <span class="material-symbols-rounded">event_note</span>
-        บัญชีนัดพิจารณา / พิจารณาทางอิเล็กทรอนิกส์
+      <div class="service-card" onclick="navigate('mediation')">
+        <span class="material-symbols-rounded">handshake</span>
+        ไกล่เกลี่ย / นัดพิจารณาทางอิเล็กทรอนิกส์
       </div>
 
       <div class="service-card" onclick="navigate('download')">
@@ -273,33 +225,9 @@ nav button.active{
   </div>
 </section>
 
-<section id="fee">
-  <div class="section-box">
-    <h3>คำนวณค่าธรรมเนียม</h3>
-    <div class="calc-box">
-      <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
-      <button onclick="calcFee()">คำนวณ</button>
-      <div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
-    </div>
-  </div>
-</section>
-
-<section id="download">
-  <div class="section-box">
-    <h3>ดาวน์โหลดแบบฟอร์ม</h3>
-    <div class="preview-list">
-      <div class="preview-card">
-        <img src="https://via.placeholder.com/300x200">
-        <div>คำร้องทั่วไป</div>
-      </div>
-      <div class="preview-card">
-        <img src="https://via.placeholder.com/300x200">
-        <div>คำให้การ</div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<section id="mediation"><div class="section-box"><h3>ไกล่เกลี่ย / นัดพิจารณาทางอิเล็กทรอนิกส์</h3></div></section>
+<section id="fee"><div class="section-box"><h3>คำนวณค่าธรรมเนียม</h3></div></section>
+<section id="download"><div class="section-box"><h3>ดาวน์โหลดแบบฟอร์ม</h3></div></section>
 <section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
 <section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
 <section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
@@ -326,6 +254,23 @@ nav button.active{
 </nav>
 
 <script>
+const searchMap={
+  "e":"efiling",
+  "filing":"efiling",
+  "v3":"efiling",
+  "v4":"efiling",
+  "ค่าธรรมเนียม":"fee",
+  "ขึ้นศาล":"fee",
+  "ดาวน์โหลด":"download",
+  "ไกล่เกลี่ย":"mediation",
+  "นัด":"mediation",
+  "อิเล็กทรอนิกส์":"mediation",
+  "cios":"service",
+  "coj":"service",
+  "คลัง":"knowledge",
+  "ติดต่อ":"contact"
+};
+
 function navigate(id,btn){
   history.pushState({page:id},"","#"+id);
   showPage(id,btn);
@@ -349,16 +294,14 @@ function toggleSearch(){
 function doSearch(e){
   if(e.key==="Enter"){
     const q=e.target.value.toLowerCase();
-    if(q.includes("e")) navigate("efiling");
-    else if(q.includes("ค่")) navigate("fee");
-    else if(q.includes("ดาว")) navigate("download");
-    else navigate("blank");
+    for(const k in searchMap){
+      if(q.includes(k)){
+        navigate(searchMap[k]);
+        return;
+      }
+    }
+    navigate("blank");
   }
-}
-function calcFee(){
-  const m=document.getElementById("money").value;
-  const fee=Math.max(100,Math.floor(m*0.02));
-  document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
 }
 </script>
 
