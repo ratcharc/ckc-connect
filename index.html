@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 
-<!-- ICON -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0" rel="stylesheet">
 
 <style>
 /* ===== BASE ===== */
@@ -21,56 +20,55 @@ h3{
   margin:0 0 16px;
   font-size:18px;
   font-weight:800;
-  color:#0f2f7f;
+  color:#0a3083;
 }
 
 /* ===== HEADER ===== */
 header{
-  height:160px;
-  background:#1e3a8a;
+  background:#0a3083;
+  padding-bottom:90px;
   position:relative;
 }
-
+.header-banner{
+  width:100%;
+  display:block;
+}
 .search-btn{
   position:absolute;
   top:14px;
   right:14px;
   color:#fff;
-  font-size:26px;
+  font-size:28px;
   cursor:pointer;
 }
-
 .search-box{
   position:absolute;
-  top:54px;
+  top:56px;
   right:14px;
   display:none;
-  z-index:10;
 }
-
 .search-box input{
-  padding:10px 14px;
+  padding:10px 16px;
   border-radius:14px;
   border:none;
-  width:200px;
+  width:220px;
 }
 
 /* ===== MAIN ===== */
 main{
   padding:16px;
+  margin-top:-70px;
   padding-bottom:120px;
-  margin-top:-40px; /* card ลอยขึ้น header */
 }
-
 section{display:none}
 section.active{display:block}
 
 /* ===== SECTION BOX ===== */
 .section-box{
-  background:#f3f4f6;
+  background:#ffffff;
   border-radius:26px;
   padding:20px;
-  box-shadow:0 14px 40px rgba(0,0,0,.12);
+  box-shadow:0 18px 40px rgba(0,0,0,.15);
 }
 
 /* ===== FEED ===== */
@@ -81,7 +79,7 @@ section.active{display:block}
 }
 .feed-item{
   background:#e5e7eb;
-  border-radius:18px;
+  border-radius:16px;
   padding:14px;
 }
 
@@ -91,31 +89,26 @@ section.active{display:block}
   grid-template-columns:repeat(2,1fr);
   gap:16px;
 }
-
 .service-card{
   background:#e5e7eb;
   border-radius:22px;
   padding:22px 12px;
-  box-shadow:0 14px 32px rgba(0,0,0,.16);
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:10px;
   font-weight:700;
-  cursor:pointer;
   text-align:center;
+  cursor:pointer;
+  box-shadow:0 14px 30px rgba(0,0,0,.18);
   transition:.2s;
 }
-
 .service-card:hover{
   transform:translateY(-3px);
 }
-
 .service-card span{
   font-size:42px;
-  background:linear-gradient(135deg,#1e40af,#3b82f6);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:#0a3083;
 }
 
 /* ===== E-FILING GRID ===== */
@@ -134,24 +127,37 @@ section.active{display:block}
   flex-direction:column;
   gap:12px;
 }
-
 .calc-box input{
   padding:12px;
   border-radius:14px;
-  border:1px solid #d1d5db;
+  border:1px solid #cbd5e1;
 }
-
 .calc-box button{
   padding:12px;
   border:none;
   border-radius:14px;
-  background:#1e3a8a;
+  background:#0a3083;
   color:#fff;
   font-weight:700;
 }
-
 .calc-result{
+  background:#ffffff;
+  padding:12px;
+  border-radius:14px;
   font-weight:700;
+}
+
+/* ===== DOWNLOAD ===== */
+.preview-list{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.preview-card{
+  background:#ffffff;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 16px 34px rgba(0,0,0,.18);
 }
 
 /* ===== BOTTOM BAR ===== */
@@ -163,7 +169,6 @@ nav{
   display:flex;
   padding:10px 6px;
 }
-
 nav button{
   flex:1;
   border:none;
@@ -174,14 +179,12 @@ nav button{
   align-items:center;
   gap:4px;
   font-size:11px;
-}
-
-nav button.active{
-  background:rgba(255,255,255,.22);
   border-radius:18px;
 }
-
-.material-symbols-rounded{
+nav button.active{
+  background:rgba(255,255,255,.22);
+}
+nav .material-symbols-rounded{
   font-size:26px;
 }
 </style>
@@ -190,15 +193,16 @@ nav button.active{
 <body>
 
 <header>
+  <img class="header-banner"
+    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
-    <input type="text" placeholder="ค้นหาเมนู..." onkeydown="doSearch(event)">
+    <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
   </div>
 </header>
 
 <main>
 
-<!-- HOME -->
 <section id="home" class="active">
   <div class="section-box">
     <h3>รายการโพส</h3>
@@ -209,7 +213,6 @@ nav button.active{
   </div>
 </section>
 
-<!-- SERVICE -->
 <section id="service">
   <div class="section-box">
     <h3>ข้อมูลบริการ</h3>
@@ -242,7 +245,7 @@ nav button.active{
 
       <div class="service-card" onclick="navigate('blank')">
         <span class="material-symbols-rounded">handshake</span>
-        ไกล่เกลี่ย / พิจารณาคดีออนไลน์
+        ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
@@ -259,7 +262,6 @@ nav button.active{
   </div>
 </section>
 
-<!-- E-FILING -->
 <section id="efiling">
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
@@ -276,7 +278,6 @@ nav button.active{
   </div>
 </section>
 
-<!-- FEE -->
 <section id="fee">
   <div class="section-box">
     <h3>คำนวณค่าธรรมเนียม</h3>
@@ -288,24 +289,14 @@ nav button.active{
   </div>
 </section>
 
-<!-- DOWNLOAD -->
-<section id="download">
-  <div class="section-box">
-    <h3>ดาวน์โหลดแบบฟอร์ม</h3>
-    (ตัวอย่างไฟล์)
-  </div>
-</section>
-
-<!-- BLANK -->
-<section id="blank">
-  <div class="section-box">
-    <h3>อยู่ระหว่างพัฒนา</h3>
-  </div>
-</section>
+<section id="download"><div class="section-box"><h3>ดาวน์โหลดแบบฟอร์ม</h3></div></section>
+<section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
+<section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
+<section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
+<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
 
 </main>
 
-<!-- BOTTOM NAV -->
 <nav>
   <button class="active" onclick="navigate('home',this)">
     <span class="material-symbols-rounded">home</span>หน้าแรก
@@ -313,31 +304,34 @@ nav button.active{
   <button onclick="navigate('service',this)">
     <span class="material-symbols-rounded">apps</span>บริการ
   </button>
-  <button onclick="navigate('blank',this)">
+  <button onclick="navigate('knowledge',this)">
     <span class="material-symbols-rounded">menu_book</span>คลังความรู้
   </button>
-  <button onclick="navigate('blank',this)">
+  <button onclick="navigate('other',this)">
     <span class="material-symbols-rounded">more_horiz</span>เพิ่มเติม
   </button>
-  <button onclick="navigate('blank',this)">
+  <button onclick="navigate('contact',this)">
     <span class="material-symbols-rounded">person</span>ติดต่อ
   </button>
 </nav>
 
 <script>
 const searchMap={
-  "e filing":"efiling",
-  "efiling":"efiling",
   "ค่าธรรมเนียม":"fee",
-  "ค่าขึ้นศาล":"fee",
+  "efiling":"efiling",
   "ดาวน์โหลด":"download",
-  "บริการ":"service"
+  "บริการ":"service",
+  "คลัง":"knowledge"
 };
 
 function navigate(id,btn){
   history.pushState({page:id},"","#"+id);
   showPage(id,btn);
 }
+
+window.onpopstate=e=>{
+  if(e.state) showPage(e.state.page);
+};
 
 function showPage(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
@@ -348,24 +342,19 @@ function showPage(id,btn){
   }
 }
 
-window.onpopstate=e=>{
-  if(e.state){
-    showPage(e.state.page);
-  }
-};
-
 function toggleSearch(){
-  let b=document.getElementById("searchBox");
+  const b=document.getElementById("searchBox");
   b.style.display=b.style.display==="block"?"none":"block";
 }
 
 function doSearch(e){
   if(e.key==="Enter"){
-    let v=e.target.value.toLowerCase().trim();
-    if(searchMap[v]){
-      navigate(searchMap[v]);
-      document.getElementById("searchBox").style.display="none";
-      e.target.value="";
+    const v=e.target.value.toLowerCase();
+    for(let k in searchMap){
+      if(v.includes(k)){
+        navigate(searchMap[k]);
+        break;
+      }
     }
   }
 }
