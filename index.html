@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 
+<!-- ICON -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
+/* ===== BASE ===== */
 body{
   margin:0;
   font-family:system-ui,sans-serif;
@@ -16,12 +18,12 @@ body{
   color:#111827;
 }
 
-/* ===== HEADINGS ===== */
 h3{
   margin:0 0 16px;
   font-size:18px;
-  font-weight:800;
-  color:#1e40af;
+  font-weight:900;
+  color:#0f2a6d;
+  letter-spacing:.2px;
 }
 
 /* ===== HEADER ===== */
@@ -29,50 +31,49 @@ header{
   position:relative;
   overflow:hidden;
 }
+
 .header-banner{
   width:100%;
   display:block;
 }
+
+/* fade ยาว + กลืนกับพื้นหลัง */
 header::after{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(
     180deg,
-    rgba(30,58,138,.0) 0%,
-    rgba(30,58,138,.35) 55%,
-    rgba(30,58,138,.65) 100%
+    rgba(0,0,0,0) 0%,
+    rgba(15,23,42,.15) 45%,
+    rgba(15,23,42,.45) 75%,
+    #f2f5fa 100%
   );
 }
-.header-title{
-  position:absolute;
-  bottom:18px;
-  left:18px;
-  z-index:2;
-  color:#fff;
-  font-size:22px;
-  font-weight:800;
-}
+
 .search-btn{
   position:absolute;
   top:14px;
   right:14px;
   color:#fff;
   font-size:26px;
+  cursor:pointer;
   z-index:2;
 }
+
 .search-box{
   position:absolute;
-  top:56px;
+  top:54px;
   right:14px;
   display:none;
   z-index:2;
 }
+
 .search-box input{
   padding:10px 16px;
   border-radius:18px;
   border:none;
-  width:220px;
+  background:rgba(255,255,255,.95);
 }
 
 /* ===== MAIN ===== */
@@ -80,19 +81,25 @@ main{
   padding:16px;
   padding-bottom:120px;
 }
+
 section{display:none}
 section.active{display:block}
 
 /* ===== SECTION BOX ===== */
 .section-box{
-  background:#fff;
+  background:#ffffff;
   border-radius:26px;
-  padding:20px;
+  padding:18px;
   box-shadow:0 20px 50px rgba(0,0,0,.12);
 }
 
 /* ===== FEED ===== */
-.feed{display:flex;flex-direction:column;gap:14px}
+.feed{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
 .feed-item{
   background:#f9fafb;
   border-radius:18px;
@@ -106,26 +113,38 @@ section.active{display:block}
   grid-template-columns:repeat(2,1fr);
   gap:16px;
 }
+
 .service-card{
-  background:linear-gradient(180deg,#ffffff,#eef2ff);
+  background:linear-gradient(180deg,#ffffff,#e5e7eb);
   border-radius:24px;
   padding:22px 14px;
   border:1px solid #dbeafe;
-  box-shadow:0 18px 36px rgba(0,0,0,.18);
+  box-shadow:
+    0 18px 36px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.95);
   display:flex;
   flex-direction:column;
   align-items:center;
+  justify-content:center;
   gap:12px;
   font-weight:700;
   cursor:pointer;
   text-align:center;
+  color:#0f172a;
+  transition:.2s ease;
 }
+
+.service-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 24px 52px rgba(0,0,0,.25);
+}
+
 .service-card span{
   font-size:44px;
   color:#1e40af;
 }
 
-/* ===== E-FILING ===== */
+/* ===== E-FILING GRID ===== */
 .efiling-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -137,15 +156,18 @@ section.active{display:block}
   background:#f9fafb;
   border-radius:22px;
   padding:16px;
+  box-shadow:0 16px 34px rgba(0,0,0,.14);
   display:flex;
   flex-direction:column;
   gap:12px;
 }
+
 .calc-box input{
   padding:12px;
   border-radius:14px;
   border:1px solid #d1d5db;
 }
+
 .calc-box button{
   padding:12px;
   border:none;
@@ -154,6 +176,7 @@ section.active{display:block}
   color:#fff;
   font-weight:700;
 }
+
 .calc-result{
   background:#eef2ff;
   padding:12px;
@@ -167,16 +190,27 @@ section.active{display:block}
   grid-template-columns:repeat(2,1fr);
   gap:14px;
 }
+
 .preview-card{
   background:#fff;
   border-radius:20px;
   overflow:hidden;
   border:1px solid #e5e7eb;
+  box-shadow:0 18px 40px rgba(0,0,0,.2);
 }
-.preview-card img{width:100%}
-.preview-card div{padding:10px;font-weight:700}
 
-/* ===== NAV ===== */
+.preview-card img{
+  width:100%;
+  display:block;
+}
+
+.preview-card div{
+  padding:10px;
+  font-size:13px;
+  font-weight:700;
+}
+
+/* ===== BOTTOM BAR ===== */
 nav{
   position:fixed;
   bottom:0;
@@ -185,6 +219,7 @@ nav{
   display:flex;
   padding:10px 6px;
 }
+
 nav button{
   flex:1;
   border:none;
@@ -193,13 +228,18 @@ nav button{
   display:flex;
   flex-direction:column;
   align-items:center;
+  gap:4px;
   font-size:11px;
   border-radius:18px;
 }
+
 nav button.active{
   background:rgba(255,255,255,.22);
 }
-nav .material-symbols-rounded{font-size:26px}
+
+nav .material-symbols-rounded{
+  font-size:26px;
+}
 </style>
 </head>
 
@@ -208,7 +248,6 @@ nav .material-symbols-rounded{font-size:26px}
 <header>
   <img class="header-banner"
     src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
-  <div class="header-title">ศาลแขวงชลบุรี</div>
   <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
@@ -234,12 +273,12 @@ nav .material-symbols-rounded{font-size:26px}
 
       <div class="service-card" onclick="navigate('fee')">
         <span class="material-icons-outlined">calculate</span>
-        อัตราค่าธรรมเนียม
+        อัตราค่าธรรมเนียม / ค่าขึ้นศาล
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
         <span class="material-icons-outlined">list_alt</span>
-        ขั้นตอนการฟ้อง
+        ขั้นตอนการฟ้อง / ยื่นคำร้อง
       </div>
 
       <div class="service-card" onclick="navigate('efiling')">
@@ -257,6 +296,16 @@ nav .material-symbols-rounded{font-size:26px}
         COJ
       </div>
 
+      <div class="service-card" onclick="navigate('blank')">
+        <span class="material-icons-outlined">handshake</span>
+        ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
+      </div>
+
+      <div class="service-card" onclick="navigate('blank')">
+        <span class="material-icons-outlined">event_note</span>
+        บัญชีนัดพิจารณาคดี / พิจารณาคดีทางอิเล็กทรอนิกส์
+      </div>
+
       <div class="service-card" onclick="navigate('download')">
         <span class="material-icons-outlined">download</span>
         ดาวน์โหลดแบบฟอร์ม
@@ -271,9 +320,11 @@ nav .material-symbols-rounded{font-size:26px}
     <h3>เลือกระบบ e-Filing</h3>
     <div class="efiling-grid">
       <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
+        <span class="material-icons-outlined">gavel</span>
         e-Filing v.3
       </div>
       <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
+        <span class="material-icons-outlined">rocket_launch</span>
         e-Filing v.4
       </div>
     </div>
@@ -329,10 +380,6 @@ nav .material-symbols-rounded{font-size:26px}
 </nav>
 
 <script>
-function navigate(id,btn){
-  history.pushState({page:id},"","#"+id);
-  showPage(id,btn);
-}
 function showPage(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -341,22 +388,52 @@ function showPage(id,btn){
     btn.classList.add("active");
   }
 }
+
+function navigate(id,btn){
+  history.pushState({page:id}, "", "#"+id);
+  showPage(id,btn);
+}
+
 window.onpopstate=function(e){
-  if(e.state){showPage(e.state.page)}
-}
-function toggleSearch(){
-  let b=document.getElementById("searchBox");
-  b.style.display=b.style.display==="block"?"none":"block";
-}
-function doSearch(e){
-  if(e.key==="Enter"){
-    let q=e.target.value;
-    if(q.includes("fil")) navigate("efiling");
-    else if(q.includes("ดาว")) navigate("download");
-    else navigate("blank");
+  if(e.state && e.state.page){
+    showPage(e.state.page);
   }
 }
-function openLink(url){window.open(url,"_blank")}
+
+function openLink(url){
+  window.open(url,"_blank");
+}
+
+function toggleSearch(){
+  const b=document.getElementById("searchBox");
+  b.style.display=b.style.display==="block"?"none":"block";
+}
+
+const searchMap={
+  "หน้าแรก":"home","home":"home",
+  "บริการ":"service","service":"service",
+  "efiling":"efiling","e-filing":"efiling",
+  "ค่าธรรมเนียม":"fee","ค่าขึ้นศาล":"fee",
+  "ดาวน์โหลด":"download","แบบฟอร์ม":"download",
+  "คลังความรู้":"knowledge",
+  "ติดต่อ":"contact"
+};
+
+function doSearch(e){
+  if(e.key==="Enter"){
+    const q=e.target.value.toLowerCase();
+    for(const k in searchMap){
+      if(q.includes(k)){
+        navigate(searchMap[k]);
+        toggleSearch();
+        e.target.value="";
+        return;
+      }
+    }
+    navigate("blank");
+  }
+}
+
 function calcFee(){
   let m=document.getElementById("money").value;
   let fee=Math.max(100,Math.floor(m*0.02));
