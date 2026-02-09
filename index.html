@@ -9,66 +9,70 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
-/* ===== BASE ===== */
 body{
   margin:0;
   font-family:system-ui,sans-serif;
   background:#f2f5fa;
   color:#111827;
 }
+
+/* ===== HEADINGS ===== */
 h3{
-  margin:0 0 14px;
-  font-size:16px;
+  margin:0 0 16px;
+  font-size:18px;
   font-weight:800;
-  color:#1e3a8a;
+  color:#1e40af;
 }
 
-/* ===== HEADER (SMOOTH FADE, NO OVERLAY) ===== */
+/* ===== HEADER ===== */
 header{
   position:relative;
+  overflow:hidden;
 }
 .header-banner{
   width:100%;
   display:block;
-
-  /* fade ยาว + เห็นรูปครบ */
-  -webkit-mask-image:linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 65%,
-    rgba(0,0,0,.9) 75%,
-    rgba(0,0,0,.6) 85%,
-    rgba(0,0,0,0) 100%
-  );
-  mask-image:linear-gradient(
-    to bottom,
-    rgba(0,0,0,1) 65%,
-    rgba(0,0,0,.9) 75%,
-    rgba(0,0,0,.6) 85%,
-    rgba(0,0,0,0) 100%
+}
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(30,58,138,.0) 0%,
+    rgba(30,58,138,.35) 55%,
+    rgba(30,58,138,.65) 100%
   );
 }
-
-/* SEARCH */
+.header-title{
+  position:absolute;
+  bottom:18px;
+  left:18px;
+  z-index:2;
+  color:#fff;
+  font-size:22px;
+  font-weight:800;
+}
 .search-btn{
   position:absolute;
   top:14px;
   right:14px;
   color:#fff;
   font-size:26px;
-  cursor:pointer;
+  z-index:2;
 }
 .search-box{
   position:absolute;
-  top:54px;
+  top:56px;
   right:14px;
   display:none;
+  z-index:2;
 }
 .search-box input{
   padding:10px 16px;
   border-radius:18px;
   border:none;
-  width:200px;
-  background:rgba(255,255,255,.95);
+  width:220px;
 }
 
 /* ===== MAIN ===== */
@@ -81,24 +85,19 @@ section.active{display:block}
 
 /* ===== SECTION BOX ===== */
 .section-box{
-  background:#ffffff;
+  background:#fff;
   border-radius:26px;
-  padding:18px;
-  box-shadow:0 22px 55px rgba(0,0,0,.14);
+  padding:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
 }
 
-/* ===== FEED (iOS CARD) ===== */
-.feed{
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
+/* ===== FEED ===== */
+.feed{display:flex;flex-direction:column;gap:14px}
 .feed-item{
-  background:linear-gradient(180deg,#ffffff,#f1f5ff);
-  border-radius:24px;
-  padding:18px;
-  box-shadow:0 18px 40px rgba(0,0,0,.18);
-  font-weight:600;
+  background:#f9fafb;
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 12px 26px rgba(0,0,0,.12);
 }
 
 /* ===== SERVICE GRID ===== */
@@ -108,29 +107,25 @@ section.active{display:block}
   gap:16px;
 }
 .service-card{
-  background:linear-gradient(180deg,#ffffff,#eaf0ff);
-  border-radius:26px;
-  padding:24px 14px;
+  background:linear-gradient(180deg,#ffffff,#eef2ff);
+  border-radius:24px;
+  padding:22px 14px;
   border:1px solid #dbeafe;
-  box-shadow:0 20px 44px rgba(0,0,0,.22);
+  box-shadow:0 18px 36px rgba(0,0,0,.18);
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:12px;
   font-weight:700;
-  text-align:center;
   cursor:pointer;
-  transition:.2s ease;
-}
-.service-card:hover{
-  transform:translateY(-3px);
+  text-align:center;
 }
 .service-card span{
   font-size:44px;
   color:#1e40af;
 }
 
-/* ===== E-FILING GRID ===== */
+/* ===== E-FILING ===== */
 .efiling-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -142,10 +137,28 @@ section.active{display:block}
   background:#f9fafb;
   border-radius:22px;
   padding:16px;
-  box-shadow:0 16px 34px rgba(0,0,0,.14);
   display:flex;
   flex-direction:column;
   gap:12px;
+}
+.calc-box input{
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #d1d5db;
+}
+.calc-box button{
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  background:#1e3a8a;
+  color:#fff;
+  font-weight:700;
+}
+.calc-result{
+  background:#eef2ff;
+  padding:12px;
+  border-radius:14px;
+  font-weight:700;
 }
 
 /* ===== DOWNLOAD ===== */
@@ -156,12 +169,14 @@ section.active{display:block}
 }
 .preview-card{
   background:#fff;
-  border-radius:22px;
+  border-radius:20px;
   overflow:hidden;
-  box-shadow:0 18px 40px rgba(0,0,0,.22);
+  border:1px solid #e5e7eb;
 }
+.preview-card img{width:100%}
+.preview-card div{padding:10px;font-weight:700}
 
-/* ===== BOTTOM BAR ===== */
+/* ===== NAV ===== */
 nav{
   position:fixed;
   bottom:0;
@@ -178,16 +193,13 @@ nav button{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:4px;
   font-size:11px;
   border-radius:18px;
 }
 nav button.active{
   background:rgba(255,255,255,.22);
 }
-nav .material-symbols-rounded{
-  font-size:26px;
-}
+nav .material-symbols-rounded{font-size:26px}
 </style>
 </head>
 
@@ -196,6 +208,7 @@ nav .material-symbols-rounded{
 <header>
   <img class="header-banner"
     src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+  <div class="header-title">ศาลแขวงชลบุรี</div>
   <span class="material-icons-outlined search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
@@ -208,8 +221,8 @@ nav .material-symbols-rounded{
   <div class="section-box">
     <h3>รายการโพส</h3>
     <div class="feed">
-      <div class="feed-item">📢 ประกาศศาลรายการที่ 1</div>
-      <div class="feed-item">📢 ประกาศศาลรายการที่ 2</div>
+      <div class="feed-item">ประกาศศาลรายการที่ 1</div>
+      <div class="feed-item">ประกาศศาลรายการที่ 2</div>
     </div>
   </div>
 </section>
@@ -221,12 +234,12 @@ nav .material-symbols-rounded{
 
       <div class="service-card" onclick="navigate('fee')">
         <span class="material-icons-outlined">calculate</span>
-        อัตราค่าธรรมเนียม / ค่าขึ้นศาล
+        อัตราค่าธรรมเนียม
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
         <span class="material-icons-outlined">list_alt</span>
-        ขั้นตอนการฟ้อง / ยื่นคำร้อง
+        ขั้นตอนการฟ้อง
       </div>
 
       <div class="service-card" onclick="navigate('efiling')">
@@ -244,16 +257,6 @@ nav .material-symbols-rounded{
         COJ
       </div>
 
-      <div class="service-card" onclick="navigate('blank')">
-        <span class="material-icons-outlined">handshake</span>
-        ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
-      </div>
-
-      <div class="service-card" onclick="navigate('blank')">
-        <span class="material-icons-outlined">event_note</span>
-        บัญชีนัดพิจารณาคดี
-      </div>
-
       <div class="service-card" onclick="navigate('download')">
         <span class="material-icons-outlined">download</span>
         ดาวน์โหลดแบบฟอร์ม
@@ -268,23 +271,42 @@ nav .material-symbols-rounded{
     <h3>เลือกระบบ e-Filing</h3>
     <div class="efiling-grid">
       <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
-        <span class="material-icons-outlined">gavel</span>
         e-Filing v.3
       </div>
       <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
-        <span class="material-icons-outlined">rocket_launch</span>
         e-Filing v.4
       </div>
     </div>
   </div>
 </section>
 
-<section id="fee"><div class="section-box"><h3>คำนวณค่าธรรมเนียม</h3></div></section>
-<section id="download"><div class="section-box"><h3>ดาวน์โหลดแบบฟอร์ม</h3></div></section>
-<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
+<section id="fee">
+  <div class="section-box">
+    <h3>คำนวณค่าธรรมเนียม</h3>
+    <div class="calc-box">
+      <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
+      <button onclick="calcFee()">คำนวณ</button>
+      <div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="section-box">
+    <h3>ดาวน์โหลดแบบฟอร์ม</h3>
+    <div class="preview-list">
+      <div class="preview-card">
+        <img src="https://via.placeholder.com/300x200">
+        <div>คำร้องทั่วไป</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
 <section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
 <section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
+<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
 
 </main>
 
@@ -307,28 +329,10 @@ nav .material-symbols-rounded{
 </nav>
 
 <script>
-const routes={
-  "หน้าแรก":"home",
-  "บริการ":"service",
-  "e filing":"efiling",
-  "efiling":"efiling",
-  "ค่าธรรมเนียม":"fee",
-  "ดาวน์โหลด":"download",
-  "cios":"service",
-  "coj":"service"
-};
-
 function navigate(id,btn){
   history.pushState({page:id},"","#"+id);
   showPage(id,btn);
 }
-
-window.onpopstate=function(e){
-  if(e.state){
-    showPage(e.state.page);
-  }
-}
-
 function showPage(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -337,23 +341,26 @@ function showPage(id,btn){
     btn.classList.add("active");
   }
 }
-
+window.onpopstate=function(e){
+  if(e.state){showPage(e.state.page)}
+}
 function toggleSearch(){
   let b=document.getElementById("searchBox");
   b.style.display=b.style.display==="block"?"none":"block";
 }
-
 function doSearch(e){
   if(e.key==="Enter"){
-    let q=e.target.value.toLowerCase();
-    for(let k in routes){
-      if(q.includes(k)){
-        navigate(routes[k]);
-        return;
-      }
-    }
-    navigate("blank");
+    let q=e.target.value;
+    if(q.includes("fil")) navigate("efiling");
+    else if(q.includes("ดาว")) navigate("download");
+    else navigate("blank");
   }
+}
+function openLink(url){window.open(url,"_blank")}
+function calcFee(){
+  let m=document.getElementById("money").value;
+  let fee=Math.max(100,Math.floor(m*0.02));
+  document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
 }
 </script>
 
