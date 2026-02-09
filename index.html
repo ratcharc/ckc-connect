@@ -26,13 +26,16 @@ h3{
 header{
   position:relative;
   height:240px;
+  background:#0a3083;
   overflow:hidden;
   z-index:1;
 }
 .header-banner{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;
+  object-position:center;
+  background:#0a3083;
 }
 .search-btn{
   position:absolute;
@@ -41,14 +44,14 @@ header{
   font-size:28px;
   color:#fff;
   cursor:pointer;
-  z-index:2;
+  z-index:3;
 }
 .search-box{
   position:absolute;
   top:54px;
   right:14px;
   display:none;
-  z-index:2;
+  z-index:3;
 }
 .search-box input{
   padding:10px 16px;
@@ -60,20 +63,20 @@ header{
 /* ===== MAIN ===== */
 main{
   position:relative;
-  z-index:1;              /* ไม่ทับ nav */
+  z-index:2;
   padding:16px;
-  padding-bottom:160px;   /* กัน bottom bar */
-  margin-top:-48px;       /* กล่องลอยขึ้นเล็กน้อย */
+  padding-bottom:160px;
+  margin-top:-40px;
 }
 section{display:none}
 section.active{display:block}
 
 /* ===== FLOAT CARD ===== */
 .section-box{
-  background:#eef1f5;     /* กล่องลอยสีเทา */
+  background:#eef1f5;
   border-radius:28px;
   padding:20px;
-  box-shadow:0 22px 50px rgba(0,0,0,.18);
+  box-shadow:0 18px 42px rgba(0,0,0,.18);
 }
 
 /* ===== FEED ===== */
@@ -91,12 +94,12 @@ section.active{display:block}
   gap:18px;
 }
 .service-card{
-  background:#ffffff;
+  background:linear-gradient(180deg,#ffffff,#f8fafc);
   border-radius:26px;
   padding:22px 14px;
   box-shadow:
-    0 16px 34px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.9);
+    0 14px 30px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.95);
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -111,9 +114,10 @@ section.active{display:block}
 }
 .service-card span{
   font-size:46px;
-  background:linear-gradient(135deg,#2563eb,#60a5fa);
+  background:linear-gradient(135deg,#0b3fb8,#2563eb);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
 }
 
 /* ===== CALCULATOR ===== */
@@ -174,7 +178,7 @@ nav{
   background:#0a3083;
   display:flex;
   padding:10px 6px;
-  z-index:10;            /* แก้คลิกไม่ได้ */
+  z-index:10;
 }
 nav button{
   flex:1;
@@ -250,7 +254,7 @@ nav button.active{
 
       <div class="service-card" onclick="navigate('blank')">
         <span class="material-symbols-rounded">event_note</span>
-        ไกล่เกลี่ย / นัดพิจารณาทางอิเล็กทรอนิกส์
+        บัญชีนัดพิจารณาคดี
       </div>
 
       <div class="service-card" onclick="navigate('download')">
