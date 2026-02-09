@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
 /* ===== BASE ===== */
@@ -13,73 +13,73 @@ body{
   margin:0;
   font-family:system-ui,sans-serif;
   background:#ffffff;
-  color:#111827;
+  color:#0f172a;
 }
-
 h3{
-  margin:0 0 16px;
+  margin:0 0 14px;
   font-size:18px;
-  font-weight:800;
-  color:#0a3083;
+  font-weight:900;
+  color:#0a2a6b;
 }
 
 /* ===== HEADER ===== */
 header{
-  background:#0a3083;
-  padding-bottom:90px;
   position:relative;
+  height:240px;
+  background:linear-gradient(180deg,#0a3083,#0e3aa0);
+  overflow:hidden;
 }
 .header-banner{
   width:100%;
-  display:block;
+  height:100%;
+  object-fit:cover;
+  opacity:.9;
 }
 .search-btn{
   position:absolute;
   top:14px;
   right:14px;
-  color:#fff;
   font-size:28px;
+  color:#fff;
   cursor:pointer;
+  z-index:2;
 }
 .search-box{
   position:absolute;
-  top:56px;
+  top:54px;
   right:14px;
   display:none;
+  z-index:2;
 }
 .search-box input{
   padding:10px 16px;
-  border-radius:14px;
+  border-radius:16px;
   border:none;
-  width:220px;
+  width:190px;
 }
 
 /* ===== MAIN ===== */
 main{
   padding:16px;
-  margin-top:-70px;
   padding-bottom:120px;
+  margin-top:-80px;
 }
 section{display:none}
 section.active{display:block}
 
-/* ===== SECTION BOX ===== */
+/* ===== FLOAT CARD ===== */
 .section-box{
   background:#ffffff;
-  border-radius:26px;
+  border-radius:28px;
   padding:20px;
-  box-shadow:0 18px 40px rgba(0,0,0,.15);
+  box-shadow:0 25px 60px rgba(0,0,0,.18);
 }
 
 /* ===== FEED ===== */
-.feed{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
+.feed{display:flex;flex-direction:column;gap:14px}
 .feed-item{
-  background:#e5e7eb;
-  border-radius:16px;
+  background:#f9fafb;
+  border-radius:18px;
   padding:14px;
 }
 
@@ -87,42 +87,37 @@ section.active{display:block}
 .service-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:16px;
+  gap:18px;
 }
 .service-card{
-  background:#e5e7eb;
-  border-radius:22px;
-  padding:22px 12px;
+  background:#f8fafc;
+  border-radius:26px;
+  padding:22px 14px;
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:10px;
+  gap:12px;
   font-weight:700;
   text-align:center;
   cursor:pointer;
-  box-shadow:0 14px 30px rgba(0,0,0,.18);
   transition:.2s;
 }
-.service-card:hover{
-  transform:translateY(-3px);
-}
+.service-card:hover{transform:translateY(-3px)}
 .service-card span{
-  font-size:42px;
-  color:#0a3083;
-}
-
-/* ===== E-FILING GRID ===== */
-.efiling-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:16px;
+  font-size:46px;
+  background:linear-gradient(135deg,#2563eb,#60a5fa);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
 }
 
 /* ===== CALCULATOR ===== */
 .calc-box{
-  background:#e5e7eb;
+  background:#f9fafb;
   border-radius:22px;
   padding:16px;
+  box-shadow:0 16px 34px rgba(0,0,0,.14);
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -130,18 +125,18 @@ section.active{display:block}
 .calc-box input{
   padding:12px;
   border-radius:14px;
-  border:1px solid #cbd5e1;
+  border:1px solid #d1d5db;
 }
 .calc-box button{
   padding:12px;
   border:none;
   border-radius:14px;
-  background:#0a3083;
+  background:#1e3a8a;
   color:#fff;
   font-weight:700;
 }
 .calc-result{
-  background:#ffffff;
+  background:#eef2ff;
   padding:12px;
   border-radius:14px;
   font-weight:700;
@@ -154,10 +149,17 @@ section.active{display:block}
   gap:14px;
 }
 .preview-card{
-  background:#ffffff;
+  background:#fff;
   border-radius:20px;
   overflow:hidden;
-  box-shadow:0 16px 34px rgba(0,0,0,.18);
+  border:1px solid #e5e7eb;
+  box-shadow:0 18px 40px rgba(0,0,0,.2);
+}
+.preview-card img{width:100%;display:block}
+.preview-card div{
+  padding:10px;
+  font-size:13px;
+  font-weight:700;
 }
 
 /* ===== BOTTOM BAR ===== */
@@ -179,14 +181,12 @@ nav button{
   align-items:center;
   gap:4px;
   font-size:11px;
-  border-radius:18px;
 }
 nav button.active{
   background:rgba(255,255,255,.22);
+  border-radius:18px;
 }
-nav .material-symbols-rounded{
-  font-size:26px;
-}
+.material-symbols-rounded{font-size:26px}
 </style>
 </head>
 
@@ -197,7 +197,7 @@ nav .material-symbols-rounded{
     src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
-    <input type="text" placeholder="ค้นหา..." onkeydown="doSearch(event)">
+    <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
   </div>
 </header>
 
@@ -244,13 +244,8 @@ nav .material-symbols-rounded{
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
-        <span class="material-symbols-rounded">handshake</span>
-        ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
-      </div>
-
-      <div class="service-card" onclick="navigate('blank')">
         <span class="material-symbols-rounded">event_note</span>
-        บัญชีนัดพิจารณาคดี
+        บัญชีนัดพิจารณา / พิจารณาทางอิเล็กทรอนิกส์
       </div>
 
       <div class="service-card" onclick="navigate('download')">
@@ -265,7 +260,7 @@ nav .material-symbols-rounded{
 <section id="efiling">
   <div class="section-box">
     <h3>เลือกระบบ e-Filing</h3>
-    <div class="efiling-grid">
+    <div class="service-grid">
       <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
         <span class="material-symbols-rounded">gavel</span>
         e-Filing v.3
@@ -289,7 +284,22 @@ nav .material-symbols-rounded{
   </div>
 </section>
 
-<section id="download"><div class="section-box"><h3>ดาวน์โหลดแบบฟอร์ม</h3></div></section>
+<section id="download">
+  <div class="section-box">
+    <h3>ดาวน์โหลดแบบฟอร์ม</h3>
+    <div class="preview-list">
+      <div class="preview-card">
+        <img src="https://via.placeholder.com/300x200">
+        <div>คำร้องทั่วไป</div>
+      </div>
+      <div class="preview-card">
+        <img src="https://via.placeholder.com/300x200">
+        <div>คำให้การ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
 <section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
 <section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
@@ -316,23 +326,13 @@ nav .material-symbols-rounded{
 </nav>
 
 <script>
-const searchMap={
-  "ค่าธรรมเนียม":"fee",
-  "efiling":"efiling",
-  "ดาวน์โหลด":"download",
-  "บริการ":"service",
-  "คลัง":"knowledge"
-};
-
 function navigate(id,btn){
   history.pushState({page:id},"","#"+id);
   showPage(id,btn);
 }
-
 window.onpopstate=e=>{
   if(e.state) showPage(e.state.page);
 };
-
 function showPage(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -341,31 +341,23 @@ function showPage(id,btn){
     btn.classList.add("active");
   }
 }
-
+function openLink(url){window.open(url,"_blank")}
 function toggleSearch(){
   const b=document.getElementById("searchBox");
   b.style.display=b.style.display==="block"?"none":"block";
 }
-
 function doSearch(e){
   if(e.key==="Enter"){
-    const v=e.target.value.toLowerCase();
-    for(let k in searchMap){
-      if(v.includes(k)){
-        navigate(searchMap[k]);
-        break;
-      }
-    }
+    const q=e.target.value.toLowerCase();
+    if(q.includes("e")) navigate("efiling");
+    else if(q.includes("ค่")) navigate("fee");
+    else if(q.includes("ดาว")) navigate("download");
+    else navigate("blank");
   }
 }
-
-function openLink(url){
-  window.open(url,"_blank");
-}
-
 function calcFee(){
-  let m=document.getElementById("money").value;
-  let fee=Math.max(100,Math.floor(m*0.02));
+  const m=document.getElementById("money").value;
+  const fee=Math.max(100,Math.floor(m*0.02));
   document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
 }
 </script>
