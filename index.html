@@ -23,7 +23,7 @@ h3{
   color:#1e3a8a;
 }
 
-/* ===== HEADER (CLEAN FADE, NO DARKEN) ===== */
+/* ===== HEADER (SMOOTH FADE, NO OVERLAY) ===== */
 header{
   position:relative;
 }
@@ -31,41 +31,43 @@ header{
   width:100%;
   display:block;
 
-  /* ⭐ เฟดยาว + ไม่ทำภาพจาง */
-  -webkit-mask-image: linear-gradient(
+  /* fade ยาว + เห็นรูปครบ */
+  -webkit-mask-image:linear-gradient(
     to bottom,
-    rgba(0,0,0,1) 60%,
-    rgba(0,0,0,0.85) 75%,
+    rgba(0,0,0,1) 65%,
+    rgba(0,0,0,.9) 75%,
+    rgba(0,0,0,.6) 85%,
     rgba(0,0,0,0) 100%
   );
-  mask-image: linear-gradient(
+  mask-image:linear-gradient(
     to bottom,
-    rgba(0,0,0,1) 60%,
-    rgba(0,0,0,0.85) 75%,
+    rgba(0,0,0,1) 65%,
+    rgba(0,0,0,.9) 75%,
+    rgba(0,0,0,.6) 85%,
     rgba(0,0,0,0) 100%
   );
 }
 
+/* SEARCH */
 .search-btn{
   position:absolute;
-  top:12px;
-  right:12px;
+  top:14px;
+  right:14px;
   color:#fff;
   font-size:26px;
   cursor:pointer;
-  z-index:2;
 }
 .search-box{
   position:absolute;
-  top:52px;
-  right:12px;
+  top:54px;
+  right:14px;
   display:none;
-  z-index:2;
 }
 .search-box input{
-  padding:8px 14px;
-  border-radius:14px;
+  padding:10px 16px;
+  border-radius:18px;
   border:none;
+  width:200px;
   background:rgba(255,255,255,.95);
 }
 
@@ -82,20 +84,21 @@ section.active{display:block}
   background:#ffffff;
   border-radius:26px;
   padding:18px;
-  box-shadow:0 20px 50px rgba(0,0,0,.12);
+  box-shadow:0 22px 55px rgba(0,0,0,.14);
 }
 
-/* ===== FEED ===== */
+/* ===== FEED (iOS CARD) ===== */
 .feed{
   display:flex;
   flex-direction:column;
-  gap:14px;
+  gap:16px;
 }
 .feed-item{
-  background:#f9fafb;
-  border-radius:18px;
-  padding:14px;
-  box-shadow:0 12px 26px rgba(0,0,0,.12);
+  background:linear-gradient(180deg,#ffffff,#f1f5ff);
+  border-radius:24px;
+  padding:18px;
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
+  font-weight:600;
 }
 
 /* ===== SERVICE GRID ===== */
@@ -105,19 +108,22 @@ section.active{display:block}
   gap:16px;
 }
 .service-card{
-  background:linear-gradient(180deg,#ffffff,#e5e7eb);
-  border-radius:24px;
-  padding:22px 14px;
+  background:linear-gradient(180deg,#ffffff,#eaf0ff);
+  border-radius:26px;
+  padding:24px 14px;
   border:1px solid #dbeafe;
-  box-shadow:0 18px 36px rgba(0,0,0,.18);
+  box-shadow:0 20px 44px rgba(0,0,0,.22);
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:12px;
   font-weight:700;
-  cursor:pointer;
   text-align:center;
-  color:#0f172a;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.service-card:hover{
+  transform:translateY(-3px);
 }
 .service-card span{
   font-size:44px;
@@ -141,25 +147,6 @@ section.active{display:block}
   flex-direction:column;
   gap:12px;
 }
-.calc-box input{
-  padding:12px;
-  border-radius:14px;
-  border:1px solid #d1d5db;
-}
-.calc-box button{
-  padding:12px;
-  border:none;
-  border-radius:14px;
-  background:#1e3a8a;
-  color:#fff;
-  font-weight:700;
-}
-.calc-result{
-  background:#eef2ff;
-  padding:12px;
-  border-radius:14px;
-  font-weight:700;
-}
 
 /* ===== DOWNLOAD ===== */
 .preview-list{
@@ -169,18 +156,9 @@ section.active{display:block}
 }
 .preview-card{
   background:#fff;
-  border-radius:20px;
+  border-radius:22px;
   overflow:hidden;
-  border:1px solid #e5e7eb;
-  box-shadow:0 18px 40px rgba(0,0,0,.2);
-}
-.preview-card img{
-  width:100%;
-}
-.preview-card div{
-  padding:10px;
-  font-size:13px;
-  font-weight:700;
+  box-shadow:0 18px 40px rgba(0,0,0,.22);
 }
 
 /* ===== BOTTOM BAR ===== */
@@ -230,8 +208,8 @@ nav .material-symbols-rounded{
   <div class="section-box">
     <h3>รายการโพส</h3>
     <div class="feed">
-      <div class="feed-item">ประกาศศาลรายการที่ 1</div>
-      <div class="feed-item">ประกาศศาลรายการที่ 2</div>
+      <div class="feed-item">📢 ประกาศศาลรายการที่ 1</div>
+      <div class="feed-item">📢 ประกาศศาลรายการที่ 2</div>
     </div>
   </div>
 </section>
@@ -273,7 +251,7 @@ nav .material-symbols-rounded{
 
       <div class="service-card" onclick="navigate('blank')">
         <span class="material-icons-outlined">event_note</span>
-        บัญชีนัดพิจารณาคดี / พิจารณาคดีทางอิเล็กทรอนิกส์
+        บัญชีนัดพิจารณาคดี
       </div>
 
       <div class="service-card" onclick="navigate('download')">
@@ -301,35 +279,9 @@ nav .material-symbols-rounded{
   </div>
 </section>
 
-<section id="fee">
-  <div class="section-box">
-    <h3>คำนวณค่าธรรมเนียม</h3>
-    <div class="calc-box">
-      <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
-      <button onclick="calcFee()">คำนวณ</button>
-      <div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
-    </div>
-  </div>
-</section>
-
-<section id="download">
-  <div class="section-box">
-    <h3>ดาวน์โหลดแบบฟอร์ม</h3>
-    <div class="preview-list">
-      <div class="preview-card">
-        <img src="https://via.placeholder.com/300x200">
-        <div>คำร้องทั่วไป</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="blank">
-  <div class="section-box">
-    <h3>อยู่ระหว่างพัฒนา</h3>
-  </div>
-</section>
-
+<section id="fee"><div class="section-box"><h3>คำนวณค่าธรรมเนียม</h3></div></section>
+<section id="download"><div class="section-box"><h3>ดาวน์โหลดแบบฟอร์ม</h3></div></section>
+<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
 <section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
 <section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
 <section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
@@ -355,18 +307,19 @@ nav .material-symbols-rounded{
 </nav>
 
 <script>
-const pages={
+const routes={
   "หน้าแรก":"home",
   "บริการ":"service",
-  "e-filing":"efiling",
-  "ดาวน์โหลด":"download",
+  "e filing":"efiling",
+  "efiling":"efiling",
   "ค่าธรรมเนียม":"fee",
+  "ดาวน์โหลด":"download",
   "cios":"service",
   "coj":"service"
 };
 
 function navigate(id,btn){
-  history.pushState({page:id}, "", "#"+id);
+  history.pushState({page:id},"","#"+id);
   showPage(id,btn);
 }
 
@@ -374,7 +327,7 @@ window.onpopstate=function(e){
   if(e.state){
     showPage(e.state.page);
   }
-};
+}
 
 function showPage(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
@@ -385,32 +338,22 @@ function showPage(id,btn){
   }
 }
 
-function openLink(url){
-  window.open(url,"_blank");
-}
-
 function toggleSearch(){
-  const b=document.getElementById("searchBox");
+  let b=document.getElementById("searchBox");
   b.style.display=b.style.display==="block"?"none":"block";
 }
 
 function doSearch(e){
   if(e.key==="Enter"){
-    const q=e.target.value.toLowerCase();
-    for(let k in pages){
+    let q=e.target.value.toLowerCase();
+    for(let k in routes){
       if(q.includes(k)){
-        navigate(pages[k]);
+        navigate(routes[k]);
         return;
       }
     }
     navigate("blank");
   }
-}
-
-function calcFee(){
-  let m=document.getElementById("money").value;
-  let fee=Math.max(100,Math.floor(m*0.02));
-  document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
 }
 </script>
 
