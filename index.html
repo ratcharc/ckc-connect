@@ -33,8 +33,7 @@ header{
 .header-banner{
   width:100%;
   height:100%;
-  object-fit:contain;
-  object-position:center;
+  object-fit:contain; /* แสดงผลเหมือนรูปเดิม ไม่ crop */
   background:#0a3083;
 }
 .search-btn{
@@ -44,14 +43,14 @@ header{
   font-size:28px;
   color:#fff;
   cursor:pointer;
-  z-index:3;
+  z-index:2;
 }
 .search-box{
   position:absolute;
   top:54px;
   right:14px;
   display:none;
-  z-index:3;
+  z-index:2;
 }
 .search-box input{
   padding:10px 16px;
@@ -65,18 +64,19 @@ main{
   position:relative;
   z-index:2;
   padding:16px;
-  padding-bottom:160px;
-  margin-top:-40px;
+  padding-bottom:140px; /* กัน bottom bar */
+  margin-top:-32px; /* ลอยขึ้นเล็กน้อย */
 }
 section{display:none}
 section.active{display:block}
 
 /* ===== FLOAT CARD ===== */
 .section-box{
-  background:#eef1f5;
+  background:#eef1f5; /* เทา */
   border-radius:28px;
   padding:20px;
-  box-shadow:0 18px 42px rgba(0,0,0,.18);
+  box-shadow:0 18px 44px rgba(0,0,0,.18);
+  margin-bottom:24px;
 }
 
 /* ===== FEED ===== */
@@ -94,12 +94,12 @@ section.active{display:block}
   gap:18px;
 }
 .service-card{
-  background:linear-gradient(180deg,#ffffff,#f8fafc);
+  background:#ffffff;
   border-radius:26px;
   padding:22px 14px;
   box-shadow:
     0 14px 30px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.95);
+    inset 0 1px 0 rgba(255,255,255,1);
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -111,13 +111,16 @@ section.active{display:block}
 }
 .service-card:hover{
   transform:translateY(-3px);
+  box-shadow:
+    0 20px 42px rgba(0,0,0,.24),
+    inset 0 1px 0 rgba(255,255,255,1);
 }
 .service-card span{
   font-size:46px;
-  background:linear-gradient(135deg,#0b3fb8,#2563eb);
+  background:linear-gradient(135deg,#1e3a8a,#3b82f6); /* น้ำเงินเข้มขึ้น */
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.25));
 }
 
 /* ===== CALCULATOR ===== */
@@ -178,7 +181,7 @@ nav{
   background:#0a3083;
   display:flex;
   padding:10px 6px;
-  z-index:10;
+  z-index:5;
 }
 nav button{
   flex:1;
@@ -253,8 +256,13 @@ nav button.active{
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
+        <span class="material-symbols-rounded">handshake</span>
+        ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
+      </div>
+
+      <div class="service-card" onclick="navigate('blank')">
         <span class="material-symbols-rounded">event_note</span>
-        บัญชีนัดพิจารณาคดี
+        บัญชีนัดพิจารณาคดี / พิจารณาคดีทางอิเล็กทรอนิกส์
       </div>
 
       <div class="service-card" onclick="navigate('download')">
@@ -340,7 +348,8 @@ window.onpopstate=e=>{
 };
 function showPage(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+  const page=document.getElementById(id);
+  if(page) page.classList.add("active");
   if(btn){
     document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
