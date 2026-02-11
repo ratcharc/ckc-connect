@@ -30,7 +30,7 @@ header{
 }
 .header-banner{
   width:100%;
-  height:auto;         /* แก้ให้ภาพพอดีจริง */
+  height:auto;
   display:block;
   object-fit:contain;
   background:#0a3083;
@@ -63,17 +63,18 @@ main{
   position:relative;
   z-index:2;
   padding:16px;
-  padding-bottom:180px;   /* กันชน bottom bar */
-  margin-top:-24px;       /* ลอยขึ้นเล็กน้อย */
+  padding-bottom:180px;
+  margin-top:-24px;
 }
 section{display:none}
 section.active{display:block}
 
-/* ===== FLOAT CARD ===== */
+/* ===== FLOAT CARD (ลอยขึ้นเพิ่มตรงนี้อย่างเดียว) ===== */
 .section-box{
   background:#eef1f5;
   border-radius:28px;
   padding:20px;
+  transform:translateY(-12px); /* <<< เพิ่มให้ลอยขึ้นอีก */
 }
 
 /* ===== FEED ===== */
