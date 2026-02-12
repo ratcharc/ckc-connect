@@ -12,7 +12,7 @@
 body{
   margin:0;
   font-family:system-ui,sans-serif;
-  background:#ffffff;
+  background:#eef5ff; /* ฟ้าอ่อน เข้ากับ header + bottom bar */
   color:#0f172a;
 }
 h3{
@@ -26,13 +26,12 @@ h3{
 header{
   position:relative;
   background:#0a3083;
-  overflow:hidden;
 }
 .header-banner{
   width:100%;
-  height:auto;
+  height:auto;              /* ไม่ครอป */
   display:block;
-  object-fit:contain;
+  object-fit:contain;       /* เห็นภาพครบทุกจอ */
   background:#0a3083;
 }
 .search-btn{
@@ -63,18 +62,17 @@ main{
   position:relative;
   z-index:2;
   padding:16px;
-  padding-bottom:180px;
-  margin-top:-24px;
+  padding-bottom:160px; /* กัน bottom bar */
+  margin-top:0;         /* ไม่ทับ header */
 }
 section{display:none}
 section.active{display:block}
 
-/* ===== FLOAT CARD (ลอยขึ้นเพิ่มตรงนี้อย่างเดียว) ===== */
+/* ===== FLOAT CARD ===== */
 .section-box{
-  background:#eef1f5;
+  background:#eef1f5; /* กล่องลอยสีเทา */
   border-radius:28px;
   padding:20px;
-  transform:translateY(-12px); /* <<< เพิ่มให้ลอยขึ้นอีก */
 }
 
 /* ===== FEED ===== */
@@ -89,20 +87,21 @@ section.active{display:block}
 .service-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:18px;
+  gap:14px;
 }
 .service-card{
-  background:#ffffff;
-  border-radius:26px;
-  padding:22px 14px;
+  background:#ffffff;      /* pill สีขาว */
+  border-radius:22px;      /* เล็กลง */
+  padding:16px 10px;       /* เล็กลง */
   box-shadow:
-    0 14px 30px rgba(0,0,0,.15),
+    0 10px 22px rgba(0,0,0,.18),
     inset 0 2px 0 rgba(255,255,255,1);
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:12px;
+  gap:8px;
   font-weight:700;
+  font-size:13px;
   text-align:center;
   cursor:pointer;
   transition:.2s;
@@ -111,11 +110,16 @@ section.active{display:block}
   transform:translateY(-3px);
 }
 .service-card span{
-  font-size:46px;
-  background:linear-gradient(135deg,#1e40af,#3b82f6);
+  font-size:40px;
+  background:linear-gradient(
+    135deg,
+    #1e3a8a,
+    #2563eb,
+    #60a5fa
+  ); /* ไล่สีชัด */
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 4px 6px rgba(0,0,0,.25));
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.35));
 }
 
 /* ===== CALCULATOR ===== */
@@ -176,7 +180,6 @@ nav{
   background:#0a3083;
   display:flex;
   padding:10px 6px;
-  z-index:5;
 }
 nav button{
   flex:1;
@@ -201,7 +204,7 @@ nav button.active{
 
 <header>
   <img class="header-banner"
-    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20228_20260210042349.png">
+    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
