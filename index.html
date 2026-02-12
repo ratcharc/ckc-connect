@@ -74,7 +74,7 @@ section.active{display:block}
   background:#eef1f5;
   border-radius:28px;
   padding:20px;
-  margin-top:8px;
+  margin-top:16px;
 }
 
 /* ===== FEED ===== */
@@ -96,16 +96,16 @@ section.active{display:block}
 }
 .service-card{
   background:#ffffff;
-  border-radius:22px;
+  border-radius:20px;
   padding:14px 16px;
   box-shadow:
-    0 10px 22px rgba(0,0,0,.12),
+    0 8px 18px rgba(0,0,0,.12),
     inset 0 1px 0 rgba(255,255,255,1);
   display:flex;
+  flex-direction:row;
   align-items:center;
-  gap:14px;
+  gap:12px;
   font-weight:700;
-  text-align:left;
   cursor:pointer;
   transition:.2s;
 }
@@ -114,7 +114,7 @@ section.active{display:block}
 }
 .service-card span{
   font-size:34px;
-  background:linear-gradient(135deg,#3b82f6,#60a5fa);
+  background:linear-gradient(135deg,#60a5fa,#2563eb);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   filter:drop-shadow(0 2px 3px rgba(0,0,0,.18));
@@ -178,6 +178,7 @@ nav{
   background:#0a3083;
   display:flex;
   padding:10px 6px;
+  z-index:3;
 }
 nav button{
   flex:1;
@@ -202,7 +203,7 @@ nav button.active{
 
 <header>
   <img class="header-banner"
-    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
