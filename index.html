@@ -12,7 +12,7 @@
 body{
   margin:0;
   font-family:system-ui,sans-serif;
-  background:#eef5ff; /* ฟ้าอ่อน เข้ากับ header + bottom bar */
+  background:#eaf2ff; /* ฟ้าอ่อน (แก้ตามที่ขอ) */
   color:#0f172a;
 }
 h3{
@@ -29,10 +29,8 @@ header{
 }
 .header-banner{
   width:100%;
-  height:auto;              /* ไม่ครอป */
+  height:auto;          /* ไม่ครอป */
   display:block;
-  object-fit:contain;       /* เห็นภาพครบทุกจอ */
-  background:#0a3083;
 }
 .search-btn{
   position:absolute;
@@ -59,18 +57,14 @@ header{
 
 /* ===== MAIN ===== */
 main{
-  position:relative;
-  z-index:2;
-  padding:16px;
-  padding-bottom:160px; /* กัน bottom bar */
-  margin-top:0;         /* ไม่ทับ header */
+  padding:20px 16px 140px; /* กัน bottom bar */
 }
 section{display:none}
 section.active{display:block}
 
 /* ===== FLOAT CARD ===== */
 .section-box{
-  background:#eef1f5; /* กล่องลอยสีเทา */
+  background:#f1f4f8;   /* กล่องลอยสีเทา */
   border-radius:28px;
   padding:20px;
 }
@@ -86,40 +80,40 @@ section.active{display:block}
 /* ===== SERVICE GRID ===== */
 .service-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:1fr; /* หน้า service = 1 คอลัมน์ */
   gap:14px;
 }
+
+/* หน้า e-Filing คง 2 คอลัมน์ */
+#efiling .service-grid{
+  grid-template-columns:repeat(2,1fr);
+}
+
 .service-card{
-  background:#ffffff;      /* pill สีขาว */
-  border-radius:22px;      /* เล็กลง */
-  padding:16px 10px;       /* เล็กลง */
+  background:#ffffff;
+  border-radius:22px;
+  padding:16px 12px; /* pill เล็กลง */
   box-shadow:
-    0 10px 22px rgba(0,0,0,.18),
-    inset 0 2px 0 rgba(255,255,255,1);
+    0 8px 18px rgba(0,0,0,.08),
+    inset 0 1px 0 rgba(255,255,255,.9);
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:8px;
   font-weight:700;
-  font-size:13px;
   text-align:center;
   cursor:pointer;
   transition:.2s;
 }
 .service-card:hover{
-  transform:translateY(-3px);
+  transform:translateY(-2px);
 }
 .service-card span{
-  font-size:40px;
-  background:linear-gradient(
-    135deg,
-    #1e3a8a,
-    #2563eb,
-    #60a5fa
-  ); /* ไล่สีชัด */
+  font-size:38px;
+  background:linear-gradient(135deg,#1e3a8a,#60a5fa); /* gradient ชัด */
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 4px 6px rgba(0,0,0,.35));
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.15)); /* เงาอ่อนลง */
 }
 
 /* ===== CALCULATOR ===== */
