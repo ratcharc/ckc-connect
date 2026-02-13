@@ -11,33 +11,31 @@
 /* ===== BASE ===== */
 body{
   margin:0;
-  font-family:system-ui,sans-serif;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:#ffffff;
   color:#0f172a;
 }
 h3{
   margin:0 0 14px;
   font-size:18px;
-  font-weight:900;
+  font-weight:800;
   color:#0a2a6b;
+  letter-spacing:.2px;
 }
 
-/* ===== HEADER (แก้เฉพาะให้เห็นภาพครบทุกอุปกรณ์) ===== */
+/* ===== HEADER (เห็นภาพครบ 100%) ===== */
 header{
   position:relative;
-  height:260px;
+  width:100%;
+  height:auto;
   background:#0a3083;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 .header-banner{
   width:100%;
-  height:100%;
-  object-fit:contain;       /* สำคัญ: เห็นภาพครบ */
-  object-position:center;
-  background:#0a3083;
+  height:auto;
+  display:block;
+  object-fit:contain;
 }
 
 /* ===== SEARCH ===== */
@@ -59,9 +57,10 @@ header{
 }
 .search-box input{
   padding:10px 16px;
-  border-radius:16px;
+  border-radius:18px;
   border:none;
-  width:190px;
+  width:200px;
+  box-shadow:0 8px 24px rgba(0,0,0,.15);
 }
 
 /* ===== MAIN ===== */
@@ -70,78 +69,83 @@ main{
   z-index:1;
   padding:16px;
   padding-bottom:140px;
-  margin-top:0;
 }
+
+/* ===== SECTION ===== */
 section{display:none}
 section.active{display:block}
 
 /* ===== FLOAT CARD ===== */
 .section-box{
-  background:#eef1f5;
-  border-radius:28px;
-  padding:20px;
-  margin-top:16px;
+  background:#f1f3f7;
+  border-radius:30px;
+  padding:22px;
+  margin-top:18px;
 }
 
 /* ===== FEED ===== */
-.feed{display:flex;flex-direction:column;gap:14px}
+.feed{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
 .feed-item{
   background:#ffffff;
   border-radius:18px;
   padding:14px;
 }
 
-/* ===== SERVICE GRID (1 คอลัมน์ตามเดิม) ===== */
+/* ===== SERVICE GRID ===== */
 .service-grid{
   display:grid;
   grid-template-columns:1fr;
   gap:14px;
 }
+
+/* e-Filing ให้เป็น 1 คอลัมน์ */
 #efiling .service-grid{
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:1fr;
 }
 
-/* ===== SERVICE CARD (polish ให้ modern ขึ้น) ===== */
+/* ===== SERVICE CARD ===== */
 .service-card{
   background:#ffffff;
-  border-radius:20px;
+  border-radius:22px;
   padding:16px 18px;
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.10),
+    inset 0 1px 0 rgba(255,255,255,1);
   display:flex;
   align-items:center;
   gap:16px;
+  font-size:15px;
   font-weight:600;
+  line-height:1.55;
   cursor:pointer;
-  transition:.2s ease;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  transition:.25s ease;
+  word-break:normal;
 }
 .service-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 24px rgba(0,0,0,.12);
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(0,0,0,.14);
 }
 
-/* ===== ICON ให้มีมิติ ไม่แข็ง ไม่กลืน ===== */
+/* ICON */
 .service-card span{
-  width:44px;
-  height:44px;
-  min-width:44px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:14px;
-  background:#eef2ff;
-  color:#1e3a8a;
-  font-size:22px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,1),
-    0 4px 10px rgba(30,58,138,.25);
+  font-size:30px;
+  min-width:36px;
+  background:linear-gradient(135deg,#60a5fa,#2563eb);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.18));
 }
 
 /* ===== CALCULATOR ===== */
 .calc-box{
   background:#ffffff;
-  border-radius:22px;
-  padding:16px;
-  box-shadow:0 16px 34px rgba(0,0,0,.14);
+  border-radius:24px;
+  padding:18px;
+  box-shadow:0 14px 30px rgba(0,0,0,.14);
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -174,14 +178,17 @@ section.active{display:block}
 }
 .preview-card{
   background:#ffffff;
-  border-radius:20px;
+  border-radius:22px;
   overflow:hidden;
   border:1px solid #e5e7eb;
-  box-shadow:0 18px 40px rgba(0,0,0,.2);
+  box-shadow:0 16px 36px rgba(0,0,0,.18);
 }
-.preview-card img{width:100%;display:block}
+.preview-card img{
+  width:100%;
+  display:block;
+}
 .preview-card div{
-  padding:10px;
+  padding:12px;
   font-size:13px;
   font-weight:700;
 }
@@ -211,7 +218,9 @@ nav button.active{
   background:rgba(255,255,255,.22);
   border-radius:18px;
 }
-.material-symbols-rounded{font-size:26px}
+.material-symbols-rounded{
+  font-size:26px;
+}
 </style>
 </head>
 
