@@ -23,19 +23,21 @@ h3{
   letter-spacing:.2px;
 }
 
-/* ===== HEADER (เห็นภาพครบ 100%) ===== */
+/* ===== HEADER ===== */
 header{
   position:relative;
   width:100%;
   height:auto;
   background:#0a3083;
   overflow:hidden;
+  padding-bottom:24px;
 }
 .header-banner{
   width:100%;
   height:auto;
   display:block;
   object-fit:contain;
+  transform:scale(1.06);
 }
 
 /* ===== SEARCH ===== */
@@ -81,6 +83,21 @@ section.active{display:block}
   border-radius:30px;
   padding:22px;
   margin-top:18px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ===== MODERN SOFT DECOR ===== */
+.section-box::after{
+  content:"";
+  position:absolute;
+  right:-40px;
+  bottom:-40px;
+  width:160px;
+  height:160px;
+  background:radial-gradient(circle,#c7d2fe,transparent 70%);
+  opacity:.6;
+  pointer-events:none;
 }
 
 /* ===== FEED ===== */
@@ -101,8 +118,6 @@ section.active{display:block}
   grid-template-columns:1fr;
   gap:14px;
 }
-
-/* e-Filing ให้เป็น 1 คอลัมน์ */
 #efiling .service-grid{
   grid-template-columns:1fr;
 }
@@ -110,39 +125,42 @@ section.active{display:block}
 /* ===== SERVICE CARD ===== */
 .service-card{
   background:#ffffff;
-  border-radius:22px;
-  padding:16px 18px;
-  box-shadow:
-    0 6px 18px rgba(0,0,0,.10),
-    inset 0 1px 0 rgba(255,255,255,1);
+  border-radius:30px;
+  padding:14px 18px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
   display:flex;
   align-items:center;
-  gap:16px;
+  justify-content:space-between;
   font-size:15px;
   font-weight:600;
   line-height:1.55;
   cursor:pointer;
   transition:.25s ease;
-  word-break:normal;
 }
 .service-card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 28px rgba(0,0,0,.14);
+  transform:translateY(-2px);
+  box-shadow:0 10px 22px rgba(0,0,0,.12);
 }
-
-/* ===== ICON (เพิ่มวงกลมพื้นหลังอ่อนๆ) ===== */
+.service-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
 .service-card span{
-  width:44px;
-  height:44px;
-  min-width:44px;
+  width:42px;
+  height:42px;
+  min-width:42px;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius:50%;
-  font-size:24px;
-  background:#eef2ff;
-  color:#2563eb;
-  box-shadow:0 4px 10px rgba(37,99,235,.15);
+  border-radius:14px;
+  font-size:22px;
+  background:#1e3a8a;
+  color:#ffffff;
+}
+.service-arrow{
+  font-size:22px;
+  color:#9ca3af;
 }
 
 /* ===== CALCULATOR ===== */
@@ -196,6 +214,18 @@ section.active{display:block}
   padding:12px;
   font-size:13px;
   font-weight:700;
+}
+
+/* ===== EMPTY HINT ===== */
+.empty-hint{
+  margin-top:16px;
+  padding:16px;
+  border-radius:18px;
+  background:#ffffff;
+  color:#64748b;
+  font-size:14px;
+  text-align:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.05);
 }
 
 /* ===== BOTTOM BAR ===== */
@@ -258,43 +288,67 @@ nav button.active{
     <div class="service-grid">
 
       <div class="service-card" onclick="navigate('fee')">
-        <span class="material-symbols-rounded">calculate</span>
-        อัตราค่าธรรมเนียม / ค่าขึ้นศาล
+        <div class="service-left">
+          <span class="material-symbols-rounded">calculate</span>
+          อัตราค่าธรรมเนียม / ค่าขึ้นศาล
+        </div>
+        <div class="service-arrow">></div>
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
-        <span class="material-symbols-rounded">list_alt</span>
-        ขั้นตอนการฟ้อง / ยื่นคำร้อง
+        <div class="service-left">
+          <span class="material-symbols-rounded">list_alt</span>
+          ขั้นตอนการฟ้อง / ยื่นคำร้อง
+        </div>
+        <div class="service-arrow">></div>
       </div>
 
       <div class="service-card" onclick="navigate('efiling')">
-        <span class="material-symbols-rounded">gavel</span>
-        e-Filing
+        <div class="service-left">
+          <span class="material-symbols-rounded">gavel</span>
+          e-Filing
+        </div>
+        <div class="service-arrow">></div>
       </div>
 
       <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
-        <span class="material-symbols-rounded">description</span>
-        CIOS
+        <div class="service-left">
+          <span class="material-symbols-rounded">description</span>
+          CIOS
+        </div>
+        <div class="service-arrow">></div>
       </div>
 
       <div class="service-card" onclick="openLink('https://www.coj.go.th')">
-        <span class="material-symbols-rounded">account_balance</span>
-        COJ
+        <div class="service-left">
+          <span class="material-symbols-rounded">account_balance</span>
+          COJ
+        </div>
+        <div class="service-arrow">></div>
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
-        <span class="material-symbols-rounded">event_note</span>
-        ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
+        <div class="service-left">
+          <span class="material-symbols-rounded">event_note</span>
+          ไกล่เกลี่ย / พิจารณาคดีทางอิเล็กทรอนิกส์
+        </div>
+        <div class="service-arrow">></div>
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
-        <span class="material-symbols-rounded">calendar_month</span>
-        บัญชีนัดพิจารณาคดี / พิจารณาคดีทางอิเล็กทรอนิกส์
+        <div class="service-left">
+          <span class="material-symbols-rounded">calendar_month</span>
+          บัญชีนัดพิจารณาคดี / พิจารณาคดีทางอิเล็กทรอนิกส์
+        </div>
+        <div class="service-arrow">></div>
       </div>
 
       <div class="service-card" onclick="navigate('download')">
-        <span class="material-symbols-rounded">download</span>
-        ดาวน์โหลดแบบฟอร์ม
+        <div class="service-left">
+          <span class="material-symbols-rounded">download</span>
+          ดาวน์โหลดแบบฟอร์ม
+        </div>
+        <div class="service-arrow">></div>
       </div>
 
     </div>
@@ -306,12 +360,18 @@ nav button.active{
     <h3>เลือกระบบ e-Filing</h3>
     <div class="service-grid">
       <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
-        <span class="material-symbols-rounded">gavel</span>
-        e-Filing v.3
+        <div class="service-left">
+          <span class="material-symbols-rounded">gavel</span>
+          e-Filing v.3
+        </div>
+        <div class="service-arrow">></div>
       </div>
       <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
-        <span class="material-symbols-rounded">rocket_launch</span>
-        e-Filing v.4
+        <div class="service-left">
+          <span class="material-symbols-rounded">rocket_launch</span>
+          e-Filing v.4
+        </div>
+        <div class="service-arrow">></div>
       </div>
     </div>
   </div>
