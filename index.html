@@ -23,7 +23,7 @@ h3{
   letter-spacing:.2px;
 }
 
-/* ===== HEADER (แก้ให้เห็นภาพครบ มือถือ/แท็บเล็ต) ===== */
+/* ===== HEADER (เห็นภาพครบทุกอุปกรณ์) ===== */
 header{
   position:relative;
   width:100%;
@@ -98,63 +98,61 @@ section.active{display:block}
 .service-grid{
   display:grid;
   grid-template-columns:1fr;
-  gap:16px;
+  gap:14px;
 }
 
-/* e-Filing ให้เป็น 1 คอลัมน์ */
-#efiling .service-grid{
-  grid-template-columns:1fr;
-}
-
-/* ===== SERVICE CARD (แก้ความเบียด / ไม่สั้นป้อม) ===== */
+/* ===== SERVICE CARD (ปรับตามที่ขอ) ===== */
 .service-card{
   background:#ffffff;
   border-radius:30px;
-  padding:18px 56px 18px 20px;
+  padding:12px 54px 12px 68px;
   box-shadow:
     0 8px 22px rgba(0,0,0,.10),
     inset 0 1px 0 rgba(255,255,255,1);
   display:flex;
   align-items:center;
-  gap:16px;
-  font-size:15px;
+  font-size:14px;
   font-weight:600;
-  line-height:1.6;
+  line-height:1.5;
   cursor:pointer;
   transition:.25s ease;
   position:relative;
-  min-height:64px;
+  white-space:normal;
+  word-break:keep-all;
 }
 .service-card:hover{
-  transform:translateY(-3px);
+  transform:translateY(-2px);
   box-shadow:0 14px 32px rgba(0,0,0,.14);
 }
 
-/* ===== ICON ===== */
-.service-card span{
-  width:44px;
-  height:44px;
-  min-width:44px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:14px;
-  font-size:22px;
+/* แถบน้ำเงินชิดซ้าย */
+.service-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:56px;
   background:#1e3a8a;
-  color:#ffffff;
-  box-shadow:0 6px 14px rgba(30,58,138,.35);
+  border-radius:30px 0 0 30px;
 }
 
-/* ===== ลูกศรขวา (ไม่เบียดข้อความ) ===== */
+/* ICON */
+.service-card span{
+  position:absolute;
+  left:14px;
+  font-size:22px;
+  color:#ffffff;
+}
+
+/* ลูกศรขวา */
 .service-card::after{
   content:"chevron_right";
   font-family:"Material Symbols Rounded";
-  font-size:28px;
+  font-size:26px;
   color:#94a3b8;
   position:absolute;
   right:18px;
-  top:50%;
-  transform:translateY(-50%);
 }
 
 /* ===== CALCULATOR ===== */
@@ -245,7 +243,7 @@ nav button.active{
 
 <header>
   <img class="header-banner"
-    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
   <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
   <div class="search-box" id="searchBox">
     <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
@@ -275,13 +273,7 @@ nav button.active{
       </div>
 
       <div class="service-card" onclick="navigate('blank')">
-        <span class="material-symbols-rounded">list_alt</span>
-        ขั้นตอนการฟ้อง / ยื่นคำร้อง
-      </div>
-
-      <!-- เพิ่มเมนู ตรวจสอบสถานะคดี -->
-      <div class="service-card" onclick="navigate('blank')">
-        <span class="material-symbols-rounded">fact_check</span>
+        <span class="material-symbols-rounded">search</span>
         ตรวจสอบสถานะคดี
       </div>
 
