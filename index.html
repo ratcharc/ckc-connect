@@ -23,15 +23,12 @@ h3{
   letter-spacing:.2px;
 }
 
-/* ===== HEADER (แสดงภาพครบ ไม่ครอป ไม่ขยายเกิน) ===== */
+/* ===== HEADER (เห็นภาพครบทุกจอ ไม่ crop) ===== */
 header{
+  position:relative;
   width:100%;
   background:#0a3083;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:10px 0;
-  position:relative;
+  padding:16px 0;
 }
 .header-banner{
   width:100%;
@@ -43,7 +40,7 @@ header{
 /* ===== SEARCH ===== */
 .search-btn{
   position:absolute;
-  top:14px;
+  top:18px;
   right:14px;
   font-size:26px;
   color:#fff;
@@ -52,16 +49,16 @@ header{
 }
 .search-box{
   position:absolute;
-  top:50px;
+  top:56px;
   right:14px;
   display:none;
   z-index:2;
 }
 .search-box input{
-  padding:8px 14px;
+  padding:10px 16px;
   border-radius:16px;
   border:none;
-  width:190px;
+  width:200px;
   box-shadow:0 8px 24px rgba(0,0,0,.15);
 }
 
@@ -70,7 +67,7 @@ main{
   position:relative;
   z-index:1;
   padding:16px;
-  padding-bottom:130px;
+  padding-bottom:140px;
 }
 
 /* ===== SECTION ===== */
@@ -80,7 +77,7 @@ section.active{display:block}
 /* ===== FLOAT CARD ===== */
 .section-box{
   background:#f1f3f7;
-  border-radius:22px;
+  border-radius:26px;
   padding:20px;
   margin-top:18px;
 }
@@ -104,67 +101,66 @@ section.active{display:block}
   gap:12px;
 }
 
-/* ===== SERVICE CARD ===== */
+/* ===== SERVICE CARD (pill แบบในภาพ) ===== */
 .service-card{
+  position:relative;
   background:#ffffff;
-  border-radius:18px;
-  padding:12px 18px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  border-radius:20px;
+  padding:12px 44px 12px 64px;
   display:flex;
   align-items:center;
-  gap:12px;
   font-size:14px;
   font-weight:600;
-  line-height:1.4;
+  line-height:1.5;
   cursor:pointer;
-  position:relative;
-  white-space:nowrap;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
 }
-.service-card:hover{
-  transform:translateY(-2px);
+
+/* แถบสีน้ำเงินชิดซ้าย */
+.service-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:52px;
+  background:#1e3a8a;
+  border-radius:20px 0 0 20px;
 }
 
 /* ICON */
 .service-card span{
-  width:36px;
-  height:36px;
-  min-width:36px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:10px;
-  font-size:20px;
-  background:#0a3083;
+  position:absolute;
+  left:14px;
+  font-size:22px;
   color:#ffffff;
 }
 
-/* ลูกศร */
+/* ลูกศรขวา */
 .service-card::after{
   content:"chevron_right";
   font-family:"Material Symbols Rounded";
-  font-size:22px;
-  color:#94a3b8;
   position:absolute;
   right:14px;
+  font-size:22px;
+  color:#94a3b8;
 }
 
 /* ===== CALCULATOR ===== */
 .calc-box{
   background:#ffffff;
-  border-radius:20px;
+  border-radius:22px;
   padding:18px;
   box-shadow:0 14px 30px rgba(0,0,0,.14);
-  display:flex;
-  flex-direction:column;
-  gap:12px;
 }
 .calc-box input{
-  padding:10px;
+  padding:12px;
   border-radius:12px;
   border:1px solid #d1d5db;
 }
 .calc-box button{
-  padding:10px;
+  margin-top:10px;
+  padding:12px;
   border:none;
   border-radius:12px;
   background:#1e3a8a;
@@ -172,8 +168,9 @@ section.active{display:block}
   font-weight:700;
 }
 .calc-result{
+  margin-top:10px;
   background:#eef2ff;
-  padding:10px;
+  padding:12px;
   border-radius:12px;
   font-weight:700;
 }
@@ -200,14 +197,14 @@ section.active{display:block}
   font-weight:700;
 }
 
-/* ===== BOTTOM BAR (เล็กลงตามที่ขอ) ===== */
+/* ===== BOTTOM BAR ===== */
 nav{
   position:fixed;
   bottom:0;
   width:100%;
   background:#0a3083;
   display:flex;
-  padding:6px 4px;
+  padding:8px 4px;
   z-index:3;
 }
 nav button{
@@ -222,7 +219,7 @@ nav button{
   font-size:10px;
 }
 nav button.active{
-  background:rgba(255,255,255,.18);
+  background:rgba(255,255,255,.22);
   border-radius:14px;
 }
 .material-symbols-rounded{
@@ -269,7 +266,7 @@ nav button.active{
         ขั้นตอนการฟ้อง / ยื่นคำร้อง
       </div>
 
-      <!-- เพิ่มเมนูใหม่ตรงนี้ -->
+      <!-- เมนูที่เพิ่ม -->
       <div class="service-card" onclick="openLink('https://cios.coj.go.th/tracking/')">
         <span class="material-symbols-rounded">search</span>
         ติดตามสำนวนคดี
