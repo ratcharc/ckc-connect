@@ -35,18 +35,18 @@ h3{
   color:var(--primary);
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER FIX ===== */
 header{
   position:relative;
   width:100%;
-  height:240px;
+  height:220px;          /* ความสูงคงที่ */
   overflow:hidden;
-  background:var(--primary);
 }
+
 .header-banner{
   width:100%;
   height:100%;
-  object-fit:cover;        /* แก้: ภาพเต็ม header ไม่ครอป ไม่เหลือขอบ */
+  object-fit:cover;      /* เต็ม header ไม่ครอปแปลก */
   display:block;
 }
 
@@ -58,13 +58,17 @@ header{
   font-size:26px;
   color:#fff;
   cursor:pointer;
+  z-index:3;
 }
+
 .search-box{
   position:absolute;
   top:56px;
   right:16px;
   display:none;
+  z-index:3;
 }
+
 .search-box input{
   padding:10px 16px;
   border-radius:14px;
@@ -77,6 +81,9 @@ header{
 main{
   padding:16px;
   padding-bottom:140px;
+  margin-top:-48px;     /* ดึง content ขึ้นทับ header */
+  position:relative;
+  z-index:2;
 }
 
 /* SECTION */
@@ -88,7 +95,6 @@ section.active{display:block}
   background:linear-gradient(180deg,#ffffff,#f1f5f9);
   border-radius:var(--radius-lg);
   padding:20px;
-  margin-top:-56px;     /* แก้: ยกกล่องขึ้นมาทับ header เล็กน้อย */
   box-shadow:var(--shadow-lg);
 }
 
@@ -286,11 +292,6 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 e-Filing
 </div>
 
-<div class="service-card" onclick="openLink('https://cios.coj.go.th')">
-<div class="icon-pill"><span class="material-symbols-rounded">description</span></div>
-CIOS
-</div>
-
 <div class="service-card" onclick="navigate('coj')">
 <div class="icon-pill"><span class="material-symbols-rounded">account_balance</span></div>
 COJ
@@ -317,7 +318,7 @@ COJ
 
 <section id="coj">
 <div class="section-box">
-<h3>เลือกบริการ COJ</h3>
+<h3>เลือกระบบ COJ</h3>
 <div class="service-grid">
 
 <div class="service-card" onclick="openLink('https://www.coj.go.th')">
