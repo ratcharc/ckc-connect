@@ -35,19 +35,18 @@ h3{
   color:var(--primary);
 }
 
-/* ===== HEADER FIXED ===== */
+/* ===== HEADER ===== */
 header{
   position:relative;
   width:100%;
-  height:220px;
-  background:var(--primary);
+  height:240px;
   overflow:hidden;
+  background:var(--primary);
 }
 .header-banner{
   width:100%;
   height:100%;
-  object-fit:contain;
-  background:var(--primary);
+  object-fit:cover;        /* แก้: ภาพเต็ม header ไม่ครอป ไม่เหลือขอบ */
   display:block;
 }
 
@@ -89,7 +88,7 @@ section.active{display:block}
   background:linear-gradient(180deg,#ffffff,#f1f5f9);
   border-radius:var(--radius-lg);
   padding:20px;
-  margin-top:-36px;
+  margin-top:-56px;     /* แก้: ยกกล่องขึ้นมาทับ header เล็กน้อย */
   box-shadow:var(--shadow-lg);
 }
 
@@ -156,19 +155,6 @@ section.active{display:block}
   top:50%;
   transform:translateY(-50%);
   color:#94a3b8;
-}
-
-/* SUB MENU */
-.sub-menu{
-  display:none;
-  margin-top:8px;
-  padding-left:10px;
-  gap:10px;
-}
-.sub-menu .service-card{
-  background:#f8fafc;
-  box-shadow:none;
-  border:1px solid #e5e7eb;
 }
 
 /* CALCULATOR */
@@ -305,21 +291,9 @@ e-Filing
 CIOS
 </div>
 
-<div class="service-card" onclick="toggleCOJ()">
+<div class="service-card" onclick="navigate('coj')">
 <div class="icon-pill"><span class="material-symbols-rounded">account_balance</span></div>
 COJ
-</div>
-
-<div class="sub-menu" id="cojSub">
-<div class="service-card" onclick="openLink('https://www.coj.go.th')">
-<div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
-COJ (เว็บไซต์หลัก)
-</div>
-
-<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
-<div class="icon-pill"><span class="material-symbols-rounded">link</span></div>
-COJ Connect
-</div>
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
@@ -335,6 +309,25 @@ COJ Connect
 <div class="service-card" onclick="navigate('download')">
 <div class="icon-pill"><span class="material-symbols-rounded">download</span></div>
 ดาวน์โหลดแบบฟอร์ม
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="coj">
+<div class="section-box">
+<h3>เลือกบริการ COJ</h3>
+<div class="service-grid">
+
+<div class="service-card" onclick="openLink('https://www.coj.go.th')">
+<div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
+COJ (เว็บไซต์หลัก)
+</div>
+
+<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
+<div class="icon-pill"><span class="material-symbols-rounded">link</span></div>
+COJ Connect
 </div>
 
 </div>
@@ -423,10 +416,6 @@ function openLink(url){window.open(url,"_blank")}
 function toggleSearch(){
 const b=document.getElementById("searchBox");
 b.style.display=b.style.display==="block"?"none":"block";
-}
-function toggleCOJ(){
-const s=document.getElementById("cojSub");
-s.style.display=s.style.display==="grid"?"none":"grid";
 }
 function doSearch(e){
 if(e.key==="Enter"){
