@@ -23,22 +23,19 @@ h3{
   letter-spacing:.2px;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (ไม่ยืด ไม่ครอป เห็นภาพครบ) ===== */
 header{
   position:relative;
   width:100%;
-  height:220px;
+  aspect-ratio:16/7;
   background:#0a3083;
   overflow:hidden;
-  border-bottom-left-radius:18px;
-  border-bottom-right-radius:18px;
 }
 .header-banner{
   width:100%;
   height:100%;
   display:block;
   object-fit:contain;
-  background:#0a3083;
 }
 
 /* ===== SEARCH ===== */
@@ -78,9 +75,9 @@ main{
 section{display:none}
 section.active{display:block}
 
-/* ===== SECTION BOX ===== */
+/* ===== FLOAT CARD ===== */
 .section-box{
-  background:#eef0f4;
+  background:#eef1f5;
   border-radius:26px;
   padding:20px;
   margin-top:18px;
@@ -96,7 +93,7 @@ section.active{display:block}
   background:#ffffff;
   border-radius:18px;
   padding:14px;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
 
 /* ===== SERVICE GRID ===== */
@@ -109,22 +106,20 @@ section.active{display:block}
 /* ===== SERVICE CARD ===== */
 .service-card{
   position:relative;
-  background:linear-gradient(180deg,#ffffff,#f8fafc);
-  border-radius:16px;
-  padding:14px 48px 14px 76px;
+  background:#ffffff;
+  border-radius:18px;
+  padding:16px 48px 16px 76px;
   display:flex;
   align-items:center;
   font-size:14px;
   font-weight:600;
   line-height:1.5;
   cursor:pointer;
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.10),
-    inset 0 1px 0 rgba(255,255,255,.8);
+  box-shadow:0 10px 26px rgba(0,0,0,.12);
 }
 
-/* ===== ICON PILL ===== */
-.icon-pill{
+/* pill icon */
+.service-card .icon-pill{
   position:absolute;
   left:14px;
   width:44px;
@@ -133,14 +128,14 @@ section.active{display:block}
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(135deg,#2563eb,#1e3a8a);
+  background:linear-gradient(145deg,#1e40af,#2563eb);
   box-shadow:
-    0 6px 16px rgba(37,99,235,.45),
-    inset 0 1px 2px rgba(255,255,255,.4);
+    0 6px 14px rgba(37,99,235,.45),
+    inset 0 1px 0 rgba(255,255,255,.35);
 }
-.icon-pill span{
+.service-card .material-symbols-rounded{
+  font-size:24px;
   color:#ffffff;
-  font-size:22px;
 }
 
 /* arrow */
@@ -151,6 +146,35 @@ section.active{display:block}
   right:14px;
   font-size:22px;
   color:#94a3b8;
+}
+
+/* ===== SUB MENU GRID (2 COL) ===== */
+.sub-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.sub-card{
+  background:#ffffff;
+  border-radius:22px;
+  padding:18px 12px;
+  text-align:center;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+.sub-card .icon-pill{
+  position:static;
+  margin:0 auto 10px;
+  width:56px;
+  height:56px;
+  border-radius:16px;
+}
+.sub-card .material-symbols-rounded{
+  font-size:28px;
+}
+.sub-card div{
+  font-size:14px;
+  font-weight:700;
+  line-height:1.4;
 }
 
 /* ===== CALCULATOR ===== */
@@ -213,8 +237,6 @@ nav{
   display:flex;
   padding:8px 4px;
   z-index:3;
-  border-top-left-radius:18px;
-  border-top-right-radius:18px;
 }
 nav button{
   flex:1;
@@ -231,9 +253,7 @@ nav button.active{
   background:rgba(255,255,255,.22);
   border-radius:14px;
 }
-.material-symbols-rounded{
-  font-size:22px;
-}
+.material-symbols-rounded{font-size:22px}
 </style>
 </head>
 
@@ -263,6 +283,7 @@ nav button.active{
 <section id="service">
   <div class="section-box">
     <h3>ข้อมูลบริการ</h3>
+
     <div class="service-grid">
 
       <div class="service-card" onclick="navigate('fee')">
@@ -290,6 +311,7 @@ nav button.active{
         CIOS
       </div>
 
+      <!-- ปรับ COJ -->
       <div class="service-card" onclick="navigate('coj')">
         <div class="icon-pill"><span class="material-symbols-rounded">account_balance</span></div>
         COJ
@@ -316,16 +338,19 @@ nav button.active{
 
 <section id="coj">
   <div class="section-box">
-    <h3>COJ</h3>
-    <div class="service-grid">
-      <div class="service-card" onclick="openLink('https://www.coj.go.th')">
+    <h3>ระบบ COJ</h3>
+    <div class="sub-grid">
+
+      <div class="sub-card" onclick="openLink('https://www.coj.go.th')">
         <div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
-        เว็บไซต์ COJ
+        <div>เว็บไซต์ COJ</div>
       </div>
-      <div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
+
+      <div class="sub-card" onclick="openLink('https://connect.coj.go.th/login')">
         <div class="icon-pill"><span class="material-symbols-rounded">hub</span></div>
-        COJ Connect
+        <div>COJ<br>Connect</div>
       </div>
+
     </div>
   </div>
 </section>
