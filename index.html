@@ -8,236 +8,202 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
-/* ===== BASE ===== */
+
+/* ================= BASE ================= */
 body{
   margin:0;
   font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#ffffff;
+  background:#f6f8fc;
   color:#0f172a;
-}
-h3{
-  margin:0 0 14px;
-  font-size:18px;
-  font-weight:800;
-  color:#0a2a6b;
-  letter-spacing:.2px;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* ===== HEADER (ไม่ยืด ไม่ครอป เห็นภาพครบ) ===== */
+h3{
+  margin:0 0 18px;
+  font-size:19px;
+  font-weight:800;
+  color:#0a2a6b;
+}
+
+/* ================= HEADER ================= */
 header{
   position:relative;
   width:100%;
-  aspect-ratio:16/7;
   background:#0a3083;
   overflow:hidden;
 }
+
 .header-banner{
   width:100%;
-  height:100%;
-  display:block;
-  object-fit:contain;
+  height:280px;
+  object-fit:cover;
+  filter:brightness(.92);
 }
 
-/* ===== SEARCH ===== */
+/* gradient overlay ให้ดูแพง */
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(10,48,131,.55),
+    rgba(10,48,131,.15),
+    rgba(246,248,252,1)
+  );
+}
+
+/* ================= SEARCH ================= */
 .search-btn{
   position:absolute;
-  top:18px;
-  right:14px;
+  top:20px;
+  right:16px;
   font-size:26px;
   color:#fff;
+  z-index:3;
   cursor:pointer;
-  z-index:2;
 }
+
 .search-box{
   position:absolute;
-  top:56px;
-  right:14px;
+  top:60px;
+  right:16px;
   display:none;
-  z-index:2;
-}
-.search-box input{
-  padding:10px 16px;
-  border-radius:16px;
-  border:none;
-  width:200px;
-  box-shadow:0 8px 24px rgba(0,0,0,.15);
+  z-index:3;
 }
 
-/* ===== MAIN ===== */
+.search-box input{
+  padding:12px 18px;
+  border-radius:20px;
+  border:none;
+  width:220px;
+  outline:none;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+/* ================= MAIN ================= */
 main{
   position:relative;
-  z-index:1;
-  padding:16px;
-  padding-bottom:140px;
+  margin-top:-60px;
+  padding:0 18px 160px;
 }
 
-/* ===== SECTION ===== */
+/* ================= SECTION ================= */
 section{display:none}
 section.active{display:block}
 
-/* ===== FLOAT CARD ===== */
+/* ================= SECTION BOX ================= */
 .section-box{
-  background:#eef1f5;
-  border-radius:26px;
-  padding:20px;
-  margin-top:18px;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(6px);
+  border-radius:30px;
+  padding:26px;
+  margin-top:26px;
+  box-shadow:0 30px 60px rgba(15,23,42,.12);
 }
 
-/* ===== FEED ===== */
+/* ================= FEED ================= */
 .feed{
   display:flex;
   flex-direction:column;
-  gap:14px;
+  gap:16px;
 }
+
 .feed-item{
   background:#ffffff;
-  border-radius:18px;
-  padding:14px;
-  box-shadow:0 6px 18px rgba(0,0,0,.08);
+  border-radius:20px;
+  padding:18px;
+  font-weight:500;
+  box-shadow:0 10px 24px rgba(0,0,0,.08);
 }
 
-/* ===== SERVICE GRID ===== */
+/* ================= SERVICE GRID ================= */
 .service-grid{
   display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
 }
 
-/* ===== SERVICE CARD ===== */
+/* ================= SERVICE CARD ================= */
 .service-card{
-  position:relative;
   background:#ffffff;
-  border-radius:18px;
-  padding:16px 48px 16px 76px;
+  border-radius:28px;
+  padding:26px 18px 22px;
   display:flex;
+  flex-direction:column;
   align-items:center;
-  font-size:14px;
+  text-align:center;
+  font-size:13px;
   font-weight:600;
   line-height:1.5;
   cursor:pointer;
-  box-shadow:0 10px 26px rgba(0,0,0,.12);
+  box-shadow:0 20px 40px rgba(15,23,42,.12);
+  transition:.25s ease;
 }
 
-/* pill icon */
-.service-card .icon-pill{
-  position:absolute;
-  left:14px;
-  width:44px;
-  height:44px;
-  border-radius:14px;
+.service-card:active{
+  transform:scale(.97);
+}
+
+/* icon container */
+.icon-pill{
+  width:64px;
+  height:64px;
+  border-radius:22px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(145deg,#1e40af,#2563eb);
-  box-shadow:
-    0 6px 14px rgba(37,99,235,.45),
-    inset 0 1px 0 rgba(255,255,255,.35);
-}
-.service-card .material-symbols-rounded{
-  font-size:24px;
-  color:#ffffff;
+  margin-bottom:14px;
+  background:linear-gradient(135deg,#5b8dff,#1e3a8a);
+  box-shadow:0 14px 28px rgba(30,58,138,.35);
 }
 
-/* arrow */
-.service-card::after{
-  content:"chevron_right";
-  font-family:"Material Symbols Rounded";
-  position:absolute;
-  right:14px;
+/* icon */
+.material-symbols-rounded{
   font-size:22px;
-  color:#94a3b8;
 }
 
-/* ===== SUB MENU GRID (2 COL) ===== */
-.sub-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-.sub-card{
-  background:#ffffff;
-  border-radius:22px;
-  padding:18px 12px;
-  text-align:center;
-  box-shadow:0 10px 24px rgba(0,0,0,.12);
-}
-.sub-card .icon-pill{
-  position:static;
-  margin:0 auto 10px;
-  width:56px;
-  height:56px;
-  border-radius:16px;
-}
-.sub-card .material-symbols-rounded{
-  font-size:28px;
-}
-.sub-card div{
-  font-size:14px;
-  font-weight:700;
-  line-height:1.4;
-}
-
-/* ===== CALCULATOR ===== */
-.calc-box{
-  background:#ffffff;
-  border-radius:22px;
-  padding:18px;
-  box-shadow:0 14px 30px rgba(0,0,0,.14);
-}
-.calc-box input{
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #d1d5db;
-}
-.calc-box button{
-  margin-top:10px;
-  padding:12px;
-  border:none;
-  border-radius:12px;
-  background:#1e3a8a;
+.service-card .material-symbols-rounded{
+  font-size:32px;
   color:#fff;
-  font-weight:700;
-}
-.calc-result{
-  margin-top:10px;
-  background:#eef2ff;
-  padding:12px;
-  border-radius:12px;
-  font-weight:700;
 }
 
-/* ===== DOWNLOAD ===== */
+/* ================= DOWNLOAD ================= */
 .preview-list{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:14px;
+  gap:18px;
 }
+
 .preview-card{
   background:#ffffff;
-  border-radius:18px;
+  border-radius:22px;
   overflow:hidden;
-  border:1px solid #e5e7eb;
+  box-shadow:0 14px 30px rgba(0,0,0,.12);
 }
+
 .preview-card img{
   width:100%;
   display:block;
 }
+
 .preview-card div{
-  padding:12px;
+  padding:14px;
   font-size:13px;
   font-weight:700;
 }
 
-/* ===== BOTTOM BAR ===== */
+/* ================= BOTTOM NAV ================= */
 nav{
   position:fixed;
   bottom:0;
   width:100%;
-  background:#0a3083;
+  background:rgba(10,48,131,.95);
+  backdrop-filter:blur(10px);
   display:flex;
-  padding:8px 4px;
-  z-index:3;
+  padding:10px 6px;
 }
+
 nav button{
   flex:1;
   border:none;
@@ -246,212 +212,172 @@ nav button{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:2px;
+  gap:4px;
   font-size:10px;
+  cursor:pointer;
 }
+
 nav button.active{
-  background:rgba(255,255,255,.22);
-  border-radius:14px;
+  background:rgba(255,255,255,.18);
+  border-radius:16px;
 }
-.material-symbols-rounded{font-size:22px}
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <img class="header-banner"
-    src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
-  <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
-  <div class="search-box" id="searchBox">
-    <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
-  </div>
+<img class="header-banner"
+src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+
+<span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
+
+<div class="search-box" id="searchBox">
+<input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
+</div>
 </header>
 
 <main>
 
+<!-- ================= HOME ================= -->
 <section id="home" class="active">
-  <div class="section-box">
-    <h3>รายการโพส</h3>
-    <div class="feed">
-      <div class="feed-item">ประกาศศาลรายการที่ 1</div>
-      <div class="feed-item">ประกาศศาลรายการที่ 2</div>
-    </div>
-  </div>
+<div class="section-box">
+<h3>รายการโพส</h3>
+<div class="feed">
+<div class="feed-item">ประกาศศาลรายการที่ 1</div>
+<div class="feed-item">ประกาศศาลรายการที่ 2</div>
+</div>
+</div>
 </section>
 
+<!-- ================= SERVICE ================= -->
 <section id="service">
-  <div class="section-box">
-    <h3>ข้อมูลบริการ</h3>
+<div class="section-box">
+<h3>ข้อมูลบริการ</h3>
 
-    <div class="service-grid">
+<div class="service-grid">
 
-      <div class="service-card" onclick="navigate('fee')">
-        <div class="icon-pill"><span class="material-symbols-rounded">calculate</span></div>
-        อัตราค่าธรรมเนียม (ค่าขึ้นศาล)
-      </div>
+<div class="service-card" onclick="navigate('fee')">
+<div class="icon-pill">
+<span class="material-symbols-rounded">calculate</span>
+</div>
+อัตราค่าธรรมเนียม<br>(ค่าขึ้นศาล)
+</div>
 
-      <div class="service-card" onclick="navigate('blank')">
-        <div class="icon-pill"><span class="material-symbols-rounded">list_alt</span></div>
-        ขั้นตอนการฟ้องและยื่นคำร้อง
-      </div>
+<div class="service-card" onclick="navigate('blank')">
+<div class="icon-pill">
+<span class="material-symbols-rounded">list_alt</span>
+</div>
+ขั้นตอนการฟ้อง<br>และยื่นคำร้อง
+</div>
 
-      <div class="service-card" onclick="openLink('https://cios.coj.go.th/tracking/')">
-        <div class="icon-pill"><span class="material-symbols-rounded">search</span></div>
-        ติดตามสำนวนคดี
-      </div>
+<div class="service-card" onclick="openLink('https://cios.coj.go.th/tracking/')">
+<div class="icon-pill">
+<span class="material-symbols-rounded">search</span>
+</div>
+ติดตามสำนวนคดี
+</div>
 
-      <div class="service-card" onclick="navigate('efiling')">
-        <div class="icon-pill"><span class="material-symbols-rounded">gavel</span></div>
-        e-Filing
-      </div>
+<div class="service-card" onclick="navigate('efiling')">
+<div class="icon-pill">
+<span class="material-symbols-rounded">gavel</span>
+</div>
+e-Filing
+</div>
 
-      <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
-        <div class="icon-pill"><span class="material-symbols-rounded">description</span></div>
-        CIOS
-      </div>
+<div class="service-card" onclick="navigate('cojmenu')">
+<div class="icon-pill">
+<span class="material-symbols-rounded">account_balance</span>
+</div>
+COJ
+</div>
 
-      <!-- ปรับ COJ -->
-      <div class="service-card" onclick="navigate('coj')">
-        <div class="icon-pill"><span class="material-symbols-rounded">account_balance</span></div>
-        COJ
-      </div>
+<div class="service-card" onclick="navigate('blank')">
+<div class="icon-pill">
+<span class="material-symbols-rounded">event_note</span>
+</div>
+ไกล่เกลี่ยและพิจารณาคดี<br>ทางอิเล็กทรอนิกส์
+</div>
 
-      <div class="service-card" onclick="navigate('blank')">
-        <div class="icon-pill"><span class="material-symbols-rounded">event_note</span></div>
-        ไกล่เกลี่ยและพิจารณาคดีทางอิเล็กทรอนิกส์
-      </div>
+<div class="service-card" onclick="navigate('blank')">
+<div class="icon-pill">
+<span class="material-symbols-rounded">calendar_month</span>
+</div>
+บัญชีนัดพิจารณาคดี<br>และพิจารณาคดีทางอิเล็กทรอนิกส์
+</div>
 
-      <div class="service-card" onclick="navigate('blank')">
-        <div class="icon-pill"><span class="material-symbols-rounded">calendar_month</span></div>
-        บัญชีนัดพิจารณาคดี<br>และพิจารณาคดีทางอิเล็กทรอนิกส์
-      </div>
+<div class="service-card" onclick="navigate('download')">
+<div class="icon-pill">
+<span class="material-symbols-rounded">download</span>
+</div>
+ดาวน์โหลดแบบฟอร์ม
+</div>
 
-      <div class="service-card" onclick="navigate('download')">
-        <div class="icon-pill"><span class="material-symbols-rounded">download</span></div>
-        ดาวน์โหลดแบบฟอร์ม
-      </div>
-
-    </div>
-  </div>
+</div>
+</div>
 </section>
-
-<section id="coj">
-  <div class="section-box">
-    <h3>ระบบ COJ</h3>
-    <div class="sub-grid">
-
-      <div class="sub-card" onclick="openLink('https://www.coj.go.th')">
-        <div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
-        <div>เว็บไซต์ COJ</div>
-      </div>
-
-      <div class="sub-card" onclick="openLink('https://connect.coj.go.th/login')">
-        <div class="icon-pill"><span class="material-symbols-rounded">hub</span></div>
-        <div>COJ<br>Connect</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="efiling">
-  <div class="section-box">
-    <h3>เลือกระบบ e-Filing</h3>
-    <div class="service-grid">
-      <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
-        <div class="icon-pill"><span class="material-symbols-rounded">gavel</span></div>
-        e-Filing v.3
-      </div>
-      <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
-        <div class="icon-pill"><span class="material-symbols-rounded">rocket_launch</span></div>
-        e-Filing v.4
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="fee">
-  <div class="section-box">
-    <h3>คำนวณค่าธรรมเนียม</h3>
-    <div class="calc-box">
-      <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
-      <button onclick="calcFee()">คำนวณ</button>
-      <div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
-    </div>
-  </div>
-</section>
-
-<section id="download">
-  <div class="section-box">
-    <h3>ดาวน์โหลดแบบฟอร์ม</h3>
-    <div class="preview-list">
-      <div class="preview-card">
-        <img src="https://via.placeholder.com/300x200">
-        <div>คำร้องทั่วไป</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
-<section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
-<section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
-<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
 
 </main>
 
+<!-- ================= NAV ================= -->
 <nav>
-  <button class="active" onclick="navigate('home',this)">
-    <span class="material-symbols-rounded">home</span>หน้าแรก
-  </button>
-  <button onclick="navigate('service',this)">
-    <span class="material-symbols-rounded">apps</span>บริการ
-  </button>
-  <button onclick="navigate('knowledge',this)">
-    <span class="material-symbols-rounded">menu_book</span>คลังความรู้
-  </button>
-  <button onclick="navigate('other',this)">
-    <span class="material-symbols-rounded">more_horiz</span>เพิ่มเติม
-  </button>
-  <button onclick="navigate('contact',this)">
-    <span class="material-symbols-rounded">person</span>ติดต่อ
-  </button>
+<button class="active" onclick="navigate('home',this)">
+<span class="material-symbols-rounded">home</span>
+หน้าแรก
+</button>
+
+<button onclick="navigate('service',this)">
+<span class="material-symbols-rounded">apps</span>
+บริการ
+</button>
+
+<button onclick="navigate('knowledge',this)">
+<span class="material-symbols-rounded">menu_book</span>
+คลังความรู้
+</button>
+
+<button onclick="navigate('other',this)">
+<span class="material-symbols-rounded">more_horiz</span>
+เพิ่มเติม
+</button>
+
+<button onclick="navigate('contact',this)">
+<span class="material-symbols-rounded">person</span>
+ติดต่อ
+</button>
 </nav>
 
 <script>
+
 function navigate(id,btn){
   history.pushState({page:id},"","#"+id);
   showPage(id,btn);
 }
-window.onpopstate=e=>{
-  if(e.state) showPage(e.state.page);
-};
+
 function showPage(id,btn){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+  const page=document.getElementById(id);
+  if(page){page.classList.add("active");}
   document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
+  if(btn){btn.classList.add("active");}
 }
-function openLink(url){window.open(url,"_blank")}
+
+function openLink(url){
+  window.open(url,"_blank");
+}
+
 function toggleSearch(){
   const b=document.getElementById("searchBox");
   b.style.display=b.style.display==="block"?"none":"block";
 }
+
 function doSearch(e){
   if(e.key==="Enter"){
-    const q=e.target.value;
-    if(q.includes("e")) navigate("efiling");
-    else if(q.includes("ค่")) navigate("fee");
-    else if(q.includes("ดาว")) navigate("download");
-    else navigate("blank");
+    navigate("service");
   }
 }
-function calcFee(){
-  const m=document.getElementById("money").value;
-  const fee=Math.max(100,Math.floor(m*0.02));
-  document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
-}
+
 </script>
 
 </body>
