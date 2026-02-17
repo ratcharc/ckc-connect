@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
 <style>
 :root{
   --primary:#0a3083;
   --primary-soft:#eef2ff;
-  --bg:#e6e9ef;
+  --bg:#e5e7eb; /* เปลี่ยนพื้นหลังเป็นเทา */
   --card:#ffffff;
   --text:#0f172a;
   --muted:#64748b;
@@ -34,24 +35,24 @@ h3{
   color:var(--primary);
 }
 
-/* ===== HEADER FIXED (แก้ใหม่) ===== */
+/* ===== HEADER FIX ===== */
 header{
   position:relative;
   width:100%;
-  height:220px;      /* ล็อกความสูง */
-  min-height:220px;  /* กัน responsive ดัน */
-  max-height:220px;  /* กันยืด */
+  height:220px;
+  min-height:220px;
+  max-height:220px;
   overflow:hidden;
-  background:#0a3083;
-  flex-shrink:0;
+  background:#000;
 }
 
 .header-banner{
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
   object-position:center;
-  display:block;
 }
 
 /* SEARCH */
@@ -62,12 +63,14 @@ header{
   font-size:26px;
   color:#fff;
   cursor:pointer;
+  z-index:2;
 }
 .search-box{
   position:absolute;
   top:56px;
   right:16px;
   display:none;
+  z-index:2;
 }
 .search-box input{
   padding:10px 16px;
@@ -81,20 +84,18 @@ header{
 main{
   padding:16px;
   padding-bottom:140px;
+  margin-top:-40px; /* ลอยขึ้นทับ header เล็กน้อย */
 }
 
 /* SECTION */
 section{display:none}
 section.active{display:block}
 
-/* ===== FLOAT CARD (แก้ใหม่ให้ทับ header ชัดขึ้น) ===== */
+/* FLOAT CARD */
 .section-box{
-  background:linear-gradient(180deg,#ffffff,#f8fafc);
+  background:#ffffff;
   border-radius:var(--radius-lg);
   padding:20px;
-  margin-top:-80px;  /* ยกขึ้นทับ header */
-  position:relative;
-  z-index:5;
   box-shadow:var(--shadow-lg);
 }
 
@@ -116,11 +117,9 @@ section.active{display:block}
   display:grid;
   grid-template-columns:1fr;
   gap:12px;
-  max-width:520px;   /* ล็อกความกว้าง */
-  margin:auto;       /* จัดกลาง */
 }
 
-/* ===== SERVICE CARD (ล็อกไม่ให้ยืด) ===== */
+/* SERVICE CARD */
 .service-card{
   position:relative;
   background:var(--card);
@@ -131,9 +130,6 @@ section.active{display:block}
   cursor:pointer;
   box-shadow:var(--shadow-md);
   transition:.25s ease;
-  width:100%;
-  max-width:520px;   /* ล็อกไม่ให้ขยาย */
-  margin:auto;
 }
 .service-card:hover{
   transform:translateY(-2px);
@@ -166,6 +162,19 @@ section.active{display:block}
   top:50%;
   transform:translateY(-50%);
   color:#94a3b8;
+}
+
+/* SUB MENU (คงไว้เหมือนเดิม ไม่ลบ) */
+.sub-menu{
+  display:none;
+  margin-top:8px;
+  padding-left:10px;
+  gap:10px;
+}
+.sub-menu .service-card{
+  background:#f8fafc;
+  box-shadow:none;
+  border:1px solid #e5e7eb;
 }
 
 /* CALCULATOR */
@@ -229,7 +238,6 @@ nav{
   background:var(--primary);
   display:flex;
   padding:8px 4px;
-  z-index:10;
 }
 nav button{
   flex:1;
@@ -248,6 +256,7 @@ nav button.active{
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -301,9 +310,22 @@ e-Filing
 CIOS
 </div>
 
+<!-- แก้ COJ ให้เข้าอีกหน้า -->
 <div class="service-card" onclick="navigate('cojpage')">
 <div class="icon-pill"><span class="material-symbols-rounded">account_balance</span></div>
 COJ
+</div>
+
+<!-- sub-menu เดิมยังอยู่ ไม่ลบ -->
+<div class="sub-menu" id="cojSub">
+<div class="service-card" onclick="openLink('https://www.coj.go.th')">
+<div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
+COJ (เว็บไซต์หลัก)
+</div>
+<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
+<div class="icon-pill"><span class="material-symbols-rounded">link</span></div>
+COJ Connect
+</div>
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
@@ -325,21 +347,69 @@ COJ
 </div>
 </section>
 
+<!-- หน้า COJ ใหม่ -->
 <section id="cojpage">
 <div class="section-box">
-<h3>เลือกระบบ COJ</h3>
+<h3>เลือกบริการ COJ</h3>
 <div class="service-grid">
+
 <div class="service-card" onclick="openLink('https://www.coj.go.th')">
 <div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
 COJ (เว็บไซต์หลัก)
 </div>
+
 <div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
 <div class="icon-pill"><span class="material-symbols-rounded">link</span></div>
 COJ Connect
 </div>
+
 </div>
 </div>
 </section>
+
+<section id="efiling">
+<div class="section-box">
+<h3>เลือกระบบ e-Filing</h3>
+<div class="service-grid">
+<div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
+<div class="icon-pill"><span class="material-symbols-rounded">gavel</span></div>
+e-Filing v.3
+</div>
+<div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
+<div class="icon-pill"><span class="material-symbols-rounded">rocket_launch</span></div>
+e-Filing v.4
+</div>
+</div>
+</div>
+</section>
+
+<section id="fee">
+<div class="section-box">
+<h3>คำนวณค่าธรรมเนียม</h3>
+<div class="calc-box">
+<input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
+<button onclick="calcFee()">คำนวณ</button>
+<div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
+</div>
+</div>
+</section>
+
+<section id="download">
+<div class="section-box">
+<h3>ดาวน์โหลดแบบฟอร์ม</h3>
+<div class="preview-list">
+<div class="preview-card">
+<img src="https://via.placeholder.com/300x200">
+<div>คำร้องทั่วไป</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
+<section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
+<section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
+<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
 
 </main>
 
@@ -379,6 +449,10 @@ function openLink(url){window.open(url,"_blank")}
 function toggleSearch(){
 const b=document.getElementById("searchBox");
 b.style.display=b.style.display==="block"?"none":"block";
+}
+function toggleCOJ(){
+const s=document.getElementById("cojSub");
+s.style.display=s.style.display==="grid"?"none":"grid";
 }
 function doSearch(e){
 if(e.key==="Enter"){
