@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
 <style>
 :root{
   --primary:#0a3083;
   --primary-soft:#eef2ff;
-  --bg:#e5e7eb; /* เปลี่ยนพื้นหลัง */
+  --bg:#e6e9ef;
   --card:#ffffff;
   --text:#0f172a;
   --muted:#64748b;
@@ -20,27 +21,31 @@
   --shadow-md:0 10px 26px rgba(0,0,0,.1);
 }
 
+/* ===== LOCK APP WIDTH ===== */
 body{
   margin:0;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:var(--bg);
-  color:var(--text);
+  display:flex;
+  justify-content:center;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-h3{
-  margin:0 0 14px;
-  font-size:18px;
-  font-weight:800;
-  color:var(--primary);
+.app{
+  width:100%;
+  max-width:480px;
+  background:var(--bg);
+  min-height:100vh;
+  position:relative;
 }
 
-/* ===== HEADER FIXED ===== */
+/* HEADER */
 header{
   position:relative;
   width:100%;
   height:220px;
-  background:var(--primary);
   overflow:hidden;
+  background:var(--primary);
+  z-index:1;
 }
 
 .header-banner{
@@ -86,11 +91,20 @@ section.active{display:block}
 
 /* FLOAT CARD */
 .section-box{
-  background:linear-gradient(180deg,#ffffff,#f8fafc);
+  background:#ffffff;
   border-radius:var(--radius-lg);
   padding:20px;
-  margin-top:-24px;
+  margin-top:-80px;
   box-shadow:var(--shadow-lg);
+  position:relative;
+  z-index:2;
+}
+
+h3{
+  margin:0 0 14px;
+  font-size:18px;
+  font-weight:800;
+  color:var(--primary);
 }
 
 /* FEED */
@@ -129,6 +143,7 @@ section.active{display:block}
   transform:translateY(-2px);
 }
 
+/* FIX PILL */
 .icon-pill{
   position:absolute;
   left:14px;
@@ -136,12 +151,15 @@ section.active{display:block}
   transform:translateY(-50%);
   width:34px;
   height:34px;
+  min-width:34px;
+  min-height:34px;
   border-radius:10px;
   display:flex;
   align-items:center;
   justify-content:center;
   background:var(--primary-soft);
   color:var(--primary);
+  flex-shrink:0;
 }
 
 .material-symbols-rounded{
@@ -156,19 +174,6 @@ section.active{display:block}
   top:50%;
   transform:translateY(-50%);
   color:#94a3b8;
-}
-
-/* SUB MENU (ของเดิมคงไว้) */
-.sub-menu{
-  display:none;
-  margin-top:8px;
-  padding-left:10px;
-  gap:10px;
-}
-.sub-menu .service-card{
-  background:#f8fafc;
-  box-shadow:none;
-  border:1px solid #e5e7eb;
 }
 
 /* CALCULATOR */
@@ -229,6 +234,7 @@ nav{
   position:fixed;
   bottom:0;
   width:100%;
+  max-width:480px;
   background:var(--primary);
   display:flex;
   padding:8px 4px;
@@ -252,6 +258,8 @@ nav button.active{
 </head>
 
 <body>
+
+<div class="app">
 
 <header>
 <img class="header-banner"
@@ -344,8 +352,6 @@ COJ Connect
 </div>
 </section>
 
-<!-- ส่วนอื่นคงเดิมตามโค้ดคุณทั้งหมด -->
-
 </main>
 
 <nav>
@@ -366,6 +372,8 @@ COJ Connect
 </button>
 </nav>
 
+</div>
+
 <script>
 function navigate(id,btn){
 history.pushState({page:id},"","#"+id);
@@ -384,10 +392,6 @@ function openLink(url){window.open(url,"_blank")}
 function toggleSearch(){
 const b=document.getElementById("searchBox");
 b.style.display=b.style.display==="block"?"none":"block";
-}
-function toggleCOJ(){
-const s=document.getElementById("cojSub");
-if(s) s.style.display=s.style.display==="grid"?"none":"grid";
 }
 function doSearch(e){
 if(e.key==="Enter"){
