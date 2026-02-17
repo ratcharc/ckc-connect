@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
-
 <style>
 :root{
   --primary:#0a3083;
@@ -79,13 +78,11 @@ header{
   box-shadow:var(--shadow-md);
 }
 
-/* MAIN (ลอยขึ้นทับ header เล็กน้อย) */
+/* ===== MAIN (แก้ไขไม่ให้ทับ header และ bottom bar) ===== */
 main{
   padding:16px;
+  padding-top:24px;
   padding-bottom:140px;
-  margin-top:-60px;
-  position:relative;
-  z-index:5;
 }
 
 /* SECTION */
@@ -231,7 +228,7 @@ section.active{display:block}
   font-weight:700;
 }
 
-/* BOTTOM BAR */
+/* ===== BOTTOM BAR (เพิ่ม z-index ป้องกันการทับ) ===== */
 nav{
   position:fixed;
   bottom:0;
@@ -239,6 +236,7 @@ nav{
   background:var(--primary);
   display:flex;
   padding:8px 4px;
+  z-index:100;
 }
 nav button{
   flex:1;
@@ -263,7 +261,6 @@ nav button.active{
 <header>
 <img class="header-banner"
 src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
-
 <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
 
 <div class="search-box" id="searchBox">
@@ -323,6 +320,7 @@ COJ
 <div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
 COJ (เว็บไซต์หลัก)
 </div>
+
 <div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
 <div class="icon-pill"><span class="material-symbols-rounded">link</span></div>
 COJ Connect
