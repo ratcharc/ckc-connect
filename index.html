@@ -4,339 +4,417 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
+
+/* =========================
+   DESIGN SYSTEM REBUILD
+========================= */
+
 :root{
-  --primary:#0a3083;
-  --primary-light:#2563eb;
-  --bg1:#f6f9ff;
-  --bg2:#eaf1fb;
-  --card:#ffffff;
-  --text:#0f172a;
-  --muted:#64748b;
-  --radius-xl:34px;
-  --radius-lg:28px;
-  --radius-md:22px;
-  --shadow-soft:0 10px 30px rgba(0,0,0,.06);
-  --shadow-mid:0 20px 45px rgba(0,0,0,.12);
-  --shadow-deep:0 35px 65px rgba(0,0,0,.18);
+  --primary:#0B2A6F;
+  --primary-soft:#163d9a;
+  --primary-light:#2b59d9;
+
+  --bg-main:#f4f7fc;
+  --bg-layer:#ffffff;
+
+  --text-main:#0f172a;
+  --text-muted:#64748b;
+
+  --radius-xl:32px;
+  --radius-lg:24px;
+  --radius-md:18px;
+
+  --shadow-1:0 6px 18px rgba(0,0,0,.06);
+  --shadow-2:0 14px 32px rgba(0,0,0,.10);
+  --shadow-3:0 28px 60px rgba(0,0,0,.18);
 }
 
 *{box-sizing:border-box;}
 
 body{
-margin:0;
-font-family:'Kanit',sans-serif;
-background:linear-gradient(160deg,var(--bg1),var(--bg2));
-color:var(--text);
-letter-spacing:.3px;
--webkit-font-smoothing:antialiased;
-overflow-x:hidden;
+  margin:0;
+  font-family:'Kanit',sans-serif;
+  background:linear-gradient(180deg,#f8fbff 0%,#eef3fb 100%);
+  color:var(--text-main);
+  letter-spacing:.2px;
+  -webkit-font-smoothing:antialiased;
 }
 
 /* HEADER */
+
 header{
-position:relative;
-width:100%;
-aspect-ratio:16/7;
-max-height:300px;
-overflow:hidden;
-border-bottom-left-radius:40px;
-border-bottom-right-radius:40px;
+  position:relative;
+  width:100%;
+  aspect-ratio:16/6;
+  max-height:260px;
+  overflow:hidden;
 }
+
 .header-banner{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
+
 .search-btn{
-position:absolute;
-top:18px;
-right:20px;
-font-size:30px;
-color:#fff;
-cursor:pointer;
-z-index:2;
+  position:absolute;
+  top:18px;
+  right:18px;
+  font-size:28px;
+  color:#fff;
+  cursor:pointer;
+  z-index:2;
 }
+
 .search-box{
-position:absolute;
-top:70px;
-right:20px;
-display:none;
-z-index:2;
+  position:absolute;
+  top:60px;
+  right:18px;
+  display:none;
+  z-index:2;
 }
+
 .search-box input{
-padding:14px 20px;
-border-radius:40px;
-border:none;
-width:250px;
-font-family:'Kanit';
-box-shadow:var(--shadow-soft);
+  padding:12px 18px;
+  border-radius:30px;
+  border:none;
+  width:230px;
+  font-family:'Kanit';
+  box-shadow:var(--shadow-1);
 }
 
 /* MAIN */
+
 main{
-max-width:520px;
-margin:auto;
-padding:26px 20px 180px 20px;
+  padding:clamp(18px,4vw,40px);
+  padding-bottom:160px;
+  max-width:1600px;
+  margin:auto;
 }
 
-/* PAGE SLIDE */
 section{
-display:none;
-transform:translateX(30px);
-opacity:0;
-transition:.45s cubic-bezier(.22,1,.36,1);
+  display:none;
+  animation:fade .35s ease;
 }
+
 section.active{
-display:block;
-transform:translateX(0);
-opacity:1;
+  display:block;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(12px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+h3{
+  font-size:clamp(18px,2vw,22px);
+  font-weight:700;
+  margin:24px 0 16px;
+  letter-spacing:.3px;
 }
 
 /* HERO */
+
 .hero-card{
-background:#fff;
-border-radius:var(--radius-xl);
-overflow:hidden;
-box-shadow:var(--shadow-mid);
-transition:.3s;
-cursor:pointer;
-margin-bottom:28px;
+  background:var(--bg-layer);
+  border-radius:var(--radius-xl);
+  overflow:hidden;
+  box-shadow:var(--shadow-2);
+  transition:.35s;
+  cursor:pointer;
+  margin-bottom:28px;
 }
+
+.hero-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-3);
+}
+
 .hero-card img{
-width:100%;
-aspect-ratio:16/9;
-object-fit:cover;
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
 }
+
 .hero-card div{
-padding:22px;
-font-size:17px;
-font-weight:600;
-line-height:1.6;
+  padding:20px;
+  font-size:clamp(16px,1.8vw,18px);
+  font-weight:600;
+  line-height:1.6;
 }
 
 /* QUICK TAP */
+
 .quick-row{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:14px;
-margin:28px 0 40px 0;
-}
-.quick-item{
-background:#fff;
-border-radius:26px;
-padding:20px 8px;
-text-align:center;
-box-shadow:var(--shadow-soft);
-cursor:pointer;
-}
-.quick-item span{
-font-size:30px;
-margin-bottom:6px;
-display:block;
-color:var(--primary);
-}
-.quick-item p{
-margin:0;
-font-size:13px;
-font-weight:600;
-line-height:1.5;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin:32px 0;
 }
 
-/* POST */
+.quick-item{
+  background:linear-gradient(180deg,#ffffff,#f3f6fd);
+  border-radius:28px;
+  padding:22px 12px;
+  text-align:center;
+  box-shadow:var(--shadow-1);
+  transition:.25s;
+  cursor:pointer;
+}
+
+.quick-item:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-2);
+}
+
+.quick-item span{
+  font-size:32px;
+  color:var(--primary);
+  margin-bottom:10px;
+  display:block;
+}
+
+.quick-item p{
+  margin:0;
+  font-size:clamp(12px,1.4vw,14px);
+  font-weight:600;
+  line-height:1.5;
+}
+
+/* POST GRID */
+
 .horizontal-scroll{
-display:flex;
-flex-direction:column;
-gap:22px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:22px;
 }
+
 .post-card{
-background:#fff;
-border-radius:var(--radius-lg);
-overflow:hidden;
-box-shadow:var(--shadow-soft);
-cursor:pointer;
+  background:#fff;
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:var(--shadow-1);
+  transition:.3s;
+  cursor:pointer;
 }
+
+.post-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-2);
+}
+
 .post-card img{
-width:100%;
-aspect-ratio:16/9;
-object-fit:cover;
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
 }
+
 .post-card div{
-padding:20px;
-font-weight:600;
-line-height:1.6;
+  padding:16px;
+  font-weight:600;
+  line-height:1.6;
 }
 
 /* SERVICE */
-.service-grid{display:flex;flex-direction:column;gap:16px;}
+
+.service-grid{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
 .service-card{
-position:relative;
-background:#fff;
-border-radius:24px;
-padding:18px 52px 18px 64px;
-font-size:15px;
-font-weight:600;
-line-height:1.6;
-cursor:pointer;
-box-shadow:var(--shadow-soft);
+  background:#fff;
+  border-radius:22px;
+  padding:18px 50px 18px 64px;
+  font-size:15px;
+  font-weight:600;
+  box-shadow:var(--shadow-1);
+  position:relative;
+  cursor:pointer;
+  transition:.25s;
 }
+
+.service-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-2);
+}
+
 .icon-pill{
-position:absolute;
-left:16px;
-top:50%;
-transform:translateY(-50%);
-width:40px;
-height:40px;
-border-radius:14px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#eef2ff;
-color:var(--primary);
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+  width:38px;
+  height:38px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eef2ff;
+  color:var(--primary);
 }
+
 .service-card::after{
-content:"chevron_right";
-font-family:"Material Symbols Rounded";
-position:absolute;
-right:16px;
-top:50%;
-transform:translateY(-50%);
-color:#94a3b8;
+  content:"chevron_right";
+  font-family:"Material Symbols Rounded";
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#94a3b8;
 }
 
 /* CALC */
+
 .calc-box{
-background:#fff;
-border-radius:24px;
-padding:22px;
-box-shadow:var(--shadow-soft);
+  background:#fff;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:var(--shadow-1);
 }
+
 .calc-box input{
-width:100%;
-padding:14px;
-border-radius:16px;
-border:1px solid #d1d5db;
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #d1d5db;
 }
+
 .calc-box button{
-margin-top:14px;
-width:100%;
-padding:14px;
-border:none;
-border-radius:16px;
-background:var(--primary);
-color:#fff;
-font-weight:700;
+  margin-top:10px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  background:var(--primary);
+  color:#fff;
+  font-weight:700;
 }
+
 .calc-result{
-margin-top:14px;
-background:#eef2ff;
-padding:14px;
-border-radius:16px;
-font-weight:700;
+  margin-top:10px;
+  background:#eef2ff;
+  padding:12px;
+  border-radius:14px;
+  font-weight:700;
 }
 
 /* DOWNLOAD */
+
 .preview-list{
-display:flex;
-gap:16px;
-overflow-x:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:20px;
 }
+
 .preview-card{
-min-width:220px;
-background:#fff;
-border-radius:22px;
-overflow:hidden;
-box-shadow:var(--shadow-soft);
+  background:#fff;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:var(--shadow-1);
 }
-.preview-card img{width:100%;}
+
+.preview-card img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+}
+
 .preview-card div{
-padding:14px;
-font-size:14px;
-font-weight:700;
+  padding:14px;
+  font-size:14px;
+  font-weight:600;
 }
 
-/* NAV */
+/* BOTTOM NAV */
+
 nav{
-position:fixed;
-bottom:18px;
-left:50%;
-transform:translateX(-50%);
-width:92%;
-max-width:520px;
-background:#ffffff;
-border-radius:28px;
-display:flex;
-padding:10px 6px;
-box-shadow:0 15px 40px rgba(0,0,0,.18);
-backdrop-filter:blur(12px);
-z-index:100;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:var(--primary);
+  display:flex;
+  padding:10px 6px;
+  box-shadow:0 -6px 20px rgba(0,0,0,.15);
+  z-index:100;
 }
+
 nav button{
-flex:1;
-border:none;
-background:transparent;
-color:#64748b;
-display:flex;
-flex-direction:column;
-align-items:center;
-font-size:11px;
-gap:3px;
+  flex:1;
+  border:none;
+  background:transparent;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:11px;
+  gap:3px;
 }
+
 nav button.active{
-background:#eef2ff;
-color:var(--primary);
-border-radius:18px;
+  background:rgba(255,255,255,.18);
+  border-radius:16px;
 }
 
-/* OVERLAY */
+/* OVERLAY & SHEET */
+
 .overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.35);
-backdrop-filter:blur(4px);
-display:none;
-z-index:200;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  z-index:200;
 }
 
-/* SHEET */
 .bottom-sheet{
-position:fixed;
-bottom:-100%;
-left:0;
-width:100%;
-height:88%;
-background:#ffffff;
-border-radius:38px 38px 0 0;
-box-shadow:var(--shadow-deep);
-transition:.5s cubic-bezier(.22,1,.36,1);
-z-index:300;
-overflow-y:auto;
+  position:fixed;
+  bottom:-100%;
+  left:0;
+  width:100%;
+  height:100vh;
+  background:#fff;
+  border-radius:32px 32px 0 0;
+  box-shadow:var(--shadow-3);
+  transition:.4s cubic-bezier(.22,1,.36,1);
+  z-index:300;
+  display:flex;
+  flex-direction:column;
 }
-.bottom-sheet.active{bottom:0;}
+
+.bottom-sheet.active{
+  bottom:0;
+}
+
 .drag-bar{
-width:70px;
-height:7px;
-background:#d1d5db;
-border-radius:20px;
-margin:14px auto;
+  width:60px;
+  height:6px;
+  background:#d1d5db;
+  border-radius:20px;
+  margin:14px auto;
 }
+
 .sheet-header img{
-border-radius:22px;
-margin:0 18px;
-width:calc(100% - 36px);
-aspect-ratio:16/9;
-object-fit:cover;
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
 }
+
 .sheet-content{
-padding:26px;
-font-size:16px;
-line-height:1.8;
+  padding:28px;
+  overflow-y:auto;
+  flex:1;
+  line-height:1.8;
+  font-size:16px;
 }
+
 </style>
 </head>
 <body>
@@ -353,10 +431,11 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 <main>
 
 <section id="home" class="active">
+
 <h3>โพสล่าสุด</h3>
-<div class="hero-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x400">
-<div>โพสหลัก (กดเพื่ออ่านรายละเอียด)</div>
+
+<div class="hero-card" onclick="openPost()">  
+<img src="https://via.placeholder.com/800x450">  
 </div>
 
 <div class="quick-row">
@@ -379,56 +458,68 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 </div>
 
 <h3>รายการโพส</h3>
+
 <div class="horizontal-scroll">
 <div class="post-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x400">
+<img src="https://via.placeholder.com/600x750">
 <div>โพสรอง 1</div>
 </div>
 <div class="post-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x400">
+<img src="https://via.placeholder.com/600x750">
 <div>โพสรอง 2</div>
 </div>
 </div>
+
 </section>
 
 <section id="service">
 <div class="service-grid">
+
 <div class="service-card" onclick="navigate('fee')">
 <div class="icon-pill"><span class="material-symbols-rounded">calculate</span></div>
 อัตราค่าธรรมเนียม (ค่าขึ้นศาล)
 </div>
+
 <div class="service-card" onclick="navigate('blank')">
 <div class="icon-pill"><span class="material-symbols-rounded">list_alt</span></div>
 ขั้นตอนการฟ้องและยื่นคำร้อง
 </div>
+
 <div class="service-card" onclick="openLink('https://cios.coj.go.th/tracking/')">
 <div class="icon-pill"><span class="material-symbols-rounded">search</span></div>
 ติดตามสำนวนคดี
 </div>
+
 <div class="service-card" onclick="navigate('efiling')">
 <div class="icon-pill"><span class="material-symbols-rounded">gavel</span></div>
 e-Filing
 </div>
+
 <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
 <div class="icon-pill"><span class="material-symbols-rounded">description</span></div>
 CIOS
 </div>
+
 <div class="service-card" onclick="navigate('cojpage')">
 <div class="icon-pill"><span class="material-symbols-rounded">account_balance</span></div>
 COJ
 </div>
+
 <div class="service-card" onclick="navigate('blank')">
 <div class="icon-pill"><span class="material-symbols-rounded">event_note</span></div>
 ไกล่เกลี่ยและพิจารณาคดีทางอิเล็กทรอนิกส์
 </div>
+
 <div class="service-card" onclick="navigate('blank')">
 <div class="icon-pill"><span class="material-symbols-rounded">calendar_month</span></div>
 บัญชีนัดพิจารณาคดีและพิจารณาคดีทางอิเล็กทรอนิกส์
 </div>
+
 <div class="service-card" onclick="navigate('download')">
 <div class="icon-pill"><span class="material-symbols-rounded">download</span></div>
 ดาวน์โหลดแบบฟอร์ม
 </div>
+
 </div>
 </section>
 
@@ -481,25 +572,37 @@ e-Filing v.4
 </section>
 
 <section id="knowledge">
-<div class="hero-card">พื้นที่ใส่โปสเตอร์ความรู้หลัก</div>
+<div class="hero-card">
+<img src="https://via.placeholder.com/800x450">
+<div>พื้นที่ใส่โปสเตอร์ความรู้หลัก</div>
+</div>
 <div class="horizontal-scroll">
-<div class="post-card">ความรู้ 1</div>
-<div class="post-card">ความรู้ 2</div>
-<div class="post-card">ความรู้ 3</div>
+<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ความรู้ 1</div></div>
+<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ความรู้ 2</div></div>
+<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ความรู้ 3</div></div>
 </div>
 </section>
 
 <section id="other">
-<div class="hero-card">พื้นที่ FAQ / Feedback</div>
-<div class="post-card">ช่องแสดงความคิดเห็น</div>
+<div class="hero-card">
+<img src="https://via.placeholder.com/800x450">
+<div>พื้นที่ FAQ / Feedback</div>
+</div>
+<div class="post-card"><div style="padding:20px;">ช่องแสดงความคิดเห็น</div></div>
 </section>
 
 <section id="contact">
-<div class="hero-card">ข้อมูลติดต่อ + แผนที่</div>
+<div class="hero-card">
+<img src="https://via.placeholder.com/800x450">
+<div>ข้อมูลติดต่อ + แผนที่</div>
+</div>
 </section>
 
 <section id="blank">
-<div class="hero-card">อยู่ระหว่างพัฒนา</div>
+<div class="hero-card">
+<img src="https://via.placeholder.com/800x450">
+<div>อยู่ระหว่างพัฒนา</div>
+</div>
 </section>
 
 </main>
@@ -527,7 +630,7 @@ e-Filing v.4
 <div class="bottom-sheet" id="sheet">
 <div class="drag-bar"></div>
 <div class="sheet-header">
-<img src="https://via.placeholder.com/800x400">
+<img src="https://via.placeholder.com/800x450">
 </div>
 <div class="sheet-content">
 <h3>หัวข้อโพส</h3>
@@ -536,6 +639,7 @@ e-Filing v.4
 </div>
 
 <script>
+
 function navigate(id,btn){
 history.pushState({page:id},"","#"+id);
 document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
@@ -544,14 +648,18 @@ document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"))
 if(btn) btn.classList.add("active");
 window.scrollTo({top:0,behavior:'smooth'});
 }
+
 window.onpopstate=e=>{
 if(e.state) navigate(e.state.page);
 };
+
 function openLink(url){window.open(url,"_blank");}
+
 function toggleSearch(){
 const b=document.getElementById("searchBox");
 b.style.display=b.style.display==="block"?"none":"block";
 }
+
 function doSearch(e){
 if(e.key==="Enter"){
 const q=e.target.value;
@@ -561,30 +669,37 @@ else if(q.includes("ดาว")) navigate("download");
 else navigate("blank");
 }
 }
+
 function calcFee(){
 const m=document.getElementById("money").value;
 const fee=Math.max(100,Math.floor(m*0.02));
 document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
 }
+
 function openPost(){
 document.getElementById("overlay").style.display="block";
 document.getElementById("sheet").classList.add("active");
 }
+
 function closePost(){
 document.getElementById("overlay").style.display="none";
 document.getElementById("sheet").classList.remove("active");
 }
+
 let sheet=document.getElementById("sheet");
 let startY=0;
+
 sheet.addEventListener("touchstart",e=>{
 startY=e.touches[0].clientY;
 });
+
 sheet.addEventListener("touchmove",e=>{
 let moveY=e.touches[0].clientY;
 if(moveY-startY>120){
 closePost();
 }
 });
+
 </script>
 
 </body>
