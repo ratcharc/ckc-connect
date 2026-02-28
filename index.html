@@ -18,334 +18,407 @@
   --card:#ffffff;
   --text:#0f172a;
   --muted:#64748b;
-  --radius-xl:30px;
-  --radius-lg:26px;
-  --radius-md:20px;
-  --shadow-soft:0 8px 24px rgba(0,0,0,.05);
-  --shadow-mid:0 18px 40px rgba(0,0,0,.10);
-  --shadow-deep:0 30px 60px rgba(0,0,0,.18);
+
+  --radius-xl:42px;
+  --radius-lg:30px;
+  --radius-md:22px;
+
+  --shadow-soft:0 12px 30px rgba(0,0,0,.06);
+  --shadow-mid:0 25px 60px rgba(0,0,0,.12);
+  --shadow-deep:0 45px 110px rgba(0,0,0,.25);
 }
 
-*{box-sizing:border-box;}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
 body{
-margin:0;
-font-family:'Kanit',sans-serif;
-background:linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 100%);
-color:var(--text);
-overflow-x:hidden;
+  margin:0;
+  font-family:'Kanit',sans-serif;
+  background:linear-gradient(160deg,var(--bg1),var(--bg2));
+  color:var(--text);
+  overflow-x:hidden;
+  letter-spacing:.3px;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header{
-position:relative;
-width:100%;
-aspect-ratio:16/6;
-max-height:260px;
-overflow:hidden;
-background:#000;
+  position:relative;
+  width:100%;
+  aspect-ratio:16/6;
+  max-height:260px;
+  overflow:hidden;
+  background:#000;
 }
+
 .header-banner{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:contrast(1.05) saturate(1.05);
 }
+
 .search-btn{
-position:absolute;
-top:16px;
-right:16px;
-font-size:28px;
-color:#fff;
-cursor:pointer;
-z-index:2;
+  position:absolute;
+  top:18px;
+  right:18px;
+  font-size:28px;
+  color:#fff;
+  cursor:pointer;
+  z-index:2;
 }
+
 .search-box{
-position:absolute;
-top:60px;
-right:16px;
-display:none;
-z-index:2;
+  position:absolute;
+  top:65px;
+  right:18px;
+  display:none;
+  z-index:2;
 }
+
 .search-box input{
-padding:12px 18px;
-border-radius:30px;
-border:none;
-width:230px;
-font-family:'Kanit';
-box-shadow:var(--shadow-soft);
+  padding:14px 20px;
+  border-radius:40px;
+  border:none;
+  width:240px;
+  font-family:'Kanit';
+  box-shadow:var(--shadow-mid);
+  font-size:14px;
 }
 
-/* MAIN */
+/* ================= MAIN ================= */
+
 main{
-padding:22px;
-padding-bottom:160px;
-position:relative;
-}
-main:before{
-content:"";
-position:absolute;
-top:-100px;
-right:-100px;
-width:300px;
-height:300px;
-background:radial-gradient(circle,var(--primary-light),transparent 70%);
-opacity:.12;
-z-index:-1;
+  max-width:1100px;
+  margin:auto;
+  padding:clamp(18px,4vw,34px);
+  padding-bottom:200px;
+  position:relative;
 }
 
-/* PAGE SLIDE */
 section{
-display:none;
-transform:translateX(30px);
-opacity:0;
-transition:.45s cubic-bezier(.22,1,.36,1);
+  display:none;
+  transform:translateX(30px);
+  opacity:0;
+  transition:.45s cubic-bezier(.22,1,.36,1);
 }
+
 section.active{
-display:block;
-transform:translateX(0);
-opacity:1;
+  display:block;
+  transform:translateX(0);
+  opacity:1;
 }
 
-/* HERO POST */
+h3{
+  font-size:clamp(18px,2.5vw,22px);
+  margin-bottom:18px;
+  letter-spacing:.4px;
+}
+
+/* ================= HERO POST ================= */
+
 .hero-card{
-background:linear-gradient(145deg,#ffffff,#f4f7fc);
-border-radius:var(--radius-xl);
-overflow:hidden;
-box-shadow:var(--shadow-mid);
-transition:.35s;
-cursor:pointer;
-margin-bottom:22px;
+  background:linear-gradient(145deg,#fff,#f3f6ff);
+  border-radius:var(--radius-xl);
+  overflow:hidden;
+  box-shadow:var(--shadow-mid);
+  margin-bottom:32px;
+  cursor:pointer;
+  transition:.4s cubic-bezier(.22,1,.36,1);
 }
-.hero-card:active{transform:scale(.98);}
-.hero-card:hover{transform:translateY(-8px);}
+
+.hero-card:hover{
+  transform:translateY(-8px);
+}
+
 .hero-card img{
-width:100%;
-aspect-ratio:4/5;
-object-fit:cover;
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
 }
+
 .hero-card div{
-padding:18px;
-font-size:16px;
-font-weight:600;
+  padding:22px;
+  font-size:clamp(16px,2vw,19px);
+  font-weight:600;
+  line-height:1.6;
 }
 
-/* QUICK TAP */
+/* ================= QUICK TAP (แบบไอคอนวงกลมเด่น) ================= */
+
 .quick-row{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-gap:16px;
-margin:26px 0;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+  margin:34px 0;
 }
+
 .quick-item{
-position:relative;
-background:linear-gradient(160deg,#ffffff,#eef3fb);
-border-radius:28px;
-padding:22px 12px;
-text-align:center;
-box-shadow:var(--shadow-soft);
-transition:.3s cubic-bezier(.22,1,.36,1);
-cursor:pointer;
+  text-align:center;
+  cursor:pointer;
+  transition:.3s;
 }
+
 .quick-item:hover{
-transform:translateY(-8px);
-box-shadow:var(--shadow-mid);
+  transform:translateY(-6px);
 }
-.quick-item:active{transform:scale(.96);}
-.quick-item span{
-font-size:34px;
-color:var(--primary);
-margin-bottom:8px;
-display:block;
+
+.quick-icon{
+  width:72px;
+  height:72px;
+  margin:auto;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:var(--shadow-mid);
+  font-size:34px;
+  color:var(--primary);
+  margin-bottom:12px;
 }
+
 .quick-item p{
-margin:0;
-font-size:14px;
-font-weight:600;
+  margin:0;
+  font-size:clamp(13px,1.8vw,15px);
+  font-weight:600;
+  line-height:1.4;
 }
 
-/* POST LIST */
+/* ================= POST LIST ================= */
+
 .horizontal-scroll{
-display:flex;
-flex-direction:column;
-gap:18px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
 }
+
 .post-card{
-background:#fff;
-border-radius:26px;
-overflow:hidden;
-box-shadow:var(--shadow-soft);
-transition:.35s;
-cursor:pointer;
+  background:#fff;
+  border-radius:30px;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
+  transition:.35s;
+  cursor:pointer;
 }
+
 .post-card:hover{
-transform:translateY(-6px);
-box-shadow:var(--shadow-mid);
+  transform:translateY(-8px);
+  box-shadow:var(--shadow-mid);
 }
+
 .post-card img{
-width:100%;
-aspect-ratio:4/5;
-object-fit:cover;
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
 }
+
 .post-card div{
-padding:16px;
-font-weight:600;
+  padding:20px;
+  font-weight:600;
+  font-size:clamp(15px,2vw,17px);
+  line-height:1.6;
 }
 
-/* SERVICE */
-.service-grid{display:flex;flex-direction:column;gap:12px;}
+/* ================= SERVICE ================= */
+
+.service-grid{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
 .service-card{
-position:relative;
-background:#fff;
-border-radius:22px;
-padding:16px 46px 16px 60px;
-font-size:14px;
-font-weight:600;
-cursor:pointer;
-box-shadow:var(--shadow-soft);
-transition:.3s;
+  position:relative;
+  background:#fff;
+  border-radius:28px;
+  padding:20px 60px 20px 70px;
+  font-size:clamp(14px,2vw,16px);
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:var(--shadow-soft);
+  transition:.3s;
+  line-height:1.6;
 }
-.service-card:hover{transform:translateY(-4px);}
+
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-mid);
+}
+
 .icon-pill{
-position:absolute;
-left:14px;
-top:50%;
-transform:translateY(-50%);
-width:36px;
-height:36px;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#eef2ff;
-color:var(--primary);
+  position:absolute;
+  left:20px;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eef2ff;
+  color:var(--primary);
 }
+
 .service-card::after{
-content:"chevron_right";
-font-family:"Material Symbols Rounded";
-position:absolute;
-right:14px;
-top:50%;
-transform:translateY(-50%);
-color:#94a3b8;
+  content:"chevron_right";
+  font-family:"Material Symbols Rounded";
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#94a3b8;
 }
 
-/* CALC */
+/* ================= CALC ================= */
+
 .calc-box{
-background:#fff;
-border-radius:22px;
-padding:20px;
-box-shadow:var(--shadow-soft);
+  background:#fff;
+  border-radius:28px;
+  padding:24px;
+  box-shadow:var(--shadow-soft);
 }
+
 .calc-box input{
-width:100%;
-padding:12px;
-border-radius:14px;
-border:1px solid #d1d5db;
+  width:100%;
+  padding:14px;
+  border-radius:16px;
+  border:1px solid #d1d5db;
+  margin-top:10px;
+  font-size:15px;
 }
+
 .calc-box button{
-margin-top:10px;
-width:100%;
-padding:12px;
-border:none;
-border-radius:14px;
-background:var(--primary);
-color:#fff;
-font-weight:700;
+  margin-top:14px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:16px;
+  background:var(--primary);
+  color:#fff;
+  font-weight:700;
+  font-size:15px;
 }
+
 .calc-result{
-margin-top:10px;
-background:#eef2ff;
-padding:12px;
-border-radius:14px;
-font-weight:700;
+  margin-top:14px;
+  background:#eef2ff;
+  padding:14px;
+  border-radius:16px;
+  font-weight:700;
 }
 
-/* DOWNLOAD */
+/* ================= DOWNLOAD ================= */
+
 .preview-list{
-display:flex;
-gap:14px;
-overflow-x:auto;
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
 }
+
 .preview-card{
-min-width:200px;
-background:#fff;
-border-radius:18px;
-overflow:hidden;
-box-shadow:var(--shadow-soft);
+  min-width:220px;
+  background:#fff;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
 }
-.preview-card img{width:100%;}
+
+.preview-card img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+}
+
 .preview-card div{
-padding:12px;
-font-size:13px;
-font-weight:700;
+  padding:14px;
+  font-size:14px;
+  font-weight:700;
 }
 
-/* BOTTOM NAV */
+/* ================= NAV ================= */
+
 nav{
-position:fixed;
-bottom:0;
-width:100%;
-background:var(--primary);
-display:flex;
-padding:8px 4px;
-z-index:100;
-}
-nav button{
-flex:1;
-border:none;
-background:transparent;
-color:#fff;
-display:flex;
-flex-direction:column;
-align-items:center;
-font-size:11px;
-gap:2px;
-}
-nav button.active{
-background:rgba(255,255,255,.22);
-border-radius:14px;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(18px);
+  box-shadow:0 -10px 40px rgba(0,0,0,.08);
+  display:flex;
+  padding:14px 6px;
+  z-index:100;
 }
 
-/* OVERLAY */
+nav button{
+  flex:1;
+  border:none;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:11px;
+  gap:4px;
+  color:var(--muted);
+}
+
+nav button.active{
+  color:var(--primary);
+  font-weight:600;
+}
+
+/* ================= OVERLAY + FULL SHEET ================= */
+
 .overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.4);
-display:none;
-z-index:200;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(8px);
+  display:none;
+  z-index:200;
 }
+
 .bottom-sheet{
-position:fixed;
-bottom:-100%;
-left:0;
-width:100%;
-height:88%;
-background:#fff;
-border-radius:32px 32px 0 0;
-box-shadow:var(--shadow-deep);
-transition:.5s cubic-bezier(.22,1,.36,1);
-z-index:300;
-overflow-y:auto;
+  position:fixed;
+  bottom:-100%;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#fff;
+  border-radius:42px 42px 0 0;
+  box-shadow:var(--shadow-deep);
+  transition:.55s cubic-bezier(.22,1,.36,1);
+  z-index:300;
+  overflow-y:auto;
 }
-.bottom-sheet.active{bottom:0;}
+
+.bottom-sheet.active{
+  bottom:0;
+}
+
 .drag-bar{
-width:60px;
-height:6px;
-background:#d1d5db;
-border-radius:20px;
-margin:12px auto;
+  width:90px;
+  height:6px;
+  background:#e2e8f0;
+  border-radius:20px;
+  margin:20px auto;
 }
+
 .sheet-header img{
-width:100%;
-aspect-ratio:16/9;
-object-fit:cover;
+  width:100%;
+  height:340px;
+  object-fit:cover;
 }
+
 .sheet-content{
-padding:24px;
-font-size:16px;
-line-height:1.7;
+  padding:34px;
+  font-size:clamp(15px,2vw,17px);
+  line-height:1.9;
 }
 
 </style>
@@ -368,40 +441,48 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 <h3>โพสล่าสุด</h3>
 
 <div class="hero-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x800">
+<img src="https://via.placeholder.com/600x400">
 <div>โพสหลัก (กดเพื่ออ่านรายละเอียด)</div>
 </div>
 
 <div class="quick-row">
+
 <div class="quick-item" onclick="navigate('fee')">
-<span class="material-symbols-rounded">calculate</span>
+<div class="quick-icon"><span class="material-symbols-rounded">calculate</span></div>
 <p>อัตราค่าธรรมเนียมขึ้นศาล</p>
 </div>
+
 <div class="quick-item" onclick="navigate('efiling')">
-<span class="material-symbols-rounded">gavel</span>
+<div class="quick-icon"><span class="material-symbols-rounded">gavel</span></div>
 <p>e-Filing</p>
 </div>
+
 <div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
-<span class="material-symbols-rounded">description</span>
+<div class="quick-icon"><span class="material-symbols-rounded">description</span></div>
 <p>CIOS</p>
 </div>
+
 <div class="quick-item" onclick="navigate('download')">
-<span class="material-symbols-rounded">download</span>
+<div class="quick-icon"><span class="material-symbols-rounded">download</span></div>
 <p>ดาวน์โหลดแบบฟอร์ม</p>
 </div>
+
 </div>
 
 <h3>รายการโพส</h3>
 
 <div class="horizontal-scroll">
+
 <div class="post-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x800">
+<img src="https://via.placeholder.com/600x400">
 <div>โพสรอง 1</div>
 </div>
+
 <div class="post-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x800">
+<img src="https://via.placeholder.com/600x400">
 <div>โพสรอง 2</div>
 </div>
+
 </div>
 
 </section>
@@ -557,10 +638,11 @@ e-Filing v.4
 </nav>
 
 <div class="overlay" id="overlay" onclick="closePost()"></div>
+
 <div class="bottom-sheet" id="sheet">
 <div class="drag-bar"></div>
 <div class="sheet-header">
-<img src="https://via.placeholder.com/800x400">
+<img src="https://via.placeholder.com/800x500">
 </div>
 <div class="sheet-content">
 <h3>หัวข้อโพส</h3>
@@ -609,18 +691,22 @@ document.getElementById("feeResult").innerText="ค่าธรรมเนี�
 function openPost(){
 document.getElementById("overlay").style.display="block";
 document.getElementById("sheet").classList.add("active");
+document.body.style.overflow="hidden";
 }
 
 function closePost(){
 document.getElementById("overlay").style.display="none";
 document.getElementById("sheet").classList.remove("active");
+document.body.style.overflow="auto";
 }
 
 let sheet=document.getElementById("sheet");
 let startY=0;
+
 sheet.addEventListener("touchstart",e=>{
 startY=e.touches[0].clientY;
 });
+
 sheet.addEventListener("touchmove",e=>{
 let moveY=e.touches[0].clientY;
 if(moveY-startY>120){
