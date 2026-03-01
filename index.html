@@ -2,207 +2,192 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>CKC Connect</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
 :root{
   --primary:#0a3083;
-  --primary-soft:#eef2ff;
   --bg:#f1f5f9;
   --card:#ffffff;
   --text:#0f172a;
-  --radius-lg:24px;
-  --radius-md:18px;
-  --shadow-lg:0 18px 40px rgba(0,0,0,.12);
-  --shadow-md:0 10px 25px rgba(0,0,0,.08);
+  --muted:#64748b;
+  --radius:22px;
+  --shadow:0 15px 40px rgba(0,0,0,.12);
 }
 
-/* LOCK MOBILE FRAME */
+/* ===== FIX SIZE LIKE NATIVE APP ===== */
 body{
   margin:0;
-  background:linear-gradient(to bottom,#e2e8f0,#f8fafc);
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#cbd5e1;
   display:flex;
   justify-content:center;
-}
-.app{
-  width:100%;
-  max-width:430px;
-  min-height:100vh;
-  background:#f8fafc;
-  position:relative;
-  overflow:hidden;
+  font-family:system-ui;
 }
 
-/* HEADER */
-header{
-  position:relative;
-  width:100%;
-  height:200px;
+.app{
+  width:430px;
+  height:100vh;
+  background:var(--bg);
   overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
 }
-.header-banner{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+
+/* ===== HEADER ===== */
+header{
+  padding:18px;
+  background:linear-gradient(135deg,#0a3083,#123ea3);
+  color:#fff;
+  position:relative;
 }
+
+.header-title{
+  font-size:20px;
+  font-weight:800;
+}
+
 .search-btn{
   position:absolute;
-  top:18px;
   right:18px;
-  font-size:26px;
-  color:#fff;
+  top:18px;
   cursor:pointer;
-  z-index:2;
 }
+
 .search-box{
-  position:absolute;
-  top:60px;
-  right:16px;
+  margin-top:14px;
   display:none;
-  z-index:2;
 }
+
 .search-box input{
-  padding:10px 16px;
-  border-radius:20px;
+  width:100%;
+  padding:12px;
+  border-radius:14px;
   border:none;
-  width:200px;
-  box-shadow:var(--shadow-md);
 }
 
-/* MAIN */
+/* ===== CONTENT ===== */
 main{
-  padding:20px;
-  padding-bottom:120px;
+  flex:1;
+  overflow-y:auto;
+  padding:18px;
+  scroll-behavior:smooth;
 }
 
-/* SECTION ANIMATION */
 section{
   display:none;
   animation:slide .35s ease;
 }
+
 section.active{
   display:block;
 }
+
 @keyframes slide{
-  from{opacity:0;transform:translateX(20px)}
-  to{opacity:1;transform:translateX(0)}
+  from{opacity:0; transform:translateX(30px)}
+  to{opacity:1; transform:translateX(0)}
 }
 
-/* CARD STYLE */
-.section-box{
-  background:#ffffff;
-  border-radius:var(--radius-lg);
-  padding:20px;
-  box-shadow:var(--shadow-lg);
-  margin-bottom:16px;
-  transition:.25s;
-}
-.section-box:hover{
-  transform:translateY(-4px);
+/* ===== HERO CARD (TagThai Style) ===== */
+.hero-card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
 }
 
-/* POSTER SLIDE */
-.poster-scroll{
+/* ===== HORIZONTAL SCROLL CARDS ===== */
+.horizontal{
   display:flex;
   gap:14px;
   overflow-x:auto;
-  scroll-behavior:smooth;
+  padding-bottom:6px;
 }
-.poster{
-  min-width:260px;
-  height:150px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#1e3a8a,#3b82f6);
-  color:#fff;
+
+.card{
+  min-width:160px;
+  background:var(--card);
+  border-radius:18px;
+  padding:16px;
+  box-shadow:var(--shadow);
+  transition:.25s;
+  cursor:pointer;
+}
+
+.card:active{
+  transform:scale(.96);
+}
+
+/* ===== SERVICE LIST ===== */
+.service-card{
+  background:var(--card);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:12px;
+  box-shadow:var(--shadow);
+  font-weight:600;
   display:flex;
   align-items:center;
-  justify-content:center;
-  font-weight:700;
-  text-align:center;
-  padding:10px;
+  justify-content:space-between;
+  transition:.2s;
+}
+.service-card:active{
+  transform:scale(.97);
 }
 
-/* SERVICE GRID */
-.service-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-.service-card{
-  background:#fff;
-  border-radius:20px;
+/* ===== CALCULATOR ===== */
+.calc-box{
+  background:var(--card);
+  border-radius:18px;
   padding:18px;
-  text-align:center;
-  box-shadow:var(--shadow-md);
-  cursor:pointer;
-  transition:.25s;
-  font-weight:600;
+  box-shadow:var(--shadow);
 }
-.service-card:hover{
-  transform:scale(1.05);
-}
-.service-card span{
-  font-size:28px;
-  display:block;
-  margin-bottom:6px;
-  color:var(--primary);
-}
-
-/* CALCULATOR */
 .calc-box input{
   width:100%;
   padding:12px;
-  border-radius:14px;
+  border-radius:12px;
   border:1px solid #ddd;
 }
 .calc-box button{
-  margin-top:10px;
+  margin-top:12px;
   width:100%;
   padding:12px;
   border:none;
-  border-radius:14px;
+  border-radius:12px;
   background:var(--primary);
   color:#fff;
   font-weight:700;
 }
 .calc-result{
-  margin-top:10px;
-  background:#e0e7ff;
+  margin-top:12px;
   padding:12px;
-  border-radius:14px;
+  background:#e0e7ff;
+  border-radius:12px;
   font-weight:700;
 }
 
-/* BOTTOM BAR */
+/* ===== BOTTOM BAR ===== */
 nav{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  background:var(--primary);
   display:flex;
-  padding:8px 4px;
+  background:#fff;
+  box-shadow:0 -6px 20px rgba(0,0,0,.1);
 }
 nav button{
   flex:1;
   border:none;
-  background:transparent;
-  color:#fff;
+  background:none;
+  padding:10px 0;
+  font-size:11px;
   display:flex;
   flex-direction:column;
   align-items:center;
-  font-size:11px;
 }
 nav button.active{
-  background:rgba(255,255,255,.22);
-  border-radius:16px;
-}
-.material-symbols-rounded{
-  font-size:22px;
+  color:var(--primary);
+  font-weight:700;
 }
 </style>
 </head>
@@ -211,8 +196,7 @@ nav button.active{
 <div class="app">
 
 <header>
-<img class="header-banner"
-src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+<div class="header-title">CKC Connect</div>
 <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
 <div class="search-box" id="searchBox">
 <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
@@ -221,157 +205,147 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 
 <main>
 
+<!-- HOME -->
 <section id="home" class="active">
-<div class="section-box">
-<h3>ประกาศศาล</h3>
-<div class="poster-scroll">
-<div class="poster">พื้นที่สำหรับใส่โปสเตอร์ / ข่าวประชาสัมพันธ์</div>
-<div class="poster">พื้นที่สำหรับใส่โปสเตอร์ / ข่าวประชาสัมพันธ์</div>
+
+<div class="hero-card">
+<b>พื้นที่โปสเตอร์ / ข่าวประชาสัมพันธ์</b>
+<p style="color:#64748b;font-size:13px;">พร้อมวางภาพจริงหรือ Banner</p>
 </div>
+
+<div class="horizontal">
+<div class="card">ประกาศศาล 1</div>
+<div class="card">ประกาศศาล 2</div>
+<div class="card">ประกาศศาล 3</div>
 </div>
+
 </section>
 
+<!-- SERVICE -->
 <section id="service">
-<div class="section-box">
-<h3>บริการออนไลน์</h3>
-<div class="service-grid">
 
 <div class="service-card" onclick="navigate('fee')">
-<span class="material-symbols-rounded">calculate</span>
 อัตราค่าธรรมเนียม (ค่าขึ้นศาล)
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<span class="material-symbols-rounded">list_alt</span>
 ขั้นตอนการฟ้องและยื่นคำร้อง
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 
 <div class="service-card" onclick="openLink('https://cios.coj.go.th/tracking/')">
-<span class="material-symbols-rounded">search</span>
 ติดตามสำนวนคดี
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 
 <div class="service-card" onclick="navigate('efiling')">
-<span class="material-symbols-rounded">gavel</span>
 e-Filing
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 
 <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
-<span class="material-symbols-rounded">description</span>
 CIOS
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 
 <div class="service-card" onclick="navigate('cojpage')">
-<span class="material-symbols-rounded">account_balance</span>
 COJ
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<span class="material-symbols-rounded">event_note</span>
 ไกล่เกลี่ยและพิจารณาคดีทางอิเล็กทรอนิกส์
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<span class="material-symbols-rounded">calendar_month</span>
 บัญชีนัดพิจารณาคดีและพิจารณาคดีทางอิเล็กทรอนิกส์
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 
 <div class="service-card" onclick="navigate('download')">
-<span class="material-symbols-rounded">download</span>
 ดาวน์โหลดแบบฟอร์ม
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 
-</div>
-</div>
 </section>
 
+<!-- FEE -->
 <section id="fee">
-<div class="section-box">
-<h3>คำนวณค่าธรรมเนียม</h3>
 <div class="calc-box">
+<h3>คำนวณค่าธรรมเนียม</h3>
 <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
 <button onclick="calcFee()">คำนวณ</button>
 <div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
 </div>
-</div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+<div class="hero-card">พื้นที่แสดงแบบฟอร์ม (พร้อมวาง PDF / ภาพจริง)</div>
+</section>
+
+<section id="knowledge">
+<div class="hero-card">พื้นที่คลังความรู้ (พร้อมวาง Poster / Infographic)</div>
+</section>
+
+<section id="other">
+<div class="hero-card">พื้นที่ FAQ / แบบประเมิน / Feedback</div>
+</section>
+
+<section id="contact">
+<div class="hero-card">ข้อมูลติดต่อ / แผนที่ / เบอร์โทร</div>
 </section>
 
 <section id="efiling">
-<div class="section-box">
-<h3>เลือกระบบ e-Filing</h3>
 <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
 e-Filing v.3
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
 e-Filing v.4
-</div>
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 </section>
 
 <section id="cojpage">
-<div class="section-box">
-<h3>เลือกบริการ COJ</h3>
 <div class="service-card" onclick="openLink('https://www.coj.go.th')">
 COJ (เว็บไซต์หลัก)
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 <div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
 COJ Connect
-</div>
-</div>
-</section>
-
-<section id="download">
-<div class="section-box">
-<h3>ดาวน์โหลดแบบฟอร์ม</h3>
-<div class="poster">พื้นที่สำหรับใส่ภาพแบบฟอร์มจริง</div>
-</div>
-</section>
-
-<section id="knowledge">
-<div class="section-box">
-<h3>คลังความรู้</h3>
-<div class="poster">พื้นที่สำหรับบทความ / โปสเตอร์ความรู้</div>
-</div>
-</section>
-
-<section id="other">
-<div class="section-box">
-<h3>เพิ่มเติม</h3>
-<div class="poster">พื้นที่สำหรับ FAQ / แบบประเมิน / ฟีเจอร์อื่น ๆ</div>
-</div>
-</section>
-
-<section id="contact">
-<div class="section-box">
-<h3>ติดต่อ</h3>
-<div class="poster">พื้นที่สำหรับแผนที่ / ข้อมูลติดต่อ</div>
+<span class="material-symbols-rounded">chevron_right</span>
 </div>
 </section>
 
 <section id="blank">
-<div class="section-box">
-<h3>อยู่ระหว่างพัฒนา</h3>
-<div class="poster">พื้นที่สำหรับเพิ่มข้อมูลในอนาคต</div>
-</div>
+<div class="hero-card">โครงสร้างพร้อมใส่ข้อมูลจริงในอนาคต</div>
 </section>
 
 </main>
 
 <nav>
 <button class="active" onclick="navigate('home',this)">
-<span class="material-symbols-rounded">home</span>หน้าแรก
+<span class="material-symbols-rounded">home</span>
+หน้าแรก
 </button>
 <button onclick="navigate('service',this)">
-<span class="material-symbols-rounded">apps</span>บริการ
+<span class="material-symbols-rounded">apps</span>
+บริการ
 </button>
 <button onclick="navigate('knowledge',this)">
-<span class="material-symbols-rounded">menu_book</span>คลังความรู้
+<span class="material-symbols-rounded">menu_book</span>
+คลังความรู้
 </button>
 <button onclick="navigate('other',this)">
-<span class="material-symbols-rounded">more_horiz</span>เพิ่มเติม
+<span class="material-symbols-rounded">more_horiz</span>
+เพิ่มเติม
 </button>
 <button onclick="navigate('contact',this)">
-<span class="material-symbols-rounded">person</span>ติดต่อ
+<span class="material-symbols-rounded">person</span>
+ติดต่อ
 </button>
 </nav>
 
@@ -379,23 +353,19 @@ COJ Connect
 
 <script>
 function navigate(id,btn){
-history.pushState({page:id},"","#"+id);
-showPage(id,btn);
-}
-window.onpopstate=e=>{
-if(e.state) showPage(e.state.page);
-};
-function showPage(id,btn){
 document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
 if(btn) btn.classList.add("active");
 }
+
 function openLink(url){window.open(url,"_blank")}
+
 function toggleSearch(){
 const b=document.getElementById("searchBox");
 b.style.display=b.style.display==="block"?"none":"block";
 }
+
 function doSearch(e){
 if(e.key==="Enter"){
 const q=e.target.value;
@@ -405,6 +375,7 @@ else if(q.includes("ดาว")) navigate("download");
 else navigate("blank");
 }
 }
+
 function calcFee(){
 const m=document.getElementById("money").value;
 const fee=Math.max(100,Math.floor(m*0.02));
