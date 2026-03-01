@@ -5,74 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 
-<!-- Prompt Font -->
+<!-- FONT = PROMPT -->
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
 
-/* =====================================================
-   CKC CONNECT — REBUILD UI SYSTEM (SOFT / DEPTH STYLE)
-   ===================================================== */
+/* =========================
+   REBUILD DESIGN SYSTEM
+========================= */
 
 :root{
   --primary:#0B2A6F;
-  --primary-strong:#082055;
-  --primary-soft:#1E40AF;
-  --bg-main:#F4F7FC;
-  --bg-layer:#FFFFFF;
-  --bg-soft:#EEF3FB;
+  --primary-soft:#1c3fa8;
+  --bg-main:#f4f7fc;
+  --bg-layer:#ffffff;
   --text-main:#111827;
-  --text-sub:#334155;
-  --text-muted:#64748B;
+  --text-muted:#6b7280;
 
-  --radius-xl:32px;
-  --radius-lg:24px;
-  --radius-md:18px;
-  --radius-sm:14px;
+  --radius-xl:28px;
+  --radius-lg:22px;
+  --radius-md:16px;
 
-  --shadow-soft:0 6px 18px rgba(0,0,0,.06);
-  --shadow-medium:0 14px 34px rgba(0,0,0,.10);
-  --shadow-strong:0 28px 60px rgba(0,0,0,.18);
-
-  --transition:all .35s cubic-bezier(.22,1,.36,1);
+  --shadow-soft:0 8px 24px rgba(11,42,111,.08);
+  --shadow-depth:0 18px 50px rgba(11,42,111,.15);
 }
-
-/* ================= GLOBAL ================= */
 
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
 }
 
 body{
   margin:0;
   font-family:'Prompt',sans-serif;
-  background:linear-gradient(180deg,#F8FBFF 0%,#EEF3FB 100%);
+  background:linear-gradient(180deg,#f8fbff 0%,#eef3fb 100%);
   color:var(--text-main);
-  letter-spacing:.2px;
-  overflow-x:hidden;
-}
-
-main{
-  max-width:520px;            /* คุมสัดส่วนเหมือนแอป */
-  margin:auto;
-  padding:20px;
-  padding-bottom:140px;
-}
-
-section{
-  display:none;
-  animation:fade .35s ease;
-}
-
-section.active{
-  display:block;
-}
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(10px);}
-  to{opacity:1;transform:translateY(0);}
+  -webkit-font-smoothing:antialiased;
 }
 
 /* ================= HEADER ================= */
@@ -80,13 +48,14 @@ section.active{
 header{
   position:relative;
   width:100%;
-  max-width:520px;
-  margin:auto;
-  aspect-ratio:16/7;
+  aspect-ratio:16/6;
+  max-height:260px;
   overflow:hidden;
 }
 
 .header-banner{
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
@@ -94,20 +63,20 @@ header{
 
 .search-btn{
   position:absolute;
-  top:16px;
-  right:16px;
-  font-size:26px;
+  top:18px;
+  right:18px;
+  font-size:28px;
   color:#fff;
   cursor:pointer;
-  z-index:3;
+  z-index:2;
 }
 
 .search-box{
   position:absolute;
   top:60px;
-  right:16px;
+  right:18px;
   display:none;
-  z-index:3;
+  z-index:2;
 }
 
 .search-box input{
@@ -119,31 +88,45 @@ header{
   box-shadow:var(--shadow-soft);
 }
 
-/* ================= SUBTITLE SYSTEM (5 หน้า) ================= */
+/* ================= MAIN ================= */
 
-.page-subtitle{
-  margin-top:22px;
-  margin-bottom:16px;
-  font-weight:600;
-  color:var(--primary);
-  font-size:18px;
+main{
+  padding:24px 18px 140px;
+  max-width:640px;
+  margin:auto;
 }
 
-/* ================= HERO CARD ================= */
+section{
+  display:none;
+  animation:fade .3s ease;
+}
+
+section.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ===== SUBTITLE (5 หน้า) ===== */
+
+.subtitle{
+  font-size:18px;
+  font-weight:600;
+  color:var(--primary);
+  margin:10px 4px 20px;
+}
+
+/* ================= HERO ================= */
 
 .hero-card{
   background:var(--bg-layer);
   border-radius:var(--radius-xl);
   overflow:hidden;
-  box-shadow:var(--shadow-medium);
-  transition:var(--transition);
+  box-shadow:var(--shadow-soft);
   margin-bottom:24px;
-  cursor:pointer;
-}
-
-.hero-card:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow-strong);
 }
 
 .hero-card img{
@@ -155,89 +138,67 @@ header{
 .hero-card div{
   padding:18px;
   font-weight:500;
-  line-height:1.6;
 }
 
-/* ================= QUICK TAP (NEW STYLE) ================= */
+/* ================= QUICK TAP (FIXED RATIO) ================= */
 
 .quick-row{
   display:flex;
   justify-content:space-between;
   gap:14px;
-  margin:26px 0 30px;
+  margin:28px 0 34px;
 }
 
 .quick-item{
   flex:1;
-  background:var(--bg-layer);
-  border-radius:22px;
-  padding:18px 8px;
   text-align:center;
-  box-shadow:var(--shadow-soft);
-  transition:var(--transition);
-  cursor:pointer;
 }
 
-.quick-item:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow-medium);
-}
-
-.quick-icon-circle{
-  width:52px;
-  height:52px;
+.quick-circle{
+  width:64px;
+  height:64px;
   margin:auto;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(180deg,#2b59d9,#163d9a);
-  color:#fff;
-  box-shadow:inset 0 3px 8px rgba(255,255,255,.3),
-             0 6px 14px rgba(0,0,0,.15);
-  margin-bottom:10px;
-}
-
-.quick-icon-circle span{
-  font-size:26px;
+  background:linear-gradient(145deg,#ffffff,#e6edff);
+  box-shadow:
+    0 6px 16px rgba(11,42,111,.15),
+    inset 0 -4px 8px rgba(11,42,111,.08);
+  color:var(--primary);
+  font-size:28px;
 }
 
 .quick-item p{
-  margin:0;
+  margin:10px 0 0;
   font-size:13px;
   font-weight:400;
   color:#000;
 }
 
-/* ================= POST CAROUSEL ================= */
+/* ================= CAROUSEL POST (ข้อ 16) ================= */
 
-.carousel-wrapper{
-  overflow-x:auto;
+.post-carousel{
   display:flex;
   gap:16px;
+  overflow-x:auto;
   scroll-snap-type:x mandatory;
-  padding-bottom:6px;
+  padding-bottom:8px;
 }
 
-.carousel-wrapper::-webkit-scrollbar{
+.post-carousel::-webkit-scrollbar{
   display:none;
 }
 
 .post-card{
   min-width:200px;
-  flex-shrink:0;
+  flex:0 0 auto;
   background:#fff;
-  border-radius:24px;
+  border-radius:20px;
   overflow:hidden;
   box-shadow:var(--shadow-soft);
   scroll-snap-align:start;
-  transition:var(--transition);
-  cursor:pointer;
-}
-
-.post-card:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow-medium);
 }
 
 .post-card img{
@@ -253,7 +214,7 @@ header{
   color:#000;
 }
 
-/* ================= SERVICE CARDS SOFT ================= */
+/* ================= SERVICE ================= */
 
 .service-grid{
   display:flex;
@@ -263,45 +224,27 @@ header{
 
 .service-card{
   background:#fff;
-  border-radius:20px;
+  border-radius:var(--radius-lg);
   padding:18px 18px 18px 60px;
-  font-size:14px;
-  font-weight:400;
-  color:#000;
   box-shadow:var(--shadow-soft);
   position:relative;
-  transition:var(--transition);
-  cursor:pointer;
+  font-weight:400;
+  color:#000;
 }
 
-.service-card:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow-medium);
-}
-
-.service-icon{
+.icon-circle{
   position:absolute;
-  left:18px;
+  left:16px;
   top:50%;
   transform:translateY(-50%);
-  width:36px;
-  height:36px;
-  border-radius:12px;
-  background:linear-gradient(180deg,#e8edff,#dbe4ff);
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#e6edff;
   display:flex;
   align-items:center;
   justify-content:center;
   color:var(--primary);
-}
-
-.service-card::after{
-  content:"chevron_right";
-  font-family:"Material Symbols Rounded";
-  position:absolute;
-  right:16px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#94a3b8;
 }
 
 /* ================= BOTTOM NAV ================= */
@@ -310,13 +253,10 @@ nav{
   position:fixed;
   bottom:0;
   width:100%;
-  max-width:520px;
-  left:50%;
-  transform:translateX(-50%);
   background:var(--primary);
   display:flex;
   padding:10px 6px;
-  box-shadow:0 -10px 28px rgba(0,0,0,.25);
+  box-shadow:0 -8px 30px rgba(11,42,111,.25);
   z-index:100;
 }
 
@@ -329,90 +269,22 @@ nav button{
   flex-direction:column;
   align-items:center;
   font-size:11px;
-  gap:3px;
-  font-family:'Prompt';
 }
 
 nav button.active{
-  background:rgba(255,255,255,.18);
-  border-radius:16px;
-}
-
-/* ================= BOTTOM SHEET REBUILD ================= */
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:none;
-  z-index:200;
-}
-
-.bottom-sheet{
-  position:fixed;
-  bottom:-100%;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:520px;
-  height:100vh;
-  background:#fff;
-  border-radius:32px 32px 0 0;
-  box-shadow:var(--shadow-strong);
-  transition:var(--transition);
-  z-index:300;
-  display:flex;
-  flex-direction:column;
-}
-
-.bottom-sheet.active{
-  bottom:0;
-}
-
-.sheet-header{
-  position:relative;
-}
-
-.sheet-header img{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:cover;
-  border-radius:32px 32px 0 0;
-}
-
-.sheet-back{
-  position:absolute;
-  top:16px;
-  left:16px;
-  background:rgba(0,0,0,.5);
-  color:#fff;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-}
-
-.sheet-content{
-  padding:24px;
-  overflow-y:auto;
-  flex:1;
-  font-size:15px;
-  line-height:1.7;
+  background:rgba(255,255,255,.15);
+  border-radius:14px;
 }
 
 </style>
 </head>
+
 <body>
 
 <header>
 <img class="header-banner"
 src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
-
 <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
-
 <div class="search-box" id="searchBox">
 <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
 </div>
@@ -421,41 +293,40 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 <main>
 
 <!-- ================= HOME ================= -->
+
 <section id="home" class="active">
 
-<div class="page-subtitle">โพสล่าสุด</div>
+<div class="subtitle">โพสล่าสุด</div>
 
 <div class="hero-card" onclick="openPost()">
 <img src="https://via.placeholder.com/800x450">
-<div>ประกาศสำคัญของศาล (ตัวอย่าง)</div>
 </div>
 
-<!-- QUICK TAP -->
 <div class="quick-row">
 
 <div class="quick-item" onclick="navigate('fee')">
-<div class="quick-icon-circle">
+<div class="quick-circle">
 <span class="material-symbols-rounded">calculate</span>
 </div>
 <p>อัตราค่าธรรมเนียมขึ้นศาล</p>
 </div>
 
 <div class="quick-item" onclick="navigate('efiling')">
-<div class="quick-icon-circle">
+<div class="quick-circle">
 <span class="material-symbols-rounded">gavel</span>
 </div>
 <p>e-Filing</p>
 </div>
 
 <div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
-<div class="quick-icon-circle">
+<div class="quick-circle">
 <span class="material-symbols-rounded">description</span>
 </div>
 <p>CIOS</p>
 </div>
 
 <div class="quick-item" onclick="navigate('download')">
-<div class="quick-icon-circle">
+<div class="quick-circle">
 <span class="material-symbols-rounded">download</span>
 </div>
 <p>ดาวน์โหลดแบบฟอร์ม</p>
@@ -463,333 +334,275 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 
 </div>
 
-<div class="page-subtitle">รายการโพส</div>
+<div class="subtitle">รายการโพส</div>
 
-<!-- CAROUSEL POST -->
-<div class="carousel-wrapper">
-
+<div class="post-carousel">
 <div class="post-card" onclick="openPost()">
 <img src="https://via.placeholder.com/600x750">
 <div>โพสรอง 1</div>
 </div>
-
 <div class="post-card" onclick="openPost()">
 <img src="https://via.placeholder.com/600x750">
 <div>โพสรอง 2</div>
 </div>
-
 <div class="post-card" onclick="openPost()">
 <img src="https://via.placeholder.com/600x750">
 <div>โพสรอง 3</div>
 </div>
-
-<div class="post-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x750">
-<div>โพสรอง 4</div>
-</div>
-
 </div>
 
 </section>
-
 <!-- ================= SERVICE ================= -->
+
 <section id="service">
 
-<div class="page-subtitle">ข้อมูลบริการ</div>
+<div class="subtitle">ข้อมูลบริการ</div>
 
 <div class="service-grid">
 
 <div class="service-card" onclick="navigate('fee')">
-<div class="service-icon"><span class="material-symbols-rounded">calculate</span></div>
+<div class="icon-circle"><span class="material-symbols-rounded">calculate</span></div>
 อัตราค่าธรรมเนียม (ค่าขึ้นศาล)
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<div class="service-icon"><span class="material-symbols-rounded">list_alt</span></div>
+<div class="icon-circle"><span class="material-symbols-rounded">list_alt</span></div>
 ขั้นตอนการฟ้องและยื่นคำร้อง
 </div>
 
 <div class="service-card" onclick="openLink('https://cios.coj.go.th/tracking/')">
-<div class="service-icon"><span class="material-symbols-rounded">search</span></div>
+<div class="icon-circle"><span class="material-symbols-rounded">search</span></div>
 ติดตามสำนวนคดี
 </div>
 
 <div class="service-card" onclick="navigate('efiling')">
-<div class="service-icon"><span class="material-symbols-rounded">gavel</span></div>
+<div class="icon-circle"><span class="material-symbols-rounded">gavel</span></div>
 e-Filing
 </div>
 
 <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
-<div class="service-icon"><span class="material-symbols-rounded">description</span></div>
+<div class="icon-circle"><span class="material-symbols-rounded">description</span></div>
 CIOS
 </div>
 
 <div class="service-card" onclick="navigate('cojpage')">
-<div class="service-icon"><span class="material-symbols-rounded">account_balance</span></div>
+<div class="icon-circle"><span class="material-symbols-rounded">account_balance</span></div>
 COJ
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<div class="service-icon"><span class="material-symbols-rounded">event_note</span></div>
+<div class="icon-circle"><span class="material-symbols-rounded">event_note</span></div>
 ไกล่เกลี่ยและพิจารณาคดีทางอิเล็กทรอนิกส์
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<div class="service-icon"><span class="material-symbols-rounded">calendar_month</span></div>
+<div class="icon-circle"><span class="material-symbols-rounded">calendar_month</span></div>
 บัญชีนัดพิจารณาคดีและพิจารณาคดีทางอิเล็กทรอนิกส์
 </div>
 
 <div class="service-card" onclick="navigate('download')">
-<div class="service-icon"><span class="material-symbols-rounded">download</span></div>
+<div class="icon-circle"><span class="material-symbols-rounded">download</span></div>
 ดาวน์โหลดแบบฟอร์ม
 </div>
 
 </div>
 </section>
 
-<!-- ================= COJ PAGE ================= -->
-<section id="cojpage">
-<div class="page-subtitle">ข้อมูลบริการ</div>
-
-<div class="hero-card">
-<img src="https://via.placeholder.com/800x450">
-<div>ภาพประกอบกราฟิกโมเดิร์นสำหรับ COJ</div>
-</div>
-
-<div class="service-grid">
-
-<div class="service-card" onclick="openLink('https://www.coj.go.th')">
-<div class="service-icon"><span class="material-symbols-rounded">public</span></div>
-COJ (เว็บไซต์หลัก)
-</div>
-
-<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
-<div class="service-icon"><span class="material-symbols-rounded">link</span></div>
-COJ Connect
-</div>
-
-</div>
-</section>
-
-<!-- ================= EFILING ================= -->
-<section id="efiling">
-<div class="page-subtitle">ข้อมูลบริการ</div>
-
-<div class="hero-card">
-<img src="https://via.placeholder.com/800x450">
-<div>กราฟิกโมเดิร์น e-Filing</div>
-</div>
-
-<div class="service-grid">
-
-<div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
-<div class="service-icon"><span class="material-symbols-rounded">gavel</span></div>
-e-Filing v.3
-</div>
-
-<div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
-<div class="service-icon"><span class="material-symbols-rounded">rocket_launch</span></div>
-e-Filing v.4
-</div>
-
-</div>
-</section>
-
-<!-- ================= FEE ================= -->
-<section id="fee">
-<div class="page-subtitle">ข้อมูลบริการ</div>
-
-<div class="hero-card">
-<div style="padding:20px;">
-<h3>คำนวณค่าธรรมเนียม</h3>
-<input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์" style="width:100%;padding:12px;border-radius:12px;border:1px solid #ddd;">
-<button onclick="calcFee()" style="margin-top:10px;width:100%;padding:12px;border:none;border-radius:12px;background:#0B2A6F;color:#fff;">คำนวณ</button>
-<div id="feeResult" style="margin-top:10px;font-weight:600;">ค่าธรรมเนียม:</div>
-</div>
-</div>
-</section>
-
-<!-- ================= DOWNLOAD ================= -->
-<section id="download">
-<div class="page-subtitle">ข้อมูลบริการ</div>
-
-<div class="carousel-wrapper">
-
-<div class="post-card">
-<img src="https://via.placeholder.com/300x400">
-<div>คำร้องทั่วไป</div>
-</div>
-
-<div class="post-card">
-<img src="https://via.placeholder.com/300x400">
-<div>แบบฟอร์มเพิ่มเติม</div>
-</div>
-
-<div class="post-card">
-<img src="https://via.placeholder.com/300x400">
-<div>คำร้องตัวอย่าง</div>
-</div>
-
-</div>
-</section>
-
 <!-- ================= KNOWLEDGE ================= -->
+
 <section id="knowledge">
-<div class="page-subtitle">คลังความรู้</div>
+
+<div class="subtitle">คลังความรู้</div>
 
 <div class="hero-card">
 <img src="https://via.placeholder.com/800x450">
-<div>โปสเตอร์ความรู้หลัก</div>
+<div>หมวดโปสเตอร์ความรู้</div>
 </div>
 
-<div class="carousel-wrapper">
-<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>โปสเตอร์ความรู้</div></div>
-<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ศัพท์กฎหมาย</div></div>
-<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>หมวดหมู่เพิ่มเติม</div></div>
+<div class="post-carousel">
+<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ศัพท์กฎหมาย A</div></div>
+<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ศัพท์กฎหมาย B</div></div>
+<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ศัพท์กฎหมาย C</div></div>
 </div>
+
 </section>
 
 <!-- ================= OTHER ================= -->
+
 <section id="other">
-<div class="page-subtitle">ข้อมูลเพิ่มเติม</div>
+
+<div class="subtitle">ข้อมูลเพิ่มเติม</div>
 
 <div class="hero-card">
 <img src="https://via.placeholder.com/800x450">
-<div>FAQ ตัวอย่าง</div>
+<div>FAQ และแบบประเมินความพึงพอใจ</div>
 </div>
 
-<div class="hero-card">
-<div style="padding:20px;">
-<h4>แบบประเมินความพึงพอใจ (Demo)</h4>
-<p>⭐ ⭐ ⭐ ⭐ ⭐</p>
+<div class="service-card">
+<div class="icon-circle"><span class="material-symbols-rounded">help</span></div>
+คำถามที่พบบ่อย (FAQ)
 </div>
+
+<div class="service-card">
+<div class="icon-circle"><span class="material-symbols-rounded">rate_review</span></div>
+แบบประเมินความพึงพอใจ
 </div>
 
 </section>
 
 <!-- ================= CONTACT ================= -->
+
 <section id="contact">
-<div class="page-subtitle">ข้อมูลติดต่อ</div>
+
+<div class="subtitle">ข้อมูลติดต่อ</div>
 
 <div class="hero-card">
 <img src="https://via.placeholder.com/800x450">
-<div>แผนที่ศาล (Demo)</div>
-</div>
-
-<div class="hero-card">
-<div style="padding:20px;">
-โทรศัพท์: 0xx-xxx-xxxx<br>
-อีเมล: example@court.go.th
-</div>
+<div>ข้อมูลติดต่อ + แผนที่ศาล</div>
 </div>
 
 </section>
 
-<!-- ================= BLANK ================= -->
-<section id="blank">
+<!-- ================= COJ PAGE ================= -->
+
+<section id="cojpage">
+
+<div class="subtitle">ข้อมูลบริการ</div>
+
 <div class="hero-card">
 <img src="https://via.placeholder.com/800x450">
-<div>อยู่ระหว่างพัฒนา</div>
+<div>เลือกใช้งาน COJ หรือ COJ Connect</div>
 </div>
+
+<div class="service-grid">
+
+<div class="service-card" onclick="openLink('https://www.coj.go.th')">
+<div class="icon-circle"><span class="material-symbols-rounded">public</span></div>
+COJ (เว็บไซต์หลัก)
+</div>
+
+<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
+<div class="icon-circle"><span class="material-symbols-rounded">link</span></div>
+COJ Connect
+</div>
+
+</div>
+
 </section>
+
+<!-- ================= EFILING ================= -->
+
+<section id="efiling">
+
+<div class="subtitle">ข้อมูลบริการ</div>
+
+<div class="hero-card">
+<img src="https://via.placeholder.com/800x450">
+<div>เลือกเวอร์ชันการใช้งาน e-Filing</div>
+</div>
+
+<div class="service-grid">
+
+<div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
+<div class="icon-circle"><span class="material-symbols-rounded">gavel</span></div>
+e-Filing v.3
+</div>
+
+<div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
+<div class="icon-circle"><span class="material-symbols-rounded">rocket_launch</span></div>
+e-Filing v.4
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= NAV ================= -->
 
 </main>
+
+<nav>
+<button class="active" onclick="navigate('home',this)">
+<span class="material-symbols-rounded">home</span>หน้าแรก
+</button>
+<button onclick="navigate('service',this)">
+<span class="material-symbols-rounded">apps</span>บริการ
+</button>
+<button onclick="navigate('knowledge',this)">
+<span class="material-symbols-rounded">menu_book</span>คลังความรู้
+</button>
+<button onclick="navigate('other',this)">
+<span class="material-symbols-rounded">more_horiz</span>เพิ่มเติม
+</button>
+<button onclick="navigate('contact',this)">
+<span class="material-symbols-rounded">person</span>ติดต่อ
+</button>
+</nav>
+
+<!-- ================= BOTTOM SHEET ================= -->
+
+<div class="overlay" id="overlay" onclick="closePost()"
+style="position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:200;"></div>
+
+<div class="bottom-sheet" id="sheet"
+style="position:fixed;bottom:-100%;left:0;width:100%;height:100vh;background:#fff;border-radius:28px 28px 0 0;z-index:300;transition:.4s;display:flex;flex-direction:column;">
+
+<div style="padding:16px;display:flex;align-items:center;gap:10px;">
+<span class="material-symbols-rounded" style="cursor:pointer;"
+onclick="closePost()">arrow_back</span>
+<strong>รายละเอียดโพส</strong>
+</div>
+
+<div style="padding:0 16px;">
+<div style="width:100%;aspect-ratio:16/9;background:#e6edff;border-radius:20px;margin-bottom:16px;"></div>
+</div>
+
+<div style="padding:0 20px 40px;overflow-y:auto;">
+<p>พื้นที่สำหรับใส่เนื้อหาแบบเต็ม สามารถเลื่อนอ่านได้เหมือนแอปจริง</p>
+</div>
+
+</div>
+
+<!-- ================= SCRIPT ================= -->
+
 <script>
-/* =========================
-   1) Bottom Navigation Active State
-========================= */
-const navItems = document.querySelectorAll('.bottom-nav .nav-item');
 
-navItems.forEach(item => {
-    item.addEventListener('click', function() {
-        navItems.forEach(i => i.classList.remove('active'));
-        this.classList.add('active');
-    });
-});
+function navigate(id,btn){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 
-/* =========================
-   2) Horizontal Scroll Buttons (Secondary Posts)
-========================= */
-const scrollContainer = document.querySelector('.secondary-scroll');
-const btnNext = document.querySelector('.scroll-btn.next');
-const btnPrev = document.querySelector('.scroll-btn.prev');
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+if(btn) btn.classList.add("active");
 
-if (scrollContainer) {
-
-    const scrollAmount = 300;
-
-    if (btnNext) {
-        btnNext.addEventListener('click', () => {
-            scrollContainer.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        });
-    }
-
-    if (btnPrev) {
-        btnPrev.addEventListener('click', () => {
-            scrollContainer.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        });
-    }
-
-    /* Optional: Snap active indicator */
-    scrollContainer.addEventListener('scroll', () => {
-        const cards = document.querySelectorAll('.secondary-card');
-        const scrollLeft = scrollContainer.scrollLeft;
-
-        cards.forEach(card => {
-            const offset = card.offsetLeft;
-            if (scrollLeft >= offset - 20 && scrollLeft < offset + card.offsetWidth) {
-                cards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
-            }
-        });
-    });
+window.scrollTo({top:0,behavior:'smooth'});
 }
 
-/* =========================
-   3) Smooth Section Scroll (Optional future anchor support)
-========================= */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if(target){
-            e.preventDefault();
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+function openLink(url){
+window.open(url,"_blank");
+}
 
-/* =========================
-   4) Fade-in on Scroll Animation
-========================= */
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add('fade-in');
-        }
-    });
-}, { threshold: 0.2 });
+function toggleSearch(){
+const b=document.getElementById("searchBox");
+b.style.display=b.style.display==="block"?"none":"block";
+}
 
-document.querySelectorAll('.card, .service-card, .secondary-card').forEach(el => {
-    observer.observe(el);
-});
+function doSearch(e){
+if(e.key==="Enter"){
+navigate("home");
+}
+}
 
-/* =========================
-   5) Prevent Card Stretch on Resize
-========================= */
-window.addEventListener('resize', () => {
-    const cards = document.querySelectorAll('.secondary-card');
-    cards.forEach(card => {
-        card.style.height = card.offsetHeight + 'px';
-    });
-});
+function openPost(){
+document.getElementById("overlay").style.display="block";
+document.getElementById("sheet").style.bottom="0";
+}
+
+function closePost(){
+document.getElementById("overlay").style.display="none";
+document.getElementById("sheet").style.bottom="-100%";
+}
+
 </script>
+
 </body>
 </html>
