@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
 <style>
 :root{
   --primary:#0a3083;
@@ -18,71 +19,79 @@
   --radius-sm:12px;
   --shadow-lg:0 18px 40px rgba(0,0,0,.12);
   --shadow-md:0 10px 26px rgba(0,0,0,.1);
+
+  /* NEW SOFT TOKENS */
+  --soft-gray:#f1f5f9;
+  --soft-border:#e2e8f0;
+  --soft-shadow:0 8px 24px rgba(15,23,42,.08);
 }
 
 body{
-  margin:0;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);
-  color:var(--text);
+margin:0;
+font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:var(--bg);
+color:var(--text);
 }
 
-h3{
-  margin:0 0 14px;
-  font-size:18px;
-  font-weight:800;
-  color:var(--primary);
+/* SECTION LABEL (NEW - hierarchy) */
+.section-label{
+font-size:13px;
+font-weight:800;
+color:var(--primary);
+margin:0 0 14px;
 }
 
 /* ===== HEADER FIX (ล็อกสัดส่วนทุกจอ) ===== */
 header{
-  position:relative;
-  width:100%;
-  aspect-ratio:16/6;
-  max-height:260px;
-  overflow:hidden;
-  background:#000;
+position:relative;
+width:100%;
+aspect-ratio:16/6;
+max-height:260px;
+overflow:hidden;
+background:#000;
 }
 
 .header-banner{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center;
 }
 
 /* SEARCH */
 .search-btn{
-  position:absolute;
-  top:16px;
-  right:16px;
-  font-size:26px;
-  color:#fff;
-  cursor:pointer;
-  z-index:2;
-}
-.search-box{
-  position:absolute;
-  top:56px;
-  right:16px;
-  display:none;
-  z-index:2;
-}
-.search-box input{
-  padding:10px 16px;
-  border-radius:14px;
-  border:none;
-  width:220px;
-  box-shadow:var(--shadow-md);
+position:absolute;
+top:16px;
+right:16px;
+font-size:26px;
+color:#fff;
+cursor:pointer;
+z-index:2;
 }
 
-/* ===== MAIN (แก้ไขไม่ให้ทับ header และ bottom bar) ===== */
+.search-box{
+position:absolute;
+top:56px;
+right:16px;
+display:none;
+z-index:2;
+}
+
+.search-box input{
+padding:10px 16px;
+border-radius:14px;
+border:none;
+width:220px;
+box-shadow:var(--shadow-md);
+}
+
+/* ===== MAIN ===== */
 main{
-  padding:16px;
-  padding-top:24px;
-  padding-bottom:140px;
+padding:16px;
+padding-top:24px;
+padding-bottom:140px;
 }
 
 /* SECTION */
@@ -91,178 +100,297 @@ section.active{display:block}
 
 /* FLOAT CARD */
 .section-box{
-  background:#ffffff;
-  border-radius:var(--radius-lg);
-  padding:20px;
-  box-shadow:var(--shadow-lg);
+background:#ffffff;
+border-radius:var(--radius-lg);
+padding:20px;
+box-shadow:var(--shadow-lg);
 }
 
-/* FEED */
-.feed{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+/* SOFT BACKGROUND SECTION (NEW) */
+.soft-section{
+background:var(--soft-gray);
+border-radius:var(--radius-lg);
+padding:18px;
+margin-top:18px;
 }
+
+/* ================= HERO CARD (NEW) ================= */
+.hero-card{
+width:100%;
+aspect-ratio:16/9;   /* ขนาดจริงสำหรับโปสเตอร์ */
+border-radius:24px;
+background:#dbeafe;
+overflow:hidden;
+box-shadow:0 20px 50px rgba(15,23,42,.15);
+margin-bottom:24px;
+}
+
+.hero-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+/* ================= QUICK TAP (NEW) ================= */
+.quick-tap-row{
+display:flex;
+gap:18px;
+overflow-x:auto;
+padding-bottom:6px;
+margin-bottom:24px;
+}
+
+.quick-tap-item{
+min-width:72px;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+font-size:12px;
+font-weight:600;
+color:#1e293b;
+cursor:pointer;
+transition:.25s ease;
+}
+
+.quick-tap-item:active{
+transform:scale(.95);
+}
+
+.quick-icon-wrap{
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:radial-gradient(circle at 30% 30%, #ffffff, #e0e7ff);
+box-shadow:0 8px 18px rgba(15,23,42,.15);
+margin-bottom:8px;
+}
+
+.quick-icon-wrap span{
+font-size:26px;
+color:var(--primary);
+}
+
+/* ================= POSTER SCROLL (NEW) ================= */
+.poster-scroll{
+display:flex;
+gap:16px;
+overflow-x:auto;
+padding-bottom:8px;
+}
+
+.poster-card{
+min-width:180px;
+background:#fff;
+border-radius:22px;
+box-shadow:var(--soft-shadow);
+overflow:hidden;
+transition:.25s ease;
+}
+
+.poster-card:active{
+transform:scale(.97);
+}
+
+.poster-card img{
+width:100%;
+aspect-ratio:3/4;  /* แนวตั้ง ขนาดจริง */
+object-fit:cover;
+display:block;
+}
+
+.poster-title{
+padding:10px 12px;
+font-size:13px;
+font-weight:700;
+}
+
+/* FEED (คงเดิม) */
+.feed{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
 .feed-item{
-  background:#f1f5f9;
-  border-radius:14px;
-  padding:14px;
-  font-weight:600;
+background:#f1f5f9;
+border-radius:14px;
+padding:14px;
+font-weight:600;
 }
 
 /* SERVICE GRID */
 .service-grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:12px;
+display:grid;
+grid-template-columns:1fr;
+gap:12px;
 }
 
-/* SERVICE CARD */
+/* SERVICE CARD (ปรับ soft + interactive ตามที่สั่ง) */
 .service-card{
-  position:relative;
-  background:var(--card);
-  border-radius:var(--radius-md);
-  padding:14px 46px 14px 60px;
-  font-size:14px;
-  font-weight:600;
-  cursor:pointer;
-  box-shadow:var(--shadow-md);
-  transition:.25s ease;
+position:relative;
+background:var(--card);
+border-radius:var(--radius-md);
+padding:14px 46px 14px 60px;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+box-shadow:var(--soft-shadow);
+border:1px solid var(--soft-border);
+transition:.25s ease;
 }
+
 .service-card:hover{
-  transform:translateY(-2px);
+transform:translateY(-3px);
+box-shadow:0 14px 30px rgba(15,23,42,.12);
+}
+
+.service-card:active{
+transform:scale(.98);
 }
 
 .icon-pill{
-  position:absolute;
-  left:14px;
-  top:50%;
-  transform:translateY(-50%);
-  width:34px;
-  height:34px;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:var(--primary-soft);
-  color:var(--primary);
+position:absolute;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+width:34px;
+height:34px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--primary-soft);
+color:var(--primary);
 }
 
 .material-symbols-rounded{
-  font-size:20px;
+font-size:20px;
 }
 
 .service-card::after{
-  content:"chevron_right";
-  font-family:"Material Symbols Rounded";
-  position:absolute;
-  right:14px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#94a3b8;
+content:"chevron_right";
+font-family:"Material Symbols Rounded";
+position:absolute;
+right:14px;
+top:50%;
+transform:translateY(-50%);
+color:#94a3b8;
 }
 
 /* SUB MENU */
 .sub-menu{
-  display:none;
-  margin-top:8px;
-  padding-left:10px;
-  gap:10px;
-}
-.sub-menu .service-card{
-  background:#f8fafc;
-  box-shadow:none;
-  border:1px solid #e5e7eb;
+display:none;
+margin-top:8px;
+padding-left:10px;
+gap:10px;
 }
 
-/* CALCULATOR */
+.sub-menu .service-card{
+background:#f8fafc;
+box-shadow:none;
+border:1px solid #e5e7eb;
+}
+
+/* CALCULATOR (คงเดิม) */
 .calc-box{
-  background:#fff;
-  border-radius:18px;
-  padding:18px;
-  box-shadow:var(--shadow-md);
+background:#fff;
+border-radius:18px;
+padding:18px;
+box-shadow:var(--shadow-md);
 }
+
 .calc-box input{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:1px solid #d1d5db;
+width:100%;
+padding:12px;
+border-radius:12px;
+border:1px solid #d1d5db;
 }
+
 .calc-box button{
-  margin-top:10px;
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:12px;
-  background:var(--primary);
-  color:#fff;
-  font-weight:700;
+margin-top:10px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:var(--primary);
+color:#fff;
+font-weight:700;
 }
+
 .calc-result{
-  margin-top:10px;
-  background:#eef2ff;
-  padding:12px;
-  border-radius:12px;
-  font-weight:700;
+margin-top:10px;
+background:#eef2ff;
+padding:12px;
+border-radius:12px;
+font-weight:700;
 }
 
 /* DOWNLOAD */
 .preview-list{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-.preview-card{
-  background:#fff;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:var(--shadow-md);
-}
-.preview-card img{
-  width:100%;
-  display:block;
-}
-.preview-card div{
-  padding:12px;
-  font-size:13px;
-  font-weight:700;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
 }
 
-/* ===== BOTTOM BAR (เพิ่ม z-index ป้องกันการทับ) ===== */
+.preview-card{
+background:#fff;
+border-radius:16px;
+overflow:hidden;
+box-shadow:var(--shadow-md);
+}
+
+.preview-card img{
+width:100%;
+display:block;
+}
+
+.preview-card div{
+padding:12px;
+font-size:13px;
+font-weight:700;
+}
+
+/* ===== BOTTOM BAR (ปรับ soft ตามสั่ง) ===== */
 nav{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:var(--primary);
-  display:flex;
-  padding:8px 4px;
-  z-index:100;
+position:fixed;
+bottom:0;
+width:100%;
+background:#112d6b;
+display:flex;
+padding:8px 4px;
+z-index:100;
+box-shadow:0 -8px 24px rgba(15,23,42,.2);
 }
+
 nav button{
-  flex:1;
-  border:none;
-  background:transparent;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  font-size:10px;
-  gap:2px;
+flex:1;
+border:none;
+background:transparent;
+color:#fff;
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:10px;
+gap:2px;
 }
+
 nav button.active{
-  background:rgba(255,255,255,.22);
-  border-radius:14px;
+background:rgba(255,255,255,.22);
+border-radius:14px;
 }
 </style>
 </head>
-
 <body>
 
 <header>
 <img class="header-banner"
 src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
 <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
-
 <div class="search-box" id="searchBox">
 <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
 </div>
@@ -270,16 +398,81 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 
 <main>
 
+<!-- ================= HOME ================= -->
 <section id="home" class="active">
-<div class="section-box">
-<h3>รายการโพส</h3>
-<div class="feed">
-<div class="feed-item">ประกาศศาลรายการที่ 1</div>
-<div class="feed-item">ประกาศศาลรายการที่ 2</div>
-</div>
-</div>
-</section>
 
+<!-- โพสล่าสุด (subtitle ใหม่ ตามที่สั่ง) -->
+<div class="section-label">โพสล่าสุด</div>
+
+<!-- HERO CARD (โปสเตอร์หลัก แนวนอน ไม่ใส่ข้อความ) -->
+<div class="hero-card">
+<img src="https://via.placeholder.com/1200x675">
+</div>
+
+<!-- QUICK TAP 5 เมนู แนวนอน 1 แถว -->
+<div class="quick-tap-row">
+
+<div class="quick-tap-item" onclick="navigate('efiling')">
+<div class="quick-icon-wrap">
+<span class="material-symbols-rounded">gavel</span>
+</div>
+e-Filing
+</div>
+
+<div class="quick-tap-item" onclick="openLink('https://cios.coj.go.th')">
+<div class="quick-icon-wrap">
+<span class="material-symbols-rounded">description</span>
+</div>
+CIOS
+</div>
+
+<div class="quick-tap-item" onclick="navigate('cojpage')">
+<div class="quick-icon-wrap">
+<span class="material-symbols-rounded">account_balance</span>
+</div>
+COJ
+</div>
+
+<div class="quick-tap-item" onclick="navigate('fee')">
+<div class="quick-icon-wrap">
+<span class="material-symbols-rounded">calculate</span>
+</div>
+อัตราค่าธรรมเนียม
+</div>
+
+<div class="quick-tap-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
+<div class="quick-icon-wrap">
+<span class="material-symbols-rounded">search</span>
+</div>
+ติดตามสำนวนคดี
+</div>
+
+</div>
+
+<!-- SECTION LABEL รอง -->
+<div class="section-label">รายการโพส</div>
+
+<!-- POSTER รอง แนวตั้ง เลื่อนซ้าย-ขวา -->
+<div class="poster-scroll">
+
+<div class="poster-card">
+<img src="https://via.placeholder.com/300x400">
+<div class="poster-title">ชื่อเรื่อง 1</div>
+</div>
+
+<div class="poster-card">
+<img src="https://via.placeholder.com/300x400">
+<div class="poster-title">ชื่อเรื่อง 2</div>
+</div>
+
+<div class="poster-card">
+<img src="https://via.placeholder.com/300x400">
+<div class="poster-title">ชื่อเรื่อง 3</div>
+</div>
+
+</div>
+
+</section>
 <section id="service">
 <div class="section-box">
 <h3>ข้อมูลบริการ</h3>
@@ -313,18 +506,6 @@ CIOS
 <div class="service-card" onclick="navigate('cojpage')">
 <div class="icon-pill"><span class="material-symbols-rounded">account_balance</span></div>
 COJ
-</div>
-
-<div class="sub-menu" id="cojSub">
-<div class="service-card" onclick="openLink('https://www.coj.go.th')">
-<div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
-COJ (เว็บไซต์หลัก)
-</div>
-
-<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
-<div class="icon-pill"><span class="material-symbols-rounded">link</span></div>
-COJ Connect
-</div>
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
@@ -407,10 +588,29 @@ e-Filing v.4
 </div>
 </section>
 
-<section id="knowledge"><div class="section-box"><h3>คลังความรู้</h3></div></section>
-<section id="other"><div class="section-box"><h3>เพิ่มเติม</h3></div></section>
-<section id="contact"><div class="section-box"><h3>ติดต่อ</h3></div></section>
-<section id="blank"><div class="section-box"><h3>อยู่ระหว่างพัฒนา</h3></div></section>
+<section id="knowledge">
+<div class="section-box">
+<h3>คลังความรู้</h3>
+</div>
+</section>
+
+<section id="other">
+<div class="section-box">
+<h3>เพิ่มเติม</h3>
+</div>
+</section>
+
+<section id="contact">
+<div class="section-box">
+<h3>ติดต่อ</h3>
+</div>
+</section>
+
+<section id="blank">
+<div class="section-box">
+<h3>อยู่ระหว่างพัฒนา</h3>
+</div>
+</section>
 
 </main>
 
@@ -418,15 +618,19 @@ e-Filing v.4
 <button class="active" onclick="navigate('home',this)">
 <span class="material-symbols-rounded">home</span>หน้าแรก
 </button>
+
 <button onclick="navigate('service',this)">
 <span class="material-symbols-rounded">apps</span>บริการ
 </button>
+
 <button onclick="navigate('knowledge',this)">
 <span class="material-symbols-rounded">menu_book</span>คลังความรู้
 </button>
+
 <button onclick="navigate('other',this)">
 <span class="material-symbols-rounded">more_horiz</span>เพิ่มเติม
 </button>
+
 <button onclick="navigate('contact',this)">
 <span class="material-symbols-rounded">person</span>ติดต่อ
 </button>
@@ -437,20 +641,27 @@ function navigate(id,btn){
 history.pushState({page:id},"","#"+id);
 showPage(id,btn);
 }
+
 window.onpopstate=e=>{
 if(e.state) showPage(e.state.page);
 };
+
 function showPage(id,btn){
 document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
 if(btn) btn.classList.add("active");
 }
-function openLink(url){window.open(url,"_blank")}
+
+function openLink(url){
+window.open(url,"_blank")
+}
+
 function toggleSearch(){
 const b=document.getElementById("searchBox");
 b.style.display=b.style.display==="block"?"none":"block";
 }
+
 function doSearch(e){
 if(e.key==="Enter"){
 const q=e.target.value;
@@ -460,6 +671,7 @@ else if(q.includes("ดาว")) navigate("download");
 else navigate("blank");
 }
 }
+
 function calcFee(){
 const m=document.getElementById("money").value;
 const fee=Math.max(100,Math.floor(m*0.02));
@@ -469,3 +681,4 @@ document.getElementById("feeResult").innerText="ค่าธรรมเนี�
 
 </body>
 </html>
+
