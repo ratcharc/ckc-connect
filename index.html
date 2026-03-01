@@ -4,55 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
-
-<!-- FONT = PROMPT -->
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
-
-/* =========================
-   REBUILD DESIGN SYSTEM
-========================= */
-
 :root{
-  --primary:#0B2A6F;
-  --primary-soft:#1c3fa8;
-  --bg-main:#f4f7fc;
-  --bg-layer:#ffffff;
-  --text-main:#111827;
-  --text-muted:#6b7280;
-
-  --radius-xl:28px;
-  --radius-lg:22px;
-  --radius-md:16px;
-
-  --shadow-soft:0 8px 24px rgba(11,42,111,.08);
-  --shadow-depth:0 18px 50px rgba(11,42,111,.15);
+  --primary:#0a3083;
+  --primary-soft:#eef2ff;
+  --bg:#f1f5f9;
+  --card:#ffffff;
+  --text:#0f172a;
+  --radius-lg:24px;
+  --radius-md:18px;
+  --shadow-lg:0 18px 40px rgba(0,0,0,.12);
+  --shadow-md:0 10px 25px rgba(0,0,0,.08);
 }
 
-*{
-  box-sizing:border-box;
-}
-
+/* LOCK MOBILE FRAME */
 body{
   margin:0;
-  font-family:'Prompt',sans-serif;
-  background:linear-gradient(180deg,#f8fbff 0%,#eef3fb 100%);
-  color:var(--text-main);
-  -webkit-font-smoothing:antialiased;
+  background:linear-gradient(to bottom,#e2e8f0,#f8fafc);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  display:flex;
+  justify-content:center;
 }
-
-/* ================= HEADER ================= */
-
-header{
-  position:relative;
+.app{
   width:100%;
-  aspect-ratio:16/6;
-  max-height:260px;
+  max-width:430px;
+  min-height:100vh;
+  background:#f8fafc;
+  position:relative;
   overflow:hidden;
 }
 
+/* HEADER */
+header{
+  position:relative;
+  width:100%;
+  height:200px;
+  overflow:hidden;
+}
 .header-banner{
   position:absolute;
   inset:0;
@@ -60,206 +50,143 @@ header{
   height:100%;
   object-fit:cover;
 }
-
 .search-btn{
   position:absolute;
   top:18px;
   right:18px;
-  font-size:28px;
+  font-size:26px;
   color:#fff;
   cursor:pointer;
   z-index:2;
 }
-
 .search-box{
   position:absolute;
   top:60px;
-  right:18px;
+  right:16px;
   display:none;
   z-index:2;
 }
-
 .search-box input{
-  padding:12px 18px;
-  border-radius:30px;
+  padding:10px 16px;
+  border-radius:20px;
   border:none;
-  width:220px;
-  font-family:'Prompt';
-  box-shadow:var(--shadow-soft);
+  width:200px;
+  box-shadow:var(--shadow-md);
 }
 
-/* ================= MAIN ================= */
-
+/* MAIN */
 main{
-  padding:24px 18px 140px;
-  max-width:640px;
-  margin:auto;
+  padding:20px;
+  padding-bottom:120px;
 }
 
+/* SECTION ANIMATION */
 section{
   display:none;
-  animation:fade .3s ease;
+  animation:slide .35s ease;
 }
-
 section.active{
   display:block;
 }
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(10px);}
-  to{opacity:1;transform:translateY(0);}
+@keyframes slide{
+  from{opacity:0;transform:translateX(20px)}
+  to{opacity:1;transform:translateX(0)}
 }
 
-/* ===== SUBTITLE (5 หน้า) ===== */
-
-.subtitle{
-  font-size:18px;
-  font-weight:600;
-  color:var(--primary);
-  margin:10px 4px 20px;
+/* CARD STYLE */
+.section-box{
+  background:#ffffff;
+  border-radius:var(--radius-lg);
+  padding:20px;
+  box-shadow:var(--shadow-lg);
+  margin-bottom:16px;
+  transition:.25s;
+}
+.section-box:hover{
+  transform:translateY(-4px);
 }
 
-/* ================= HERO ================= */
-
-.hero-card{
-  background:var(--bg-layer);
-  border-radius:var(--radius-xl);
-  overflow:hidden;
-  box-shadow:var(--shadow-soft);
-  margin-bottom:24px;
-}
-
-.hero-card img{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:cover;
-}
-
-.hero-card div{
-  padding:18px;
-  font-weight:500;
-}
-
-/* ================= QUICK TAP (FIXED RATIO) ================= */
-
-.quick-row{
+/* POSTER SLIDE */
+.poster-scroll{
   display:flex;
-  justify-content:space-between;
   gap:14px;
-  margin:28px 0 34px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
 }
-
-.quick-item{
-  flex:1;
-  text-align:center;
-}
-
-.quick-circle{
-  width:64px;
-  height:64px;
-  margin:auto;
-  border-radius:50%;
+.poster{
+  min-width:260px;
+  height:150px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#1e3a8a,#3b82f6);
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(145deg,#ffffff,#e6edff);
-  box-shadow:
-    0 6px 16px rgba(11,42,111,.15),
-    inset 0 -4px 8px rgba(11,42,111,.08);
-  color:var(--primary);
-  font-size:28px;
+  font-weight:700;
+  text-align:center;
+  padding:10px;
 }
 
-.quick-item p{
-  margin:10px 0 0;
-  font-size:13px;
-  font-weight:400;
-  color:#000;
-}
-
-/* ================= CAROUSEL POST (ข้อ 16) ================= */
-
-.post-carousel{
-  display:flex;
-  gap:16px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  padding-bottom:8px;
-}
-
-.post-carousel::-webkit-scrollbar{
-  display:none;
-}
-
-.post-card{
-  min-width:200px;
-  flex:0 0 auto;
-  background:#fff;
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:var(--shadow-soft);
-  scroll-snap-align:start;
-}
-
-.post-card img{
-  width:100%;
-  aspect-ratio:4/5;
-  object-fit:cover;
-}
-
-.post-card div{
-  padding:14px;
-  font-size:14px;
-  font-weight:400;
-  color:#000;
-}
-
-/* ================= SERVICE ================= */
-
+/* SERVICE GRID */
 .service-grid{
-  display:flex;
-  flex-direction:column;
-  gap:16px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
 }
-
 .service-card{
   background:#fff;
-  border-radius:var(--radius-lg);
-  padding:18px 18px 18px 60px;
-  box-shadow:var(--shadow-soft);
-  position:relative;
-  font-weight:400;
-  color:#000;
+  border-radius:20px;
+  padding:18px;
+  text-align:center;
+  box-shadow:var(--shadow-md);
+  cursor:pointer;
+  transition:.25s;
+  font-weight:600;
 }
-
-.icon-circle{
-  position:absolute;
-  left:16px;
-  top:50%;
-  transform:translateY(-50%);
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  background:#e6edff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.service-card:hover{
+  transform:scale(1.05);
+}
+.service-card span{
+  font-size:28px;
+  display:block;
+  margin-bottom:6px;
   color:var(--primary);
 }
 
-/* ================= BOTTOM NAV ================= */
+/* CALCULATOR */
+.calc-box input{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #ddd;
+}
+.calc-box button{
+  margin-top:10px;
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  background:var(--primary);
+  color:#fff;
+  font-weight:700;
+}
+.calc-result{
+  margin-top:10px;
+  background:#e0e7ff;
+  padding:12px;
+  border-radius:14px;
+  font-weight:700;
+}
 
+/* BOTTOM BAR */
 nav{
-  position:fixed;
+  position:absolute;
   bottom:0;
   width:100%;
   background:var(--primary);
   display:flex;
-  padding:10px 6px;
-  box-shadow:0 -8px 30px rgba(11,42,111,.25);
-  z-index:100;
+  padding:8px 4px;
 }
-
 nav button{
   flex:1;
   border:none;
@@ -270,16 +197,18 @@ nav button{
   align-items:center;
   font-size:11px;
 }
-
 nav button.active{
-  background:rgba(255,255,255,.15);
-  border-radius:14px;
+  background:rgba(255,255,255,.22);
+  border-radius:16px;
 }
-
+.material-symbols-rounded{
+  font-size:22px;
+}
 </style>
 </head>
 
 <body>
+<div class="app">
 
 <header>
 <img class="header-banner"
@@ -292,232 +221,139 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 
 <main>
 
-<!-- ================= HOME ================= -->
-
 <section id="home" class="active">
-
-<div class="subtitle">โพสล่าสุด</div>
-
-<div class="hero-card" onclick="openPost()">
-<img src="https://via.placeholder.com/800x450">
-</div>
-
-<div class="quick-row">
-
-<div class="quick-item" onclick="navigate('fee')">
-<div class="quick-circle">
-<span class="material-symbols-rounded">calculate</span>
-</div>
-<p>อัตราค่าธรรมเนียมขึ้นศาล</p>
-</div>
-
-<div class="quick-item" onclick="navigate('efiling')">
-<div class="quick-circle">
-<span class="material-symbols-rounded">gavel</span>
-</div>
-<p>e-Filing</p>
-</div>
-
-<div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
-<div class="quick-circle">
-<span class="material-symbols-rounded">description</span>
-</div>
-<p>CIOS</p>
-</div>
-
-<div class="quick-item" onclick="navigate('download')">
-<div class="quick-circle">
-<span class="material-symbols-rounded">download</span>
-</div>
-<p>ดาวน์โหลดแบบฟอร์ม</p>
-</div>
-
-</div>
-
-<div class="subtitle">รายการโพส</div>
-
-<div class="post-carousel">
-<div class="post-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x750">
-<div>โพสรอง 1</div>
-</div>
-<div class="post-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x750">
-<div>โพสรอง 2</div>
-</div>
-<div class="post-card" onclick="openPost()">
-<img src="https://via.placeholder.com/600x750">
-<div>โพสรอง 3</div>
+<div class="section-box">
+<h3>ประกาศศาล</h3>
+<div class="poster-scroll">
+<div class="poster">พื้นที่สำหรับใส่โปสเตอร์ / ข่าวประชาสัมพันธ์</div>
+<div class="poster">พื้นที่สำหรับใส่โปสเตอร์ / ข่าวประชาสัมพันธ์</div>
 </div>
 </div>
-
 </section>
-<!-- ================= SERVICE ================= -->
 
 <section id="service">
-
-<div class="subtitle">ข้อมูลบริการ</div>
-
+<div class="section-box">
+<h3>บริการออนไลน์</h3>
 <div class="service-grid">
 
 <div class="service-card" onclick="navigate('fee')">
-<div class="icon-circle"><span class="material-symbols-rounded">calculate</span></div>
+<span class="material-symbols-rounded">calculate</span>
 อัตราค่าธรรมเนียม (ค่าขึ้นศาล)
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<div class="icon-circle"><span class="material-symbols-rounded">list_alt</span></div>
+<span class="material-symbols-rounded">list_alt</span>
 ขั้นตอนการฟ้องและยื่นคำร้อง
 </div>
 
 <div class="service-card" onclick="openLink('https://cios.coj.go.th/tracking/')">
-<div class="icon-circle"><span class="material-symbols-rounded">search</span></div>
+<span class="material-symbols-rounded">search</span>
 ติดตามสำนวนคดี
 </div>
 
 <div class="service-card" onclick="navigate('efiling')">
-<div class="icon-circle"><span class="material-symbols-rounded">gavel</span></div>
+<span class="material-symbols-rounded">gavel</span>
 e-Filing
 </div>
 
 <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
-<div class="icon-circle"><span class="material-symbols-rounded">description</span></div>
+<span class="material-symbols-rounded">description</span>
 CIOS
 </div>
 
 <div class="service-card" onclick="navigate('cojpage')">
-<div class="icon-circle"><span class="material-symbols-rounded">account_balance</span></div>
+<span class="material-symbols-rounded">account_balance</span>
 COJ
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<div class="icon-circle"><span class="material-symbols-rounded">event_note</span></div>
+<span class="material-symbols-rounded">event_note</span>
 ไกล่เกลี่ยและพิจารณาคดีทางอิเล็กทรอนิกส์
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<div class="icon-circle"><span class="material-symbols-rounded">calendar_month</span></div>
+<span class="material-symbols-rounded">calendar_month</span>
 บัญชีนัดพิจารณาคดีและพิจารณาคดีทางอิเล็กทรอนิกส์
 </div>
 
 <div class="service-card" onclick="navigate('download')">
-<div class="icon-circle"><span class="material-symbols-rounded">download</span></div>
+<span class="material-symbols-rounded">download</span>
 ดาวน์โหลดแบบฟอร์ม
 </div>
 
 </div>
+</div>
 </section>
 
-<!-- ================= KNOWLEDGE ================= -->
-
-<section id="knowledge">
-
-<div class="subtitle">คลังความรู้</div>
-
-<div class="hero-card">
-<img src="https://via.placeholder.com/800x450">
-<div>หมวดโปสเตอร์ความรู้</div>
+<section id="fee">
+<div class="section-box">
+<h3>คำนวณค่าธรรมเนียม</h3>
+<div class="calc-box">
+<input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
+<button onclick="calcFee()">คำนวณ</button>
+<div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
 </div>
-
-<div class="post-carousel">
-<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ศัพท์กฎหมาย A</div></div>
-<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ศัพท์กฎหมาย B</div></div>
-<div class="post-card"><img src="https://via.placeholder.com/600x750"><div>ศัพท์กฎหมาย C</div></div>
 </div>
-
 </section>
-
-<!-- ================= OTHER ================= -->
-
-<section id="other">
-
-<div class="subtitle">ข้อมูลเพิ่มเติม</div>
-
-<div class="hero-card">
-<img src="https://via.placeholder.com/800x450">
-<div>FAQ และแบบประเมินความพึงพอใจ</div>
-</div>
-
-<div class="service-card">
-<div class="icon-circle"><span class="material-symbols-rounded">help</span></div>
-คำถามที่พบบ่อย (FAQ)
-</div>
-
-<div class="service-card">
-<div class="icon-circle"><span class="material-symbols-rounded">rate_review</span></div>
-แบบประเมินความพึงพอใจ
-</div>
-
-</section>
-
-<!-- ================= CONTACT ================= -->
-
-<section id="contact">
-
-<div class="subtitle">ข้อมูลติดต่อ</div>
-
-<div class="hero-card">
-<img src="https://via.placeholder.com/800x450">
-<div>ข้อมูลติดต่อ + แผนที่ศาล</div>
-</div>
-
-</section>
-
-<!-- ================= COJ PAGE ================= -->
-
-<section id="cojpage">
-
-<div class="subtitle">ข้อมูลบริการ</div>
-
-<div class="hero-card">
-<img src="https://via.placeholder.com/800x450">
-<div>เลือกใช้งาน COJ หรือ COJ Connect</div>
-</div>
-
-<div class="service-grid">
-
-<div class="service-card" onclick="openLink('https://www.coj.go.th')">
-<div class="icon-circle"><span class="material-symbols-rounded">public</span></div>
-COJ (เว็บไซต์หลัก)
-</div>
-
-<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
-<div class="icon-circle"><span class="material-symbols-rounded">link</span></div>
-COJ Connect
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= EFILING ================= -->
 
 <section id="efiling">
-
-<div class="subtitle">ข้อมูลบริการ</div>
-
-<div class="hero-card">
-<img src="https://via.placeholder.com/800x450">
-<div>เลือกเวอร์ชันการใช้งาน e-Filing</div>
-</div>
-
-<div class="service-grid">
-
+<div class="section-box">
+<h3>เลือกระบบ e-Filing</h3>
 <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
-<div class="icon-circle"><span class="material-symbols-rounded">gavel</span></div>
 e-Filing v.3
 </div>
-
 <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
-<div class="icon-circle"><span class="material-symbols-rounded">rocket_launch</span></div>
 e-Filing v.4
 </div>
-
 </div>
-
 </section>
 
-<!-- ================= NAV ================= -->
+<section id="cojpage">
+<div class="section-box">
+<h3>เลือกบริการ COJ</h3>
+<div class="service-card" onclick="openLink('https://www.coj.go.th')">
+COJ (เว็บไซต์หลัก)
+</div>
+<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
+COJ Connect
+</div>
+</div>
+</section>
+
+<section id="download">
+<div class="section-box">
+<h3>ดาวน์โหลดแบบฟอร์ม</h3>
+<div class="poster">พื้นที่สำหรับใส่ภาพแบบฟอร์มจริง</div>
+</div>
+</section>
+
+<section id="knowledge">
+<div class="section-box">
+<h3>คลังความรู้</h3>
+<div class="poster">พื้นที่สำหรับบทความ / โปสเตอร์ความรู้</div>
+</div>
+</section>
+
+<section id="other">
+<div class="section-box">
+<h3>เพิ่มเติม</h3>
+<div class="poster">พื้นที่สำหรับ FAQ / แบบประเมิน / ฟีเจอร์อื่น ๆ</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="section-box">
+<h3>ติดต่อ</h3>
+<div class="poster">พื้นที่สำหรับแผนที่ / ข้อมูลติดต่อ</div>
+</div>
+</section>
+
+<section id="blank">
+<div class="section-box">
+<h3>อยู่ระหว่างพัฒนา</h3>
+<div class="poster">พื้นที่สำหรับเพิ่มข้อมูลในอนาคต</div>
+</div>
+</section>
 
 </main>
 
@@ -539,69 +375,41 @@ e-Filing v.4
 </button>
 </nav>
 
-<!-- ================= BOTTOM SHEET ================= -->
-
-<div class="overlay" id="overlay" onclick="closePost()"
-style="position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:200;"></div>
-
-<div class="bottom-sheet" id="sheet"
-style="position:fixed;bottom:-100%;left:0;width:100%;height:100vh;background:#fff;border-radius:28px 28px 0 0;z-index:300;transition:.4s;display:flex;flex-direction:column;">
-
-<div style="padding:16px;display:flex;align-items:center;gap:10px;">
-<span class="material-symbols-rounded" style="cursor:pointer;"
-onclick="closePost()">arrow_back</span>
-<strong>รายละเอียดโพส</strong>
 </div>
-
-<div style="padding:0 16px;">
-<div style="width:100%;aspect-ratio:16/9;background:#e6edff;border-radius:20px;margin-bottom:16px;"></div>
-</div>
-
-<div style="padding:0 20px 40px;overflow-y:auto;">
-<p>พื้นที่สำหรับใส่เนื้อหาแบบเต็ม สามารถเลื่อนอ่านได้เหมือนแอปจริง</p>
-</div>
-
-</div>
-
-<!-- ================= SCRIPT ================= -->
 
 <script>
-
 function navigate(id,btn){
+history.pushState({page:id},"","#"+id);
+showPage(id,btn);
+}
+window.onpopstate=e=>{
+if(e.state) showPage(e.state.page);
+};
+function showPage(id,btn){
 document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
-
 document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
 if(btn) btn.classList.add("active");
-
-window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function openLink(url){
-window.open(url,"_blank");
-}
-
+function openLink(url){window.open(url,"_blank")}
 function toggleSearch(){
 const b=document.getElementById("searchBox");
 b.style.display=b.style.display==="block"?"none":"block";
 }
-
 function doSearch(e){
 if(e.key==="Enter"){
-navigate("home");
+const q=e.target.value;
+if(q.includes("e")) navigate("efiling");
+else if(q.includes("ค่")) navigate("fee");
+else if(q.includes("ดาว")) navigate("download");
+else navigate("blank");
 }
 }
-
-function openPost(){
-document.getElementById("overlay").style.display="block";
-document.getElementById("sheet").style.bottom="0";
+function calcFee(){
+const m=document.getElementById("money").value;
+const fee=Math.max(100,Math.floor(m*0.02));
+document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
 }
-
-function closePost(){
-document.getElementById("overlay").style.display="none";
-document.getElementById("sheet").style.bottom="-100%";
-}
-
 </script>
 
 </body>
