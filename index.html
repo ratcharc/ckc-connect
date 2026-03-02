@@ -8,176 +8,230 @@
 
 <style>
 :root{
---primary:#2563eb;
---primary-dark:#1e40af;
---primary-soft:#eff6ff;
---bg:#f4f7fb;
---card:#ffffff;
---text:#0f172a;
---muted:#64748b;
---radius-xl:28px;
---radius-lg:22px;
---radius-md:18px;
---radius-sm:14px;
---shadow-soft:0 15px 40px rgba(37,99,235,.15);
---shadow-card:0 6px 20px rgba(0,0,0,.08);
+  --primary-dark:#0a2f8f;
+  --primary:#1e5bff;
+  --primary-soft:#eaf1ff;
+  --primary-pill:#2f6bff;
+  --bg:#e6ebf5;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#6b7280;
+  --subtitle:#0a2f8f;
+  --radius-lg:28px;
+  --radius-md:20px;
+  --radius-sm:16px;
+  --shadow-soft:0 10px 30px rgba(0,0,0,.08);
+  --shadow-card:0 8px 24px rgba(0,0,0,.06);
 }
+
+*{box-sizing:border-box}
 
 body{
 margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 background:var(--bg);
 color:var(--text);
 }
 
+/* ================= HEADER ================= */
+
+header{
+position:relative;
+padding:32px 20px 120px 20px;
+background:linear-gradient(
+180deg,
+#0a2f8f 0%,
+#1e4fd8 40%,
+#6f97ff 75%,
+var(--bg) 100%
+);
+border-bottom:none;
+}
+
+.header-title{
+text-align:center;
+font-size:28px;
+font-weight:800;
+color:#fff;
+letter-spacing:.5px;
+margin-bottom:18px;
+}
+
+.search-container{
+display:flex;
+justify-content:center;
+}
+
+.search-box{
+position:relative;
+width:85%;
+max-width:420px;
+}
+
+.search-box input{
+width:100%;
+padding:14px 48px 14px 18px;
+border-radius:18px;
+border:none;
+outline:none;
+background:rgba(255,255,255,.85);
+font-size:14px;
+box-shadow:var(--shadow-soft);
+}
+
+.search-box span{
+position:absolute;
+right:14px;
+top:50%;
+transform:translateY(-50%);
+color:#334155;
+font-size:22px;
+}
+
+/* ================= MAIN ================= */
+
 main{
-padding:20px;
-padding-bottom:140px;
+margin-top:-80px;
+padding:0 16px 140px 16px;
 }
 
 section{display:none}
 section.active{display:block}
 
-/* ================= HEADER ================= */
-.app-header{
-background:linear-gradient(180deg,var(--primary) 0%,#3b82f6 100%);
-padding:30px 20px 24px 20px;
-color:#fff;
-border-bottom-left-radius:var(--radius-xl);
-border-bottom-right-radius:var(--radius-xl);
-box-shadow:var(--shadow-soft);
-}
+/* ================= FLOAT CARD ================= */
 
-.app-title{
-font-size:26px;
-font-weight:800;
-letter-spacing:.5px;
-}
-
-.search-bar{
-margin-top:18px;
+.section-box{
 background:#fff;
-border-radius:20px;
-display:flex;
-align-items:center;
-padding:14px 16px;
+border-radius:var(--radius-lg);
+padding:22px;
 box-shadow:var(--shadow-card);
 }
 
-.search-bar span{
-color:var(--muted);
-margin-right:6px;
-}
-
-.search-bar input{
-border:none;
-outline:none;
-flex:1;
-font-size:14px;
-}
-
 /* ================= QUICK TAP ================= */
+
 .quick-tap{
 display:flex;
-justify-content:space-between;
-margin-top:20px;
+gap:22px;
+overflow-x:auto;
+padding:18px 6px 10px 6px;
 }
 
 .quick-item{
-flex:1;
+flex:0 0 auto;
+width:88px;
 text-align:center;
 cursor:pointer;
 }
 
 .quick-circle{
-width:64px;
-height:64px;
-border-radius:20px;
+width:70px;
+height:70px;
+border-radius:50%;
 background:#fff;
-margin:0 auto 10px auto;
 display:flex;
 align-items:center;
 justify-content:center;
+margin:0 auto 8px auto;
 box-shadow:var(--shadow-soft);
-color:var(--primary);
+color:var(--primary-dark);
+font-size:28px;
 }
 
-.quick-item span{
+.quick-item span.label{
 font-size:12px;
 font-weight:700;
+color:#0f172a;
+display:block;
 }
 
 /* ================= SUBTITLE ================= */
-.subtitle{
-margin:28px 0 14px 0;
-font-size:18px;
+
+.subtitle-blue{
 font-weight:800;
+color:var(--subtitle);
+font-size:18px;
+margin:18px 0 14px 0;
 }
 
-/* ================= HERO ================= */
+/* ================= HERO CARD ================= */
+
 .hero-card{
 width:100%;
 aspect-ratio:16/9;
-border-radius:22px;
+border-radius:24px;
 overflow:hidden;
 box-shadow:var(--shadow-soft);
 cursor:pointer;
+margin-bottom:22px;
+background:#dfe3f0;
 }
 
 .hero-card img{
 width:100%;
 height:100%;
 object-fit:cover;
+display:block;
 }
 
-/* ================= POSTER ================= */
+/* ================= POSTER SCROLL ================= */
+
 .poster-scroll{
 display:flex;
 overflow-x:auto;
-gap:18px;
+gap:20px;
 padding-bottom:10px;
 }
 
 .poster-card{
 flex:0 0 auto;
-width:170px;
+width:200px;
 cursor:pointer;
 }
 
 .poster-image{
 width:100%;
 aspect-ratio:4/5;
-border-radius:20px;
+background:#dfe3f0;
+border-radius:22px;
 overflow:hidden;
-box-shadow:var(--shadow-card);
+box-shadow:var(--shadow-soft);
 }
 
 .poster-image img{
 width:100%;
 height:100%;
 object-fit:cover;
+display:block;
 }
 
 .poster-title{
-margin-top:8px;
-font-size:13px;
+margin-top:10px;
+font-size:14px;
 font-weight:700;
 }
 
-/* ================= SERVICE ================= */
+/* ================= SERVICE GRID ================= */
+
 .service-grid{
 display:grid;
+grid-template-columns:1fr;
 gap:14px;
 }
 
 .service-card{
+position:relative;
 background:#fff;
 border-radius:20px;
-padding:16px 18px 16px 60px;
-position:relative;
-box-shadow:var(--shadow-card);
+padding:16px 48px 16px 64px;
+font-size:14px;
 font-weight:600;
 cursor:pointer;
+box-shadow:var(--shadow-card);
+transition:.2s ease;
+}
+
+.service-card:hover{
+transform:translateY(-2px);
 }
 
 .icon-pill{
@@ -185,34 +239,28 @@ position:absolute;
 left:16px;
 top:50%;
 transform:translateY(-50%);
-width:42px;
-height:42px;
-border-radius:14px;
-background:var(--primary-soft);
+width:38px;
+height:38px;
+border-radius:12px;
 display:flex;
 align-items:center;
 justify-content:center;
-color:var(--primary);
+background:var(--primary-soft);
+color:var(--primary-dark);
 }
 
-/* ================= KNOWLEDGE GRID ================= */
-.knowledge-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:16px;
-}
+/* ================= CALC ================= */
 
-/* ================= CALCULATOR ================= */
 .calc-box{
 background:#fff;
-border-radius:20px;
+border-radius:22px;
 padding:20px;
 box-shadow:var(--shadow-card);
 }
 
 .calc-box input{
 width:100%;
-padding:12px;
+padding:14px;
 border-radius:14px;
 border:1px solid #d1d5db;
 }
@@ -220,23 +268,24 @@ border:1px solid #d1d5db;
 .calc-box button{
 margin-top:12px;
 width:100%;
-padding:12px;
+padding:14px;
 border:none;
 border-radius:14px;
-background:var(--primary);
+background:var(--primary-dark);
 color:#fff;
 font-weight:700;
 }
 
 .calc-result{
 margin-top:12px;
-background:var(--primary-soft);
-padding:12px;
+background:#eef2ff;
+padding:14px;
 border-radius:14px;
 font-weight:700;
 }
 
 /* ================= PREVIEW ================= */
+
 .preview-list{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -261,7 +310,31 @@ font-size:13px;
 font-weight:700;
 }
 
+/* ================= KNOWLEDGE GRID ================= */
+
+.knowledge-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+}
+
+.knowledge-card{
+background:#fff;
+border-radius:22px;
+overflow:hidden;
+box-shadow:var(--shadow-card);
+cursor:pointer;
+}
+
+.knowledge-card img{
+width:100%;
+aspect-ratio:16/9;
+object-fit:cover;
+display:block;
+}
+
 /* ================= BOTTOM SHEET ================= */
+
 .bottom-sheet{
 position:fixed;
 left:0;
@@ -271,30 +344,32 @@ height:100%;
 background:#fff;
 border-top-left-radius:28px;
 border-top-right-radius:28px;
-transition:.4s;
+box-shadow:var(--shadow-soft);
+transition:.4s ease;
 z-index:300;
 display:flex;
 flex-direction:column;
 }
 
-.bottom-sheet.active{bottom:0;}
+.bottom-sheet.active{bottom:0}
 
 .sheet-header{
-height:75%;
-overflow:auto;
-background:#000;
+width:100%;
+aspect-ratio:4/5;
+background:#dfe3f0;
 position:relative;
-text-align:center;
 }
 
 .sheet-header img{
-max-width:100%;
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 .sheet-back{
 position:absolute;
-top:20px;
-left:20px;
+left:16px;
+top:16px;
 background:#fff;
 width:44px;
 height:44px;
@@ -302,19 +377,26 @@ border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-box-shadow:var(--shadow-card);
+box-shadow:var(--shadow-soft);
 cursor:pointer;
 }
 
-/* ================= BOTTOM NAV ================= */
+.sheet-content{
+padding:22px;
+overflow:auto;
+}
+
+/* ================= BOTTOM BAR ================= */
+
 nav{
 position:fixed;
 bottom:0;
 width:100%;
 background:#fff;
 display:flex;
-padding:10px 4px;
-box-shadow:0 -6px 25px rgba(0,0,0,.08);
+padding:10px 8px 20px 8px;
+box-shadow:0 -6px 20px rgba(0,0,0,.06);
+z-index:200;
 }
 
 nav button{
@@ -325,83 +407,126 @@ display:flex;
 flex-direction:column;
 align-items:center;
 font-size:11px;
-color:var(--muted);
+color:#374151;
+gap:4px;
+position:relative;
+}
+
+nav button span{
+font-size:24px;
 }
 
 nav button.active{
-color:var(--primary);
-font-weight:700;
+color:#fff;
+}
+
+nav button.active::before{
+content:"";
+position:absolute;
+top:2px;
+width:70%;
+height:36px;
+background:var(--primary-pill);
+border-radius:18px;
+z-index:-1;
+}
+
+nav button.active span{
+color:#fff;
 }
 </style>
 </head>
+
 <body>
 
-<div class="app-header">
-<div class="app-title">CKC Connect</div>
-
-<div class="search-bar">
-<span class="material-symbols-rounded">search</span>
-<input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
+<header>
+<div class="header-title">CKC CONNECT</div>
+<div class="search-container">
+  <div class="search-box">
+    <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
+    <span class="material-symbols-rounded">search</span>
+  </div>
 </div>
-
-<div class="quick-tap">
-<div class="quick-item" onclick="navigate('efiling',document.querySelector('nav button:nth-child(2)'))">
-<div class="quick-circle"><span class="material-symbols-rounded">gavel</span></div>
-<span>e-Filing</span>
-</div>
-
-<div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
-<div class="quick-circle"><span class="material-symbols-rounded">description</span></div>
-<span>CIOS</span>
-</div>
-
-<div class="quick-item" onclick="navigate('fee',document.querySelector('nav button:nth-child(2)'))">
-<div class="quick-circle"><span class="material-symbols-rounded">calculate</span></div>
-<span>อัตราค่าธรรมเนียม</span>
-</div>
-
-<div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
-<div class="quick-circle"><span class="material-symbols-rounded">search</span></div>
-<span>ติดตามสำนวนคดี</span>
-</div>
-</div>
-</div>
+</header>
 
 <main>
 
+<!-- ================= HOME ================= -->
 <section id="home" class="active">
 
-<div class="subtitle">โพสล่าสุด</div>
+<div class="quick-tap">
+
+<div class="quick-item" onclick="navigate('efiling',document.querySelector('nav button:nth-child(2)'))">
+<div class="quick-circle">
+<span class="material-symbols-rounded">gavel</span>
+</div>
+<span class="label">e-Filing</span>
+</div>
+
+<div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
+<div class="quick-circle">
+<span class="material-symbols-rounded">description</span>
+</div>
+<span class="label">CIOS</span>
+</div>
+
+<div class="quick-item" onclick="navigate('fee',document.querySelector('nav button:nth-child(2)'))">
+<div class="quick-circle">
+<span class="material-symbols-rounded">calculate</span>
+</div>
+<span class="label">อัตราค่าธรรมเนียม</span>
+</div>
+
+<div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
+<div class="quick-circle">
+<span class="material-symbols-rounded">search</span>
+</div>
+<span class="label">ติดตามสำนวนคดี</span>
+</div>
+
+</div>
+
+<div class="section-box">
+
+<div class="subtitle-blue">โพสล่าสุด</div>
 
 <div class="hero-card" onclick="openSheet('https://via.placeholder.com/900x506')">
 <img src="https://via.placeholder.com/900x506">
 </div>
 
-<div class="subtitle">รายการโพส</div>
+<div class="subtitle-blue">รายการโพส</div>
 
 <div class="poster-scroll">
 
 <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
+<div class="poster-image">
+<img src="https://via.placeholder.com/600x750">
+</div>
 <div class="poster-title">ชื่อเรื่อง...</div>
 </div>
 
 <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
+<div class="poster-image">
+<img src="https://via.placeholder.com/600x750">
+</div>
 <div class="poster-title">ชื่อเรื่อง...</div>
 </div>
 
 <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
+<div class="poster-image">
+<img src="https://via.placeholder.com/600x750">
+</div>
 <div class="poster-title">ชื่อเรื่อง...</div>
 </div>
 
+</div>
 </div>
 </section>
-
-<!-- SERVICE START -->
+<!-- ================= SERVICE ================= -->
 <section id="service">
-<div class="subtitle">ข้อมูลบริการ</div>
+<div class="section-box">
+<div class="subtitle-blue">ข้อมูลบริการ</div>
+
 <div class="service-grid">
 
 <div class="service-card" onclick="navigate('fee')">
@@ -450,12 +575,14 @@ COJ
 </div>
 
 </div>
+</div>
 </section>
 
-
-
+<!-- ================= COJ PAGE ================= -->
 <section id="cojpage">
-<div class="subtitle">เลือกบริการ COJ</div>
+<div class="section-box">
+<div class="subtitle-blue">เลือกบริการ COJ</div>
+
 <div class="service-grid">
 
 <div class="service-card" onclick="openLink('https://www.coj.go.th')">
@@ -469,12 +596,14 @@ COJ Connect
 </div>
 
 </div>
+</div>
 </section>
 
-
-
+<!-- ================= EFILING ================= -->
 <section id="efiling">
-<div class="subtitle">เลือกระบบ e-Filing</div>
+<div class="section-box">
+<div class="subtitle-blue">เลือกระบบ e-Filing</div>
+
 <div class="service-grid">
 
 <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
@@ -488,25 +617,28 @@ e-Filing v.4
 </div>
 
 </div>
+</div>
 </section>
 
-
-
+<!-- ================= FEE ================= -->
 <section id="fee">
-<div class="subtitle">คำนวณค่าธรรมเนียม</div>
-<div class="calc-box">
+<div class="section-box">
+<div class="subtitle-blue">คำนวณค่าธรรมเนียม</div>
 
+<div class="calc-box">
 <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
 <button onclick="calcFee()">คำนวณ</button>
 <div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
+</div>
 
 </div>
 </section>
 
-
-
+<!-- ================= DOWNLOAD ================= -->
 <section id="download">
-<div class="subtitle">ดาวน์โหลดแบบฟอร์ม</div>
+<div class="section-box">
+<div class="subtitle-blue">ดาวน์โหลดแบบฟอร์ม</div>
+
 <div class="preview-list">
 
 <div class="preview-card">
@@ -515,54 +647,71 @@ e-Filing v.4
 </div>
 
 </div>
+</div>
 </section>
 
-
-
+<!-- ================= KNOWLEDGE ================= -->
 <section id="knowledge">
-<div class="subtitle">คลังความรู้</div>
+<div class="section-box">
+<div class="subtitle-blue">คลังความรู้</div>
 
 <div class="knowledge-grid">
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x900"></div>
+<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+<img src="https://via.placeholder.com/600x400">
 </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x900"></div>
+<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+<img src="https://via.placeholder.com/600x400">
 </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x900"></div>
+<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+<img src="https://via.placeholder.com/600x400">
 </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x900"></div>
+<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+<img src="https://via.placeholder.com/600x400">
 </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x900"></div>
+<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+<img src="https://via.placeholder.com/600x400">
 </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x900"></div>
+<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+<img src="https://via.placeholder.com/600x400">
 </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x900"></div>
+<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+<img src="https://via.placeholder.com/600x400">
 </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x900"></div>
+<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+<img src="https://via.placeholder.com/600x400">
+</div>
+
+</div>
+
+<div class="subtitle-blue" style="margin-top:20px;">คำศัพท์ทางกฎหมาย</div>
+
+<div class="poster-scroll">
+
+<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+<div class="poster-image">
+<img src="https://via.placeholder.com/600x750">
+</div>
+<div class="poster-title">คำศัพท์ตัวอย่าง</div>
+</div>
+
 </div>
 
 </div>
 </section>
 
-
-
+<!-- ================= OTHER ================= -->
 <section id="other">
-<div class="subtitle">เพิ่มเติม</div>
+<div class="section-box">
+<div class="subtitle-blue">เพิ่มเติม</div>
+
 <div class="service-grid">
 
 <div class="service-card">
@@ -576,12 +725,14 @@ e-Filing v.4
 </div>
 
 </div>
+</div>
 </section>
 
-
-
+<!-- ================= CONTACT ================= -->
 <section id="contact">
-<div class="subtitle">ติดต่อ</div>
+<div class="section-box">
+<div class="subtitle-blue">ติดต่อ</div>
+
 <div class="service-grid">
 
 <div class="service-card">
@@ -600,18 +751,19 @@ e-Filing v.4
 </div>
 
 </div>
+</div>
 </section>
 
-
-
+<!-- ================= BLANK ================= -->
 <section id="blank">
-<div class="subtitle">อยู่ระหว่างพัฒนา</div>
+<div class="section-box">
+<div class="subtitle-blue">อยู่ระหว่างพัฒนา</div>
+</div>
 </section>
 
 </main>
 
-
-
+<!-- ================= BOTTOM SHEET ================= -->
 <div class="bottom-sheet" id="sheet">
 <div class="sheet-header">
 <img id="sheetImg">
@@ -619,49 +771,66 @@ e-Filing v.4
 <span class="material-symbols-rounded">arrow_back</span>
 </div>
 </div>
+<div class="sheet-content">
+<h2>หัวข้อเนื้อหา</h2>
+<p>พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...</p>
+</div>
 </div>
 
-
-
+<!-- ================= BOTTOM BAR ================= -->
 <nav>
+
 <button class="active" onclick="navigate('home',this)">
-<span class="material-symbols-rounded">home</span>หน้าแรก
+<span class="material-symbols-rounded">home</span>
+หน้าแรก
 </button>
 
 <button onclick="navigate('service',this)">
-<span class="material-symbols-rounded">apps</span>บริการ
+<span class="material-symbols-rounded">apps</span>
+บริการ
 </button>
 
 <button onclick="navigate('knowledge',this)">
-<span class="material-symbols-rounded">menu_book</span>คลังความรู้
+<span class="material-symbols-rounded">menu_book</span>
+คลังความรู้
 </button>
 
 <button onclick="navigate('other',this)">
-<span class="material-symbols-rounded">more_horiz</span>เพิ่มเติม
+<span class="material-symbols-rounded">more_horiz</span>
+เพิ่มเติม
 </button>
 
 <button onclick="navigate('contact',this)">
-<span class="material-symbols-rounded">person</span>ติดต่อ
+<span class="material-symbols-rounded">person</span>
+ติดต่อ
 </button>
+
 </nav>
 
-
-
 <script>
+
 function navigate(id,btn){
 history.pushState({page:id},"","#"+id);
-document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-if(btn) btn.classList.add("active");
+showPage(id,btn);
 }
 
 window.onpopstate=e=>{
-if(e.state){
-document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-document.getElementById(e.state.page).classList.add("active");
-}
+if(e.state) showPage(e.state.page);
 };
+
+function showPage(id,btn){
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+if(btn) btn.classList.add("active");
+
+if(id==="home"){
+document.querySelector(".quick-tap").style.display="flex";
+}else{
+document.querySelector(".quick-tap").style.display="none";
+}
+}
 
 function openLink(url){
 window.open(url,"_blank");
@@ -673,7 +842,7 @@ const q=e.target.value;
 if(q.includes("e")) navigate("efiling");
 else if(q.includes("ค่")) navigate("fee");
 else if(q.includes("ดาว")) navigate("download");
-else navigate("home");
+else navigate("blank");
 }
 }
 
@@ -691,6 +860,7 @@ document.getElementById("sheet").classList.add("active");
 function closeSheet(){
 document.getElementById("sheet").classList.remove("active");
 }
+
 </script>
 
 </body>
