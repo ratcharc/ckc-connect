@@ -4,449 +4,283 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
 <style>
+
 :root{
-  --primary-dark:#0a2f8f;
-  --primary:#1e5bff;
-  --primary-soft:#eaf1ff;
-  --primary-pill:#2f6bff;
-  --bg:#e6ebf5;
+  --primary:#3395FF;
+  --primary-soft:#EAF4FF;
+  --bg:#F2F7FF;
   --card:#ffffff;
   --text:#0f172a;
-  --muted:#6b7280;
-  --subtitle:#0a2f8f;
-  --radius-lg:28px;
-  --radius-md:20px;
-  --radius-sm:16px;
-  --shadow-soft:0 10px 30px rgba(0,0,0,.08);
-  --shadow-card:0 8px 24px rgba(0,0,0,.06);
+  --muted:#64748b;
+  --radius-xl:26px;
+  --radius-lg:22px;
+  --radius-md:18px;
+  --radius-sm:14px;
+  --shadow-soft:0 10px 30px rgba(51,149,255,.18);
+  --shadow-md:0 6px 18px rgba(0,0,0,.08);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-background:var(--bg);
-color:var(--text);
+  margin:0;
+  font-family:'Prompt',sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER ใหม่ ================= */
 
 header{
-position:relative;
-padding:32px 20px 120px 20px;
-background:linear-gradient(
-180deg,
-#0a2f8f 0%,
-#1e4fd8 40%,
-#6f97ff 75%,
-var(--bg) 100%
-);
-border-bottom:none;
+  position:relative;
+  width:100%;
+  padding:24px 20px 110px 20px;
+  background:linear-gradient(
+    180deg,
+    #3395FF 0%,
+    #3395FF 60%,
+    rgba(51,149,255,0.85) 80%,
+    rgba(51,149,255,0) 100%
+  );
 }
 
 .header-title{
-text-align:center;
-font-size:28px;
-font-weight:800;
-color:#fff;
-letter-spacing:.5px;
-margin-bottom:18px;
+  text-align:center;
+  font-size:22px;
+  font-weight:800;
+  color:#ffffff;
+  letter-spacing:.5px;
+  margin-bottom:18px;
 }
 
-.search-container{
-display:flex;
-justify-content:center;
+.search-wrapper{
+  position:relative;
+  max-width:420px;
+  margin:0 auto;
 }
 
-.search-box{
-position:relative;
-width:85%;
-max-width:420px;
+.search-wrapper input{
+  width:100%;
+  padding:12px 46px 12px 18px;
+  border-radius:22px;
+  border:none;
+  outline:none;
+  font-size:14px;
+  box-shadow:var(--shadow-md);
 }
 
-.search-box input{
-width:100%;
-padding:14px 48px 14px 18px;
-border-radius:18px;
-border:none;
-outline:none;
-background:rgba(255,255,255,.85);
-font-size:14px;
-box-shadow:var(--shadow-soft);
-}
-
-.search-box span{
-position:absolute;
-right:14px;
-top:50%;
-transform:translateY(-50%);
-color:#334155;
-font-size:22px;
+.search-wrapper .material-symbols-rounded{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#94a3b8;
+  font-size:22px;
 }
 
 /* ================= MAIN ================= */
 
 main{
-margin-top:-80px;
-padding:0 16px 140px 16px;
+  padding:0 18px 140px 18px;
 }
 
-section{display:none}
-section.active{display:block}
+section{
+  display:none;
+}
 
-/* ================= FLOAT CARD ================= */
+section.active{
+  display:block;
+}
+
+/* ================= SECTION BOX ================= */
 
 .section-box{
-background:#fff;
-border-radius:var(--radius-lg);
-padding:22px;
-box-shadow:var(--shadow-card);
+  background:#ffffff;
+  border-radius:var(--radius-xl);
+  padding:22px;
+  box-shadow:var(--shadow-soft);
 }
 
 /* ================= QUICK TAP ================= */
 
 .quick-tap{
-display:flex;
-gap:22px;
-overflow-x:auto;
-padding:18px 6px 10px 6px;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:-70px;
+  margin-bottom:26px;
 }
 
 .quick-item{
-flex:0 0 auto;
-width:88px;
-text-align:center;
-cursor:pointer;
+  flex:1;
+  text-align:center;
+  cursor:pointer;
 }
 
 .quick-circle{
-width:70px;
-height:70px;
-border-radius:50%;
-background:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:0 auto 8px auto;
-box-shadow:var(--shadow-soft);
-color:var(--primary-dark);
-font-size:28px;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 10px auto;
+  border:2px solid var(--primary);
 }
 
-.quick-item span.label{
-font-size:12px;
-font-weight:700;
-color:#0f172a;
-display:block;
+.quick-circle .material-symbols-rounded{
+  font-size:30px;
+  font-weight:600;
+  color:var(--primary);
+}
+
+.quick-item span{
+  font-size:12px;
+  font-weight:600;
+  color:#1e293b;
 }
 
 /* ================= SUBTITLE ================= */
 
 .subtitle-blue{
-font-weight:800;
-color:var(--subtitle);
-font-size:18px;
-margin:18px 0 14px 0;
+  font-size:16px;
+  font-weight:800;
+  color:var(--primary);
+  margin:0 0 16px 0;
+}
+
+.subtitle-black{
+  font-size:16px;
+  font-weight:800;
+  color:#000000;
+  margin:26px 0 16px 0;
 }
 
 /* ================= HERO CARD ================= */
 
 .hero-card{
-width:100%;
-aspect-ratio:16/9;
-border-radius:24px;
-overflow:hidden;
-box-shadow:var(--shadow-soft);
-cursor:pointer;
-margin-bottom:22px;
-background:#dfe3f0;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
+  margin-bottom:12px;
+  cursor:pointer;
+  background:#dbeafe;
 }
 
 .hero-card img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 /* ================= POSTER SCROLL ================= */
 
 .poster-scroll{
-display:flex;
-overflow-x:auto;
-gap:20px;
-padding-bottom:10px;
+  display:flex;
+  overflow-x:auto;
+  gap:20px;
+  padding-bottom:10px;
 }
 
 .poster-card{
-flex:0 0 auto;
-width:200px;
-cursor:pointer;
+  flex:0 0 auto;
+  width:190px;
+  cursor:pointer;
 }
 
 .poster-image{
-width:100%;
-aspect-ratio:4/5;
-background:#dfe3f0;
-border-radius:22px;
-overflow:hidden;
-box-shadow:var(--shadow-soft);
+  width:100%;
+  aspect-ratio:4/6;
+  background:#e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
 }
 
 .poster-image img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 .poster-title{
-margin-top:10px;
-font-size:14px;
-font-weight:700;
+  margin-top:10px;
+  font-size:14px;
+  font-weight:600;
 }
 
-/* ================= SERVICE GRID ================= */
-
-.service-grid{
-display:grid;
-grid-template-columns:1fr;
-gap:14px;
-}
-
-.service-card{
-position:relative;
-background:#fff;
-border-radius:20px;
-padding:16px 48px 16px 64px;
-font-size:14px;
-font-weight:600;
-cursor:pointer;
-box-shadow:var(--shadow-card);
-transition:.2s ease;
-}
-
-.service-card:hover{
-transform:translateY(-2px);
-}
-
-.icon-pill{
-position:absolute;
-left:16px;
-top:50%;
-transform:translateY(-50%);
-width:38px;
-height:38px;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:var(--primary-soft);
-color:var(--primary-dark);
-}
-
-/* ================= CALC ================= */
-
-.calc-box{
-background:#fff;
-border-radius:22px;
-padding:20px;
-box-shadow:var(--shadow-card);
-}
-
-.calc-box input{
-width:100%;
-padding:14px;
-border-radius:14px;
-border:1px solid #d1d5db;
-}
-
-.calc-box button{
-margin-top:12px;
-width:100%;
-padding:14px;
-border:none;
-border-radius:14px;
-background:var(--primary-dark);
-color:#fff;
-font-weight:700;
-}
-
-.calc-result{
-margin-top:12px;
-background:#eef2ff;
-padding:14px;
-border-radius:14px;
-font-weight:700;
-}
-
-/* ================= PREVIEW ================= */
-
-.preview-list{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:14px;
-}
-
-.preview-card{
-background:#fff;
-border-radius:18px;
-overflow:hidden;
-box-shadow:var(--shadow-card);
-}
-
-.preview-card img{
-width:100%;
-display:block;
-}
-
-.preview-card div{
-padding:12px;
-font-size:13px;
-font-weight:700;
-}
-
-/* ================= KNOWLEDGE GRID ================= */
-
-.knowledge-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:14px;
-}
-
-.knowledge-card{
-background:#fff;
-border-radius:22px;
-overflow:hidden;
-box-shadow:var(--shadow-card);
-cursor:pointer;
-}
-
-.knowledge-card img{
-width:100%;
-aspect-ratio:16/9;
-object-fit:cover;
-display:block;
-}
-
-/* ================= BOTTOM SHEET ================= */
-
-.bottom-sheet{
-position:fixed;
-left:0;
-right:0;
-bottom:-100%;
-height:100%;
-background:#fff;
-border-top-left-radius:28px;
-border-top-right-radius:28px;
-box-shadow:var(--shadow-soft);
-transition:.4s ease;
-z-index:300;
-display:flex;
-flex-direction:column;
-}
-
-.bottom-sheet.active{bottom:0}
-
-.sheet-header{
-width:100%;
-aspect-ratio:4/5;
-background:#dfe3f0;
-position:relative;
-}
-
-.sheet-header img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.sheet-back{
-position:absolute;
-left:16px;
-top:16px;
-background:#fff;
-width:44px;
-height:44px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:var(--shadow-soft);
-cursor:pointer;
-}
-
-.sheet-content{
-padding:22px;
-overflow:auto;
-}
-
-/* ================= BOTTOM BAR ================= */
+/* ================= BOTTOM BAR (ใหม่แบบ pill) ================= */
 
 nav{
-position:fixed;
-bottom:0;
-width:100%;
-background:#fff;
-display:flex;
-padding:10px 8px 20px 8px;
-box-shadow:0 -6px 20px rgba(0,0,0,.06);
-z-index:200;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#ffffff;
+  display:flex;
+  justify-content:space-around;
+  padding:10px 0 14px 0;
+  box-shadow:0 -6px 20px rgba(0,0,0,.08);
+  z-index:100;
 }
 
 nav button{
-flex:1;
-border:none;
-background:transparent;
-display:flex;
-flex-direction:column;
-align-items:center;
-font-size:11px;
-color:#374151;
-gap:4px;
-position:relative;
+  border:none;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:11px;
+  gap:4px;
+  color:#334155;
+  position:relative;
+  padding:6px 10px;
+  border-radius:20px;
+  transition:.25s;
 }
 
-nav button span{
-font-size:24px;
+nav button .material-symbols-rounded{
+  font-size:24px;
 }
 
 nav button.active{
-color:#fff;
+  background:var(--primary);
+  color:#ffffff;
 }
 
-nav button.active::before{
-content:"";
-position:absolute;
-top:2px;
-width:70%;
-height:36px;
-background:var(--primary-pill);
-border-radius:18px;
-z-index:-1;
+nav button.active .material-symbols-rounded{
+  color:#ffffff;
 }
 
-nav button.active span{
-color:#fff;
+/* ================= HIDE QUICK TAP OTHER PAGES ================= */
+
+.no-quick .quick-tap{
+  display:none;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="header-title">CKC CONNECT</div>
-<div class="search-container">
-  <div class="search-box">
+  <div class="header-title">CKC CONNECT</div>
+  <div class="search-wrapper">
     <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
     <span class="material-symbols-rounded">search</span>
   </div>
-</div>
 </header>
 
 <main>
@@ -455,77 +289,81 @@ color:#fff;
 <section id="home" class="active">
 
 <div class="quick-tap">
+  <div class="quick-item" onclick="navigate('efiling',document.querySelector('nav button:nth-child(2)'))">
+    <div class="quick-circle">
+      <span class="material-symbols-rounded">gavel</span>
+    </div>
+    <span>e-Filing</span>
+  </div>
 
-<div class="quick-item" onclick="navigate('efiling',document.querySelector('nav button:nth-child(2)'))">
-<div class="quick-circle">
-<span class="material-symbols-rounded">gavel</span>
-</div>
-<span class="label">e-Filing</span>
-</div>
+  <div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
+    <div class="quick-circle">
+      <span class="material-symbols-rounded">description</span>
+    </div>
+    <span>CIOS</span>
+  </div>
 
-<div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
-<div class="quick-circle">
-<span class="material-symbols-rounded">description</span>
-</div>
-<span class="label">CIOS</span>
-</div>
+  <div class="quick-item" onclick="navigate('fee',document.querySelector('nav button:nth-child(2)'))">
+    <div class="quick-circle">
+      <span class="material-symbols-rounded">calculate</span>
+    </div>
+    <span>อัตราค่าธรรมเนียม</span>
+  </div>
 
-<div class="quick-item" onclick="navigate('fee',document.querySelector('nav button:nth-child(2)'))">
-<div class="quick-circle">
-<span class="material-symbols-rounded">calculate</span>
-</div>
-<span class="label">อัตราค่าธรรมเนียม</span>
-</div>
-
-<div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
-<div class="quick-circle">
-<span class="material-symbols-rounded">search</span>
-</div>
-<span class="label">ติดตามสำนวนคดี</span>
-</div>
-
+  <div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
+    <div class="quick-circle">
+      <span class="material-symbols-rounded">search</span>
+    </div>
+    <span>ติดตามสำนวนคดี</span>
+  </div>
 </div>
 
 <div class="section-box">
 
-<div class="subtitle-blue">โพสล่าสุด</div>
+  <div class="subtitle-blue">โพสล่าสุด</div>
 
-<div class="hero-card" onclick="openSheet('https://via.placeholder.com/900x506')">
-<img src="https://via.placeholder.com/900x506">
-</div>
+  <div class="hero-card" onclick="openSheet('https://via.placeholder.com/900x506')">
+    <img src="https://via.placeholder.com/900x506">
+  </div>
 
-<div class="subtitle-blue">รายการโพส</div>
+  <div class="subtitle-black">รายการโพส</div>
 
-<div class="poster-scroll">
+  <div class="poster-scroll">
+    <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
+      <div class="poster-image">
+        <img src="https://via.placeholder.com/600x900">
+      </div>
+      <div class="poster-title">ชื่อเรื่อง...</div>
+    </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image">
-<img src="https://via.placeholder.com/600x750">
-</div>
-<div class="poster-title">ชื่อเรื่อง...</div>
-</div>
+    <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
+      <div class="poster-image">
+        <img src="https://via.placeholder.com/600x900">
+      </div>
+      <div class="poster-title">ชื่อเรื่อง...</div>
+    </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image">
-<img src="https://via.placeholder.com/600x750">
-</div>
-<div class="poster-title">ชื่อเรื่อง...</div>
-</div>
+    <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x900')">
+      <div class="poster-image">
+        <img src="https://via.placeholder.com/600x900">
+      </div>
+      <div class="poster-title">ชื่อเรื่อง...</div>
+    </div>
+  </div>
 
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image">
-<img src="https://via.placeholder.com/600x750">
-</div>
-<div class="poster-title">ชื่อเรื่อง...</div>
-</div>
-
-</div>
 </div>
 </section>
+
+
+
+
+
+
+
 <!-- ================= SERVICE ================= -->
-<section id="service">
-<div class="section-box">
-<div class="subtitle-blue">ข้อมูลบริการ</div>
+<section id="service" class="no-quick">
+<div class="section-box" style="margin-top:-80px;">
+<h3 style="color:var(--primary);margin-bottom:18px;">ข้อมูลบริการ</h3>
 
 <div class="service-grid">
 
@@ -579,9 +417,9 @@ COJ
 </section>
 
 <!-- ================= COJ PAGE ================= -->
-<section id="cojpage">
-<div class="section-box">
-<div class="subtitle-blue">เลือกบริการ COJ</div>
+<section id="cojpage" class="no-quick">
+<div class="section-box" style="margin-top:-80px;">
+<h3 style="color:var(--primary);margin-bottom:18px;">เลือกบริการ COJ</h3>
 
 <div class="service-grid">
 
@@ -600,9 +438,9 @@ COJ Connect
 </section>
 
 <!-- ================= EFILING ================= -->
-<section id="efiling">
-<div class="section-box">
-<div class="subtitle-blue">เลือกระบบ e-Filing</div>
+<section id="efiling" class="no-quick">
+<div class="section-box" style="margin-top:-80px;">
+<h3 style="color:var(--primary);margin-bottom:18px;">เลือกระบบ e-Filing</h3>
 
 <div class="service-grid">
 
@@ -621,9 +459,9 @@ e-Filing v.4
 </section>
 
 <!-- ================= FEE ================= -->
-<section id="fee">
-<div class="section-box">
-<div class="subtitle-blue">คำนวณค่าธรรมเนียม</div>
+<section id="fee" class="no-quick">
+<div class="section-box" style="margin-top:-80px;">
+<h3 style="color:var(--primary);margin-bottom:18px;">คำนวณค่าธรรมเนียม</h3>
 
 <div class="calc-box">
 <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
@@ -635,9 +473,9 @@ e-Filing v.4
 </section>
 
 <!-- ================= DOWNLOAD ================= -->
-<section id="download">
-<div class="section-box">
-<div class="subtitle-blue">ดาวน์โหลดแบบฟอร์ม</div>
+<section id="download" class="no-quick">
+<div class="section-box" style="margin-top:-80px;">
+<h3 style="color:var(--primary);margin-bottom:18px;">ดาวน์โหลดแบบฟอร์ม</h3>
 
 <div class="preview-list">
 
@@ -651,217 +489,202 @@ e-Filing v.4
 </section>
 
 <!-- ================= KNOWLEDGE ================= -->
-<section id="knowledge">
-<div class="section-box">
-<div class="subtitle-blue">คลังความรู้</div>
+<section id="knowledge" class="no-quick">
+<div class="section-box" style="margin-top:-80px;">
+<h3 style="color:var(--primary);margin-bottom:20px;">คลังความรู้</h3>
 
-<div class="knowledge-grid">
+<div style="display:flex;flex-direction:column;gap:20px;">
 
-<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<img src="https://via.placeholder.com/600x400">
+<div style="background:#ffffff;border-radius:22px;padding:22px;box-shadow:var(--shadow-soft);cursor:pointer;" onclick="navigate('knowledgePoster')">
+<div style="font-size:18px;font-weight:700;margin-bottom:6px;">หมวดโปสเตอร์ความรู้</div>
+<div style="color:var(--muted);font-size:14px;">รวมโปสเตอร์ประชาสัมพันธ์และความรู้กฎหมาย</div>
 </div>
 
-<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<img src="https://via.placeholder.com/600x400">
-</div>
-
-<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<img src="https://via.placeholder.com/600x400">
-</div>
-
-<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<img src="https://via.placeholder.com/600x400">
-</div>
-
-<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<img src="https://via.placeholder.com/600x400">
-</div>
-
-<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<img src="https://via.placeholder.com/600x400">
-</div>
-
-<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<img src="https://via.placeholder.com/600x400">
-</div>
-
-<div class="knowledge-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<img src="https://via.placeholder.com/600x400">
-</div>
-
-</div>
-
-<div class="subtitle-blue" style="margin-top:20px;">คำศัพท์ทางกฎหมาย</div>
-
-<div class="poster-scroll">
-
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image">
-<img src="https://via.placeholder.com/600x750">
-</div>
-<div class="poster-title">คำศัพท์ตัวอย่าง</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- ================= OTHER ================= -->
-<section id="other">
-<div class="section-box">
-<div class="subtitle-blue">เพิ่มเติม</div>
-
-<div class="service-grid">
-
-<div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">help</span></div>
-คำถามที่พบบ่อย (FAQ)
-</div>
-
-<div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">rate_review</span></div>
-แบบประเมินความพึงพอใจ
+<div style="background:#ffffff;border-radius:22px;padding:22px;box-shadow:var(--shadow-soft);cursor:pointer;" onclick="openTermSheet()">
+<div style="font-size:18px;font-weight:700;margin-bottom:6px;">คำศัพท์ทางกฎหมาย</div>
+<div style="color:var(--muted);font-size:14px;">รวมคำศัพท์และคำอธิบายทางกฎหมาย</div>
 </div>
 
 </div>
 </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
-<section id="contact">
-<div class="section-box">
-<div class="subtitle-blue">ติดต่อ</div>
+<!-- ================= KNOWLEDGE POSTER ================= -->
+<section id="knowledgePoster" class="no-quick">
+<div class="section-box" style="margin-top:-80px;">
+<h3 style="color:var(--primary);margin-bottom:18px;">โปสเตอร์ความรู้</h3>
 
-<div class="service-grid">
+<div style="display:flex;overflow-x:auto;gap:20px;padding-bottom:10px;">
 
-<div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">location_on</span></div>
-ที่อยู่ศาล
+<div style="flex:0 0 auto;width:200px;" onclick="openSheet('https://via.placeholder.com/600x900')">
+<img src="https://via.placeholder.com/400x600" style="width:100%;border-radius:20px;box-shadow:var(--shadow-soft);cursor:pointer;">
 </div>
 
-<div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">call</span></div>
-เบอร์โทรศัพท์
+<div style="flex:0 0 auto;width:200px;" onclick="openSheet('https://via.placeholder.com/600x900')">
+<img src="https://via.placeholder.com/400x600" style="width:100%;border-radius:20px;box-shadow:var(--shadow-soft);cursor:pointer;">
 </div>
 
-<div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">language</span></div>
-โซเชียลมีเดีย
+<div style="flex:0 0 auto;width:200px;" onclick="openSheet('https://via.placeholder.com/600x900')">
+<img src="https://via.placeholder.com/400x600" style="width:100%;border-radius:20px;box-shadow:var(--shadow-soft);cursor:pointer;">
+</div>
+
+<div style="flex:0 0 auto;width:200px;" onclick="openSheet('https://via.placeholder.com/600x900')">
+<img src="https://via.placeholder.com/400x600" style="width:100%;border-radius:20px;box-shadow:var(--shadow-soft);cursor:pointer;">
+</div>
+
+<div style="flex:0 0 auto;width:200px;" onclick="openSheet('https://via.placeholder.com/600x900')">
+<img src="https://via.placeholder.com/400x600" style="width:100%;border-radius:20px;box-shadow:var(--shadow-soft);cursor:pointer;">
+</div>
+
+<div style="flex:0 0 auto;width:200px;" onclick="openSheet('https://via.placeholder.com/600x900')">
+<img src="https://via.placeholder.com/400x600" style="width:100%;border-radius:20px;box-shadow:var(--shadow-soft);cursor:pointer;">
+</div>
+
+<div style="flex:0 0 auto;width:200px;" onclick="openSheet('https://via.placeholder.com/600x900')">
+<img src="https://via.placeholder.com/400x600" style="width:100%;border-radius:20px;box-shadow:var(--shadow-soft);cursor:pointer;">
+</div>
+
+<div style="flex:0 0 auto;width:200px;" onclick="openSheet('https://via.placeholder.com/600x900')">
+<img src="https://via.placeholder.com/400x600" style="width:100%;border-radius:20px;box-shadow:var(--shadow-soft);cursor:pointer;">
 </div>
 
 </div>
 </div>
 </section>
 
-<!-- ================= BLANK ================= -->
-<section id="blank">
-<div class="section-box">
-<div class="subtitle-blue">อยู่ระหว่างพัฒนา</div>
-</div>
-</section>
-
-</main>
-
-<!-- ================= BOTTOM SHEET ================= -->
-<div class="bottom-sheet" id="sheet">
-<div class="sheet-header">
-<img id="sheetImg">
-<div class="sheet-back" onclick="closeSheet()">
-<span class="material-symbols-rounded">arrow_back</span>
-</div>
-</div>
+<!-- ================= TERM BOTTOM SHEET ================= -->
+<div id="termSheet" class="bottom-sheet">
 <div class="sheet-content">
-<h2>หัวข้อเนื้อหา</h2>
-<p>พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...</p>
+
+<h3 style="margin-bottom:18px;">คำศัพท์ทางกฎหมาย</h3>
+
+<div style="display:flex;flex-direction:column;gap:16px;">
+
+<div>โจทก์ - ผู้ยื่นฟ้องคดีต่อศาล</div>
+<div>จำเลย - บุคคลที่ถูกฟ้องร้อง</div>
+<div>คำฟ้อง - หนังสือที่ใช้เริ่มต้นคดีในศาล</div>
+
+</div>
+
 </div>
 </div>
 
-<!-- ================= BOTTOM BAR ================= -->
-<nav>
 
-<button class="active" onclick="navigate('home',this)">
-<span class="material-symbols-rounded">home</span>
-หน้าแรก
-</button>
 
-<button onclick="navigate('service',this)">
-<span class="material-symbols-rounded">apps</span>
-บริการ
-</button>
 
-<button onclick="navigate('knowledge',this)">
-<span class="material-symbols-rounded">menu_book</span>
-คลังความรู้
-</button>
 
-<button onclick="navigate('other',this)">
-<span class="material-symbols-rounded">more_horiz</span>
-เพิ่มเติม
-</button>
 
-<button onclick="navigate('contact',this)">
-<span class="material-symbols-rounded">person</span>
-ติดต่อ
-</button>
+<!-- ================= OTHERS SECTION ================= -->
+<section id="others">
+  <div class="section-title">อื่น ๆ</div>
+
+  <div class="card">
+    <h3>คำถามที่พบบ่อย (FAQ)</h3>
+    <p>รวมคำถามที่ประชาชนสอบถามบ่อยเกี่ยวกับขั้นตอนศาล การยื่นคำร้อง และการใช้บริการออนไลน์</p>
+  </div>
+
+  <div class="card">
+    <h3>แบบประเมินความพึงพอใจ</h3>
+    <p>ส่งความคิดเห็นและข้อเสนอแนะ เพื่อพัฒนาการให้บริการของเรา</p>
+  </div>
+
+</section>
+
+
+
+<!-- ================= CONTACT SECTION ================= -->
+<section id="contact">
+  <div class="section-title">ติดต่อเรา</div>
+
+  <div class="card">
+    <h3>สำนักงานศาล</h3>
+    <p>ที่อยู่: อาคารศาลจังหวัดชลบุรี</p>
+    <p>โทรศัพท์: 038-000-000</p>
+    <p>อีเมล: example@coj.go.th</p>
+  </div>
+
+  <div class="card">
+    <h3>แผนที่</h3>
+    <iframe 
+      src="https://maps.google.com/maps?q=chonburi%20court&t=&z=13&ie=UTF8&iwloc=&output=embed"
+      width="100%"
+      height="250"
+      style="border:0; border-radius:16px;"
+      allowfullscreen=""
+      loading="lazy">
+    </iframe>
+  </div>
+
+</section>
+
+
+
+<!-- ================= BOTTOM NAV ================= -->
+<nav class="bottom-nav">
+
+  <a href="#home" class="active" onclick="setActive(this)">
+    <i class="fa-solid fa-house"></i>
+    หน้าแรก
+  </a>
+
+  <a href="#service" onclick="setActive(this)">
+    <i class="fa-solid fa-briefcase"></i>
+    บริการ
+  </a>
+
+  <a href="#knowledge" onclick="setActive(this)">
+    <i class="fa-solid fa-book-open"></i>
+    ความรู้
+  </a>
+
+  <a href="#others" onclick="setActive(this)">
+    <i class="fa-solid fa-ellipsis"></i>
+    อื่น ๆ
+  </a>
+
+  <a href="#contact" onclick="setActive(this)">
+    <i class="fa-solid fa-phone"></i>
+    ติดต่อ
+  </a>
 
 </nav>
 
+
+
+<!-- ================= SCRIPT ================= -->
 <script>
 
-function navigate(id,btn){
-history.pushState({page:id},"","#"+id);
-showPage(id,btn);
+function setActive(el) {
+  document.querySelectorAll(".bottom-nav a").forEach(link => {
+    link.classList.remove("active");
+  });
+  el.classList.add("active");
 }
 
-window.onpopstate=e=>{
-if(e.state) showPage(e.state.page);
-};
+/* Section Scroll Activate */
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".bottom-nav a");
 
-function showPage(id,btn){
-document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+window.addEventListener("scroll", () => {
+  let current = "";
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (pageYOffset >= sectionTop) {
+      current = section.getAttribute("id");
+    }
+  });
 
-document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-if(btn) btn.classList.add("active");
-
-if(id==="home"){
-document.querySelector(".quick-tap").style.display="flex";
-}else{
-document.querySelector(".quick-tap").style.display="none";
-}
-}
-
-function openLink(url){
-window.open(url,"_blank");
-}
-
-function doSearch(e){
-if(e.key==="Enter"){
-const q=e.target.value;
-if(q.includes("e")) navigate("efiling");
-else if(q.includes("ค่")) navigate("fee");
-else if(q.includes("ดาว")) navigate("download");
-else navigate("blank");
-}
-}
-
-function calcFee(){
-const m=document.getElementById("money").value;
-const fee=Math.max(100,Math.floor(m*0.02));
-document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
-}
-
-function openSheet(img){
-document.getElementById("sheetImg").src=img;
-document.getElementById("sheet").classList.add("active");
-}
-
-function closeSheet(){
-document.getElementById("sheet").classList.remove("active");
-}
+  navLinks.forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+});
 
 </script>
 
+
+</main>
 </body>
 </html>
