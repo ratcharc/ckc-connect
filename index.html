@@ -4,16 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
-<!-- Montserrat Alternates -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600;700;800&display=swap" rel="stylesheet">
-
 <style>
-
 :root{
-  --primary:#3697FF;
+  --primary:#0a3083;
   --primary-soft:#eef2ff;
   --bg:#e5e7eb;
   --card:#ffffff;
@@ -24,6 +19,8 @@
   --radius-sm:12px;
   --shadow-lg:0 18px 40px rgba(0,0,0,.12);
   --shadow-md:0 10px 26px rgba(0,0,0,.1);
+
+  /* เพิ่มเงานุ่มแบบ TagThai */
   --shadow-soft:0 10px 35px rgba(10,48,131,.18);
 }
 
@@ -41,170 +38,77 @@ font-weight:800;
 color:var(--primary);
 }
 
-/* ================= HEADER ใหม่ ================= */
+/* ===== HEADER FIX ===== */
 
 header{
-
 position:relative;
 width:100%;
-
-/* gradient ไล่สี */
-background:linear-gradient(
-180deg,
-#3697FF 0%,
-#3697FF 35%,
-rgba(54,151,255,.85) 55%,
-rgba(54,151,255,.55) 75%,
-rgba(54,151,255,.2) 90%,
-rgba(54,151,255,0) 100%
-);
-
-padding:26px 20px 120px 20px;
-
+aspect-ratio:16/6;
+max-height:260px;
+overflow:hidden;
+background:#000;
 }
 
-/* ชื่อแอป */
-
-.app-title{
-
-font-family:'Montserrat Alternates',system-ui,sans-serif;
-font-weight:800;
-font-size:32px;
-color:#ffffff;
-
-text-align:center;
-
-margin-top:6px;
-margin-bottom:20px;
-
-letter-spacing:.5px;
-
-}
-
-/* bell icon */
-
-.bell-btn{
-
+.header-banner{
 position:absolute;
-top:18px;
-right:18px;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center;
+}
 
+/* SEARCH */
+
+.search-btn{
+position:absolute;
+top:16px;
+right:70px;
+font-size:26px;
+color:#fff;
+cursor:pointer;
+z-index:2;
+}
+
+/* ===== NEW NOTIFICATION BUTTON ===== */
+
+.notify-btn{
+position:absolute;
+top:12px;
+right:16px;
 width:42px;
 height:42px;
-
-border-radius:30px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-background:rgba(255,255,255,.18);
-
-backdrop-filter:blur(6px);
-
-color:#ffffff;
-font-size:22px;
-
-}
-
-/* search bar */
-
-.search-header{
-
-width:100%;
-max-width:520px;
-
-margin:0 auto;
-
-background:#ffffff;
-
-border-radius:28px;
-
-display:flex;
-align-items:center;
-
-padding:10px 16px;
-
-box-shadow:var(--shadow-md);
-
-}
-
-.search-header input{
-
-flex:1;
-border:none;
-outline:none;
-
-font-size:14px;
-
-}
-
-.search-header span{
-
-color:#3697FF;
-font-size:22px;
-
-}
-
-/* quick tap ใน header */
-
-.quick-header{
-
-display:flex;
-gap:18px;
-
-overflow-x:auto;
-
-margin-top:22px;
-
-padding-bottom:4px;
-
-}
-
-.quick-header::-webkit-scrollbar{
-display:none;
-}
-
-.quick-item{
-
-flex:0 0 auto;
-
-width:78px;
-
-text-align:center;
-
-}
-
-.quick-circle{
-
-width:58px;
-height:58px;
-
 border-radius:50%;
-
-background:#ffffff;
-
+background:rgba(255,255,255,.25);
 display:flex;
 align-items:center;
 justify-content:center;
+cursor:pointer;
+z-index:2;
+}
 
-margin:0 auto 8px auto;
-
-color:#3697FF;
-
+.notify-btn span{
 font-size:24px;
-
+color:#fff;
 }
 
-.quick-item span{
-
-font-size:12px;
-font-weight:700;
-color:#000;
-
+.search-box{
+position:absolute;
+top:56px;
+right:16px;
+display:none;
+z-index:2;
 }
 
-/* ===== MAIN (คงเดิม) ===== */
+.search-box input{
+padding:10px 16px;
+border-radius:14px;
+border:none;
+width:220px;
+box-shadow:var(--shadow-md);
+}
+
+/* ===== MAIN ===== */
 
 main{
 padding:16px;
@@ -243,108 +147,55 @@ height:100%;
 object-fit:cover;
 display:block;
 }
-  /* ================= SUBTITLE BLUE ================= */
+
+/* ================= QUICK TAP ================= */
+
+.quick-tap{
+display:flex;
+gap:22px;
+overflow-x:auto;
+padding:6px 4px 22px 4px;
+}
+
+.quick-item{
+flex:0 0 auto;
+width:88px;
+text-align:center;
+cursor:pointer;
+}
+
+/* NEW STYLE QUICK ICON */
+
+.quick-circle{
+width:72px;
+height:72px;
+border-radius:50%;
+background:#ffffff;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:0 auto 8px auto;
+color:var(--primary);
+}
+
+.quick-circle span{
+font-size:32px;
+color:var(--primary);
+}
+
+.quick-item span{
+font-size:12px;
+font-weight:700;
+display:block;
+}
+
+/* ================= SUBTITLE BLUE ================= */
 
 .subtitle-blue{
 font-weight:800;
 color:var(--primary);
 margin:0 0 14px 0;
 }
-
-/* ================= POSTER SCROLL ================= */
-
-.poster-scroll{
-display:flex;
-overflow-x:auto;
-gap:18px;
-padding-bottom:10px;
-}
-
-.poster-card{
-flex:0 0 auto;
-width:170px;
-cursor:pointer;
-}
-
-.poster-image{
-width:100%;
-aspect-ratio:4/5;
-background:#dfe3f0;
-border-radius:18px;
-overflow:hidden;
-box-shadow:var(--shadow-soft);
-}
-
-.poster-image img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.poster-title{
-margin-top:8px;
-font-size:13px;
-font-weight:700;
-}
-
-/* ================= BOTTOM SHEET ================= */
-
-.bottom-sheet{
-position:fixed;
-left:0;
-right:0;
-bottom:-100%;
-height:100%;
-background:#fff;
-border-top-left-radius:26px;
-border-top-right-radius:26px;
-box-shadow:var(--shadow-lg);
-transition:.4s ease;
-z-index:300;
-display:flex;
-flex-direction:column;
-}
-
-.bottom-sheet.active{
-bottom:0;
-}
-
-.sheet-header{
-width:100%;
-aspect-ratio:16/9;
-background:#dfe3f0;
-position:relative;
-}
-
-.sheet-header img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.sheet-back{
-position:absolute;
-left:16px;
-top:50%;
-transform:translateY(-50%);
-background:#fff;
-width:44px;
-height:44px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:var(--shadow-md);
-cursor:pointer;
-}
-
-.sheet-content{
-padding:22px;
-overflow:auto;
-}
-
 </style>
 </head>
 
@@ -352,65 +203,19 @@ overflow:auto;
 
 <header>
 
-<div class="bell-btn">
+<img class="header-banner"
+src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
+
+<span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
+
+<!-- ปุ่มแจ้งเตือนใหม่ -->
+
+<div class="notify-btn">
 <span class="material-symbols-rounded">notifications</span>
 </div>
 
-<div class="app-title">
-CKC CONNECT
-</div>
-
-<div class="search-header">
-
-<input
-type="text"
-placeholder="ค้นหาเมนู / บริการ"
-onkeydown="doSearch(event)"
->
-
-<span class="material-symbols-rounded">
-search
-</span>
-
-</div>
-
-<div class="quick-header">
-
-<div class="quick-item" onclick="navigate('efiling',document.querySelector('nav button:nth-child(2)'))">
-<div class="quick-circle">
-<span class="material-symbols-rounded">gavel</span>
-</div>
-<span>e-Filing</span>
-</div>
-
-<div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
-<div class="quick-circle">
-<span class="material-symbols-rounded">description</span>
-</div>
-<span>CIOS</span>
-</div>
-
-<div class="quick-item" onclick="navigate('cojpage',document.querySelector('nav button:nth-child(2)'))">
-<div class="quick-circle">
-<span class="material-symbols-rounded">account_balance</span>
-</div>
-<span>COJ</span>
-</div>
-
-<div class="quick-item" onclick="navigate('fee',document.querySelector('nav button:nth-child(2)'))">
-<div class="quick-circle">
-<span class="material-symbols-rounded">calculate</span>
-</div>
-<span>ค่าธรรมเนียม</span>
-</div>
-
-<div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
-<div class="quick-circle">
-<span class="material-symbols-rounded">search</span>
-</div>
-<span>ติดตามคดี</span>
-</div>
-
+<div class="search-box" id="searchBox">
+<input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
 </div>
 
 </header>
@@ -433,64 +238,95 @@ search
 
 </div>
 
-<!-- หัวข้อรอง -->
+<!-- QUICK TAP -->
+
+<div class="quick-tap">
+
+<!-- e-Filing -->
+
+<div class="quick-item" onclick="navigate('efiling',document.querySelector('nav button:nth-child(2)'))">
+<div class="quick-circle">
+<span class="material-symbols-rounded">gavel</span>
+</div>
+<span>e-Filing</span>
+</div>
+
+<!-- CIOS -->
+
+<div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
+<div class="quick-circle">
+<span class="material-symbols-rounded">description</span>
+</div>
+<span>CIOS</span>
+</div>
+
+<!-- อัตราค่าธรรมเนียม -->
+
+<div class="quick-item" onclick="navigate('fee',document.querySelector('nav button:nth-child(2)'))">
+<div class="quick-circle">
+<span class="material-symbols-rounded">calculate</span>
+</div>
+<span>อัตราค่าธรรมเนียม</span>
+</div>
+
+<!-- บัญชีนัดพิจารณาคดี -->
+
+<div class="quick-item" onclick="navigate('blank',document.querySelector('nav button:nth-child(2)'))">
+<div class="quick-circle">
+<span class="material-symbols-rounded">calendar_month</span>
+</div>
+<span>บัญชีนัดพิจารณาคดี</span>
+</div>
+
+<!-- ติดตามสำนวนคดี -->
+
+<div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
+<div class="quick-circle">
+<span class="material-symbols-rounded">search</span>
+</div>
+<span>ติดตามสำนวนคดี</span>
+</div>
+
+</div>
 
 <h3 class="subtitle-blue">รายการโพส</h3>
-
-<!-- POSTER SCROLL -->
+<!-- POSTER SCROLL แนวตั้ง ขนาดจริง 4:5 -->
 
 <div class="poster-scroll">
 
 <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-
 <div class="poster-image">
-
 <img src="https://via.placeholder.com/600x750">
-
 </div>
-
-<div class="poster-title">
-ชื่อเรื่อง...
-</div>
-
+<div class="poster-title">ชื่อเรื่อง...</div>
 </div>
 
 <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-
 <div class="poster-image">
-
 <img src="https://via.placeholder.com/600x750">
-
 </div>
-
-<div class="poster-title">
-ชื่อเรื่อง...
-</div>
-
+<div class="poster-title">ชื่อเรื่อง...</div>
 </div>
 
 <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-
 <div class="poster-image">
-
 <img src="https://via.placeholder.com/600x750">
-
 </div>
-
-<div class="poster-title">
-ชื่อเรื่อง...
+<div class="poster-title">ชื่อเรื่อง...</div>
 </div>
 
 </div>
 
 </div>
-
-</div>
-
 </section>
-  <!-- ================= SERVICE ================= -->
+
+
+<!-- ================= SERVICE ================= -->
+
 <section id="service">
+
 <div class="section-box">
+
 <h3>ข้อมูลบริการ</h3>
 
 <div class="service-grid">
@@ -544,9 +380,13 @@ COJ
 </div>
 </section>
 
+
 <!-- ================= COJ PAGE ================= -->
+
 <section id="cojpage">
+
 <div class="section-box">
+
 <h3>เลือกบริการ COJ</h3>
 
 <div class="service-grid">
@@ -565,9 +405,13 @@ COJ Connect
 </div>
 </section>
 
+
 <!-- ================= EFILING ================= -->
+
 <section id="efiling">
+
 <div class="section-box">
+
 <h3>เลือกระบบ e-Filing</h3>
 
 <div class="service-grid">
@@ -586,18 +430,20 @@ e-Filing v.4
 </div>
 </section>
 
+
 <!-- ================= FEE ================= -->
+
 <section id="fee">
+
 <div class="section-box">
+
 <h3>คำนวณค่าธรรมเนียม</h3>
 
 <div class="calc-box">
 
 <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
 
-<button onclick="calcFee()">
-คำนวณ
-</button>
+<button onclick="calcFee()">คำนวณ</button>
 
 <div class="calc-result" id="feeResult">
 ค่าธรรมเนียม:
@@ -607,9 +453,13 @@ e-Filing v.4
 </div>
 </section>
 
+
 <!-- ================= DOWNLOAD ================= -->
+
 <section id="download">
+
 <div class="section-box">
+
 <h3>ดาวน์โหลดแบบฟอร์ม</h3>
 
 <div class="preview-list">
@@ -623,9 +473,13 @@ e-Filing v.4
 </div>
 </section>
 
+
 <!-- ================= KNOWLEDGE ================= -->
+
 <section id="knowledge">
+
 <div class="section-box">
+
 <h3>คลังความรู้</h3>
 
 <div class="poster-scroll">
@@ -634,28 +488,27 @@ e-Filing v.4
 <div class="poster-image">
 <img src="https://via.placeholder.com/600x750">
 </div>
-<div class="poster-title">
-คลังความรู้
-</div>
+<div class="poster-title">คลังความรู้</div>
 </div>
 
 <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
 <div class="poster-image">
 <img src="https://via.placeholder.com/600x750">
 </div>
-<div class="poster-title">
-คำศัพท์ทางกฎหมาย
-</div>
+<div class="poster-title">คำศัพท์ทางกฎหมาย</div>
 </div>
 
 </div>
-
 </div>
 </section>
 
+
 <!-- ================= OTHER ================= -->
+
 <section id="other">
+
 <div class="section-box">
+
 <h3>เพิ่มเติม</h3>
 
 <div class="service-grid">
@@ -671,13 +524,16 @@ e-Filing v.4
 </div>
 
 </div>
-
 </div>
 </section>
 
+
 <!-- ================= CONTACT ================= -->
+
 <section id="contact">
+
 <div class="section-box">
+
 <h3>ติดต่อ</h3>
 
 <div class="service-grid">
@@ -698,18 +554,24 @@ e-Filing v.4
 </div>
 
 </div>
-
 </div>
 </section>
 
+
 <!-- ================= BLANK ================= -->
+
 <section id="blank">
+
 <div class="section-box">
+
 <h3>อยู่ระหว่างพัฒนา</h3>
+
 </div>
+
 </section>
 
 </main>
+
 
 <!-- ================= BOTTOM SHEET ================= -->
 
@@ -729,12 +591,11 @@ e-Filing v.4
 
 <h2>หัวข้อเนื้อหา</h2>
 
-<p>
-พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...
-</p>
+<p>พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...</p>
 
 </div>
 </div>
+
 
 <!-- ================= BOTTOM BAR ================= -->
 
@@ -767,20 +628,16 @@ e-Filing v.4
 
 </nav>
 
+
 <script>
 
 function navigate(id,btn){
-
 history.pushState({page:id},"","#"+id);
-
 showPage(id,btn);
-
 }
 
 window.onpopstate=e=>{
-
 if(e.state) showPage(e.state.page);
-
 };
 
 function showPage(id,btn){
@@ -796,9 +653,12 @@ if(btn) btn.classList.add("active");
 }
 
 function openLink(url){
-
 window.open(url,"_blank");
+}
 
+function toggleSearch(){
+const b=document.getElementById("searchBox");
+b.style.display=b.style.display==="block"?"none":"block";
 }
 
 function doSearch(e){
@@ -808,11 +668,8 @@ if(e.key==="Enter"){
 const q=e.target.value;
 
 if(q.includes("e")) navigate("efiling");
-
 else if(q.includes("ค่")) navigate("fee");
-
 else if(q.includes("ดาว")) navigate("download");
-
 else navigate("blank");
 
 }
