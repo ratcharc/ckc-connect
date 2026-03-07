@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CKC Connect</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
-
 <style>
 :root{
   --primary:#0a3083;
@@ -19,8 +18,6 @@
   --radius-sm:12px;
   --shadow-lg:0 18px 40px rgba(0,0,0,.12);
   --shadow-md:0 10px 26px rgba(0,0,0,.1);
-
-  /* เพิ่มเงานุ่มแบบ TagThai */
   --shadow-soft:0 10px 35px rgba(10,48,131,.18);
 }
 
@@ -37,8 +34,6 @@ font-size:18px;
 font-weight:800;
 color:var(--primary);
 }
-
-/* ===== HEADER FIX ===== */
 
 header{
 position:relative;
@@ -58,8 +53,6 @@ object-fit:cover;
 object-position:center;
 }
 
-/* SEARCH */
-
 .search-btn{
 position:absolute;
 top:16px;
@@ -69,8 +62,6 @@ color:#fff;
 cursor:pointer;
 z-index:2;
 }
-
-/* ===== NEW NOTIFICATION BUTTON ===== */
 
 .notify-btn{
 position:absolute;
@@ -108,8 +99,6 @@ width:220px;
 box-shadow:var(--shadow-md);
 }
 
-/* ===== MAIN ===== */
-
 main{
 padding:16px;
 padding-top:24px;
@@ -119,16 +108,12 @@ padding-bottom:140px;
 section{display:none}
 section.active{display:block}
 
-/* FLOAT CARD */
-
 .section-box{
 background:#ffffff;
 border-radius:var(--radius-lg);
 padding:20px;
 box-shadow:var(--shadow-lg);
 }
-
-/* ================= HERO CARD ================= */
 
 .hero-card{
 width:100%;
@@ -148,8 +133,6 @@ object-fit:cover;
 display:block;
 }
 
-/* ================= QUICK TAP ================= */
-
 .quick-tap{
 display:flex;
 gap:22px;
@@ -163,8 +146,6 @@ width:88px;
 text-align:center;
 cursor:pointer;
 }
-
-/* NEW STYLE QUICK ICON */
 
 .quick-circle{
 width:72px;
@@ -189,12 +170,222 @@ font-weight:700;
 display:block;
 }
 
-/* ================= SUBTITLE BLUE ================= */
-
 .subtitle-blue{
 font-weight:800;
 color:var(--primary);
 margin:0 0 14px 0;
+}
+
+.poster-scroll{
+display:flex;
+overflow-x:auto;
+gap:18px;
+padding-bottom:10px;
+}
+
+.poster-card{
+flex:0 0 auto;
+width:170px;
+cursor:pointer;
+}
+
+.poster-image{
+width:100%;
+aspect-ratio:4/5;
+background:#dfe3f0;
+border-radius:18px;
+overflow:hidden;
+box-shadow:var(--shadow-soft);
+}
+
+.poster-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.poster-title{
+margin-top:8px;
+font-size:13px;
+font-weight:700;
+}
+
+.bottom-sheet{
+position:fixed;
+left:0;
+right:0;
+bottom:-100%;
+height:100%;
+background:#fff;
+border-top-left-radius:26px;
+border-top-right-radius:26px;
+box-shadow:var(--shadow-lg);
+transition:.4s ease;
+z-index:300;
+display:flex;
+flex-direction:column;
+}
+
+.bottom-sheet.active{
+bottom:0;
+}
+
+.sheet-header{
+width:100%;
+aspect-ratio:16/9;
+background:#dfe3f0;
+position:relative;
+}
+
+.sheet-header img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.sheet-back{
+position:absolute;
+left:16px;
+top:50%;
+transform:translateY(-50%);
+background:#fff;
+width:44px;
+height:44px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:var(--shadow-md);
+cursor:pointer;
+}
+
+.sheet-content{
+padding:22px;
+overflow:auto;
+}
+
+.service-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:12px;
+}
+
+.service-card{
+position:relative;
+background:var(--card);
+border-radius:var(--radius-md);
+padding:14px 46px 14px 60px;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+box-shadow:var(--shadow-md);
+transition:.25s ease;
+}
+
+.service-card:hover{
+transform:translateY(-2px);
+}
+
+.icon-pill{
+position:absolute;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+width:34px;
+height:34px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--primary-soft);
+color:var(--primary);
+}
+
+.calc-box{
+background:#fff;
+border-radius:18px;
+padding:18px;
+box-shadow:var(--shadow-md);
+}
+
+.calc-box input{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:1px solid #d1d5db;
+}
+
+.calc-box button{
+margin-top:10px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:var(--primary);
+color:#fff;
+font-weight:700;
+}
+
+.calc-result{
+margin-top:10px;
+background:#eef2ff;
+padding:12px;
+border-radius:12px;
+font-weight:700;
+}
+
+.preview-list{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+}
+
+.preview-card{
+background:#fff;
+border-radius:16px;
+overflow:hidden;
+box-shadow:var(--shadow-md);
+}
+
+.preview-card img{
+width:100%;
+display:block;
+}
+
+.preview-card div{
+padding:12px;
+font-size:13px;
+font-weight:700;
+}
+
+nav{
+position:fixed;
+bottom:0;
+width:100%;
+background:var(--primary);
+display:flex;
+padding:8px 4px;
+z-index:100;
+box-shadow:0 -8px 28px rgba(0,0,0,.18);
+}
+
+nav button{
+flex:1;
+border:none;
+background:transparent;
+color:#fff;
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:10px;
+gap:2px;
+}
+
+nav button.active{
+background:rgba(255,255,255,.22);
+border-radius:14px;
 }
 </style>
 </head>
@@ -208,8 +399,6 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 
 <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
 
-<!-- ปุ่มแจ้งเตือนใหม่ -->
-
 <div class="notify-btn">
 <span class="material-symbols-rounded">notifications</span>
 </div>
@@ -222,27 +411,17 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 
 <main>
 
-<!-- ================= HOME ================= -->
-
 <section id="home" class="active">
 
 <div class="section-box">
 
 <h3>โพสล่าสุด</h3>
 
-<!-- HERO CARD -->
-
 <div class="hero-card" onclick="openSheet('https://via.placeholder.com/900x506')">
-
 <img src="https://via.placeholder.com/900x506">
-
 </div>
 
-<!-- QUICK TAP -->
-
 <div class="quick-tap">
-
-<!-- e-Filing -->
 
 <div class="quick-item" onclick="navigate('efiling',document.querySelector('nav button:nth-child(2)'))">
 <div class="quick-circle">
@@ -251,16 +430,12 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 <span>e-Filing</span>
 </div>
 
-<!-- CIOS -->
-
 <div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
 <div class="quick-circle">
 <span class="material-symbols-rounded">description</span>
 </div>
 <span>CIOS</span>
 </div>
-
-<!-- อัตราค่าธรรมเนียม -->
 
 <div class="quick-item" onclick="navigate('fee',document.querySelector('nav button:nth-child(2)'))">
 <div class="quick-circle">
@@ -269,16 +444,12 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 <span>อัตราค่าธรรมเนียม</span>
 </div>
 
-<!-- บัญชีนัดพิจารณาคดี -->
-
 <div class="quick-item" onclick="navigate('blank',document.querySelector('nav button:nth-child(2)'))">
 <div class="quick-circle">
 <span class="material-symbols-rounded">calendar_month</span>
 </div>
 <span>บัญชีนัดพิจารณาคดี</span>
 </div>
-
-<!-- ติดตามสำนวนคดี -->
 
 <div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
 <div class="quick-circle">
@@ -288,9 +459,7 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 </div>
 
 </div>
-
 <h3 class="subtitle-blue">รายการโพส</h3>
-<!-- POSTER SCROLL แนวตั้ง ขนาดจริง 4:5 -->
 
 <div class="poster-scroll">
 
@@ -448,12 +617,6 @@ e-Filing v.4
 <div class="calc-result" id="feeResult">
 ค่าธรรมเนียม:
 </div>
-
-</div>
-</div>
-</section>
-
-
 <!-- ================= DOWNLOAD ================= -->
 
 <section id="download">
@@ -602,28 +765,23 @@ e-Filing v.4
 <nav>
 
 <button class="active" onclick="navigate('home',this)">
-<span class="material-symbols-rounded">home</span>
-หน้าแรก
+<span class="material-symbols-rounded">home</span>หน้าแรก
 </button>
 
 <button onclick="navigate('service',this)">
-<span class="material-symbols-rounded">apps</span>
-บริการ
+<span class="material-symbols-rounded">apps</span>บริการ
 </button>
 
 <button onclick="navigate('knowledge',this)">
-<span class="material-symbols-rounded">menu_book</span>
-คลังความรู้
+<span class="material-symbols-rounded">menu_book</span>คลังความรู้
 </button>
 
 <button onclick="navigate('other',this)">
-<span class="material-symbols-rounded">more_horiz</span>
-เพิ่มเติม
+<span class="material-symbols-rounded">more_horiz</span>เพิ่มเติม
 </button>
 
 <button onclick="navigate('contact',this)">
-<span class="material-symbols-rounded">person</span>
-ติดต่อ
+<span class="material-symbols-rounded">person</span>ติดต่อ
 </button>
 
 </nav>
@@ -704,3 +862,6 @@ document.getElementById("sheet").classList.remove("active");
 
 </body>
 </html>
+</div>
+</div>
+</section>
