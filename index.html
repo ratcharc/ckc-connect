@@ -176,39 +176,94 @@ color:var(--primary);
 margin:0 0 14px 0;
 }
 
-/* ================= POSTER SCROLL ================= */
-.poster-scroll{
-display:flex;
-overflow-x:auto;
-gap:18px;
-padding-bottom:10px;
+/* ================= POSTER SCROLL (MODERN REDESIGN) ================= */
+.poster-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding: 5px 5px 20px 5px;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+.poster-scroll::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
+
+.poster-card {
+  flex: 0 0 auto;
+  width: 160px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.poster-card:active { transform: scale(0.95); }
+
+.poster-image {
+  width: 100%;
+  aspect-ratio: 1/1.2;
+  background: #f1f5f9;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.poster-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.poster-title {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.poster-card{
-flex:0 0 auto;
-width:170px;
-cursor:pointer;
+/* ================= IMAGE PREVIEW DIALOG (NEW) ================= */
+#imageViewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 2000;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  backdrop-filter: blur(8px);
 }
-
-.poster-image{
-width:100%;
-aspect-ratio:4/5;
-background:#dfe3f0;
-border-radius:18px;
-overflow:hidden;
-box-shadow:var(--shadow-soft);
+.viewer-close {
+  position: absolute;
+  top: 30px;
+  right: 25px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 32px;
+  z-index: 2001;
 }
-.poster-image img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
+#viewerImg {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
-
-.poster-title{
-margin-top:8px;
-font-size:13px;
-font-weight:700;
+.viewer-btn-box {
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.viewer-more-btn {
+  background: var(--grad-purple);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 800;
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
 }
 
 /* ================= BOTTOM SHEET ================= */
@@ -254,9 +309,7 @@ background:#fff;
 width:44px;
 height:44px;
 border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
+display:flex; align-items:center; justify-content:center;
 box-shadow:var(--shadow-md);
 cursor:pointer;
 z-index: 10;
@@ -440,9 +493,7 @@ border: 1px solid transparent;
   height: 50px;
   background: var(--primary-soft);
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   color: var(--primary);
   flex-shrink: 0;
 }
@@ -472,7 +523,7 @@ border: 1px solid transparent;
   align-items: center;
   justify-content: center;
   color: #94a3b8;
-  overflow: hidden; /* เพิ่มเพื่อให้รูปไม่ล้น */
+  overflow: hidden; 
 }
 .preview-img-box {
   width: 100%;
@@ -611,9 +662,7 @@ border: 1px solid transparent;
   border-radius: 12px;
   background: var(--grad-blue);
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   font-size: 20px;
   box-shadow: 0 4px 10px rgba(10,48,131,0.2);
 }
@@ -668,9 +717,7 @@ border: 1px solid transparent;
   background: var(--primary);
   color: #fff;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
 .contact-info-text {
@@ -843,20 +890,8 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 </div>
 
 <h3 class="subtitle-blue">รายการโพส</h3>
-<div class="poster-scroll">
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
-<div class="poster-title">ชื่อเรื่อง...</div>
-</div>
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
-<div class="poster-title">ชื่อเรื่อง...</div>
-</div>
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
-<div class="poster-title">ชื่อเรื่อง...</div>
-</div>
-</div>
+<div class="poster-scroll" id="posterScrollContainer">
+  </div>
 </div>
 </section>
 
@@ -1594,6 +1629,13 @@ e-Filing v.4
 
 </main>
 
+<div id="imageViewer">
+  <span class="material-symbols-rounded viewer-close" onclick="closeImageViewer()">close</span>
+  <img id="viewerImg" src="">
+  <div class="viewer-btn-box" id="viewerBtnContainer">
+    </div>
+</div>
+
 <div class="bottom-sheet" id="sheet">
 <div class="sheet-header">
 <img id="sheetImg">
@@ -1649,6 +1691,78 @@ e-Filing v.4
 </nav>
 
 <script>
+// ข้อมูลโปสรองที่ขอปรับปรุง (แปลง GitHub Link แล้ว)
+const secondaryPosters = [
+  {
+    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png", // ใช้ภาพไกล่เกลี่ยตามที่ส่งใน GitHub
+    title: "สายด่วนไกล่เกลี่ยก่อนฟ้อง ดูเพิ่มเติม...",
+    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png"
+  },
+  {
+    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%872.png",
+    title: "การให้บริการระบบ e-filing สำหรับประชาชน ดูเพิ่มเติม...",
+    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%872.png"
+  },
+  {
+    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%873.png",
+    title: "การพิจารณาคดีทางอิเล็กทรอนิกส์ ดูเพิ่มเติม...",
+    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%873.png",
+    moreLink: "https://sites.google.com/view/cnbmc-ecourt-showonweb/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B9%81%E0%B8%A3%E0%B8%81?pli=1"
+  },
+  {
+    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%874.png",
+    title: "การยื่นคำร้องขอปล่อยตัวชั่วคราวผ่านระบบ CIOS ดูเพิ่มเติม..",
+    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%874.png"
+  },
+  // ภาพ 5 เว้นไว้ก่อนตามที่แจ้ง
+  {
+    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%876.png",
+    title: "การขอคัดถ่ายสำเนาคำพิพากษา ดูเพิ่มเติม...",
+    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%876.png"
+  }
+];
+
+function initSecondaryPosters() {
+  const container = document.getElementById('posterScrollContainer');
+  container.innerHTML = '';
+  secondaryPosters.forEach((post, index) => {
+    const card = document.createElement('div');
+    card.className = 'poster-card';
+    card.onclick = () => openImageViewer(post.url, post.moreLink);
+    card.innerHTML = `
+      <div class="poster-image"><img src="${post.img}"></div>
+      <div class="poster-title">${post.title}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function openImageViewer(imgSrc, moreLink = null) {
+  const viewer = document.getElementById('imageViewer');
+  const img = document.getElementById('viewerImg');
+  const btnBox = document.getElementById('viewerBtnContainer');
+  
+  img.src = imgSrc;
+  btnBox.innerHTML = '';
+  
+  if (moreLink) {
+    const btn = document.createElement('a');
+    btn.className = 'viewer-more-btn';
+    btn.href = moreLink;
+    btn.target = "_blank";
+    btn.innerText = "คลิกเพื่อดูข้อมูลเพิ่มเติม";
+    btnBox.appendChild(btn);
+  }
+  
+  viewer.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImageViewer() {
+  document.getElementById('imageViewer').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
 // ข้อมูลคำศัพท์ทางกฎหมาย
 const lawVocabData = [
   { word: "คดีแพ่ง", desc: "คดีที่เกิดจากข้อพิพาทระหว่างเอกชนเกี่ยวกับสิทธิหรือหน้าที่ตามกฎหมาย เช่น สัญญา หนี้ หรือทรัพย์สิน", cat: "ประเภทคดี", icon: "balance" },
@@ -1676,7 +1790,7 @@ const lawVocabData = [
 // ฟังก์ชันสำหรับ Hero Gallery
 function openHeroGallery() {
   document.getElementById('heroGallery').style.display = 'flex';
-  document.body.style.overflow = 'hidden'; // กันเลื่อนหน้าหลัก
+  document.body.style.overflow = 'hidden'; 
 }
 
 function closeHeroGallery() {
@@ -1735,7 +1849,6 @@ function backToKnMain() {
 function renderPosterList() {
   const list = document.getElementById("posterList");
   list.innerHTML = "";
-  // สร้างตัวอย่างโปสเตอร์ 10 ใบ (1080x1350)
   for (let i = 1; i <= 10; i++) {
     const item = document.createElement("div");
     item.className = "poster-item";
@@ -1830,12 +1943,12 @@ function initDownloadList() {
 
 window.onload = () => {
   initDownloadList();
+  initSecondaryPosters(); // เรียกใช้ฟังก์ชันโพสรองใหม่
 };
 
 function navigate(id,btn){
 history.pushState({page:id},"","#"+id);
 showPage(id,btn);
-// รีเซ็ตหน้าย่อยคลังความรู้เมื่อมีการเปลี่ยนหน้า
 if(id === 'knowledge') backToKnMain();
 }
 
