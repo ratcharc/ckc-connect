@@ -363,6 +363,42 @@ color: var(--primary);
   border: 1px dashed #fca5a5;
 }
 
+/* ================= NEW: INTERACTIVE VERTICAL PATH (TIMELINE) ================= */
+.tab-scroller {
+  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 10px;
+}
+.tab-chip {
+  padding: 10px 20px; background: #fff; border: 1.5px solid var(--primary);
+  border-radius: 30px; font-size: 13px; font-weight: 700; color: var(--primary);
+  white-space: nowrap; cursor: pointer; transition: .3s;
+}
+.tab-chip.active { background: var(--primary); color: #fff; box-shadow: var(--shadow-soft); }
+
+.timeline-path { position: relative; padding-left: 40px; padding-top: 10px; }
+.timeline-path::before {
+  content: ''; position: absolute; left: 18px; top: 0; bottom: 0; width: 4px;
+  background: linear-gradient(180deg, var(--primary) 0%, #cbd5e1 100%);
+  border-radius: 10px;
+}
+
+.step-node { position: relative; margin-bottom: 30px; }
+.step-marker {
+  position: absolute; left: -36px; top: 5px; width: 30px; height: 30px;
+  background: var(--primary); color: #fff; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; z-index: 2; box-shadow: 0 0 15px rgba(10,48,131,0.25);
+}
+.step-bubble {
+  background: #fff; padding: 18px; border-radius: 20px; border: 1px solid #f1f5f9;
+  box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
+}
+.step-bubble::after {
+  content: attr(data-step); position: absolute; right: -5px; bottom: -15px;
+  font-size: 70px; font-weight: 900; color: rgba(10,48,131,0.04); z-index: 0;
+}
+.step-bubble h4 { margin: 0 0 6px 0; color: var(--primary); font-size: 16px; font-weight: 800; position: relative; z-index: 1; }
+.step-bubble p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; position: relative; z-index: 1; }
+
 /* ================= DOWNLOAD (คงเดิม) ================= */
 .preview-list{
 display:grid;
@@ -480,7 +516,7 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 <div class="icon-pill"><span class="material-symbols-rounded">calculate</span></div>
 อัตราค่าธรรมเนียม (ค่าขึ้นศาล)
 </div>
-<div class="service-card" onclick="navigate('blank')">
+<div class="service-card" onclick="navigate('step-process')">
 <div class="icon-pill"><span class="material-symbols-rounded">list_alt</span></div>
 ขั้นตอนการฟ้องและยื่นคำร้อง
 </div>
@@ -513,6 +549,158 @@ COJ
 ดาวน์โหลดแบบฟอร์ม
 </div>
 </div>
+</div>
+</section>
+
+<section id="step-process">
+<div class="section-box">
+<h3>ขั้นตอนการฟ้องและยื่นคำร้อง</h3>
+
+<div class="tab-scroller">
+  <div class="tab-chip active" onclick="switchProcess('civil', this)">คดีแพ่งทั่วไป</div>
+  <div class="tab-chip" onclick="switchProcess('petty', this)">คดีมโนสาเร่</div>
+  <div class="tab-chip" onclick="switchProcess('filing', this)">การยื่นคำฟ้อง</div>
+  <div class="tab-chip" onclick="switchProcess('copy', this)">การคัดถ่ายเอกสาร</div>
+</div>
+
+<div id="proc-civil" class="timeline-path">
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble" data-step="01">
+      <h4>เตรียมเอกสาร</h4>
+      <p>- คำฟ้อง (ระบุคู่กรณี, เหตุผลฟ้อง, จำนวนเงิน)<br>- หลักฐานประกอบ (สัญญา, ใบเสร็จ, ข้อความโต้ตอบ ฯลฯ)</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble" data-step="02">
+      <h4>ยื่นคำฟ้อง</h4>
+      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่านระบบ e-Filing</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble" data-step="03">
+      <h4>ชำระค่าธรรมเนียมศาล</h4>
+      <p>ขึ้นอยู่กับทุนทรัพย์ที่ฟ้อง เช่น ร้อยละ 2 ของจำนวนเงิน</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble" data-step="04">
+      <h4>ตรวจสอบคำฟ้อง</h4>
+      <p>เจ้าหน้าที่ตรวจสอบความครบถ้วนของเอกสาร</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble" data-step="05">
+      <h4>ศาลออกหมายเรียกคู่กรณี</h4>
+      <p>ส่งคำฟ้องและกำหนดวันนัดไต่สวน/พิจารณา</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">6</div>
+    <div class="step-bubble" data-step="06">
+      <h4>ไต่สวน/พิจารณาคดี</h4>
+      <p>ตรวจสอบข้อเท็จจริงของทั้งสองฝ่าย พร้อมหลักฐานประกอบการพิจารณาคดี</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">7</div>
+    <div class="step-bubble" data-step="07">
+      <h4>ศาลมีคำพิพากษา</h4>
+      <p>- ชนะคดี คู่กรณีต้องชำระหนี้หรือปฏิบัติตามคำสั่ง<br>- แพ้คดี สามารถยื่นอุทธรณ์ได้</p>
+    </div>
+  </div>
+</div>
+
+<div id="proc-petty" class="timeline-path" style="display:none">
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble" data-step="01">
+      <h4>กรอกแบบฟอร์มฟ้องคดีเล็ก</h4>
+      <p>แบบฟอร์มเฉพาะของศาลแขวง</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble" data-step="02">
+      <h4>ยื่นคำฟ้อง</h4>
+      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง หรือออนไลน์ผ่านระบบ e-Filing</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble" data-step="03">
+      <h4>ชำระค่าธรรมเนียม</h4>
+      <p>ชำระตามอัตราคดีมโนสาเร่ (ไม่เกิน 1,000 บาท)</p>
+    </div>
+  </div>
+</div>
+
+<div id="proc-filing" class="timeline-path" style="display:none">
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble" data-step="01">
+      <h4>คู่ความยื่นคำฟ้อง</h4>
+      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่าน e-Filing</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble" data-step="02">
+      <h4>เจ้าหน้าที่ตรวจสอบ</h4>
+      <p>ตรวจสอบคำฟ้อง และเอกสารเบื้องต้น ออกหมายเลขคดีดำ ลงสารบบข้อมูลคดี</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble" data-step="03">
+      <h4>เสนอศาล</h4>
+      <p>เสนอให้ศาลพิจารณาคำฟ้อง</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble" data-step="04">
+      <h4>ศาลสั่ง</h4>
+      <p>กรณีรับฟ้อง: ปลดหมาย ส่งหมายเรียก (ภายใน 1 วันทำการ)<br>กรณีไม่รับ: แจ้งคำสั่งให้ทราบทันที (ไม่เกิน 10 นาที)</p>
+    </div>
+  </div>
+</div>
+
+<div id="proc-copy" class="timeline-path" style="display:none">
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble" data-step="01">
+      <h4>ยื่นคำร้อง</h4>
+      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง หรือออนไลน์ผ่าน CIOS, e-Filing</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble" data-step="02">
+      <h4>เจ้าหน้าที่ตรวจสอบ</h4>
+      <p>ตรวจสอบความเป็นคู่ความและสถานะคดี</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble" data-step="03">
+      <h4>เสนอศาล</h4>
+      <p>เสนอให้ศาลมีคำสั่งอนุญาต</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble" data-step="04">
+      <h4>ชำระเงินและรับเอกสาร</h4>
+      <p>ชำระค่าธรรมเนียมและถ่ายเอกสาร/รับเอกสารที่รับรอง</p>
+    </div>
+  </div>
+</div>
+
 </div>
 </section>
 
@@ -576,7 +764,7 @@ e-Filing v.4
 </div>
 
 <div class="calc-box">
-  <div style="font-weight: 800; margin-bottom: 12px; font-size: 14px; color: var(--primary);">เครื่องคำนวณค่าธรรมเนียมศาล</div>
+  <div style="font-weight: 800; margin-bottom: 12px; font-size: 14px; color: var(--primary);">คำนวณค่าธรรมเนียมศาล</div>
   <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์ (บาท)">
   <button onclick="calcFee()">คำนวณค่าขึ้นศาล</button>
   <div class="calc-result" id="feeResult">ค่าธรรมเนียมที่ต้องชำระ: - บาท</div>
@@ -697,8 +885,18 @@ const q=e.target.value;
 if(q.includes("e")) navigate("efiling");
 else if(q.includes("ค่")) navigate("fee");
 else if(q.includes("ดาว")) navigate("download");
+else if(q.includes("ขั้น")) navigate("step-process");
 else navigate("blank");
 }
+}
+
+// ฟังก์ชันสลับ Timeline
+function switchProcess(type, btn) {
+  document.querySelectorAll('.tab-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  
+  document.querySelectorAll('.timeline-path').forEach(p => p.style.display = 'none');
+  document.getElementById('proc-' + type).style.display = 'block';
 }
 
 // ฟังก์ชันคำนวณตาม Logic ในไฟล์ Excel และกฎหมายศาลยุติธรรม
@@ -714,24 +912,20 @@ function calcFee(){
   let fee = 0;
   
   if (m <= 300000) {
-    // 1. คดีมโนสาเร่ (ไม่เกิน 3 แสน): 2% แต่สูงสุดไม่เกิน 1,000 บาท
     fee = m * 0.02;
     if (fee > 1000) fee = 1000;
   } 
   else if (m <= 50000000) {
-    // 2. คดีแพ่งทั่วไป (ไม่เกิน 50 ล้าน): 2% แต่สูงสุดไม่เกิน 200,000 บาท
     fee = m * 0.02;
     if (fee > 200000) fee = 200000;
   } 
   else {
-    // 3. เกิน 50 ล้าน: 200,000 แรก + ส่วนที่เกินคิด 0.1%
     const baseFee = 200000;
     const extraAmount = m - 50000000;
     const extraFee = extraAmount * 0.001;
     fee = baseFee + extraFee;
   }
 
-  // แสดงผลลัพธ์แบบใส่คอมม่า (เช่น 1,000)
   resultDiv.innerHTML = "ค่าธรรมเนียมที่ต้องชำระ: <span style='color:#f43f5e; font-size:18px;'>" + fee.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + "</span> บาท";
 }
 
