@@ -591,56 +591,102 @@ border: 1px solid transparent;
   margin-top: 14px;
 }
 
-/* ================= CONTACT SECTION (MODERN STYLE) ================= */
-.contact-map-container {
-  border-radius: 18px;
+/* ================= MODERN CONTACT STYLES (NEW) ================= */
+.map-header {
+  width: 100%;
+  height: 250px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  margin-bottom: 24px;
   box-shadow: var(--shadow-md);
-  margin-bottom: 20px;
-  height: 220px;
-  border: 1px solid #ddd;
+  border: 4px solid #fff;
 }
+.map-header iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .contact-card {
   background: #fff;
-  border-radius: 18px;
-  padding: 16px;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 16px;
   box-shadow: var(--shadow-md);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: .3s;
 }
-.contact-icon-box {
-  width: 44px;
-  height: 44px;
+.contact-card:active { transform: scale(0.98); }
+
+.contact-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
   background: var(--primary-soft);
   color: var(--primary);
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.contact-info { flex: 1; }
-.contact-label { font-size: 13px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
-.contact-text { font-size: 14px; color: var(--text); line-height: 1.5; font-weight: 500; }
+.contact-info h4 { margin: 0 0 4px 0; font-size: 14px; color: var(--muted); }
+.contact-info p { margin: 0; font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.5; }
+.contact-info a { color: var(--primary); text-decoration: none; display: block; }
 
-.internal-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
+.inner-contact-box {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 10px;
+  margin-top: 24px;
+  box-shadow: var(--shadow-lg);
 }
-.internal-item {
+.inner-title-row {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.inner-title-row span { color: var(--primary); }
+
+.modern-accordion {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 1px solid #f1f5f9;
+}
+.modern-acc-header {
+  background: #fff;
+  padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: .2s;
 }
-.internal-item:last-child { border: none; }
-.internal-name { font-size: 13px; font-weight: 600; color: var(--text); }
-.internal-num { font-size: 13px; font-weight: 700; color: var(--primary); background: var(--primary-soft); padding: 2px 8px; border-radius: 6px; }
+.modern-acc-header:active { background: #f8fafc; }
+.acc-title { font-size: 14px; font-weight: 700; color: var(--text); flex: 1; }
+.acc-number { font-size: 13px; font-weight: 800; color: var(--primary); background: var(--primary-soft); padding: 4px 10px; border-radius: 8px; margin-right: 10px; }
+
+.modern-acc-content {
+  display: none;
+  background: #fafbff;
+  padding: 10px 16px 20px 16px;
+  border-top: 1px solid #f1f5f9;
+}
+.modern-accordion.active .modern-acc-content { display: block; }
+.modern-accordion.active .acc-arrow { transform: rotate(180deg); }
+
+.sub-inner-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed #e2e8f0;
+}
+.sub-inner-row:last-child { border-bottom: none; }
+.sub-label { font-size: 13px; color: var(--muted); font-weight: 600; }
+.sub-val { font-size: 13px; font-weight: 700; color: var(--primary); }
 
 /* ================= BOTTOM BAR ================= */
 nav{
@@ -1354,99 +1400,119 @@ e-Filing v.4
 </section>
 
 <section id="contact">
-<div class="section-box">
-<h3>ติดต่อเรา</h3>
-
-<div class="contact-map-container">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m3!1d3882.1620899276945!2d100.9788058108422!3d13.340058586948512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d35bc29c15865%3A0xc3f8e5b42d2575b6!2z4Lio4Liy4Lil4LmB4LiC4Lin4LiH4LiK4Lil4Lia4Li44Lij4LiT!5e0!3m2!1sth!2sth!4v1709400000000!5m2!1sth!2sth" 
-    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-</div>
-
-<div class="contact-card">
-  <div class="contact-icon-box"><span class="material-symbols-rounded">location_on</span></div>
-  <div class="contact-info">
-    <div class="contact-label">ที่ตั้ง</div>
-    <div class="contact-text">อาคารศาลแขวงชลบุรี,<br>ถนนพระยาสัจจา, ตำบลบางปลาสร้อย<br>อำเภอเมือง จังหวัดชลบุรี, 20000</div>
+  <div class="map-header">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3882.2046465494164!2d100.97864117589625!3d13.338148906757077!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3102b5e297079237%3A0x6e2b020188941783!2z4Lio4Liy4Lil4LmB4LiC4Lin4LiH4LiK4Lil4Lia4Li44Lij4Li1!5e0!3m2!1sth!2sth!4v1700000000000!5m2!1sth!2sth" allowfullscreen="" loading="lazy"></iframe>
   </div>
-</div>
 
-<div class="contact-card">
-  <div class="contact-icon-box"><span class="material-symbols-rounded">call</span></div>
-  <div class="contact-info">
-    <div class="contact-label">โทรศัพท์</div>
-    <div class="contact-text">
-      038-261518, 038-288359, 038-274184<br>
-      038-275960, 038-287661 - 4
+  <div class="contact-card">
+    <div class="contact-icon"><span class="material-symbols-rounded">location_on</span></div>
+    <div class="contact-info">
+      <h4>ที่ตั้ง</h4>
+      <p>อาคารศาลแขวงชลบุรี,<br>ถนนพระยาสัจจา, ตำบลบางปลาสร้อย<br>อำเภอเมือง จังหวัดชลบุรี, 20000</p>
     </div>
-    <div class="contact-label" style="margin-top:8px;">โทรสาร</div>
-    <div class="contact-text">038-287011</div>
-  </div>
-</div>
-
-<div class="contact-card">
-  <div class="contact-icon-box"><span class="material-symbols-rounded">mail</span></div>
-  <div class="contact-info">
-    <div class="contact-label">อีเมล</div>
-    <div class="contact-text">cnbmc@coj.go.th</div>
-  </div>
-</div>
-
-<h3 style="margin-top:25px; font-size:16px;">เบอร์ติดต่อภายใน</h3>
-
-<div class="internal-list">
-  <div class="internal-item">
-    <span class="internal-name">กลุ่มงานบริการประชาชนและประชาสัมพันธ์</span>
-    <span class="internal-num">135, 130</span>
   </div>
 
-  <div class="accordion-item" onclick="this.classList.toggle('active')">
-    <div class="accordion-header" style="background:#fff; padding: 10px 0; border-bottom: 1px solid #f1f5f9; border-radius:0;">
-      <span style="color:var(--text); font-size:13px; font-weight:600;">กลุ่มงานบริหารจัดการคดี</span>
-      <div style="display:flex; align-items:center; gap:8px;">
-        <span class="internal-num">151</span>
-        <span class="material-symbols-rounded" style="font-size:18px;">expand_more</span>
+  <div class="contact-card" onclick="window.location.href='tel:038261518'">
+    <div class="contact-icon"><span class="material-symbols-rounded">call</span></div>
+    <div class="contact-info">
+      <h4>โทรศัพท์</h4>
+      <p>038-261518 , 038-288359 , 038-274184</p>
+      <p>038-275960 , 038-287661 - 4</p>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <div class="contact-icon"><span class="material-symbols-rounded">print</span></div>
+    <div class="contact-info">
+      <h4>โทรสาร</h4>
+      <p>038-287011</p>
+    </div>
+  </div>
+
+  <div class="contact-card" onclick="window.location.href='mailto:cnbmc@coj.go.th'">
+    <div class="contact-icon"><span class="material-symbols-rounded">mail</span></div>
+    <div class="contact-info">
+      <h4>อีเมล</h4>
+      <p>cnbmc@coj.go.th</p>
+    </div>
+  </div>
+
+  <div class="inner-contact-box">
+    <div class="inner-title-row">
+      <span class="material-symbols-rounded">hub</span>
+      <h3 style="margin:0">ติดต่อเบอร์ภายใน</h3>
+    </div>
+
+    <div class="modern-accordion">
+      <div class="modern-acc-header">
+        <div class="acc-title">กลุ่มงานบริการประชาชนและประชาสัมพันธ์</div>
+        <div class="acc-number">135, 130</div>
       </div>
     </div>
-    <div class="accordion-content" style="padding: 10px; background: #fafafa;">
-      <div class="internal-item"><span class="internal-name">งานรับฟ้อง, E-Filing</span> <span class="internal-num">156, 159</span></div>
-      <div class="internal-item"><span class="internal-name">งานหมาย</span> <span class="internal-num">157</span></div>
-      <div class="internal-item"><span class="internal-name">งานอุทธรณ์ ฎีกา</span> <span class="internal-num">152</span></div>
-      <div class="internal-item"><span class="internal-name">งานห้องเก็บสำนวน</span> <span class="internal-num">162</span></div>
+
+    <div class="modern-accordion" onclick="this.classList.toggle('active')">
+      <div class="modern-acc-header">
+        <div class="acc-title">กลุ่มงานบริหารจัดการคดี</div>
+        <div class="acc-number">151</div>
+        <span class="material-symbols-rounded acc-arrow">expand_more</span>
+      </div>
+      <div class="modern-acc-content">
+        <div class="sub-inner-row"><span class="sub-label">งานรับฟ้อง, E-Filing</span><span class="sub-val">156, 159</span></div>
+        <div class="sub-inner-row"><span class="sub-label">งานหมาย</span><span class="sub-val">157</span></div>
+        <div class="sub-inner-row"><span class="sub-label">งานอุทธรณ์ ฎีกา</span><span class="sub-val">152</span></div>
+        <div class="sub-inner-row"><span class="sub-label">งานห้องเก็บสำนวน</span><span class="sub-val">162</span></div>
+      </div>
+    </div>
+
+    <div class="modern-accordion">
+      <div class="modern-acc-header">
+        <div class="acc-title">กลุ่มงานไกล่เกลี่ยและประนอมข้อพิพาท</div>
+        <div class="acc-number">301, 302</div>
+      </div>
+    </div>
+
+    <div class="modern-accordion">
+      <div class="modern-acc-header">
+        <div class="acc-title">กลุ่มงานเจ้าพนักงานคดี</div>
+        <div class="acc-number">310, 303</div>
+      </div>
+    </div>
+
+    <div class="modern-accordion">
+      <div class="modern-acc-header">
+        <div class="acc-title">กลุ่มงานช่วยพิจารณาคดี</div>
+        <div class="acc-number">333, 331</div>
+      </div>
+    </div>
+
+    <div class="modern-accordion">
+      <div class="modern-acc-header">
+        <div class="acc-title">กลุ่มงานคลัง</div>
+        <div class="acc-number">120, 123</div>
+      </div>
+    </div>
+
+    <div class="modern-accordion">
+      <div class="modern-acc-header">
+        <div class="acc-title">กลุ่มงานช่วยอำนวยการ</div>
+        <div class="acc-number">111, 105</div>
+      </div>
+    </div>
+
+    <div class="modern-accordion">
+      <div class="modern-acc-header">
+        <div class="acc-title">กลุ่มงานเจ้าพนักงานตำรวจศาล</div>
+        <div class="acc-number">110</div>
+      </div>
+    </div>
+
+    <div class="modern-accordion">
+      <div class="modern-acc-header">
+        <div class="acc-title">กลุ่มงานเทคโนโลยีสารสนเทศ</div>
+        <div class="acc-number">109</div>
+      </div>
     </div>
   </div>
-
-  <div class="internal-item">
-    <span class="internal-name">กลุ่มงานไกล่เกลี่ยและประนอมข้อพิพาท</span>
-    <span class="internal-num">301, 302</span>
-  </div>
-  <div class="internal-item">
-    <span class="internal-name">กลุ่มงานเจ้าพนักงานคดี</span>
-    <span class="internal-num">310, 303</span>
-  </div>
-  <div class="internal-item">
-    <span class="internal-name">กลุ่มงานช่วยพิจารณาคดี</span>
-    <span class="internal-num">333, 331</span>
-  </div>
-  <div class="internal-item">
-    <span class="internal-name">กลุ่มงานคลัง</span>
-    <span class="internal-num">120, 123</span>
-  </div>
-  <div class="internal-item">
-    <span class="internal-name">กลุ่มงานช่วยอำนวยการ</span>
-    <span class="internal-num">111, 105</span>
-  </div>
-  <div class="internal-item">
-    <span class="internal-name">กลุ่มงานเจ้าพนักงานตำรวจศาล</span>
-    <span class="internal-num">110</span>
-  </div>
-  <div class="internal-item">
-    <span class="internal-name">กลุ่มงานเทคโนโลยีสารสนเทศ</span>
-    <span class="internal-num">109</span>
-  </div>
-</div>
-
-</div>
 </section>
 
 <section id="blank">
@@ -1480,7 +1546,7 @@ e-Filing v.4
       </div>
       <button class="download-action-btn" id="confirmDownloadBtn">
         <span class="material-symbols-rounded">download</span>
-        ดาวน์โหลดเเบบฟอร์ม
+        ดาวน์โหลดเอกสารลงเครื่อง
       </button>
     </div>
   </div>
@@ -1585,7 +1651,7 @@ function switchKnowledge(type, btn) {
 const documentData = [
   { name: "คำร้อง / คำเเถลง / คำขอ", link: "https://drive.google.com/file/d/1tiaOA8N6BSLgHDV8VNmH6RQPMJQOY7nc/view?usp=drivesdk" },
   { name: "คำร้องขอปล่อยตัวชั่วคราว", link: "https://drive.google.com/file/d/1YTdA6lUntUd6_HEDm9n9GCo2SVsnuEgn/view?usp=drivesdk" },
-  { name: "เเแบบพิมพ์ขอให้ศาลมีคำสั่งพิพากษาตามยอม คร่7", link: "https://drive.google.com/file/d/1tmUBWuT1D6D11Qn-5V2hd6T-4uX_QHcp/view?usp=drivesdk" },
+  { name: "เเแบบพิมพ์ขอให้ศาลมีคำสั่งพิพากษาตามยอม คร.7", link: "https://drive.google.com/file/d/1tmUBWuT1D6D11Qn-5V2hd6T-4uX_QHcp/view?usp=drivesdk" },
   { name: "บันทึกข้อตกลง/สัญญาประนีประนอมยอมความ", link: "https://drive.google.com/file/d/1PlSHEy062Lauj2JQx58EwhxhiGVvgmFP/view?usp=drivesdk" },
   { name: "หนังสือมอบอำนาจ (ก่อนฟ้อง)", link: "https://cnbmc.coj.go.th/th/file/get/file/2021012777e4333adc5c096a3decf995a96f593d120351.doc" },
   { name: "เเแบบพิมพ์คำร้องขอไกล่เกลี่ยก่อนฟ้อง ตาม ป.วิ.พ. ม.20 ตรี", link: "https://cnbmc.coj.go.th/th/file/get/file/202101126405c8afd603f2f52b4f0ea5f235b798155029.doc" },
