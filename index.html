@@ -38,7 +38,6 @@ font-weight:800;
 color:var(--primary);
 }
 
-/* ===== HEADER FIX ===== */
 header{
 position:relative;
 width:100%;
@@ -57,7 +56,6 @@ object-fit:cover;
 object-position:center;
 }
 
-/* SEARCH */
 .search-btn{
 position:absolute;
 top:16px;
@@ -80,10 +78,8 @@ border-radius:14px;
 border:none;
 width:220px;
 box-shadow:var(--shadow-md);
-outline: none;
 }
 
-/* ===== MAIN ===== */
 main{
 padding:16px;
 padding-top:24px;
@@ -93,7 +89,6 @@ padding-bottom:140px;
 section{display:none}
 section.active{display:block}
 
-/* FLOAT CARD */
 .section-box{
 background:#ffffff;
 border-radius:var(--radius-lg);
@@ -101,7 +96,6 @@ padding:20px;
 box-shadow:var(--shadow-lg);
 }
 
-/* ================= HERO CARD (UPDATED) ================= */
 .hero-card{
 width:100%;
 aspect-ratio:16/9;
@@ -119,7 +113,6 @@ object-fit:cover;
 display:block;
 }
 
-/* ================= QUICK TAP (MODERN REDESIGN) ================= */
 .quick-tap {
   display: flex;
   justify-content: space-between;
@@ -168,14 +161,12 @@ display:block;
   max-width: 75px;
 }
 
-/* ================= SUBTITLE BLUE ================= */
 .subtitle-blue{
 font-weight:800;
 color:var(--primary);
 margin:0 0 14px 0;
 }
 
-/* ================= POSTER SCROLL (MODERN UPDATED) ================= */
 .poster-scroll{
 display:flex;
 overflow-x:auto;
@@ -228,7 +219,6 @@ overflow: hidden;
   margin-top: 4px;
 }
 
-/* ================= ZOOM MODAL SYSTEM (NEW) ================= */
 #zoomModal {
   position: fixed;
   inset: 0;
@@ -286,7 +276,6 @@ overflow: hidden;
 
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-/* ================= PDF VIEWER MODAL (NEW) ================= */
 #pdfViewerModal {
   position: fixed;
   inset: 0;
@@ -366,7 +355,6 @@ overflow: hidden;
   font-weight: 800;
 }
 
-/* ================= BOTTOM SHEET ================= */
 .bottom-sheet{
 position:fixed;
 left:0;
@@ -423,14 +411,12 @@ overflow:auto;
 flex:1;
 }
 
-/* ================= SERVICE GRID ================= */
 .service-grid{
 display:grid;
 grid-template-columns:1fr;
 gap:12px;
 }
 
-/* ================= SERVICE CARD ================= */
 .service-card{
 position:relative;
 background:var(--card);
@@ -461,36 +447,35 @@ background:var(--primary-soft);
 color:var(--primary);
 }
 
-/* ================= ACCORDION STYLE (MODERN) ================= */
 .accordion-item {
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   margin-bottom: 8px;
   overflow: hidden;
-  background: #fff;
 }
 .accordion-header {
-  padding: 16px;
+  padding: 12px 16px;
+  background: var(--primary-soft);
+  color: var(--primary);
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--primary);
 }
 .accordion-content {
-  padding: 0 16px 16px 16px;
+  padding: 12px 16px;
   font-size: 13px;
   display: none;
-  color: var(--text);
-  line-height: 1.6;
+  background: #fff;
+  line-height: 1.5;
+  border-top: 1px solid #e5e7eb;
 }
 .accordion-item.active .accordion-content {
   display: block;
 }
 
-/* ================= CALCULATOR ================= */
 .calc-box{
 background:#fff;
 border-radius:18px;
@@ -537,7 +522,6 @@ color: var(--primary);
   border: 1px dashed #fca5a5;
 }
 
-/* ================= TIMELINE PATH ================= */
 .tab-scroller {
   display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 10px;
 }
@@ -569,7 +553,6 @@ color: var(--primary);
 .step-bubble h4 { margin: 0 0 6px 0; color: var(--primary); font-size: 16px; font-weight: 800; position: relative; z-index: 1; }
 .step-bubble p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; position: relative; z-index: 1; white-space: pre-wrap; }
 
-/* ================= DOWNLOAD (NEW MODERN STYLE) ================= */
 .preview-list{
 display:grid;
 grid-template-columns:1fr;
@@ -625,7 +608,7 @@ border: 1px solid transparent;
   align-items: center;
   justify-content: center;
   color: #94a3b8;
-  overflow: hidden;
+  overflow: hidden; 
 }
 .preview-img-box {
   width: 100%;
@@ -649,7 +632,6 @@ border: 1px solid transparent;
   cursor: pointer;
 }
 
-/* ================= MODERN KNOWLEDGE CARDS (NEW) ================= */
 .knowledge-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -796,7 +778,6 @@ border: 1px solid transparent;
   margin-top: 14px;
 }
 
-/* ================= CONTACT SECTION NEW STYLE ================= */
 .map-container {
   width: 100%;
   height: 220px;
@@ -858,7 +839,6 @@ border: 1px solid transparent;
 .dept-name { font-size: 13px; font-weight: 600; color: var(--text); }
 .ext-num { font-weight: 800; color: var(--primary); }
 
-/* ================= HERO GALLERY MODAL (NEW) ================= */
 #heroGallery {
   position: fixed;
   inset: 0;
@@ -928,7 +908,6 @@ border: 1px solid transparent;
   transform: scale(1.5);
 }
 
-/* ================= BOTTOM BAR ================= */
 nav{
 position:fixed;
 bottom:0;
@@ -963,7 +942,7 @@ border-radius:14px;
 src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
 <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
 <div class="search-box" id="searchBox">
-<input type="text" id="searchInput" placeholder="ค้นหาเมนู / บริการ..." onkeyup="doSearch(event)">
+<input type="text" id="mainSearch" placeholder="ค้นหาเมนู / บริการ" oninput="runSearch(this.value)">
 </div>
 </header>
 
@@ -1082,7 +1061,6 @@ COJ
 <section id="step-process">
 <div class="section-box">
 <h3>ขั้นตอนการฟ้องและยื่นคำร้อง</h3>
-
 <div class="tab-scroller">
   <div class="tab-chip active" onclick="switchProcess('civil', this)">คดีเเพ่งทั่วไป</div>
   <div class="tab-chip" onclick="switchProcess('petty', this)">คดีมโนสาเร่ (เเพ่ง)</div>
@@ -1372,7 +1350,7 @@ COJ
     <div class="step-bubble">
       <h4>สอบถามความสมัครใจคู่กรณีอีกฝ่าย</h4>
       <p>- กรณีสมัครใจเข้าร่วมไกล่เกลี่ย ศาลจะกำหนดวัน เวลานัด เเละ เสนอรายชื่อผู้ไกล่เกลี่ย พร้อมเเต่งตั้งผู้ใกล่เกลี่ย จากนั้นขอศาลพิพากษาตามข้อตกลง / สัญญายอมความ
-- กรณีไม่สมัครใจเข้าร่วมไกล่เกลี่ย ศาลจะจำหน่ายคำร้อง (ยุติการไกล่เกลี่ย) เเละเเจ้งให้ผู้ยื่นคำร้องทราบ (ผู้ยื่นคำร้องยังสามารถไปยื่นฟ้องคดีต่อได้)</p>
+- กรณีไม่สมัครใจเข้าร่วมไกล่เกลี่ย ศาลจะจำหน่ายคำร้อง (ยุติการไกล่เกลี่ย) เเเละเเจ้งให้ผู้ยื่นคำร้องทราบ (ผู้ยื่นคำร้องยังสามารถไปยื่นฟ้องคดีต่อได้)</p>
     </div>
   </div>
 </div>
@@ -1499,7 +1477,7 @@ COJ
       <p>- ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่าน CIOS
 - พร้อมหลักฐานการขอรับบริการ (ใบคำร้อง + บัตรประชาชน)
 - กรณีที่ผู้ขอ ได้มอบฉันทะให้ผู้อื่นดำเนินการแทน ผู้รับมอบฉันทะจะต้องปฏิบัติดังนี้
-   แจ้งหมายเลขคดีเแก่เจ้าหน้าที่ศาล
+   แจ้งหมายเลขคดีเเก่เจ้าหน้าที่ศาล
    นำหนังสือมอบอำนาจ แนบสำเนาบัตรประชาชนของผู้มอบฉันทะ (เซ็นรับรองสำเนาถูกต้อง)
    บัตรประชาชน พร้อมสำเนาบัตรประชาชน ของผู้รับมอบฉันทะ นำมายื่นให้เจ้าหน้าที่ศาล</p>
     </div>
@@ -1637,7 +1615,7 @@ e-Filing v.4
 <div id="kn-poster-sub" style="display:none; margin-top:20px;">
   <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;" onclick="backToKnMain()">
     <span class="material-symbols-rounded" style="cursor:pointer; color:var(--primary);">arrow_back</span>
-    <h3 style="margin:0;">บทความ & โปสเตอร์</h3>
+    <h3 style="margin:0;">รายการ</h3>
   </div>
   <div class="poster-grid-container" id="posterList">
     </div>
@@ -1661,75 +1639,75 @@ e-Filing v.4
 <div class="section-box">
 <h3>เพิ่มเติม</h3>
 <div class="service-grid">
-  <div id="faq">
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">ต้องไปติดต่อที่ไหนก่อนเมื่อมาถึงศาล<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">ให้ติดต่อที่ฝ่ายประชาสัมพันธ์หรือสอบถามเจ้าหน้าที่บริเวณทางเข้าด้านหน้าศาลก่อน เพื่อสอบถามขั้นตอนหรือรับคำแนะนำในการติดต่อส่วนงานที่เกี่ยวข้อง</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">หากมาศาลครั้งแรก ต้องเตรียมอะไรบ้าง<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">ควรเตรียมบัตรประชาชน เอกสารที่เกี่ยวข้องกับคดี และสำเนาเอกสารที่จำเป็น</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">สามารถเข้าศาลโดยไม่ได้นัดล่วงหน้าได้หรือไม่<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถเข้ามาสอบถามข้อมูลหรือยื่นเอกสารได้ในเวลาราชการ</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">หากต้องการสอบถามข้อมูลเกี่ยวกับคดีสามารถโทรสอบถามได้หรือไม่<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถติดต่อสอบถามทางหมายเลขโทรศัพท์ของศาล ได้ในเวลาราชการ หรือสามารถสอบถามทางช่องทางอื่นได้ที่เมนู "ติดต่อ"</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">ถ้าจะฟ้องคดีต้องทำอย่างไร และต้องเตรียมเอกสารอะไรบ้าง<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">ต้องเตรียมคำฟ้อง บัตรประชาชน และเอกสารหลักฐานที่เกี่ยวข้องกับคดี แล้วนำมายื่นต่อเจ้าหน้าที่ศาล หรือยื่นผ่านระบบ e-Filing</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">สามารถยื่นคำฟ้องหรือคำร้องผ่านออนไลน์ได้หรือไม่<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถยื่นได้ ผ่านระบบ e-Filing , CIOS</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">ศาลแขวงรับคดีประเภทใดบ้าง<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">ส่วนใหญ่เป็นคดีแพ่งหรือคดีอาญาที่มีมูลค่าไม่สูงหรือโทษไม่ร้ายแรง ตามเขตอำนาจของศาลแขวง (ศาลเเขวงชลบุรีรับฟ้องเฉพาะ คดีที่มีทุนทรัพย์ไม่เกิน 300,000 บาท)</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">ถ้าไม่มีทนาย สามารถฟ้องคดีเองได้หรือไม่<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถทำได้ แต่ควรศึกษาขั้นตอนการฟ้องและเตรียมเอกสารให้ครบถ้วน</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">สามารถตรวจสอบสถานะคดีของตนเองได้อย่างไร<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถตรวจสอบผ่านระบบบริการออนไลน์ของศาล เช่น CIOS</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">หากต้องการทราบค่าธรรมเนียมการฟ้องคดีต้องดูจากที่ไหน<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถสอบถามเจ้าหน้าที่ศาล หรือดูข้อมูลอัตราค่าธรรมเนียมได้จากเมนู " อัตราค่าธรรมเนียม (ค่าขึ้นศาล)"</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">หากลืมวันนัดพิจารณาคดีต้องทำอย่างไร<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถตรวจสอบได้จากเอกสารของศาล หรือผ่านระบบตรวจสอบคดีออนไลน์ หรือ ตรวจสอบได้ที่เมนู "บัญชีนัดพิจารณาคดีเเละพิจารณาคดีทางอิเล็กทรอนิกส์"</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">สามารถขอแบบฟอร์มคำร้องต่าง ๆ จากที่ไหน<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถขอได้ที่ศาล หรือดาวน์โหลดจากเมนู "ดาวน์โหลดแบบฟอร์ม"</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">หากต้องการขอสำเนาเอกสารในคดีต้องทำอย่างไร<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถยื่นคำร้องขอคัดถ่ายสำเนาเอกสาร ต่อเจ้าหน้าที่ศาลได้ที่ กลุ่มงานบริหารจัดการคดี หรือสามารถยื่นคำร้องขอคัดถ่ายออนไลน์ได้ที่ ระบบ CIOS</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">หากต้องการมอบอำนาจให้ผู้อื่นมาดำเนินการแทนต้องทำอย่างไร<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">ต้องจัดทำหนังสือมอบอำนาจ และแนบสำเนาบัตรประชาชนของผู้มอบและผู้รับมอบ</div>
-    </div>
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="this.parentElement.classList.toggle('active')">หากต้องการไกล่เกลี่ยก่อนขึ้นศาลสามารถทำได้หรือไม่<span class="material-symbols-rounded">expand_more</span></div>
-      <div class="accordion-content">สามารถแจ้งความประสงค์ต่อศาลเพื่อเข้ารับการไกล่เกลี่ยข้อพิพาทได้</div>
-    </div>
+  <div class="service-card" onclick="openLink('https://docs.google.com/forms/d/e/1FAIpQLSdFcSTmiLhq9CbV8fyqkMtIa1Q74rJ1G_ID3YJPIkEIYeLeUw/viewform?usp=header')">
+    <div class="icon-pill"><span class="material-symbols-rounded">rate_review</span></div>
+    แบบประเมินความพึงพอใจ
   </div>
-  
-  <div style="margin-top:20px;">
-    <div class="service-card" onclick="openLink('https://docs.google.com/forms/d/e/1FAIpQLSdFcSTmiLhq9CbV8fyqkMtIa1Q74rJ1G_ID3YJPIkEIYeLeUw/viewform?usp=header')">
-      <div class="icon-pill"><span class="material-symbols-rounded">rate_review</span></div>
-      แบบประเมินความพึงพอใจ
-    </div>
+</div>
+
+<h3 style="margin-top:24px;">คำถามที่พบบ่อย (FAQ)</h3>
+<div id="faqList">
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">ต้องไปติดต่อที่ไหนก่อนเมื่อมาถึงศาล <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">ให้ติดต่อที่ฝ่ายประชาสัมพันธ์หรือสอบถามเจ้าหน้าที่บริเวณทางเข้าด้านหน้าศาลก่อน เพื่อสอบถามขั้นตอนหรือรับคำแนะนำในการติดต่อส่วนงานที่เกี่ยวข้อง</div>
   </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">หากมาศาลครั้งแรก ต้องเตรียมอะไรบ้าง <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">ควรเตรียมบัตรประชาชน เอกสารที่เกี่ยวข้องกับคดี และสำเนาเอกสารที่จำเป็น</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">สามารถเข้าศาลโดยไม่ได้นัดล่วงหน้าได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถเข้ามาสอบถามข้อมูลหรือยื่นเอกสารได้ในเวลาราชการ</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">หากต้องการสอบถามข้อมูลเกี่ยวกับคดีสามารถโทรสอบถามได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถติดต่อสอบถามทางหมายเลขโทรศัพท์ของศาล ได้ในเวลาราชการ หรือสามารถสอบถามทางช่องทางอื่นได้ที่เมนู "ติดต่อ"</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">ถ้าจะฟ้องคดีต้องทำอย่างไร และต้องเตรียมเอกสารอะไรบ้าง <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">ต้องเตรียมคำฟ้อง บัตรประชาชน และเอกสารหลักฐานที่เกี่ยวข้องกับคดี แล้วนำมายื่นต่อเจ้าหน้าที่ศาล หรือยื่นผ่านระบบ e-Filing </div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">สามารถยื่นคำฟ้องหรือคำร้องผ่านออนไลน์ได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถยื่นได้ ผ่านระบบ e-Filing , CIOS </div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">ศาลแขวงรับคดีประเภทใดบ้าง <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">ส่วนใหญ่เป็นคดีแพ่งหรือคดีอาญาที่มีมูลค่าไม่สูงหรือโทษไม่ร้ายแรง ตามเขตอำนาจของศาลแขวง (ศาลเเขวงชลบุรีรับฟ้องเฉพาะ คดีที่มีทุนทรัพย์ไม่เกิน 300,000 บาท)</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">ถ้าไม่มีทนาย สามารถฟ้องคดีเองได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถทำได้ แต่ควรศึกษาขั้นตอนการฟ้องและเตรียมเอกสารให้ครบถ้วน</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">สามารถตรวจสอบสถานะคดีของตนเองได้อย่างไร <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถตรวจสอบผ่านระบบบริการออนไลน์ของศาล เช่น CIOS</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">หากต้องการทราบค่าธรรมเนียมการฟ้องคดีต้องดูจากที่ไหน <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถสอบถามเจ้าหน้าที่ศาล หรือดูข้อมูลอัตราค่าธรรมเนียมได้จากเมนู " อัตราค่าธรรมเนียม (ค่าขึ้นศาล)"</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">หากลืมวันนัดพิจารณาคดีต้องทำอย่างไร <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถตรวจสอบได้จากเอกสารของศาล หรือผ่านระบบตรวจสอบคดีออนไลน์ หรือ ตรวจสอบได้ที่เมนู "บัญชีนัดพิจารณาคดีเเละพิจารณาคดีทางอิเล็กทรอนิกส์"</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">สามารถขอแบบฟอร์มคำร้องต่าง ๆ จากที่ไหน <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถขอได้ที่ศาล หรือดาวน์โหลดจากเมนู "ดาวน์โหลดแบบฟอร์ม"</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">หากต้องการขอสำเนาเอกสารในคดีต้องทำอย่างไร <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถยื่นคำร้องขอคัดถ่ายสำเนาเอกสาร ต่อเจ้าหน้าที่ศาลได้ที่ กลุ่มงานบริหารจัดการคดี หรือสามารถยื่นคำร้องขอคัดถ่ายออนไลน์ได้ที่ ระบบ CIOS</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">หากต้องการมอบอำนาจให้ผู้อื่นมาดำเนินการแทนต้องทำอย่างไร <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">ต้องจัดทำหนังสือมอบอำนาจ และแนบสำเนาบัตรประชาชนของผู้มอบและผู้รับมอบ </div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">หากต้องการไกล่เกลี่ยก่อนขึ้นศาลสามารถทำได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">สามารถแจ้งความประสงค์ต่อศาลเพื่อเข้ารับการไกล่เกลี่ยข้อพิพาทได้ </div>
+  </div>
+</div>
 </div>
 </section>
 
@@ -1878,7 +1856,7 @@ e-Filing v.4
       </div>
       <button class="download-action-btn" id="confirmDownloadBtn">
         <span class="material-symbols-rounded">download</span>
-        ดาวน์โหลดเอกสารลงเครื่อง
+        ดาวน์โหลดเเบบฟอร์ม
       </button>
     </div>
   </div>
@@ -1910,7 +1888,6 @@ e-Filing v.4
 </nav>
 
 <script>
-// ข้อมูลคำศัพท์ทางกฎหมาย
 const lawVocabData = [
   { word: "คดีแพ่ง", desc: "คดีที่เกิดจากข้อพิพาทระหว่างเอกชนเกี่ยวกับสิทธิหรือหน้าที่ตามกฎหมาย เช่น สัญญา หนี้ หรือทรัพย์สิน", cat: "ประเภทคดี", icon: "balance" },
   { word: "คดีอาญา", desc: "คดีที่เกี่ยวกับการกระทำที่กฎหมายกำหนดว่าเป็นความผิด และมีโทษทางอาญา เช่น จำคุก ปรับ หรือทั้งจำทั้งปรับ", cat: "ประเภทคดี", icon: "gavel" },
@@ -1933,6 +1910,15 @@ const lawVocabData = [
   { word: "การยื่นอุทธรณ์", desc: "การยื่นคำร้องต่อศาลชั้นอุทธรณ์ เพื่อขอให้พิจารณาทบทวนคำพิพากษาหรือคำสั่งของศาลชั้นต้น", cat: "การโต้แย้งคำสั่ง", icon: "history_edu" },
   { word: "การยื่นฎีกา", desc: "การขอให้ศาลฎีกาตรวจสอบคำพิพากษาของศาลอุทธรณ์ โดยมักพิจารณาในประเด็นข้อกฎหมาย", cat: "การโต้แย้งคำสั่ง", icon: "policy" }
 ];
+
+function runSearch(val) {
+  const query = val.toLowerCase();
+  const allCards = document.querySelectorAll('.service-card, .poster-card, .accordion-item');
+  allCards.forEach(card => {
+    if (card.innerText.toLowerCase().includes(query)) card.style.display = '';
+    else card.style.display = 'none';
+  });
+}
 
 function openZoom(imgUrl, actionType = null) {
   const modal = document.getElementById('zoomModal');
@@ -1992,14 +1978,8 @@ function updateDots() {
 }
 
 function toggleZoom(img) {
-  if (img.style.transform === 'scale(2)') {
-    img.style.transform = 'scale(1)';
-    img.style.zIndex = '1';
-  } else {
-    resetAllZoom();
-    img.style.transform = 'scale(2)';
-    img.style.zIndex = '100';
-  }
+  if (img.style.transform === 'scale(2)') { img.style.transform = 'scale(1)'; img.style.zIndex = '1'; } 
+  else { resetAllZoom(); img.style.transform = 'scale(2)'; img.style.zIndex = '100'; }
 }
 
 function resetAllZoom() {
@@ -2027,7 +2007,18 @@ function backToKnMain() {
 function renderPosterList() {
   const list = document.getElementById("posterList");
   list.innerHTML = "";
-  const posterImages = ["https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%891.png", "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%89%202.png", "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%893.png", "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%894.png", "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%895.png", "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%896.png", "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%897.png", "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%89%208.png", "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%899.png", "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%8910.png"];
+  const posterImages = [
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%891.png",
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%89%202.png",
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%893.png",
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%894.png",
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%895.png",
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%896.png",
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%897.png",
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%89%208.png",
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%899.png",
+    "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%8910.png"
+  ];
   posterImages.forEach((imgUrl) => {
     const item = document.createElement("div");
     item.className = "poster-item";
@@ -2041,7 +2032,7 @@ function initVocabList() {
   const alphaBox = document.getElementById("alphaFilter");
   const letters = [...new Set(lawVocabData.map(item => item.word.charAt(0)))].sort();
   alphaBox.innerHTML = '<div class="alpha-btn active" onclick="filterVocab(\'ทั้งหมด\', this)">All</div>';
-  letters.forEach(l => alphaBox.innerHTML += `<div class="alpha-btn" onclick="filterVocab('${l}', this)">${l}</div>`);
+  letters.forEach(l => { alphaBox.innerHTML += `<div class="alpha-btn" onclick="filterVocab('${l}', this)">${l}</div>`; });
   renderVocabCards(lawVocabData);
 }
 
@@ -2059,7 +2050,8 @@ function renderVocabCards(data) {
 function filterVocab(char, btn) {
   document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  renderVocabCards(char === 'ทั้งหมด' ? lawVocabData : lawVocabData.filter(item => item.word.startsWith(char)));
+  if(char === 'ทั้งหมด') renderVocabCards(lawVocabData);
+  else renderVocabCards(lawVocabData.filter(item => item.word.startsWith(char)));
 }
 
 const documentData = [
@@ -2085,7 +2077,7 @@ function initDownloadList() {
     card.className = "preview-card";
     card.onclick = () => openPreview(doc.name, doc.link);
     const isDoc = doc.link.includes('.doc');
-    card.innerHTML = `<div class="file-icon-box"><span class="material-symbols-rounded">${isDoc ? 'description' : 'picture_as_pdf'}</span></div><div class="file-info"><div class="file-name">${doc.name}</div><div class="file-meta">เอกสารศาลแขวงชลบุรี • ${isDoc ? "DOC / DOCX" : "PDF / LINK"}</div></div><span class="material-symbols-rounded preview-btn-minimal">visibility</span>`;
+    card.innerHTML = `<div class="file-icon-box"><span class="material-symbols-rounded">${isDoc ? 'description' : 'picture_as_pdf'}</span></div><div class="file-info"><div class="file-name">${doc.name}</div><div class="file-meta">เอกสารศาลแขวงชลบุรี • ${isDoc ? "DOC" : "PDF"}</div></div><span class="material-symbols-rounded preview-btn-minimal">visibility</span>`;
     list.appendChild(card);
   });
 }
@@ -2093,66 +2085,56 @@ function initDownloadList() {
 window.onload = () => { initDownloadList(); };
 
 function navigate(id,btn){
-  history.pushState({page:id},"","#"+id);
-  showPage(id,btn);
-  if(id === 'knowledge') backToKnMain();
+history.pushState({page:id},"","#"+id);
+showPage(id,btn);
+if(id === 'knowledge') backToKnMain();
 }
 
 window.onpopstate=e=>{ if(e.state) showPage(e.state.page); };
 
 function showPage(id,btn){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  const targetPage = document.getElementById(id);
-  if(targetPage) targetPage.classList.add("active");
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+const targetPage = document.getElementById(id);
+if(targetPage) targetPage.classList.add("active");
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+if(btn) btn.classList.add("active");
 }
 
 function openLink(url){ window.open(url,"_blank"); }
 
 function toggleSearch(){
-  const b=document.getElementById("searchBox");
-  b.style.display=b.style.display==="block"?"none":"block";
-}
-
-function doSearch(e){
-  if(e.key==="Enter"){
-    const q=e.target.value.toLowerCase();
-    if(q.includes("ฟ้อง") || q.includes("ยื่น")) navigate('service');
-    else if(q.includes("ค่า")) navigate('fee');
-    else if(q.includes("ดาวน์โหลด")) navigate('download');
-    else if(q.includes("ขั้นตอน")) navigate('step-process');
-    else if(q.includes("ติดต่อ")) navigate('contact');
-    else alert("ไม่พบข้อมูลที่ค้นหา");
-  }
+const b=document.getElementById("searchBox");
+b.style.display=b.style.display==="block"?"none":"block";
 }
 
 function switchProcess(type, btn) {
   document.querySelectorAll('.tab-chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.timeline-path').forEach(p => p.style.display = 'none');
-  const target = {'civil': 'proc-civil', 'petty': 'proc-petty', 'consumer': 'proc-consumer', 'criminal': 'proc-criminal', 'pre-mediate': 'proc-pre-mediate', 'civil-mediate': 'proc-civil-mediate', 'e-mediate': 'proc-e-mediate', 'filing': 'proc-filing', 'copy': 'proc-copy'}[type];
+  const target = {
+    'civil': 'proc-civil', 'petty': 'proc-petty', 'consumer': 'proc-consumer',
+    'criminal': 'proc-criminal', 'pre-mediate': 'proc-pre-mediate',
+    'civil-mediate': 'proc-civil-mediate', 'e-mediate': 'proc-e-mediate',
+    'filing': 'proc-filing', 'copy': 'proc-copy'
+  }[type];
   document.getElementById(target).style.display = 'block';
 }
 
 function calcFee(){
   const m = parseFloat(document.getElementById("money").value);
-  if(isNaN(m) || m <= 0) { document.getElementById("feeResult").innerText = "ค่าธรรมเนียมที่ต้องชำระ: 0 บาท"; return; }
-  let fee = (m <= 300000) ? Math.min(m * 0.02, 1000) : (m <= 50000000) ? Math.min(m * 0.02, 200000) : 200000 + ((m - 50000000) * 0.001);
-  document.getElementById("feeResult").innerHTML = "ค่าธรรมเนียมที่ต้องชำระ: <span style='color:#f43f5e; font-size:18px;'>" + fee.toLocaleString() + "</span> บาท";
+  const resultDiv = document.getElementById("feeResult");
+  if(isNaN(m) || m <= 0) { resultDiv.innerText = "ค่าธรรมเนียมที่ต้องชำระ: 0 บาท"; return; }
+  let fee = 0;
+  if (m <= 300000) { fee = m * 0.02; if (fee > 1000) fee = 1000; } 
+  else if (m <= 50000000) { fee = m * 0.02; if (fee > 200000) fee = 200000; } 
+  else { fee = 200000 + ((m - 50000000) * 0.001); }
+  resultDiv.innerHTML = "ค่าธรรมเนียมที่ต้องชำระ: <span style='color:#f43f5e; font-size:18px;'>" + fee.toLocaleString() + "</span> บาท";
 }
-
-function openSheet(img){
-  document.getElementById("sheetImg").src=img;
-  document.getElementById("sheet").classList.add("active");
-}
-
-function closeSheet(){ document.getElementById("sheet").classList.remove("active"); }
 
 function openPreview(name, url) {
-  if (url.includes('drive.google.com')) {
+  const isGoogleDrive = url.includes('drive.google.com');
+  if (isGoogleDrive) {
     document.getElementById("previewTitle").innerText = name;
-    document.getElementById("previewContainer").innerHTML = `<img src="https://drive.google.com/thumbnail?id=${url.split('/d/')[1].split('/')[0]}&sz=s1000" class="preview-img-box">`;
     document.getElementById("previewSheet").classList.add("active");
     document.getElementById("confirmDownloadBtn").onclick = () => { window.open(url, "_blank"); };
   } else { window.open(url, "_blank"); }
@@ -2160,8 +2142,8 @@ function openPreview(name, url) {
 
 function closePreview() {
   document.getElementById("previewSheet").classList.remove("active");
-  setTimeout(() => { document.getElementById("previewContainer").innerHTML = `<span class="material-symbols-rounded" style="font-size: 64px; margin-bottom: 10px;">description</span><p>กำลังเตรียมตัวอย่างเอกสาร...</p>`; }, 400);
 }
+
 </script>
 
 </body>
