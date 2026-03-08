@@ -119,53 +119,55 @@ object-fit:cover;
 display:block;
 }
 
-/* ================= QUICK TAP (MODERN UPDATE) ================= */
-.quick-tap{
-display: grid;
-grid-template-columns: repeat(5, 1fr);
-gap: 12px;
-padding: 10px 0 25px 0;
+/* ================= QUICK TAP (MODERN REDESIGN) ================= */
+.quick-tap {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0 25px 0;
 }
 
-.quick-item{
-display: flex;
-flex-direction: column;
-align-items: center;
-cursor: pointer;
-transition: transform 0.2s ease;
+.quick-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .quick-item:active {
-transform: scale(0.9);
+  transform: scale(0.92);
 }
 
-.quick-circle{
-width: 58px;
-height: 58px;
-border-radius: 18px; /* ปรับให้มนแบบสแควร์มนๆ ดูเอกชน */
-background: rgba(10, 48, 131, 0.06); /* สีอ่อน ไม่กลืนกับพื้นหลังขาว */
-display: flex;
-align-items: center;
-justify-content: center;
-margin-bottom: 10px;
-color: var(--primary);
-transition: 0.3s;
+.quick-circle {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  /* สีอ่อนแต่ไม่กลืนกับพื้นหลังขาว (ใช้สีหลักแบบจางมาก) */
+  background: rgba(10, 48, 131, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  transition: all 0.3s ease;
 }
 
+/* ปรับขนาดไอคอนให้ใหญ่ขึ้นดูทันสมัย */
 .quick-circle .material-symbols-rounded {
-font-size: 30px; /* ขยายไอคอนให้ใหญ่ขึ้น */
+  font-size: 30px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
 
-.quick-item span{
-font-size: 10px;
-font-weight: 800;
-line-height: 1.3;
-text-align: center;
-color: var(--text);
-display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical;
-overflow: hidden;
+.quick-item span {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  text-align: center;
+  word-break: break-word;
+  max-width: 70px;
 }
 
 /* ================= SUBTITLE BLUE ================= */
@@ -760,26 +762,22 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 </div>
 
 <div class="quick-tap">
-  <div class="quick-item" onclick="navigate('efiling',document.querySelector('nav button:nth-child(2)'))">
-    <div class="quick-circle"><span class="material-symbols-rounded">gavel</span></div>
-    <span>e-Filing</span>
-  </div>
-  <div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
-    <div class="quick-circle"><span class="material-symbols-rounded">account_circle</span></div>
-    <span>CIOS</span>
-  </div>
-  <div class="quick-item" onclick="navigate('fee',document.querySelector('nav button:nth-child(2)'))">
-    <div class="quick-circle"><span class="material-symbols-rounded">calculate</span></div>
-    <span>อัตราค่าธรรมเนียม</span>
-  </div>
-  <div class="quick-item" onclick="openLink('https://cnbmc.coj.go.th/th/content/page/index/id/263440')">
-    <div class="quick-circle"><span class="material-symbols-rounded">calendar_month</span></div>
-    <span>บัญชีนัดพิจารณา</span>
-  </div>
-  <div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
-    <div class="quick-circle"><span class="material-symbols-rounded">search_check</span></div>
-    <span>ติดตามสำนวนคดี</span>
-  </div>
+<div class="quick-item" onclick="navigate('efiling',document.querySelector('nav button:nth-child(2)'))">
+<div class="quick-circle"><span class="material-symbols-rounded">gavel</span></div>
+<span>e-Filing</span>
+</div>
+<div class="quick-item" onclick="openLink('https://cios.coj.go.th')">
+<div class="quick-circle"><span class="material-symbols-rounded">description</span></div>
+<span>CIOS</span>
+</div>
+<div class="quick-item" onclick="openLink('https://cnbmc.coj.go.th/th/content/page/index/id/263440')">
+<div class="quick-circle"><span class="material-symbols-rounded">calendar_month</span></div>
+<span>บัญชีนัดพิจารณาคดี</span>
+</div>
+<div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
+<div class="quick-circle"><span class="material-symbols-rounded">search_check</span></div>
+<span>ติดตามสำนวนคดี</span>
+</div>
 </div>
 <h3 class="subtitle-blue">รายการโพส</h3>
 <div class="poster-scroll">
