@@ -287,6 +287,86 @@ overflow: hidden;
 
 @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
+/* ================= PDF VIEWER MODAL (NEW) ================= */
+#pdfViewerModal {
+  position: fixed;
+  inset: 0;
+  background: #f1f5f9;
+  z-index: 2000;
+  display: none;
+  flex-direction: column;
+}
+#pdfViewerModal.active { display: flex; }
+
+.pdf-header {
+  height: 60px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  z-index: 10;
+}
+.pdf-close {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+}
+.pdf-title {
+  flex: 1;
+  margin-left: 10px;
+  font-weight: 800;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.pdf-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pdf-iframe-container {
+  width: 100%;
+  max-width: 800px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  height: 75vh;
+  overflow: hidden;
+}
+.pdf-iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.pdf-footer-credit {
+  width: 100%;
+  max-width: 600px;
+  padding: 30px 20px 60px 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.credit-line {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.credit-accent {
+  color: var(--primary);
+  font-weight: 800;
+}
+
 /* ================= BOTTOM SHEET ================= */
 .bottom-sheet{
 position:fixed;
@@ -940,7 +1020,7 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
     <div class="poster-title">การยื่นคำร้องขอปล่อยตัวชั่วคราวผ่านระบบ CIOS</div>
     <span class="more-label">ดูเพิ่มเติม...</span>
   </div>
-  <div class="poster-card" onclick="window.open('about:blank', '_blank')">
+  <div class="poster-card" onclick="openZoom('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%875.png', 'OPEN_PDF_5')">
     <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%875.png"></div>
     <div class="poster-title">ขั้นตอนการยืนยันตัวตนเเละลงทะเบียนใช้งาน</div>
     <span class="more-label">ดูเพิ่มเติม...</span>
@@ -1348,7 +1428,7 @@ COJ
     <div class="step-marker">1</div>
     <div class="step-bubble">
       <h4>เมื่อศาลเห็นสมควร หรือ คู่ความร้องขอ</h4>
-      <p>ที่ศาล หรือ ยื่นคำร้องในระบบ CIOS เพื่อขอไกล่เกลี่ยผ่านสื่ออิเล็กทรอนิกส์ หรือ ติดต่อกลุ่มงานไกล่เกลี่ยเเละประนีประนอมข้อพิพาท หมายเลขโทรศัพท์ 0-3828-7941 (ชลบุรี) หรือ 0-3801-5707 (ระยอง)</p>
+      <p>ที่ศาล หรือ ยื่นคำร้องในระบบ CIOS เพื่อขอไกล่เกลี่ยผ่านสื่ออิเล็กทรอนิกส์ หรือ ติดต่อกลุ่มงานไกล่เกลี่ยเเละประนีประนอมข้อพิพาท หมายเลขโทรศัพท์ 0-3828-7941 (ชลบุรี) หรือ 0-3801-5707 (ระยอย)</p>
     </div>
   </div>
   <div class="step-node">
@@ -1692,7 +1772,23 @@ e-Filing v.4
   <div class="zoom-container" onclick="event.stopPropagation()">
     <div class="zoom-close" onclick="closeZoom()"><span class="material-symbols-rounded">close</span></div>
     <img id="zoomImg" src="">
-    <a id="zoomAction" href="#" class="zoom-btn-action" target="_blank">คลิกเพื่อดูข้อมูลเพิ่มเติม</a>
+    <a id="zoomAction" href="#" class="zoom-btn-action">คลิกเพื่อดูข้อมูลเพิ่มเติม</a>
+  </div>
+</div>
+
+<div id="pdfViewerModal">
+  <div class="pdf-header">
+    <div class="pdf-close" onclick="closePDFViewer()"><span class="material-symbols-rounded">arrow_back</span></div>
+    <div class="pdf-title" id="pdfViewerTitle">ข้อมูลเอกสาร</div>
+  </div>
+  <div class="pdf-body">
+    <div class="pdf-iframe-container">
+      <iframe id="pdfFrame" src=""></iframe>
+    </div>
+    <div class="pdf-footer-credit">
+      <span class="credit-line">เอกสารนี้จัดทำโดย <span class="credit-accent">สำนักงานศาลยุติธรรม</span></span>
+      <span class="credit-line">ศาลแขวงชลบุรีนำมาเผยแพร่ผ่านแอปเพื่ออำนวยความสะดวกแก่ประชาชน</span>
+    </div>
   </div>
 </div>
 
@@ -1775,15 +1871,24 @@ const lawVocabData = [
   { word: "การยื่นฎีกา", desc: "การขอให้ศาลฎีกาตรวจสอบคำพิพากษาของศาลอุทธรณ์ โดยมักพิจารณาในประเด็นข้อกฎหมาย", cat: "การโต้แย้งคำสั่ง", icon: "policy" }
 ];
 
-// ฟังก์ชันสำหรับ Zoom Modal (NEW)
-function openZoom(imgUrl, actionUrl = null) {
+// ฟังก์ชันสำหรับ Zoom Modal (MODIFIED)
+function openZoom(imgUrl, actionType = null) {
   const modal = document.getElementById('zoomModal');
   const img = document.getElementById('zoomImg');
   const btn = document.getElementById('zoomAction');
   
   img.src = imgUrl;
-  if(actionUrl) {
-    btn.href = actionUrl;
+  
+  if(actionType === 'OPEN_PDF_5') {
+    btn.innerText = "คลิกเพื่อดูข้อมูลเพิ่มเติม";
+    btn.onclick = (e) => {
+      e.preventDefault();
+      openPDFViewer('https://drive.google.com/file/d/1DdrZiKa1xKeXGdoZvHQ5VkYoezJm8Sun/preview', 'ขั้นตอนการยืนยันตัวตนเเละลงทะเบียนใช้งาน');
+    };
+    btn.style.display = 'block';
+  } else if(actionType && actionType.startsWith('http')) {
+    btn.innerText = "ดูเพิ่มเติม";
+    btn.onclick = () => { window.open(actionType, '_blank'); };
     btn.style.display = 'block';
   } else {
     btn.style.display = 'none';
@@ -1796,6 +1901,27 @@ function openZoom(imgUrl, actionUrl = null) {
 function closeZoom() {
   document.getElementById('zoomModal').classList.remove('active');
   document.body.style.overflow = 'auto';
+}
+
+// ฟังก์ชัน PDF Viewer (NEW)
+function openPDFViewer(url, title) {
+  const modal = document.getElementById('pdfViewerModal');
+  const frame = document.getElementById('pdfFrame');
+  const titleEl = document.getElementById('pdfViewerTitle');
+  
+  titleEl.innerText = title;
+  frame.src = url;
+  modal.classList.add('active');
+  
+  // ปิด Zoom modal ถ้าเปิดอยู่
+  closeZoom();
+}
+
+function closePDFViewer() {
+  const modal = document.getElementById('pdfViewerModal');
+  const frame = document.getElementById('pdfFrame');
+  frame.src = "";
+  modal.classList.remove('active');
 }
 
 // ฟังก์ชันสำหรับ Hero Gallery
