@@ -1640,7 +1640,7 @@ e-Filing v.4
 <div id="kn-poster-sub" style="display:none; margin-top:20px;">
   <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;" onclick="backToKnMain()">
     <span class="material-symbols-rounded" style="cursor:pointer; color:var(--primary);">arrow_back</span>
-    <h3 style="margin:0;">บทความ & โปสเตอร์</h3>
+    <h3 style="margin:0;">รายการ</h3>
   </div>
   <div class="poster-grid-container" id="posterList">
     </div>
@@ -1664,8 +1664,71 @@ e-Filing v.4
 <div class="section-box">
 <h3>เพิ่มเติม</h3>
 <div class="service-grid">
-<div class="service-card"><div class="icon-pill"><span class="material-symbols-rounded">help</span></div>คำถามที่พบบ่อย (FAQ)</div>
-<div class="service-card"><div class="icon-pill"><span class="material-symbols-rounded">rate_review</span></div>แบบประเมินความพึงพอใจ</div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : ต้องไปติดต่อที่ไหนก่อนเมื่อมาถึงศาล <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : ให้ติดต่อที่ฝ่ายประชาสัมพันธ์หรือสอบถามเจ้าหน้าที่บริเวณทางเข้าด้านหน้าศาลก่อน เพื่อสอบถามขั้นตอนหรือรับคำแนะนำในการติดต่อส่วนงานที่เกี่ยวข้อง</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : หากมาศาลครั้งแรก ต้องเตรียมอะไรบ้าง <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : ควรเตรียมบัตรประชาชน เอกสารที่เกี่ยวข้องกับคดี และสำเนาเอกสารที่จำเป็น</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : สามารถเข้าศาลโดยไม่ได้นัดล่วงหน้าได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถเข้ามาสอบถามข้อมูลหรือยื่นเอกสารได้ในเวลาราชการ</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : หากต้องการสอบถามข้อมูลเกี่ยวกับคดีสามารถโทรสอบถามได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถติดต่อสอบถามทางหมายเลขโทรศัพท์ของศาล ได้ในเวลาราชการ หรือสามารถสอบถามทางช่องทางอื่นได้ที่เมนู "ติดต่อ"</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : ถ้าจะฟ้องคดีต้องทำอย่างไร และต้องเตรียมเอกสารอะไรบ้าง <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : ต้องเตรียมคำฟ้อง บัตรประชาชน และเอกสารหลักฐานที่เกี่ยวข้องกับคดี แล้วนำมายื่นต่อเจ้าหน้าที่ศาล หรือยื่นผ่านระบบ e-Filing</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : สามารถยื่นคำฟ้องหรือคำร้องผ่านออนไลน์ได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถยื่นได้ ผ่านระบบ e-Filing , CIOS</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : ศาลแขวงรับคดีประเภทใดบ้าง <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : ส่วนใหญ่เป็นคดีแพ่งหรือคดีอาญาที่มีมูลค่าไม่สูงหรือโทษไม่ร้ายแรง ตามเขตอำนาจของศาลแขวง (ศาลเเขวงชลบุรีรับฟ้องเฉพาะ คดีที่มีทุนทรัพย์ไม่เกิน 300,000 บาท)</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : ถ้าไม่มีทนาย สามารถฟ้องคดีเองได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถทำได้ แต่ควรศึกษาขั้นตอนการฟ้องและเตรียมเอกสารให้ครบถ้วน</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : สามารถตรวจสอบสถานะคดีของตนเองได้อย่างไร <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถตรวจสอบผ่านระบบบริการออนไลน์ของศาล เช่น CIOS</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : หากต้องการทราบค่าธรรมเนียมการฟ้องคดีต้องดูจากที่ไหน <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถสอบถามเจ้าหน้าที่ศาล หรือดูข้อมูลอัตราค่าธรรมเนียมได้จากเมนู " อัตราค่าธรรมเนียม (ค่าขึ้นศาล)"</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : หากลืมวันนัดพิจารณาคดีต้องทำอย่างไร <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถตรวจสอบได้จากเอกสารของศาล หรือผ่านระบบตรวจสอบคดีออนไลน์ หรือ ตรวจสอบได้ที่เมนู "บัญชีนัดพิจารณาคดีเเละพิจารณาคดีทางอิเล็กทรอนิกส์"</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : สามารถขอแบบฟอร์มคำร้องต่าง ๆ จากที่ไหน <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถขอได้ที่ศาล หรือดาวน์โหลดจากเมนู "ดาวน์โหลดแบบฟอร์ม"</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : หากต้องการขอสำเนาเอกสารในคดีต้องทำอย่างไร <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถยื่นคำร้องขอคัดถ่ายสำเนาเอกสาร ต่อเจ้าหน้าที่ศาลได้ที่ กลุ่มงานบริหารจัดการคดี หรือสามารถยื่นคำร้องขอคัดถ่ายออนไลน์ได้ที่ ระบบ CIOS</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : หากต้องการมอบอำนาจให้ผู้อื่นมาดำเนินการแทนต้องทำอย่างไร <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : ต้องจัดทำหนังสือมอบอำนาจ และแนบสำเนาบัตรประชาชนของผู้มอบและผู้รับมอบ</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">Q : หากต้องการไกล่เกลี่ยก่อนขึ้นศาลสามารถทำได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">A : สามารถแจ้งความประสงค์ต่อศาลเพื่อเข้ารับการไกล่เกลี่ยข้อพิพาทได้</div>
+  </div>
+
+  <div class="service-card" onclick="openLink('https://docs.google.com/forms/d/e/1FAIpQLSdFcSTmiLhq9CbV8fyqkMtIa1Q74rJ1G_ID3YJPIkEIYeLeUw/viewform?usp=header')">
+    <div class="icon-pill"><span class="material-symbols-rounded">rate_review</span></div>
+    แบบประเมินความพึงพอใจ
+  </div>
 </div>
 </div>
 </section>
@@ -1815,7 +1878,7 @@ e-Filing v.4
       </div>
       <button class="download-action-btn" id="confirmDownloadBtn">
         <span class="material-symbols-rounded">download</span>
-        ดาวน์โหลดเอกสารลงเครื่อง
+        ดาวน์โหลดเเบบฟอร์ม
       </button>
     </div>
   </div>
@@ -2127,12 +2190,16 @@ b.style.display=b.style.display==="block"?"none":"block";
 
 function doSearch(e){
 if(e.key==="Enter"){
-const q=e.target.value;
+const q=e.target.value.toLowerCase();
 if(q.includes("e")) navigate("efiling");
-else if(q.includes("ค่")) navigate("fee");
-else if(q.includes("ดาว")) navigate("download");
-else if(q.includes("ขั้น")) navigate("step-process");
+else if(q.includes("ค่า")) navigate("fee");
+else if(q.includes("ดาวน์โหลด")) navigate("download");
+else if(q.includes("ขั้นตอน")) navigate("step-process");
+else if(q.includes("คำศัพท์")) navigate("knowledge");
+else if(q.includes("ติดต่อ")) navigate("contact");
+else if(q.includes(" faq")) navigate("other");
 else navigate("blank");
+toggleSearch();
 }
 }
 
