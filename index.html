@@ -392,12 +392,16 @@ color: var(--primary);
   display: flex; align-items: center; justify-content: center;
   font-size: 13px; font-weight: 800; z-index: 2; box-shadow: 0 0 15px rgba(10,48,131,0.25);
 }
+.step-node { position: relative; margin-bottom: 30px; }
+.step-marker {
+  position: absolute; left: -36px; top: 5px; width: 30px; height: 30px;
+  background: var(--primary); color: #fff; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; z-index: 2; box-shadow: 0 0 15px rgba(10,48,131,0.25);
+}
 .step-bubble {
   background: #fff; padding: 18px; border-radius: 20px; border: 1px solid #f1f5f9;
   box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
-}
-.step-bubble::after {
-  display: none;
 }
 .step-bubble h4 { margin: 0 0 6px 0; color: var(--primary); font-size: 16px; font-weight: 800; position: relative; z-index: 1; }
 .step-bubble p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; position: relative; z-index: 1; white-space: pre-wrap; }
@@ -483,7 +487,46 @@ border: 1px solid transparent;
   cursor: pointer;
 }
 
-/* ================= MODERN KNOWLEDGE CARDS (UPGRADED) ================= */
+/* ================= MODERN KNOWLEDGE CARDS (NEW) ================= */
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 10px;
+}
+.kn-menu-card {
+  text-align: center;
+  cursor: pointer;
+}
+.kn-btn-box {
+  aspect-ratio: 1/1;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s;
+}
+.kn-btn-box:active { transform: scale(0.92); }
+.kn-btn-box span { font-size: 42px; }
+.kn-label { margin-top: 10px; font-weight: 800; font-size: 14px; color: var(--text); }
+
+.poster-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding-top: 10px;
+}
+.poster-item {
+  width: 100%;
+  aspect-ratio: 1080/1350;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  background: #eee;
+}
+.poster-item img { width: 100%; height: 100%; object-fit: cover; }
+
 .alphabet-scroller {
   display: flex;
   gap: 8px;
@@ -1328,31 +1371,39 @@ e-Filing v.4
 <div class="section-box">
 <h3>คลังความรู้</h3>
 
-<div class="tab-scroller">
-  <div class="tab-chip active" onclick="switchKnowledge('poster', this)">บทความ & โปสเตอร์</div>
-  <div class="tab-chip" onclick="switchKnowledge('vocab', this)">คำศัพท์ทางกฎหมาย</div>
-</div>
-
-<div id="kn-poster">
-  <div class="poster-scroll">
-    <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-      <div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
-      <div class="poster-title">คลังความรู้</div>
+<div id="kn-main-menu" class="knowledge-grid">
+  <div class="kn-menu-card" onclick="openKnPoster()">
+    <div class="kn-btn-box" style="background: var(--primary); color: #fff; box-shadow: var(--shadow-soft);">
+      <span class="material-symbols-rounded">account_balance</span>
     </div>
-    <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-      <div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
-      <div class="poster-title">กฎหมายใกล้ตัว</div>
+    <div class="kn-label">คลังความรู้</div>
+  </div>
+  <div class="kn-menu-card" onclick="openKnVocab()">
+    <div class="kn-btn-box" style="background: #fff; border: 1px solid #eee; color: var(--primary); box-shadow: var(--shadow-md);">
+      <span class="material-symbols-rounded">menu_book</span>
     </div>
+    <div class="kn-label">คำศัพท์ทางกฎหมาย</div>
   </div>
 </div>
 
-<div id="kn-vocab" style="display:none">
+<div id="kn-poster-sub" style="display:none; margin-top:20px;">
+  <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;" onclick="backToKnMain()">
+    <span class="material-symbols-rounded" style="cursor:pointer; color:var(--primary);">arrow_back</span>
+    <h3 style="margin:0;">บทความ & โปสเตอร์</h3>
+  </div>
+  <div class="poster-grid-container" id="posterList">
+    </div>
+</div>
+
+<div id="kn-vocab-sub" style="display:none; margin-top:20px;">
+  <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;" onclick="backToKnMain()">
+    <span class="material-symbols-rounded" style="cursor:pointer; color:var(--primary);">arrow_back</span>
+    <h3 style="margin:0;">คำศัพท์ทางกฎหมาย</h3>
+  </div>
   <div class="alphabet-scroller" id="alphaFilter">
     <div class="alpha-btn active" onclick="filterVocab('ทั้งหมด', this)">All</div>
-    </div>
-  
-  <div class="vocab-container" id="vocabList">
-    </div>
+  </div>
+  <div class="vocab-container" id="vocabList"></div>
 </div>
 
 </div>
@@ -1394,12 +1445,14 @@ e-Filing v.4
     <div class="contact-info-text">
       <div class="contact-label">โทรศัพท์ & โทรสาร</div>
       <div class="contact-value">
+        <strong>โทรศัพท์</strong><br>
         038-261518<br>
         038-288359<br>
         038-274184<br>
         038-275960<br>
-        038287661-4<br>
-        <span style="color:var(--muted)">โทรสาร: 038-287011</span>
+        038287661-4<br><br>
+        <strong>โทรสาร</strong><br>
+        038-287011
       </div>
     </div>
   </div>
@@ -1502,7 +1555,7 @@ e-Filing v.4
 </nav>
 
 <script>
-// ข้อมูลคำศัพท์ทางกฎหมาย (20 คำ จัดหมวดหมู่ตามบริบท)
+// ข้อมูลคำศัพท์ทางกฎหมาย
 const lawVocabData = [
   { word: "คดีแพ่ง", desc: "คดีที่เกิดจากข้อพิพาทระหว่างเอกชนเกี่ยวกับสิทธิหรือหน้าที่ตามกฎหมาย เช่น สัญญา หนี้ หรือทรัพย์สิน", cat: "ประเภทคดี", icon: "balance" },
   { word: "คดีอาญา", desc: "คดีที่เกี่ยวกับการกระทำที่กฎหมายกำหนดว่าเป็นความผิด และมีโทษทางอาญา เช่น จำคุก ปรับ หรือทั้งจำทั้งปรับ", cat: "ประเภทคดี", icon: "gavel" },
@@ -1526,18 +1579,47 @@ const lawVocabData = [
   { word: "การยื่นฎีกา", desc: "การขอให้ศาลฎีกาตรวจสอบคำพิพากษาของศาลอุทธรณ์ โดยมักพิจารณาในประเด็นข้อกฎหมาย", cat: "การโต้แย้งคำสั่ง", icon: "policy" }
 ];
 
-// ฟังก์ชันสร้าง UI คำศัพท์ใหม่ (Modern + Filter)
+// ฟังก์ชันสำหรับเมนูคลังความรู้ใหม่
+function openKnPoster() {
+  document.getElementById('kn-main-menu').style.display = 'none';
+  document.getElementById('kn-poster-sub').style.display = 'block';
+  renderPosterList();
+}
+
+function openKnVocab() {
+  document.getElementById('kn-main-menu').style.display = 'none';
+  document.getElementById('kn-vocab-sub').style.display = 'block';
+  initVocabList();
+}
+
+function backToKnMain() {
+  document.getElementById('kn-main-menu').style.display = 'grid';
+  document.getElementById('kn-poster-sub').style.display = 'none';
+  document.getElementById('kn-vocab-sub').style.display = 'none';
+}
+
+function renderPosterList() {
+  const list = document.getElementById("posterList");
+  list.innerHTML = "";
+  // สร้างตัวอย่างโปสเตอร์ 10 ใบ (1080x1350)
+  for (let i = 1; i <= 10; i++) {
+    const item = document.createElement("div");
+    item.className = "poster-item";
+    const imgUrl = `https://via.placeholder.com/1080x1350?text=Poster+${i}`;
+    item.onclick = () => openSheet(imgUrl);
+    item.innerHTML = `<img src="${imgUrl}">`;
+    list.appendChild(item);
+  }
+}
+
 function initVocabList() {
   const list = document.getElementById("vocabList");
   const alphaBox = document.getElementById("alphaFilter");
-  
-  // สร้างปุ่ม ก-ฮ (เฉพาะที่มีคำศัพท์)
   const letters = [...new Set(lawVocabData.map(item => item.word.charAt(0)))].sort();
   alphaBox.innerHTML = '<div class="alpha-btn active" onclick="filterVocab(\'ทั้งหมด\', this)">All</div>';
   letters.forEach(l => {
     alphaBox.innerHTML += `<div class="alpha-btn" onclick="filterVocab('${l}', this)">${l}</div>`;
   });
-
   renderVocabCards(lawVocabData);
 }
 
@@ -1565,26 +1647,11 @@ function renderVocabCards(data) {
 function filterVocab(char, btn) {
   document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  
   if(char === 'ทั้งหมด') {
     renderVocabCards(lawVocabData);
   } else {
     const filtered = lawVocabData.filter(item => item.word.startsWith(char));
     renderVocabCards(filtered);
-  }
-}
-
-function switchKnowledge(type, btn) {
-  document.querySelectorAll('#knowledge .tab-chip').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  
-  if(type === 'poster') {
-    document.getElementById('kn-poster').style.display = 'block';
-    document.getElementById('kn-vocab').style.display = 'none';
-  } else {
-    document.getElementById('kn-poster').style.display = 'none';
-    document.getElementById('kn-vocab').style.display = 'block';
-    initVocabList(); 
   }
 }
 
@@ -1634,6 +1701,8 @@ window.onload = () => {
 function navigate(id,btn){
 history.pushState({page:id},"","#"+id);
 showPage(id,btn);
+// รีเซ็ตหน้าย่อยคลังความรู้เมื่อมีการเปลี่ยนหน้า
+if(id === 'knowledge') backToKnMain();
 }
 
 window.onpopstate=e=>{
