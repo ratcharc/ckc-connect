@@ -456,6 +456,12 @@ border: 1px solid transparent;
   align-items: center;
   justify-content: center;
   color: #94a3b8;
+  overflow: hidden; /* เพิ่มเพื่อให้รูปไม่ล้น */
+}
+.preview-img-box {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .download-action-btn {
   width: 100%;
@@ -890,7 +896,7 @@ COJ
     <div class="step-marker">5</div>
     <div class="step-bubble">
       <h4>ตรวจสอบคำร้อง พร้อมออกหลักฐานการรับ</h4>
-      <p>ส่งให้กับคู่กรณีอีกฝ่าย ผู้รับต้องตอบกลับภายใน 15 วัน นับตั้งเเต่วันที่ส่ง</p>
+      <p>ส่งให้กับคู่กรณีอีกฝ่าย ผู้รับต้องตอบกลับภายใน 15 วัน นับตั้งเเต่ศาลมีคำสั่งระบฟ้ง</p>
     </div>
   </div>
   <div class="step-node">
@@ -914,7 +920,7 @@ COJ
     <div class="step-marker">2</div>
     <div class="step-bubble">
       <h4>กรณีที่คู่ความประสงค์ไกล่เกลี่ย</h4>
-      <p>เเจ้งหมายเลขคดี ที่ศูนย์ไกล่เกลี่ยข้อพิพาทประจำศาลเเขวงชลบุรี</p>
+      <p>เเแจ้งหมายเลขคดี ที่ศูนย์ไกล่เกลี่ยข้อพิพาทประจำศาลเเขวงชลบุรี</p>
     </div>
   </div>
   <div class="step-node">
@@ -938,7 +944,7 @@ COJ
 - คู่ความทำสัญญาประนีประนอมยอมความ (2 ชุด) หรือคำร้องขอถอนฟ้อง 
 - พนักงานคดี / นิติกร ตรวจสอบสัญญาประนีประนอมยอมความ เเละอธิบายผลการทำสัญญาให้คู่ความทราบ
 - เสนอผู้พิพากษา พิพากษาตามยอม / มีคำสั่งถอนฟ้อง
-- เเเจ้งคำสั่งศาล
+- เเเแจ้งคำสั่งศาล
 
 กรณีไกล่เกลี่ยไม่สำเร็จ:
 - ส่งสำนวนคืนระบบการพิจารณาคดีของศาล (สำนวนรอบเช้า ส่ง 10.00 น. / รอบบ่าย ส่ง 14.00 น.)</p>
@@ -1120,7 +1126,7 @@ e-Filing v.4
 </div>
 
 <div class="calc-box">
-  <div style="font-weight: 800; margin-bottom: 12px; font-size: 14px; color: var(--primary);">คำนวณอัตราค่าธรรมเนียม</div>
+  <div style="font-weight: 800; margin-bottom: 12px; font-size: 14px; color: var(--primary);">คำนวณค่าธรรมเนียม</div>
   <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์ (บาท)">
   <button onclick="calcFee()">คำนวณ</button>
   <div class="calc-result" id="feeResult">ค่าธรรมเนียมที่ต้องชำระ: - บาท</div>
@@ -1202,7 +1208,7 @@ e-Filing v.4
   <div class="sheet-content">
     <h3 id="previewTitle" style="margin-top:40px; text-align:center;">ชื่อเอกสาร</h3>
     <div class="preview-sheet-body">
-      <div class="doc-placeholder">
+      <div class="doc-placeholder" id="previewContainer">
         <span class="material-symbols-rounded" style="font-size: 64px; margin-bottom: 10px;">description</span>
         <p>กำลังเตรียมตัวอย่างเอกสาร...</p>
         <p style="font-size: 12px;">(ตัวอย่างจะแสดงที่นี่)</p>
@@ -1234,8 +1240,8 @@ const documentData = [
   { name: "เเแบบพิมพ์คำร้องขอไกล่เกลี่ยก่อนฟ้อง ตาม ป.วิ.พ. ม.20 ตรี", link: "https://cnbmc.coj.go.th/th/file/get/file/202101126405c8afd603f2f52b4f0ea5f235b798155029.doc" },
   { name: "หนังสือมอบอำนาจ (คดีอาญา)", link: "https://cnbmc.coj.go.th/th/file/get/file/20210114bb839ae714dca9116ba34854bdcd0db7114310.docx" },
   { name: "เเแบบคำร้องขอไกล่เกลี่ยข้อพิพาทก่อนฟ้อง (ตาม พ.ร.บ.ไกล่เกลี่ยฯ)", link: "https://cnbmc.coj.go.th/th/file/get/file/202101123bcb0d51e9e66f3eec9d2456831910e0154946.docx" },
-  { name: "ใบเเแจ้งความประสงค์ ในการขอรับเงินด้วยวิธีการโอน", link: "https://drive.google.com/file/d/1u5wogyi8bV21BjqtsWnaF4a3usorMagF/view?usp=drivesdk" },
-  { name: "แบบฟอร์มสัญญาประกัน  แบบฟอร์มคำร้องการยื่นขอปล่อยชั่วคราวผ่านระบบ CIOS", link: "https://drive.google.com/file/d/1kT6yU0GGOcE2Jvr5WAO4Ck81oZUJSviQ/view?usp=drivesdk" },
+  { name: "ใบเเแจ้งความประสงค์ในการขอรับเงินด้วยวิธีการโอน", link: "https://drive.google.com/file/d/1u5wogyi8bV21BjqtsWnaF4a3usorMagF/view?usp=drivesdk" },
+  { name: "แบบฟอร์มสัญญาประกัน", link: "https://drive.google.com/file/d/1kT6yU0GGOcE2Jvr5WAO4Ck81oZUJSviQ/view?usp=drivesdk" },
   { name: "แบบฟอร์มคำร้องการยื่นขอปล่อยชั่วคราวผ่านระบบ CIOS", link: "https://drive.google.com/file/d/1NAmjaunVpp1xzfpEVK5QP5YKiO5MiIgn/view?usp=drivesdk" },
   { name: "หนังสือมอบอำนาจ คดีทำยอม", link: "https://drive.google.com/file/d/1x2q9MA9KA5TIaNBMjxLBa_9XaifhIq2V/view?usp=drivesdk" }
 ];
@@ -1367,17 +1373,47 @@ function closeSheet(){
 document.getElementById("sheet").classList.remove("active");
 }
 
-// ระบบ Preview และดาวน์โหลด (New!)
+// ฟังก์ชันแปลงลิงก์ Drive เป็นรูปพรีวิวแบบชัดเจน
+function getGoogleDrivePreview(url) {
+  if (url.includes('drive.google.com')) {
+    const fileId = url.split('/d/')[1].split('/')[0];
+    // ใช้ thumbnailLink แบบปรับขนาดความชัด (sz=s1000)
+    return `https://drive.google.com/thumbnail?id=${fileId}&sz=s1000`;
+  }
+  return null;
+}
+
+// ระบบ Preview และดาวน์โหลด (ปรับปรุงใหม่ตามเงื่อนไข)
 function openPreview(name, url) {
-  document.getElementById("previewTitle").innerText = name;
-  document.getElementById("previewSheet").classList.add("active");
-  document.getElementById("confirmDownloadBtn").onclick = () => {
+  const isGoogleDrive = url.includes('drive.google.com');
+
+  if (isGoogleDrive) {
+    // ถ้าเป็น Google Drive ให้ทำตามข้อ 1: แสดงพรีวิว
+    document.getElementById("previewTitle").innerText = name;
+    const container = document.getElementById("previewContainer");
+    const previewImgUrl = getGoogleDrivePreview(url);
+
+    container.innerHTML = `<img src="${previewImgUrl}" class="preview-img-box" alt="Document Preview">`;
+    
+    document.getElementById("previewSheet").classList.add("active");
+    document.getElementById("confirmDownloadBtn").onclick = () => {
+      window.open(url, "_blank");
+    };
+  } else {
+    // ถ้าไม่ใช่ Google Drive ให้ทำตามข้อ 2: เด้งไปตามลิงก์ทันที ไม่ต้องพรีวิว
     window.open(url, "_blank");
-  };
+  }
 }
 
 function closePreview() {
   document.getElementById("previewSheet").classList.remove("active");
+  // รีเซ็ตค่าข้างในเมื่อปิด
+  setTimeout(() => {
+    document.getElementById("previewContainer").innerHTML = `
+      <span class="material-symbols-rounded" style="font-size: 64px; margin-bottom: 10px;">description</span>
+      <p>กำลังเตรียมตัวอย่างเอกสาร...</p>
+    `;
+  }, 400);
 }
 </script>
 
