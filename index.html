@@ -408,13 +408,6 @@ color: var(--primary);
   display: flex; align-items: center; justify-content: center;
   font-size: 13px; font-weight: 800; z-index: 2; box-shadow: 0 0 15px rgba(10,48,131,0.25);
 }
-.step-node { position: relative; margin-bottom: 30px; }
-.step-marker {
-  position: absolute; left: -36px; top: 5px; width: 30px; height: 30px;
-  background: var(--primary); color: #fff; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 800; z-index: 2; box-shadow: 0 0 15px rgba(10,48,131,0.25);
-}
 .step-bubble {
   background: #fff; padding: 18px; border-radius: 20px; border: 1px solid #f1f5f9;
   box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
@@ -712,6 +705,76 @@ border: 1px solid transparent;
 .dept-name { font-size: 13px; font-weight: 600; color: var(--text); }
 .ext-num { font-weight: 800; color: var(--primary); }
 
+/* ================= HERO GALLERY MODAL (NEW) ================= */
+#heroGallery {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  display: none;
+  flex-direction: column;
+}
+.gallery-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+.close-gallery {
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.gallery-container {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.gallery-container::-webkit-scrollbar { display: none; }
+.gallery-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.gallery-slide img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+}
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 30px;
+}
+.g-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transition: 0.3s;
+}
+.g-dot.active {
+  background: #fff;
+  transform: scale(1.5);
+}
+
 /* ================= BOTTOM BAR ================= */
 nav{
 position:fixed;
@@ -756,8 +819,8 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 <section id="home" class="active">
 <div class="section-box">
 <h3>โพสล่าสุด</h3>
-<div class="hero-card" onclick="openSheet('https://via.placeholder.com/900x506')">
-<img src="https://via.placeholder.com/900x506">
+<div class="hero-card" onclick="openHeroGallery()">
+<img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/Herocard.png">
 </div>
 
 <div class="quick-tap">
@@ -1560,6 +1623,23 @@ e-Filing v.4
   </div>
 </div>
 
+<div id="heroGallery">
+  <div class="gallery-header">
+    <div style="font-weight: 800; font-size: 18px;">ข้อมูลประชาสัมพันธ์</div>
+    <div class="close-gallery" onclick="closeHeroGallery()"><span class="material-symbols-rounded">close</span></div>
+  </div>
+  <div class="gallery-container" id="galleryContainer" onscroll="updateDots()">
+    <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/e1.png" onclick="toggleZoom(this)"></div>
+    <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/e2.png" onclick="toggleZoom(this)"></div>
+    <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/e3.png" onclick="toggleZoom(this)"></div>
+  </div>
+  <div class="gallery-dots" id="galleryDots">
+    <div class="g-dot active"></div>
+    <div class="g-dot"></div>
+    <div class="g-dot"></div>
+  </div>
+</div>
+
 <nav>
 <button onclick="navigate('home',this)"><span class="material-symbols-rounded">home</span>หน้าแรก</button>
 <button onclick="navigate('service',this)"><span class="material-symbols-rounded">apps</span>บริการ</button>
@@ -1592,6 +1672,46 @@ const lawVocabData = [
   { word: "การยื่นอุทธรณ์", desc: "การยื่นคำร้องต่อศาลชั้นอุทธรณ์ เพื่อขอให้พิจารณาทบทวนคำพิพากษาหรือคำสั่งของศาลชั้นต้น", cat: "การโต้แย้งคำสั่ง", icon: "history_edu" },
   { word: "การยื่นฎีกา", desc: "การขอให้ศาลฎีกาตรวจสอบคำพิพากษาของศาลอุทธรณ์ โดยมักพิจารณาในประเด็นข้อกฎหมาย", cat: "การโต้แย้งคำสั่ง", icon: "policy" }
 ];
+
+// ฟังก์ชันสำหรับ Hero Gallery
+function openHeroGallery() {
+  document.getElementById('heroGallery').style.display = 'flex';
+  document.body.style.overflow = 'hidden'; // กันเลื่อนหน้าหลัก
+}
+
+function closeHeroGallery() {
+  document.getElementById('heroGallery').style.display = 'none';
+  document.body.style.overflow = 'auto';
+  resetAllZoom();
+}
+
+function updateDots() {
+  const container = document.getElementById('galleryContainer');
+  const scrollPosition = container.scrollLeft;
+  const width = container.offsetWidth;
+  const index = Math.round(scrollPosition / width);
+  
+  const dots = document.querySelectorAll('.g-dot');
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
+function toggleZoom(img) {
+  if (img.style.transform === 'scale(2)') {
+    img.style.transform = 'scale(1)';
+    img.style.zIndex = '1';
+  } else {
+    resetAllZoom();
+    img.style.transform = 'scale(2)';
+    img.style.zIndex = '100';
+  }
+}
+
+function resetAllZoom() {
+  const imgs = document.querySelectorAll('.gallery-slide img');
+  imgs.forEach(img => img.style.transform = 'scale(1)');
+}
 
 // ฟังก์ชันสำหรับเมนูคลังความรู้ใหม่
 function openKnPoster() {
