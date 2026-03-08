@@ -203,7 +203,7 @@ background:#fff;
 border-top-left-radius:26px;
 border-top-right-radius:26px;
 box-shadow:var(--shadow-lg);
-transition:.4s ease;
+transition:.4s cubic-bezier(0.4, 0, 0.2, 1);
 z-index:300;
 display:flex;
 flex-direction:column;
@@ -230,8 +230,7 @@ display:block;
 .sheet-back{
 position:absolute;
 left:16px;
-top:50%;
-transform:translateY(-50%);
+top:16px;
 background:#fff;
 width:44px;
 height:44px;
@@ -241,11 +240,13 @@ align-items:center;
 justify-content:center;
 box-shadow:var(--shadow-md);
 cursor:pointer;
+z-index: 10;
 }
 
 .sheet-content{
 padding:22px;
 overflow:auto;
+flex:1;
 }
 
 /* ================= SERVICE GRID ================= */
@@ -392,33 +393,85 @@ color: var(--primary);
   background: #fff; padding: 18px; border-radius: 20px; border: 1px solid #f1f5f9;
   box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
 }
-/* ตัดตัวเลขจางๆ ออกตามสั่ง */
 .step-bubble::after {
   display: none;
 }
 .step-bubble h4 { margin: 0 0 6px 0; color: var(--primary); font-size: 16px; font-weight: 800; position: relative; z-index: 1; }
 .step-bubble p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; position: relative; z-index: 1; white-space: pre-wrap; }
 
-/* ================= DOWNLOAD ================= */
+/* ================= DOWNLOAD (NEW MODERN STYLE) ================= */
 .preview-list{
 display:grid;
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:1fr;
 gap:14px;
 }
 .preview-card{
 background:#fff;
-border-radius:16px;
-overflow:hidden;
+border-radius:var(--radius-md);
+padding:16px;
+display:flex;
+align-items:center;
+gap:16px;
 box-shadow:var(--shadow-md);
+cursor:pointer;
+transition: .2s;
+border: 1px solid transparent;
 }
-.preview-card img{
-width:100%;
-display:block;
+.preview-card:active { transform: scale(0.98); background: var(--primary-soft); }
+
+.file-icon-box {
+  width: 50px;
+  height: 50px;
+  background: var(--primary-soft);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
 }
-.preview-card div{
-padding:12px;
-font-size:13px;
-font-weight:700;
+.file-info { flex: 1; }
+.file-name { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+.file-meta { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+.preview-btn-minimal {
+  color: var(--primary);
+  font-size: 20px;
+}
+
+/* Bottom Sheet สำหรับ Preview */
+.preview-sheet-body {
+  text-align: center;
+  padding-bottom: 40px;
+}
+.doc-placeholder {
+  width: 100%;
+  aspect-ratio: 1/1.414;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+}
+.download-action-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
 }
 
 /* ================= BOTTOM BAR ================= */
@@ -1067,9 +1120,9 @@ e-Filing v.4
 </div>
 
 <div class="calc-box">
-  <div style="font-weight: 800; margin-bottom: 12px; font-size: 14px; color: var(--primary);">เครื่องคำนวณค่าธรรมเนียมศาล</div>
+  <div style="font-weight: 800; margin-bottom: 12px; font-size: 14px; color: var(--primary);">คำนวณอัตราค่าธรรมเนียม</div>
   <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์ (บาท)">
-  <button onclick="calcFee()">คำนวณค่าขึ้นศาล</button>
+  <button onclick="calcFee()">คำนวณ</button>
   <div class="calc-result" id="feeResult">ค่าธรรมเนียมที่ต้องชำระ: - บาท</div>
 </div>
 
@@ -1083,12 +1136,8 @@ e-Filing v.4
 <section id="download">
 <div class="section-box">
 <h3>ดาวน์โหลดแบบฟอร์ม</h3>
-<div class="preview-list">
-<div class="preview-card">
-<img src="https://via.placeholder.com/300x200">
-<div>คำร้องทั่วไป</div>
-</div>
-</div>
+<div class="preview-list" id="formList">
+  </div>
 </div>
 </section>
 
@@ -1143,9 +1192,27 @@ e-Filing v.4
 <div class="sheet-back" onclick="closeSheet()"><span class="material-symbols-rounded">arrow_back</span></div>
 </div>
 <div class="sheet-content">
-<h2>หัวข้อเนื้อหา</h2>
-<p>พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...</p>
+<h2 id="sheetTitle">หัวข้อเนื้อหา</h2>
+<p id="sheetText">พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...</p>
 </div>
+</div>
+
+<div class="bottom-sheet" id="previewSheet">
+  <div class="sheet-back" style="top:20px; left:20px;" onclick="closePreview()"><span class="material-symbols-rounded">close</span></div>
+  <div class="sheet-content">
+    <h3 id="previewTitle" style="margin-top:40px; text-align:center;">ชื่อเอกสาร</h3>
+    <div class="preview-sheet-body">
+      <div class="doc-placeholder">
+        <span class="material-symbols-rounded" style="font-size: 64px; margin-bottom: 10px;">description</span>
+        <p>กำลังเตรียมตัวอย่างเอกสาร...</p>
+        <p style="font-size: 12px;">(ตัวอย่างจะแสดงที่นี่)</p>
+      </div>
+      <button class="download-action-btn" id="confirmDownloadBtn">
+        <span class="material-symbols-rounded">download</span>
+        ดาวน์โหลดเอกสารลงเครื่อง
+      </button>
+    </div>
+  </div>
 </div>
 
 <nav>
@@ -1157,6 +1224,54 @@ e-Filing v.4
 </nav>
 
 <script>
+// ข้อมูลเอกสาร 12 รายการ (ดึงข้อมูลมาจากส่วนที่คุณให้มา)
+const documentData = [
+  { name: "คำร้อง / คำเเถลง / คำขอ", link: "https://drive.google.com/file/d/1tiaOA8N6BSLgHDV8VNmH6RQPMJQOY7nc/view?usp=drivesdk" },
+  { name: "คำร้องขอปล่อยตัวชั่วคราว", link: "https://drive.google.com/file/d/1YTdA6lUntUd6_HEDm9n9GCo2SVsnuEgn/view?usp=drivesdk" },
+  { name: "เเแบบพิมพ์ขอให้ศาลมีคำสั่งพิพากษาตามยอม คร.7", link: "https://drive.google.com/file/d/1tmUBWuT1D6D11Qn-5V2hd6T-4uX_QHcp/view?usp=drivesdk" },
+  { name: "บันทึกข้อตกลง/สัญญาประนีประนอมยอมความ", link: "https://drive.google.com/file/d/1PlSHEy062Lauj2JQx58EwhxhiGVvgmFP/view?usp=drivesdk" },
+  { name: "หนังสือมอบอำนาจ (ก่อนฟ้อง)", link: "https://cnbmc.coj.go.th/th/file/get/file/2021012777e4333adc5c096a3decf995a96f593d120351.doc" },
+  { name: "เเแบบพิมพ์คำร้องขอไกล่เกลี่ยก่อนฟ้อง ตาม ป.วิ.พ. ม.20 ตรี", link: "https://cnbmc.coj.go.th/th/file/get/file/202101126405c8afd603f2f52b4f0ea5f235b798155029.doc" },
+  { name: "หนังสือมอบอำนาจ (คดีอาญา)", link: "https://cnbmc.coj.go.th/th/file/get/file/20210114bb839ae714dca9116ba34854bdcd0db7114310.docx" },
+  { name: "เเแบบคำร้องขอไกล่เกลี่ยข้อพิพาทก่อนฟ้อง (ตาม พ.ร.บ.ไกล่เกลี่ยฯ)", link: "https://cnbmc.coj.go.th/th/file/get/file/202101123bcb0d51e9e66f3eec9d2456831910e0154946.docx" },
+  { name: "ใบเเแจ้งความประสงค์ ในการขอรับเงินด้วยวิธีการโอน", link: "https://drive.google.com/file/d/1u5wogyi8bV21BjqtsWnaF4a3usorMagF/view?usp=drivesdk" },
+  { name: "แบบฟอร์มสัญญาประกัน  แบบฟอร์มคำร้องการยื่นขอปล่อยชั่วคราวผ่านระบบ CIOS", link: "https://drive.google.com/file/d/1kT6yU0GGOcE2Jvr5WAO4Ck81oZUJSviQ/view?usp=drivesdk" },
+  { name: "แบบฟอร์มคำร้องการยื่นขอปล่อยชั่วคราวผ่านระบบ CIOS", link: "https://drive.google.com/file/d/1NAmjaunVpp1xzfpEVK5QP5YKiO5MiIgn/view?usp=drivesdk" },
+  { name: "หนังสือมอบอำนาจ คดีทำยอม", link: "https://drive.google.com/file/d/1x2q9MA9KA5TIaNBMjxLBa_9XaifhIq2V/view?usp=drivesdk" }
+];
+
+// ฟังก์ชันสร้างรายการเอกสาร
+function initDownloadList() {
+  const list = document.getElementById("formList");
+  list.innerHTML = "";
+  documentData.forEach(doc => {
+    const card = document.createElement("div");
+    card.className = "preview-card";
+    card.onclick = () => openPreview(doc.name, doc.link);
+    
+    // ตรวจสอบนามสกุลไฟล์เพื่อแสดงชื่อประเภท
+    const isDoc = doc.link.includes('.doc');
+    const typeLabel = isDoc ? "DOC / DOCX" : "PDF / LINK";
+
+    card.innerHTML = `
+      <div class="file-icon-box">
+        <span class="material-symbols-rounded">${isDoc ? 'description' : 'picture_as_pdf'}</span>
+      </div>
+      <div class="file-info">
+        <div class="file-name">${doc.name}</div>
+        <div class="file-meta">เอกสารศาลแขวงชลบุรี • ${typeLabel}</div>
+      </div>
+      <span class="material-symbols-rounded preview-btn-minimal">visibility</span>
+    `;
+    list.appendChild(card);
+  });
+}
+
+// เรียกใช้ฟังก์ชันตอนหน้าเว็บโหลด
+window.onload = () => {
+  initDownloadList();
+};
+
 function navigate(id,btn){
 history.pushState({page:id},"","#"+id);
 showPage(id,btn);
@@ -1168,7 +1283,9 @@ if(e.state) showPage(e.state.page);
 
 function showPage(id,btn){
 document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+const targetPage = document.getElementById(id);
+if(targetPage) targetPage.classList.add("active");
+
 document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
 if(btn) btn.classList.add("active");
 }
@@ -1193,7 +1310,6 @@ else navigate("blank");
 }
 }
 
-// ฟังก์ชันสลับ Timeline
 function switchProcess(type, btn) {
   document.querySelectorAll('.tab-chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
@@ -1213,7 +1329,6 @@ function switchProcess(type, btn) {
   document.getElementById(target).style.display = 'block';
 }
 
-// ฟังก์ชันคำนวณตาม Logic เดิม
 function calcFee(){
   const m = parseFloat(document.getElementById("money").value);
   const resultDiv = document.getElementById("feeResult");
@@ -1250,6 +1365,19 @@ document.getElementById("sheet").classList.add("active");
 
 function closeSheet(){
 document.getElementById("sheet").classList.remove("active");
+}
+
+// ระบบ Preview และดาวน์โหลด (New!)
+function openPreview(name, url) {
+  document.getElementById("previewTitle").innerText = name;
+  document.getElementById("previewSheet").classList.add("active");
+  document.getElementById("confirmDownloadBtn").onclick = () => {
+    window.open(url, "_blank");
+  };
+}
+
+function closePreview() {
+  document.getElementById("previewSheet").classList.remove("active");
 }
 </script>
 
