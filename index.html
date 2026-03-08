@@ -591,71 +591,75 @@ border: 1px solid transparent;
   margin-top: 14px;
 }
 
-/* ================= CONTACT SECTION STYLES (NEW) ================= */
+/* ================= CONTACT PAGE (MODERN REDESIGN) ================= */
 .map-container {
   width: 100%;
-  height: 220px;
-  border-radius: var(--radius-md);
+  height: 250px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   box-shadow: var(--shadow-md);
-  border: 4px solid #fff;
+  border: 1px solid #fff;
 }
-.contact-item {
+.contact-hero {
+  background: var(--grad-blue);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  color: #fff;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.contact-hero::after {
+  content: 'account_balance';
+  font-family: 'Material Symbols Rounded';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  font-size: 120px;
+  opacity: 0.1;
+}
+.contact-info-card {
   background: #fff;
-  padding: 18px;
   border-radius: var(--radius-md);
+  padding: 16px;
   margin-bottom: 12px;
-  border: 1px solid #f1f5f9;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
-.contact-item-header {
+.contact-icon-box {
+  width: 44px;
+  height: 44px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  border-radius: 12px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
-  color: var(--primary);
-  font-weight: 800;
+  justify-content: center;
+  flex-shrink: 0;
 }
-.contact-text {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--text);
-  margin-left: 36px;
-}
-.phone-grid {
+.contact-detail h4 { margin: 0 0 4px 0; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.contact-detail p { margin: 0; font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.5; }
+
+.internal-phone-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-left: 36px;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 20px;
 }
-.phone-link {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 13px;
-  background: var(--primary-soft);
-  padding: 8px;
-  border-radius: 8px;
-  text-align: center;
+.phone-chip {
+  background: #f8fafc;
+  padding: 14px 18px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #f1f5f9;
 }
-.internal-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-  margin-top: 10px;
-}
-.internal-table tr {
-  border-bottom: 1px solid #f1f5f9;
-}
-.internal-table td {
-  padding: 10px 5px;
-}
-.internal-table td:last-child {
-  text-align: right;
-  font-weight: 800;
-  color: var(--primary);
-}
+.phone-label { font-size: 14px; font-weight: 600; color: var(--text); }
+.phone-number { font-size: 15px; font-weight: 800; color: var(--primary); font-family: monospace; }
 
 /* ================= BOTTOM BAR ================= */
 nav{
@@ -1081,7 +1085,7 @@ COJ
     <div class="step-bubble">
       <h4>สอบถามความสมัครใจคู่กรณีอีกฝ่าย</h4>
       <p>- กรณีสมัครใจเข้าร่วมไกล่เกลี่ย ศาลจะกำหนดวัน เวลานัด เเละ เสนอรายชื่อผู้ไกล่เกลี่ย พร้อมเเต่งตั้งผู้ใกล่เกลี่ย จากนั้นขอศาลพิพากษาตามข้อตกลง / สัญญายอมความ
-- กรณีไม่สมัครใจเข้าร่วมไกล่เกลี่ย ศาลจะจำหน่ายคำร้อง (ยุติการไกล่เกลี่ย) เเละเเแจ้งให้ผู้ยื่นคำร้องทราบ (ผู้ยื่นคำร้องยังสามารถไปยื่นฟ้องคดีต่อได้)</p>
+- กรณีไม่สมัครใจเข้าร่วมไกล่เกลี่ย ศาลจะจำหน่ายคำร้อง (ยุติการไกล่เกลี่ย) เเละเเจ้งให้ผู้ยื่นคำร้องทราบ (ผู้ยื่นคำร้องยังสามารถไปยื่นฟ้องคดีต่อได้)</p>
     </div>
   </div>
 </div>
@@ -1141,7 +1145,7 @@ COJ
     <div class="step-marker">2</div>
     <div class="step-bubble">
       <h4>เจ้าหน้าที่จะประสานคู่ความ</h4>
-      <p>เพื่อเเแจ้งขั้นตอน เเละเตรียมช่องทางการไกล่เกลี่ย ช่องทางไกล่เกลี่ย เช่น Google Meet, Zoom, Microsoft Teams ฯลฯ</p>
+      <p>เพื่อเเจ้งขั้นตอน เเละเตรียมช่องทางการไกล่เกลี่ย ช่องทางไกล่เกลี่ย เช่น Google Meet, Zoom, Microsoft Teams ฯลฯ</p>
     </div>
   </div>
   <div class="step-node">
@@ -1290,7 +1294,7 @@ e-Filing v.4
   </div>
   <div class="accordion-item" onclick="this.classList.toggle('active')">
     <div class="accordion-header">คดีแพ่งทั่วไป (ทุนทรัพย์เกิน 50 ล้านบาทขึ้นไป) <span class="material-symbols-rounded">expand_more</span></div>
-    <div class="accordion-content">ส่วน 50 ล้านแรก คิดไม่เกิน 200,000 บาท และส่วนที่เกิน 50 ล้านบาท จะคิดเพิ่ม 0.1% ของจำนวนทุนทรัพย์ส่วนที่เกินนั้น</div>
+    <div class="accordion-content">ส่วน 50 ล้านแรก คิดไม่เกิน 200,000 บาท และส่วนที่เกิน 50ล้านบาท จะคิดเพิ่ม 0.1% ของจำนวนทุนทรัพย์ส่วนที่เกินนั้น</div>
   </div>
   <div class="accordion-item" onclick="this.classList.toggle('active')">
     <div class="accordion-header">คดีไม่มีทุนทรัพย์ <span class="material-symbols-rounded">expand_more</span></div>
@@ -1370,69 +1374,62 @@ e-Filing v.4
 
 <section id="contact">
 <div class="section-box">
-<h3>ติดต่อเรา</h3>
+  <h3>ติดต่อเรา</h3>
+  
+  <div class="map-container">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.16298539091!2d100.97825557588398!3d13.340051186996327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3102ca6583995669%3A0xc5403e0617511674!2z4Lio4Liy4Lil4LmB4LiC4Lin4LiH4LiK4Lil4Lia4Li44Lij4Li0!5e0!3m2!1sth!2sth!4v1709900000000!5m2!1sth!2sth" 
+      width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
 
-<div class="map-container">
-<iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m3!1d3882.264259775073!2d100.97825557589574!3d13.333857307525337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d49e6f8885f81%3A0x6b489a27d2c38c29!2z4Lio4Liy4Lil4LmB4LiC4Lin4LiH4LiK4Lil4Lia4Li44Lij4Li1!5e0!3m2!1sth!2sth!4v1707310000000!5m2!1sth!2sth" 
-  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-</div>
+  <div class="contact-hero">
+    <div style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">ศาลแขวงชลบุรี</div>
+    <div style="font-size: 13px; opacity: 0.9;">Chonburi District Court</div>
+  </div>
 
-<div class="contact-item">
-  <div class="contact-item-header">
-    <span class="material-symbols-rounded">location_on</span> ที่ตั้ง
+  <div class="contact-info-card">
+    <div class="contact-icon-box"><span class="material-symbols-rounded">location_on</span></div>
+    <div class="contact-detail">
+      <h4>ที่ตั้ง</h4>
+      <p>อาคารศาลแขวงชลบุรี, ถนนพระยาสัจจา, ต.บางปลาสร้อย อ.เมือง จ.ชลบุรี 20000</p>
+    </div>
   </div>
-  <div class="contact-text">
-    อาคารศาลแขวงชลบุรี, ถนนพระยาสัจจา, ตำบลบางปลาสร้อย อำเภอเมือง จังหวัดชลบุรี, 20000
-  </div>
-</div>
 
-<div class="contact-item">
-  <div class="contact-item-header">
-    <span class="material-symbols-rounded">call</span> โทรศัพท์ / โทรสาร
+  <div class="contact-info-card">
+    <div class="contact-icon-box"><span class="material-symbols-rounded">call</span></div>
+    <div class="contact-detail">
+      <h4>เบอร์โทรศัพท์</h4>
+      <p>038-261518, 038-288359, 038-274184</p>
+      <p>038-275960, 038-287661-4</p>
+      <p style="color:var(--muted); font-size: 13px; margin-top:4px;">โทรสาร: 038-287011</p>
+    </div>
   </div>
-  <div class="phone-grid">
-    <a href="tel:038261518" class="phone-link">038-261518</a>
-    <a href="tel:038288359" class="phone-link">038-288359</a>
-    <a href="tel:038274184" class="phone-link">038-274184</a>
-    <a href="tel:038275960" class="phone-link">038-275960</a>
-  </div>
-  <div class="contact-text" style="margin-top:10px; font-size: 13px;">
-    <strong>เบอร์อื่นๆ:</strong> 038-287661 ถึง 4<br>
-    <strong>โทรสาร:</strong> 038-287011
-  </div>
-</div>
 
-<div class="contact-item">
-  <div class="contact-item-header">
-    <span class="material-symbols-rounded">mail</span> อีเมล
+  <div class="contact-info-card">
+    <div class="contact-icon-box"><span class="material-symbols-rounded">mail</span></div>
+    <div class="contact-detail">
+      <h4>อีเมล</h4>
+      <p>cnbmc@coj.go.th</p>
+    </div>
   </div>
-  <div class="contact-text">
-    <a href="mailto:cnbmc@coj.go.th" style="color:var(--primary); font-weight:700;">cnbmc@coj.go.th</a>
-  </div>
-</div>
 
-<div class="contact-item">
-  <div class="contact-item-header">
-    <span class="material-symbols-rounded">hub</span> ติดต่อเบอร์ภายใน
+  <h3 style="margin-top: 30px;">กลุ่มงานภายใน (เบอร์ต่อ)</h3>
+  <div class="internal-phone-grid">
+    <div class="phone-chip"><span class="phone-label">บริการประชาชนและประชาสัมพันธ์</span><span class="phone-number">135, 130</span></div>
+    <div class="phone-chip"><span class="phone-label">บริหารจัดการคดี</span><span class="phone-number">151</span></div>
+    <div class="phone-chip"><span class="phone-label">งานรับฟ้อง, E-Filing</span><span class="phone-number">156, 159</span></div>
+    <div class="phone-chip"><span class="phone-label">งานหมาย</span><span class="phone-number">157</span></div>
+    <div class="phone-chip"><span class="phone-label">งานอุทธรณ์ ฎีกา</span><span class="phone-number">152</span></div>
+    <div class="phone-chip"><span class="phone-label">งานห้องเก็บสำนวน</span><span class="phone-number">162</span></div>
+    <div class="phone-chip"><span class="phone-label">ไกล่เกลี่ยและประนอมข้อพิพาท</span><span class="phone-number">301, 302</span></div>
+    <div class="phone-chip"><span class="phone-label">เจ้าพนักงานคดี</span><span class="phone-number">310, 303</span></div>
+    <div class="phone-chip"><span class="phone-label">ช่วยพิจารณาคดี</span><span class="phone-number">333, 331</span></div>
+    <div class="phone-chip"><span class="phone-label">กลุ่มงานคลัง</span><span class="phone-number">120, 123</span></div>
+    <div class="phone-chip"><span class="phone-label">ช่วยอำนวยการ</span><span class="phone-number">111, 105</span></div>
+    <div class="phone-chip"><span class="phone-label">เจ้าพนักงานตำรวจศาล</span><span class="phone-number">110</span></div>
+    <div class="phone-chip"><span class="phone-label">เทคโนโลยีสารสนเทศ</span><span class="phone-number">109</span></div>
   </div>
-  <table class="internal-table">
-    <tr><td>กลุ่มงานบริการประชาชนและประชาสัมพันธ์</td><td>135, 130</td></tr>
-    <tr><td>กลุ่มงานบริหารจัดการคดี</td><td>151</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;- งานรับฟ้อง, E-Filing</td><td>156, 159</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;- งานหมาย</td><td>157</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;- งานอุทธรณ์ ฎีกา</td><td>152</td></tr>
-    <tr><td>&nbsp;&nbsp;&nbsp;- งานห้องเก็บสำนวน</td><td>162</td></tr>
-    <tr><td>กลุ่มงานไกล่เกลี่ยและประนอมข้อพิพาท</td><td>301, 302</td></tr>
-    <tr><td>กลุ่มงานเจ้าพนักงานคดี</td><td>310, 303</td></tr>
-    <tr><td>กลุ่มงานช่วยพิจารณาคดี</td><td>333, 331</td></tr>
-    <tr><td>กลุ่มงานคลัง</td><td>120, 123</td></tr>
-    <tr><td>กลุ่มงานช่วยอำนวยการ</td><td>111, 105</td></tr>
-    <tr><td>กลุ่มงานเจ้าพนักงานตำรวจศาล</td><td>110</td></tr>
-    <tr><td>กลุ่มงานเทคโนโลยีสารสนเทศ</td><td>109</td></tr>
-  </table>
-</div>
-
 </div>
 </section>
 
