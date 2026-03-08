@@ -176,94 +176,112 @@ color:var(--primary);
 margin:0 0 14px 0;
 }
 
-/* ================= POSTER SCROLL (MODERN REDESIGN) ================= */
-.poster-scroll {
+/* ================= POSTER SCROLL (MODERN UPDATE) ================= */
+.poster-scroll{
+display:flex;
+overflow-x:auto;
+gap:18px;
+padding: 5px 5px 15px 5px;
+scrollbar-width: none;
+}
+.poster-scroll::-webkit-scrollbar { display: none; }
+
+.poster-card{
+flex:0 0 auto;
+width:180px;
+background: #fff;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+cursor:pointer;
+transition: transform 0.2s ease;
+display: flex;
+flex-direction: column;
+}
+.poster-card:active { transform: scale(0.97); }
+
+.poster-image{
+width:100%;
+aspect-ratio:1080/1350;
+background:#f1f5f9;
+overflow:hidden;
+}
+.poster-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.poster-info {
+  padding: 12px;
   display: flex;
-  overflow-x: auto;
-  gap: 16px;
-  padding: 5px 5px 20px 5px;
-  scrollbar-width: none; /* Hide scrollbar Firefox */
+  flex-direction: column;
+  gap: 4px;
 }
-.poster-scroll::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
-
-.poster-card {
-  flex: 0 0 auto;
-  width: 160px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+.poster-title{
+font-size:12.5px;
+font-weight:700;
+color: var(--text);
+line-height: 1.4;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
 }
-.poster-card:active { transform: scale(0.95); }
-
-.poster-image {
-  width: 100%;
-  aspect-ratio: 1/1.2;
-  background: #f1f5f9;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  border: 1px solid rgba(0,0,0,0.03);
-}
-.poster-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.poster-title {
-  margin-top: 10px;
+.poster-more {
   font-size: 11px;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-weight: 800;
+  color: #6366f1;
 }
 
-/* ================= IMAGE PREVIEW DIALOG (NEW) ================= */
-#imageViewer {
+/* ================= ZOOM MODAL ================= */
+.zoom-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.92);
+  background: rgba(0,0,0,0.9);
   z-index: 2000;
   display: none;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding: 20px;
-  backdrop-filter: blur(8px);
 }
-.viewer-close {
+.zoom-modal.active { display: flex; }
+.zoom-close {
   position: absolute;
   top: 30px;
   right: 25px;
   color: #fff;
-  cursor: pointer;
   font-size: 32px;
-  z-index: 2001;
+  cursor: pointer;
+  z-index: 2010;
 }
-#viewerImg {
-  max-width: 100%;
-  max-height: 80vh;
-  border-radius: 12px;
-  object-fit: contain;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5);
-}
-.viewer-btn-box {
-  margin-top: 25px;
+.zoom-container {
   width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
+  overflow: auto;
 }
-.viewer-more-btn {
+.zoom-container img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.zoom-action-btn {
+  margin-top: 20px;
+  padding: 14px 24px;
   background: var(--grad-purple);
   color: #fff;
-  padding: 14px 28px;
   border-radius: 30px;
   font-weight: 800;
-  text-decoration: none;
-  font-size: 14px;
+  border: none;
   box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
+  display: none;
+  cursor: pointer;
 }
 
 /* ================= BOTTOM SHEET ================= */
@@ -309,10 +327,16 @@ background:#fff;
 width:44px;
 height:44px;
 border-radius:50%;
-display:flex; align-items:center; justify-content:center;
+display:flex;
+align-items:center;
+justify-content:center;
 box-shadow:var(--shadow-md);
 cursor:pointer;
 z-index: 10;
+}
+
+.sheet-back.active{
+bottom:0;
 }
 
 .sheet-content{
@@ -493,7 +517,9 @@ border: 1px solid transparent;
   height: 50px;
   background: var(--primary-soft);
   border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--primary);
   flex-shrink: 0;
 }
@@ -523,7 +549,7 @@ border: 1px solid transparent;
   align-items: center;
   justify-content: center;
   color: #94a3b8;
-  overflow: hidden; 
+  overflow: hidden; /* เพิ่มเพื่อให้รูปไม่ล้น */
 }
 .preview-img-box {
   width: 100%;
@@ -662,7 +688,9 @@ border: 1px solid transparent;
   border-radius: 12px;
   background: var(--grad-blue);
   color: #fff;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 20px;
   box-shadow: 0 4px 10px rgba(10,48,131,0.2);
 }
@@ -717,7 +745,9 @@ border: 1px solid transparent;
   background: var(--primary);
   color: #fff;
   border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 .contact-info-text {
@@ -890,10 +920,62 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 </div>
 
 <h3 class="subtitle-blue">รายการโพส</h3>
-<div class="poster-scroll" id="posterScrollContainer">
+<div class="poster-scroll">
+  <div class="poster-card" onclick="openZoomModal('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20247_20260228020959.png')">
+    <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20247_20260228020959.png"></div>
+    <div class="poster-info">
+      <div class="poster-title">สายด่วนไกล่เกลี่ยก่อนฟ้อง</div>
+      <div class="poster-more">ดูเพิ่มเติม...</div>
+    </div>
+  </div>
+  <div class="poster-card" onclick="openZoomModal('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%872.png')">
+    <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%872.png"></div>
+    <div class="poster-info">
+      <div class="poster-title">การให้บริการระบบ e-filing สำหรับประชาชน</div>
+      <div class="poster-more">ดูเพิ่มเติม...</div>
+    </div>
+  </div>
+  <div class="poster-card" onclick="openZoomModal('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%873.png', 'https://sites.google.com/view/cnbmc-ecourt-showonweb/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B9%81%E0%B8%A3%E0%B8%81?pli=1')">
+    <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%873.png"></div>
+    <div class="poster-info">
+      <div class="poster-title">การพิจารณาคดีทางอิเล็กทรอนิกส์</div>
+      <div class="poster-more">ดูเพิ่มเติม...</div>
+    </div>
+  </div>
+  <div class="poster-card" onclick="openZoomModal('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%874.png')">
+    <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%874.png"></div>
+    <div class="poster-info">
+      <div class="poster-title">การยื่นคำร้องขอปล่อยตัวชั่วคราวผ่านระบบ CIOS</div>
+      <div class="poster-more">ดูเพิ่มเติม..</div>
+    </div>
+  </div>
+  <div class="poster-card" onclick="navigate('blank')">
+    <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%875.png"></div>
+    <div class="poster-info">
+      <div class="poster-title">ขั้นตอนการยืนยันตัวตนเเละลงทะเบียนใช้งาน</div>
+      <div class="poster-more">ดูเพิ่มเติม...</div>
+    </div>
+  </div>
+  <div class="poster-card" onclick="openZoomModal('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%876.png')">
+    <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%876.png"></div>
+    <div class="poster-info">
+      <div class="poster-title">การขอคัดถ่ายสำเนาคำพิพากษา</div>
+      <div class="poster-more">ดูเพิ่มเติม...</div>
+    </div>
   </div>
 </div>
+</div>
 </section>
+
+<div id="zoomModal" class="zoom-modal">
+  <span class="material-symbols-rounded zoom-close" onclick="closeZoomModal()">close</span>
+  <div class="zoom-container">
+    <img id="zoomImg" src="" alt="Zoomable Image">
+  </div>
+  <button id="zoomAction" class="zoom-action-btn" onclick="openLink(this.dataset.link)">
+    คลิกเพื่อดูข้อมูลเพิ่มเติม
+  </button>
+</div>
 
 <section id="service">
 <div class="section-box">
@@ -1629,13 +1711,6 @@ e-Filing v.4
 
 </main>
 
-<div id="imageViewer">
-  <span class="material-symbols-rounded viewer-close" onclick="closeImageViewer()">close</span>
-  <img id="viewerImg" src="">
-  <div class="viewer-btn-box" id="viewerBtnContainer">
-    </div>
-</div>
-
 <div class="bottom-sheet" id="sheet">
 <div class="sheet-header">
 <img id="sheetImg">
@@ -1691,75 +1766,26 @@ e-Filing v.4
 </nav>
 
 <script>
-// ข้อมูลโปสรองที่ขอปรับปรุง (แปลง GitHub Link แล้ว)
-const secondaryPosters = [
-  {
-    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png", // ใช้ภาพไกล่เกลี่ยตามที่ส่งใน GitHub
-    title: "สายด่วนไกล่เกลี่ยก่อนฟ้อง ดูเพิ่มเติม...",
-    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png"
-  },
-  {
-    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%872.png",
-    title: "การให้บริการระบบ e-filing สำหรับประชาชน ดูเพิ่มเติม...",
-    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%872.png"
-  },
-  {
-    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%873.png",
-    title: "การพิจารณาคดีทางอิเล็กทรอนิกส์ ดูเพิ่มเติม...",
-    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%873.png",
-    moreLink: "https://sites.google.com/view/cnbmc-ecourt-showonweb/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B9%81%E0%B8%A3%E0%B8%81?pli=1"
-  },
-  {
-    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%874.png",
-    title: "การยื่นคำร้องขอปล่อยตัวชั่วคราวผ่านระบบ CIOS ดูเพิ่มเติม..",
-    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%874.png"
-  },
-  // ภาพ 5 เว้นไว้ก่อนตามที่แจ้ง
-  {
-    img: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%876.png",
-    title: "การขอคัดถ่ายสำเนาคำพิพากษา ดูเพิ่มเติม...",
-    url: "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%876.png"
-  }
-];
-
-function initSecondaryPosters() {
-  const container = document.getElementById('posterScrollContainer');
-  container.innerHTML = '';
-  secondaryPosters.forEach((post, index) => {
-    const card = document.createElement('div');
-    card.className = 'poster-card';
-    card.onclick = () => openImageViewer(post.url, post.moreLink);
-    card.innerHTML = `
-      <div class="poster-image"><img src="${post.img}"></div>
-      <div class="poster-title">${post.title}</div>
-    `;
-    container.appendChild(card);
-  });
-}
-
-function openImageViewer(imgSrc, moreLink = null) {
-  const viewer = document.getElementById('imageViewer');
-  const img = document.getElementById('viewerImg');
-  const btnBox = document.getElementById('viewerBtnContainer');
+// ฟังก์ชันสำหรับ Zoom Modal
+function openZoomModal(imgSrc, link = null) {
+  const modal = document.getElementById('zoomModal');
+  const img = document.getElementById('zoomImg');
+  const btn = document.getElementById('zoomAction');
   
   img.src = imgSrc;
-  btnBox.innerHTML = '';
-  
-  if (moreLink) {
-    const btn = document.createElement('a');
-    btn.className = 'viewer-more-btn';
-    btn.href = moreLink;
-    btn.target = "_blank";
-    btn.innerText = "คลิกเพื่อดูข้อมูลเพิ่มเติม";
-    btnBox.appendChild(btn);
+  if(link) {
+    btn.style.display = 'block';
+    btn.dataset.link = link;
+  } else {
+    btn.style.display = 'none';
   }
   
-  viewer.style.display = 'flex';
+  modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-function closeImageViewer() {
-  document.getElementById('imageViewer').style.display = 'none';
+function closeZoomModal() {
+  document.getElementById('zoomModal').classList.remove('active');
   document.body.style.overflow = 'auto';
 }
 
@@ -1790,7 +1816,7 @@ const lawVocabData = [
 // ฟังก์ชันสำหรับ Hero Gallery
 function openHeroGallery() {
   document.getElementById('heroGallery').style.display = 'flex';
-  document.body.style.overflow = 'hidden'; 
+  document.body.style.overflow = 'hidden'; // กันเลื่อนหน้าหลัก
 }
 
 function closeHeroGallery() {
@@ -1849,6 +1875,7 @@ function backToKnMain() {
 function renderPosterList() {
   const list = document.getElementById("posterList");
   list.innerHTML = "";
+  // สร้างตัวอย่างโปสเตอร์ 10 ใบ (1080x1350)
   for (let i = 1; i <= 10; i++) {
     const item = document.createElement("div");
     item.className = "poster-item";
@@ -1943,12 +1970,12 @@ function initDownloadList() {
 
 window.onload = () => {
   initDownloadList();
-  initSecondaryPosters(); // เรียกใช้ฟังก์ชันโพสรองใหม่
 };
 
 function navigate(id,btn){
 history.pushState({page:id},"","#"+id);
 showPage(id,btn);
+// รีเซ็ตหน้าย่อยคลังความรู้เมื่อมีการเปลี่ยนหน้า
 if(id === 'knowledge') backToKnMain();
 }
 
