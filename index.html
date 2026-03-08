@@ -367,63 +367,6 @@ overflow: hidden;
   font-weight: 800;
 }
 
-/* ================= BOTTOM SHEET ================= */
-.bottom-sheet{
-position:fixed;
-left:0;
-right:0;
-bottom:-100%;
-height:100%;
-background:#fff;
-border-top-left-radius:26px;
-border-top-right-radius:26px;
-box-shadow:var(--shadow-lg);
-transition:.4s cubic-bezier(0.4, 0, 0.2, 1);
-z-index:300;
-display:flex;
-flex-direction:column;
-}
-
-.bottom-sheet.active{
-bottom:0;
-}
-
-.sheet-header{
-width:100%;
-aspect-ratio:16/9;
-background:#dfe3f0;
-position:relative;
-}
-
-.sheet-header img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.sheet-back{
-position:absolute;
-left:16px;
-top:16px;
-background:#fff;
-width:44px;
-height:44px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:var(--shadow-md);
-cursor:pointer;
-z-index: 10;
-}
-
-.sheet-content{
-padding:22px;
-overflow:auto;
-flex:1;
-}
-
 /* ================= SERVICE GRID ================= */
 .service-grid{
 display:grid;
@@ -611,11 +554,25 @@ border: 1px solid transparent;
   font-size: 20px;
 }
 
-/* Bottom Sheet สำหรับ Preview */
-.preview-sheet-body {
-  text-align: center;
-  padding-bottom: 40px;
+/* ================= PREVIEW SHEET (NEW) ================= */
+.bottom-sheet{
+position:fixed;
+left:0;
+right:0;
+bottom:-100%;
+height:100%;
+background:#fff;
+border-top-left-radius:26px;
+border-top-right-radius:26px;
+box-shadow:var(--shadow-lg);
+transition:.4s cubic-bezier(0.4, 0, 0.2, 1);
+z-index:300;
+display:flex;
+flex-direction:column;
 }
+.bottom-sheet.active{ bottom:0; }
+.sheet-content{ padding:22px; overflow:auto; flex:1; }
+.preview-sheet-body { text-align: center; padding-bottom: 40px; }
 .doc-placeholder {
   width: 100%;
   aspect-ratio: 1/1.414;
@@ -628,28 +585,14 @@ border: 1px solid transparent;
   align-items: center;
   justify-content: center;
   color: #94a3b8;
-  overflow: hidden; /* เพิ่มเพื่อให้รูปไม่ล้น */
+  overflow: hidden;
 }
-.preview-img-box {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+.preview-img-box { width: 100%; height: 100%; object-fit: contain; }
 .download-action-btn {
-  width: 100%;
-  padding: 16px;
-  background: var(--primary);
-  color: #fff;
-  border: none;
-  border-radius: 16px;
-  font-size: 16px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  box-shadow: var(--shadow-soft);
-  cursor: pointer;
+  width: 100%; padding: 16px; background: var(--primary); color: #fff;
+  border: none; border-radius: 16px; font-size: 16px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  box-shadow: var(--shadow-soft); cursor: pointer;
 }
 
 /* ================= MODERN KNOWLEDGE CARDS (NEW) ================= */
@@ -675,6 +618,7 @@ border: 1px solid transparent;
 .kn-btn-box span { font-size: 42px; }
 .kn-label { margin-top: 10px; font-weight: 800; font-size: 14px; color: var(--text); }
 
+/* ================= POSTER GRID 10 ITEMS (FIXED) ================= */
 .poster-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -683,8 +627,8 @@ border: 1px solid transparent;
 }
 .poster-item {
   width: 100%;
-  aspect-ratio: 1080/1350;
-  border-radius: 12px;
+  aspect-ratio: 1/1.3;
+  border-radius: 12px; /* มุมไม่โค้งมาก */
   overflow: hidden;
   box-shadow: var(--shadow-md);
   cursor: pointer;
@@ -1501,7 +1445,7 @@ COJ
       <h4>คู่ความยื่นคำร้อง</h4>
       <p>- ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่าน CIOS
 - พร้อมหลักฐานการขอรับบริการ (ใบคำร้อง + บัตรประชาชน)
-- กรณีที่ผู้ขอ ได้มอบฉันทะให้ผู้อื่นดำเนินการแทน ผู้รับมอบฉันทะจะต้องปฏิบัติดังนี้
+- กรณีที่ผู้ขอ ได้มอบฉันทะให้ผู้อื่นดำเนินการแทน ผู้รับมอบฉันทะจะต้องปฏิบัติตามดังนี้
    แจ้งหมายเลขคดีเเก่เจ้าหน้าที่ศาล
    นำหนังสือมอบอำนาจ แนบสำเนาบัตรประชาชนของผู้มอบฉันทะ (เซ็นรับรองสำเนาถูกต้อง)
    บัตรประชาชน พร้อมสำเนาบัตรประชาชน ของผู้รับมอบฉันทะ นำมายื่นให้เจ้าหน้าที่ศาล</p>
@@ -1643,7 +1587,7 @@ e-Filing v.4
     <h3 style="margin:0;">บทความ & โปสเตอร์</h3>
   </div>
   <div class="poster-grid-container" id="posterList">
-    </div>
+  </div>
 </div>
 
 <div id="kn-vocab-sub" style="display:none; margin-top:20px;">
@@ -1792,17 +1736,6 @@ e-Filing v.4
   </div>
 </div>
 
-<div class="bottom-sheet" id="sheet">
-<div class="sheet-header">
-<img id="sheetImg">
-<div class="sheet-back" onclick="closeSheet()"><span class="material-symbols-rounded">arrow_back</span></div>
-</div>
-<div class="sheet-content">
-<h2 id="sheetTitle">หัวข้อเนื้อหา</h2>
-<p id="sheetText">พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...</p>
-</div>
-</div>
-
 <div class="bottom-sheet" id="previewSheet">
   <div class="sheet-back" style="top:20px; left:20px;" onclick="closePreview()"><span class="material-symbols-rounded">close</span></div>
   <div class="sheet-content">
@@ -1847,7 +1780,6 @@ e-Filing v.4
 </nav>
 
 <script>
-// ข้อมูลคำศัพท์ทางกฎหมาย
 const lawVocabData = [
   { word: "คดีแพ่ง", desc: "คดีที่เกิดจากข้อพิพาทระหว่างเอกชนเกี่ยวกับสิทธิหรือหน้าที่ตามกฎหมาย เช่น สัญญา หนี้ หรือทรัพย์สิน", cat: "ประเภทคดี", icon: "balance" },
   { word: "คดีอาญา", desc: "คดีที่เกี่ยวกับการกระทำที่กฎหมายกำหนดว่าเป็นความผิด และมีโทษทางอาญา เช่น จำคุก ปรับ หรือทั้งจำทั้งปรับ", cat: "ประเภทคดี", icon: "gavel" },
@@ -1871,29 +1803,35 @@ const lawVocabData = [
   { word: "การยื่นฎีกา", desc: "การขอให้ศาลฎีกาตรวจสอบคำพิพากษาของศาลอุทธรณ์ โดยมักพิจารณาในประเด็นข้อกฎหมาย", cat: "การโต้แย้งคำสั่ง", icon: "policy" }
 ];
 
-// ฟังก์ชันสำหรับ Zoom Modal (MODIFIED)
+const documentData = [
+  { name: "คำร้อง / คำเเถลง / คำขอ", link: "https://drive.google.com/file/d/1tiaOA8N6BSLgHDV8VNmH6RQPMJQOY7nc/view?usp=drivesdk" },
+  { name: "คำร้องขอปล่อยตัวชั่วคราว", link: "https://drive.google.com/file/d/1YTdA6lUntUd6_HEDm9n9GCo2SVsnuEgn/view?usp=drivesdk" },
+  { name: "เเแบบพิมพ์ขอให้ศาลมีคำสั่งพิพากษาตามยอม คร.7", link: "https://drive.google.com/file/d/1tmUBWuT1D6D11Qn-5V2hd6T-4uX_QHcp/view?usp=drivesdk" },
+  { name: "บันทึกข้อตกลง/สัญญาประนีประนอมยอมความ", link: "https://drive.google.com/file/d/1PlSHEy062Lauj2JQx58EwhxhiGVvgmFP/view?usp=drivesdk" },
+  { name: "หนังสือมอบอำนาจ (ก่อนฟ้อง)", link: "https://cnbmc.coj.go.th/th/file/get/file/2021012777e4333adc5c096a3decf995a96f593d120351.doc" },
+  { name: "เเแบบพิมพ์คำร้องขอไกล่เกลี่ยก่อนฟ้อง ตาม ป.วิ.พ. ม.20 ตรี", link: "https://cnbmc.coj.go.th/th/file/get/file/202101126405c8afd603f2f52b4f0ea5f235b798155029.doc" },
+  { name: "หนังสือมอบอำนาจ (คดีอาญา)", link: "https://cnbmc.coj.go.th/th/file/get/file/20210114bb839ae714dca9116ba34854bdcd0db7114310.docx" },
+  { name: "เเแบบคำร้องขอไกล่เกลี่ยข้อพิพาทก่อนฟ้อง (ตาม พ.ร.บ.ไกล่เกลี่ยฯ)", link: "https://cnbmc.coj.go.th/th/file/get/file/202101123bcb0d51e9e66f3eec9d2456831910e0154946.docx" },
+  { name: "ใบเเแจ้งความประสงค์ในการขอรับเงินด้วยวิธีการโอน", link: "https://drive.google.com/file/d/1u5wogyi8bV21BjqtsWnaF4a3usorMagF/view?usp=drivesdk" },
+  { name: "แบบฟอร์มสัญญาประกัน", link: "https://drive.google.com/file/d/1kT6yU0GGOcE2Jvr5WAO4Ck81oZUJSviQ/view?usp=drivesdk" },
+  { name: "แบบฟอร์มคำร้องการยื่นขอปล่อยชั่วคราวผ่านระบบ CIOS", link: "https://drive.google.com/file/d/1NAmjaunVpp1xzfpEVK5QP5YKiO5MiIgn/view?usp=drivesdk" },
+  { name: "หนังสือมอบอำนาจ คดีทำยอม", link: "https://drive.google.com/file/d/1x2q9MA9KA5TIaNBMjxLBa_9XaifhIq2V/view?usp=drivesdk" }
+];
+
 function openZoom(imgUrl, actionType = null) {
   const modal = document.getElementById('zoomModal');
   const img = document.getElementById('zoomImg');
   const btn = document.getElementById('zoomAction');
-  
   img.src = imgUrl;
-  
   if(actionType === 'OPEN_PDF_5') {
     btn.innerText = "คลิกเพื่อดูข้อมูลเพิ่มเติม";
-    btn.onclick = (e) => {
-      e.preventDefault();
-      openPDFViewer('https://drive.google.com/file/d/1DdrZiKa1xKeXGdoZvHQ5VkYoezJm8Sun/preview', 'ขั้นตอนการยืนยันตัวตนเเละลงทะเบียนใช้งาน');
-    };
+    btn.onclick = (e) => { e.preventDefault(); openPDFViewer('https://drive.google.com/file/d/1DdrZiKa1xKeXGdoZvHQ5VkYoezJm8Sun/preview', 'ขั้นตอนการยืนยันตัวตนเเละลงทะเบียนใช้งาน'); };
     btn.style.display = 'block';
   } else if(actionType && actionType.startsWith('http')) {
     btn.innerText = "ดูเพิ่มเติม";
     btn.onclick = () => { window.open(actionType, '_blank'); };
     btn.style.display = 'block';
-  } else {
-    btn.style.display = 'none';
-  }
-  
+  } else { btn.style.display = 'none'; }
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -1903,31 +1841,25 @@ function closeZoom() {
   document.body.style.overflow = 'auto';
 }
 
-// ฟังก์ชัน PDF Viewer (NEW)
 function openPDFViewer(url, title) {
   const modal = document.getElementById('pdfViewerModal');
   const frame = document.getElementById('pdfFrame');
   const titleEl = document.getElementById('pdfViewerTitle');
-  
   titleEl.innerText = title;
   frame.src = url;
   modal.classList.add('active');
-  
-  // ปิด Zoom modal ถ้าเปิดอยู่
   closeZoom();
 }
 
 function closePDFViewer() {
   const modal = document.getElementById('pdfViewerModal');
-  const frame = document.getElementById('pdfFrame');
-  frame.src = "";
+  document.getElementById('pdfFrame').src = "";
   modal.classList.remove('active');
 }
 
-// ฟังก์ชันสำหรับ Hero Gallery
 function openHeroGallery() {
   document.getElementById('heroGallery').style.display = 'flex';
-  document.body.style.overflow = 'hidden'; // กันเลื่อนหน้าหลัก
+  document.body.style.overflow = 'hidden';
 }
 
 function closeHeroGallery() {
@@ -1938,14 +1870,8 @@ function closeHeroGallery() {
 
 function updateDots() {
   const container = document.getElementById('galleryContainer');
-  const scrollPosition = container.scrollLeft;
-  const width = container.offsetWidth;
-  const index = Math.round(scrollPosition / width);
-  
-  const dots = document.querySelectorAll('.g-dot');
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === index);
-  });
+  const index = Math.round(container.scrollLeft / container.offsetWidth);
+  document.querySelectorAll('.g-dot').forEach((dot, i) => dot.classList.toggle('active', i === index));
 }
 
 function toggleZoom(img) {
@@ -1960,11 +1886,9 @@ function toggleZoom(img) {
 }
 
 function resetAllZoom() {
-  const imgs = document.querySelectorAll('.gallery-slide img');
-  imgs.forEach(img => img.style.transform = 'scale(1)');
+  document.querySelectorAll('.gallery-slide img').forEach(img => img.style.transform = 'scale(1)');
 }
 
-// ฟังก์ชันสำหรับเมนูคลังความรู้ใหม่
 function openKnPoster() {
   document.getElementById('kn-main-menu').style.display = 'none';
   document.getElementById('kn-poster-sub').style.display = 'block';
@@ -1986,25 +1910,32 @@ function backToKnMain() {
 function renderPosterList() {
   const list = document.getElementById("posterList");
   list.innerHTML = "";
-  // สร้างตัวอย่างโปสเตอร์ 10 ใบ (1080x1350)
-  for (let i = 1; i <= 10; i++) {
+  const posters = [
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%891.png?raw=true",
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%89%202.png?raw=true",
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%893.png?raw=true",
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%894.png?raw=true",
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%895.png?raw=true",
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%896.png?raw=true",
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%897.png?raw=true",
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%89%208.png?raw=true",
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%899.png?raw=true",
+    "https://github.com/ratcharc/ckc-connect/blob/main/%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B9%E0%B9%8910.png?raw=true"
+  ];
+  posters.forEach(url => {
     const item = document.createElement("div");
     item.className = "poster-item";
-    const imgUrl = `https://via.placeholder.com/1080x1350?text=Poster+${i}`;
-    item.onclick = () => openSheet(imgUrl);
-    item.innerHTML = `<img src="${imgUrl}">`;
+    item.onclick = () => openZoom(url);
+    item.innerHTML = `<img src="${url}">`;
     list.appendChild(item);
-  }
+  });
 }
 
 function initVocabList() {
-  const list = document.getElementById("vocabList");
   const alphaBox = document.getElementById("alphaFilter");
   const letters = [...new Set(lawVocabData.map(item => item.word.charAt(0)))].sort();
   alphaBox.innerHTML = '<div class="alpha-btn active" onclick="filterVocab(\'ทั้งหมด\', this)">All</div>';
-  letters.forEach(l => {
-    alphaBox.innerHTML += `<div class="alpha-btn" onclick="filterVocab('${l}', this)">${l}</div>`;
-  });
+  letters.forEach(l => alphaBox.innerHTML += `<div class="alpha-btn" onclick="filterVocab('${l}', this)">${l}</div>`);
   renderVocabCards(lawVocabData);
 }
 
@@ -2032,29 +1963,8 @@ function renderVocabCards(data) {
 function filterVocab(char, btn) {
   document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  if(char === 'ทั้งหมด') {
-    renderVocabCards(lawVocabData);
-  } else {
-    const filtered = lawVocabData.filter(item => item.word.startsWith(char));
-    renderVocabCards(filtered);
-  }
+  renderVocabCards(char === 'ทั้งหมด' ? lawVocabData : lawVocabData.filter(item => item.word.startsWith(char)));
 }
-
-// ข้อมูลเอกสาร 12 รายการ
-const documentData = [
-  { name: "คำร้อง / คำเเถลง / คำขอ", link: "https://drive.google.com/file/d/1tiaOA8N6BSLgHDV8VNmH6RQPMJQOY7nc/view?usp=drivesdk" },
-  { name: "คำร้องขอปล่อยตัวชั่วคราว", link: "https://drive.google.com/file/d/1YTdA6lUntUd6_HEDm9n9GCo2SVsnuEgn/view?usp=drivesdk" },
-  { name: "เเแบบพิมพ์ขอให้ศาลมีคำสั่งพิพากษาตามยอม คร.7", link: "https://drive.google.com/file/d/1tmUBWuT1D6D11Qn-5V2hd6T-4uX_QHcp/view?usp=drivesdk" },
-  { name: "บันทึกข้อตกลง/สัญญาประนีประนอมยอมความ", link: "https://drive.google.com/file/d/1PlSHEy062Lauj2JQx58EwhxhiGVvgmFP/view?usp=drivesdk" },
-  { name: "หนังสือมอบอำนาจ (ก่อนฟ้อง)", link: "https://cnbmc.coj.go.th/th/file/get/file/2021012777e4333adc5c096a3decf995a96f593d120351.doc" },
-  { name: "เเแบบพิมพ์คำร้องขอไกล่เกลี่ยก่อนฟ้อง ตาม ป.วิ.พ. ม.20 ตรี", link: "https://cnbmc.coj.go.th/th/file/get/file/202101126405c8afd603f2f52b4f0ea5f235b798155029.doc" },
-  { name: "หนังสือมอบอำนาจ (คดีอาญา)", link: "https://cnbmc.coj.go.th/th/file/get/file/20210114bb839ae714dca9116ba34854bdcd0db7114310.docx" },
-  { name: "เเแบบคำร้องขอไกล่เกลี่ยข้อพิพาทก่อนฟ้อง (ตาม พ.ร.บ.ไกล่เกลี่ยฯ)", link: "https://cnbmc.coj.go.th/th/file/get/file/202101123bcb0d51e9e66f3eec9d2456831910e0154946.docx" },
-  { name: "ใบเเแจ้งความประสงค์ในการขอรับเงินด้วยวิธีการโอน", link: "https://drive.google.com/file/d/1u5wogyi8bV21BjqtsWnaF4a3usorMagF/view?usp=drivesdk" },
-  { name: "แบบฟอร์มสัญญาประกัน", link: "https://drive.google.com/file/d/1kT6yU0GGOcE2Jvr5WAO4Ck81oZUJSviQ/view?usp=drivesdk" },
-  { name: "แบบฟอร์มคำร้องการยื่นขอปล่อยชั่วคราวผ่านระบบ CIOS", link: "https://drive.google.com/file/d/1NAmjaunVpp1xzfpEVK5QP5YKiO5MiIgn/view?usp=drivesdk" },
-  { name: "หนังสือมอบอำนาจ คดีทำยอม", link: "https://drive.google.com/file/d/1x2q9MA9KA5TIaNBMjxLBa_9XaifhIq2V/view?usp=drivesdk" }
-];
 
 function initDownloadList() {
   const list = document.getElementById("formList");
@@ -2064,14 +1974,11 @@ function initDownloadList() {
     card.className = "preview-card";
     card.onclick = () => openPreview(doc.name, doc.link);
     const isDoc = doc.link.includes('.doc');
-    const typeLabel = isDoc ? "DOC / DOCX" : "PDF / LINK";
     card.innerHTML = `
-      <div class="file-icon-box">
-        <span class="material-symbols-rounded">${isDoc ? 'description' : 'picture_as_pdf'}</span>
-      </div>
+      <div class="file-icon-box"><span class="material-symbols-rounded">${isDoc ? 'description' : 'picture_as_pdf'}</span></div>
       <div class="file-info">
         <div class="file-name">${doc.name}</div>
-        <div class="file-meta">เอกสารศาลแขวงชลบุรี • ${typeLabel}</div>
+        <div class="file-meta">เอกสารศาลแขวงชลบุรี • ${isDoc ? "DOC / DOCX" : "PDF / LINK"}</div>
       </div>
       <span class="material-symbols-rounded preview-btn-minimal">visibility</span>
     `;
@@ -2079,48 +1986,40 @@ function initDownloadList() {
   });
 }
 
-window.onload = () => {
-  initDownloadList();
-};
+window.onload = () => { initDownloadList(); };
 
 function navigate(id,btn){
-history.pushState({page:id},"","#"+id);
-showPage(id,btn);
-// รีเซ็ตหน้าย่อยคลังความรู้เมื่อมีการเปลี่ยนหน้า
-if(id === 'knowledge') backToKnMain();
+  history.pushState({page:id},"","#"+id);
+  showPage(id,btn);
+  if(id === 'knowledge') backToKnMain();
 }
 
-window.onpopstate=e=>{
-if(e.state) showPage(e.state.page);
-};
+window.onpopstate=e=>{ if(e.state) showPage(e.state.page); };
 
 function showPage(id,btn){
-document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-const targetPage = document.getElementById(id);
-if(targetPage) targetPage.classList.add("active");
-
-document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-if(btn) btn.classList.add("active");
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  const targetPage = document.getElementById(id);
+  if(targetPage) targetPage.classList.add("active");
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
 }
 
-function openLink(url){
-window.open(url,"_blank");
-}
+function openLink(url){ window.open(url,"_blank"); }
 
 function toggleSearch(){
-const b=document.getElementById("searchBox");
-b.style.display=b.style.display==="block"?"none":"block";
+  const b=document.getElementById("searchBox");
+  b.style.display=b.style.display==="block"?"none":"block";
 }
 
 function doSearch(e){
-if(e.key==="Enter"){
-const q=e.target.value;
-if(q.includes("e")) navigate("efiling");
-else if(q.includes("ค่")) navigate("fee");
-else if(q.includes("ดาว")) navigate("download");
-else if(q.includes("ขั้น")) navigate("step-process");
-else navigate("blank");
-}
+  if(e.key==="Enter"){
+    const q=e.target.value;
+    if(q.includes("e")) navigate("efiling");
+    else if(q.includes("ค่")) navigate("fee");
+    else if(q.includes("ดาว")) navigate("download");
+    else if(q.includes("ขั้น")) navigate("step-process");
+    else navigate("blank");
+  }
 }
 
 function switchProcess(type, btn) {
@@ -2139,33 +2038,12 @@ function switchProcess(type, btn) {
 function calcFee(){
   const m = parseFloat(document.getElementById("money").value);
   const resultDiv = document.getElementById("feeResult");
-  if(isNaN(m) || m <= 0) {
-    resultDiv.innerText = "ค่าธรรมเนียมที่ต้องชำระ: 0 บาท";
-    return;
-  }
+  if(isNaN(m) || m <= 0) { resultDiv.innerText = "ค่าธรรมเนียมที่ต้องชำระ: 0 บาท"; return; }
   let fee = 0;
-  if (m <= 300000) {
-    fee = m * 0.02;
-    if (fee > 1000) fee = 1000;
-  } else if (m <= 50000000) {
-    fee = m * 0.02;
-    if (fee > 200000) fee = 200000;
-  } else {
-    const baseFee = 200000;
-    const extraAmount = m - 50000000;
-    const extraFee = extraAmount * 0.001;
-    fee = baseFee + extraFee;
-  }
+  if (m <= 300000) fee = Math.min(m * 0.02, 1000);
+  else if (m <= 50000000) fee = Math.min(m * 0.02, 200000);
+  else fee = 200000 + ((m - 50000000) * 0.001);
   resultDiv.innerHTML = "ค่าธรรมเนียมที่ต้องชำระ: <span style='color:#f43f5e; font-size:18px;'>" + fee.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + "</span> บาท";
-}
-
-function openSheet(img){
-document.getElementById("sheetImg").src=img;
-document.getElementById("sheet").classList.add("active");
-}
-
-function closeSheet(){
-document.getElementById("sheet").classList.remove("active");
 }
 
 function getGoogleDrivePreview(url) {
@@ -2181,13 +2059,10 @@ function openPreview(name, url) {
   if (isGoogleDrive) {
     document.getElementById("previewTitle").innerText = name;
     const container = document.getElementById("previewContainer");
-    const previewImgUrl = getGoogleDrivePreview(url);
-    container.innerHTML = `<img src="${previewImgUrl}" class="preview-img-box" alt="Document Preview">`;
+    container.innerHTML = `<img src="${getGoogleDrivePreview(url)}" class="preview-img-box">`;
     document.getElementById("previewSheet").classList.add("active");
     document.getElementById("confirmDownloadBtn").onclick = () => { window.open(url, "_blank"); };
-  } else {
-    window.open(url, "_blank");
-  }
+  } else { window.open(url, "_blank"); }
 }
 
 function closePreview() {
