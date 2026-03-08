@@ -20,6 +20,10 @@
   --shadow-lg:0 18px 40px rgba(0,0,0,.12);
   --shadow-md:0 10px 26px rgba(0,0,0,.1);
   --shadow-soft:0 10px 35px rgba(10,48,131,.18);
+  /* Modern Gradient Colors */
+  --grad-start: #6366f1; /* Indigo */
+  --grad-mid: #3b82f6;   /* Blue */
+  --grad-end: #06b6d4;   /* Cyan */
 }
 
 body{
@@ -363,41 +367,57 @@ color: var(--primary);
   border: 1px dashed #fca5a5;
 }
 
-/* ================= NEW: INTERACTIVE VERTICAL PATH (TIMELINE) ================= */
+/* ================= UPDATED: MODERN TIMELINE ================= */
 .tab-scroller {
-  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 10px;
+  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 15px;
+  -webkit-overflow-scrolling: touch;
 }
 .tab-chip {
-  padding: 10px 20px; background: #fff; border: 1.5px solid var(--primary);
-  border-radius: 30px; font-size: 13px; font-weight: 700; color: var(--primary);
+  padding: 10px 18px; background: #fff; border: 1px solid #e2e8f0;
+  border-radius: 30px; font-size: 13px; font-weight: 700; color: var(--muted);
   white-space: nowrap; cursor: pointer; transition: .3s;
 }
-.tab-chip.active { background: var(--primary); color: #fff; box-shadow: var(--shadow-soft); }
+.tab-chip.active { 
+  background: var(--primary); 
+  color: #fff; 
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(10,48,131,0.25); 
+}
 
-.timeline-path { position: relative; padding-left: 40px; padding-top: 10px; }
+.timeline-path { position: relative; padding-left: 45px; padding-top: 10px; }
+
+/* ไล่สีเส้นแบบใหม่ (Modern Gradient) */
 .timeline-path::before {
-  content: ''; position: absolute; left: 18px; top: 0; bottom: 0; width: 4px;
-  background: linear-gradient(180deg, var(--primary) 0%, #cbd5e1 100%);
+  content: ''; position: absolute; left: 18px; top: 0; bottom: 0; width: 5px;
+  background: linear-gradient(180deg, var(--grad-start) 0%, var(--grad-mid) 50%, var(--grad-end) 100%);
   border-radius: 10px;
 }
 
-.step-node { position: relative; margin-bottom: 30px; }
+.step-node { position: relative; margin-bottom: 25px; }
+
+/* ปรับ Marker ให้ดูมีมิติมากขึ้น */
 .step-marker {
-  position: absolute; left: -36px; top: 5px; width: 30px; height: 30px;
-  background: var(--primary); color: #fff; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 800; z-index: 2; box-shadow: 0 0 15px rgba(10,48,131,0.25);
+  position: absolute; left: -39px; top: 2px; width: 28px; height: 28px;
+  background: #fff; border: 3px solid var(--grad-mid); color: var(--grad-mid);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; z-index: 2; 
+  box-shadow: 0 0 10px rgba(59,130,246,0.3);
 }
+
+/* กล่องข้อความแบบไม่มีเลขจางๆ (Clean Look) */
 .step-bubble {
-  background: #fff; padding: 18px; border-radius: 20px; border: 1px solid #f1f5f9;
-  box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
+  background: #fff; padding: 16px; border-radius: 18px; border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; overflow: hidden;
 }
-.step-bubble::after {
-  content: attr(data-step); position: absolute; right: -5px; bottom: -15px;
-  font-size: 70px; font-weight: 900; color: rgba(10,48,131,0.04); z-index: 0;
+/* ลบเลขจางๆ (::after) ออก */
+.step-bubble::after { display: none; }
+
+.step-bubble h4 { 
+  margin: 0 0 6px 0; color: var(--primary); font-size: 15px; font-weight: 800; 
 }
-.step-bubble h4 { margin: 0 0 6px 0; color: var(--primary); font-size: 16px; font-weight: 800; position: relative; z-index: 1; }
-.step-bubble p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5; position: relative; z-index: 1; }
+.step-bubble p { 
+  margin: 0; font-size: 13px; color: var(--muted); line-height: 1.6; white-space: pre-line;
+}
 
 /* ================= DOWNLOAD (คงเดิม) ================= */
 .preview-list{
@@ -559,146 +579,79 @@ COJ
 <div class="tab-scroller">
   <div class="tab-chip active" onclick="switchProcess('civil', this)">คดีแพ่งทั่วไป</div>
   <div class="tab-chip" onclick="switchProcess('petty', this)">คดีมโนสาเร่</div>
+  <div class="tab-chip" onclick="switchProcess('consumer', this)">คดีผู้บริโภค</div>
+  <div class="tab-chip" onclick="switchProcess('criminal', this)">คดีอาญา</div>
+  <div class="tab-chip" onclick="switchProcess('pre-mediate', this)">ไกล่เกลี่ยก่อนฟ้อง</div>
+  <div class="tab-chip" onclick="switchProcess('civil-mediate', this)">ไกล่เกลี่ยคดีแพ่ง</div>
+  <div class="tab-chip" onclick="switchProcess('e-mediate', this)">ไกล่เกลี่ยออนไลน์</div>
   <div class="tab-chip" onclick="switchProcess('filing', this)">การยื่นคำฟ้อง</div>
   <div class="tab-chip" onclick="switchProcess('copy', this)">การคัดถ่ายเอกสาร</div>
 </div>
 
 <div id="proc-civil" class="timeline-path">
-  <div class="step-node">
-    <div class="step-marker">1</div>
-    <div class="step-bubble" data-step="01">
-      <h4>เตรียมเอกสาร</h4>
-      <p>- คำฟ้อง (ระบุคู่กรณี, เหตุผลฟ้อง, จำนวนเงิน)<br>- หลักฐานประกอบ (สัญญา, ใบเสร็จ, ข้อความโต้ตอบ ฯลฯ)</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">2</div>
-    <div class="step-bubble" data-step="02">
-      <h4>ยื่นคำฟ้อง</h4>
-      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่านระบบ e-Filing</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">3</div>
-    <div class="step-bubble" data-step="03">
-      <h4>ชำระค่าธรรมเนียมศาล</h4>
-      <p>ขึ้นอยู่กับทุนทรัพย์ที่ฟ้อง เช่น ร้อยละ 2 ของจำนวนเงิน</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">4</div>
-    <div class="step-bubble" data-step="04">
-      <h4>ตรวจสอบคำฟ้อง</h4>
-      <p>เจ้าหน้าที่ตรวจสอบความครบถ้วนของเอกสาร</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">5</div>
-    <div class="step-bubble" data-step="05">
-      <h4>ศาลออกหมายเรียกคู่กรณี</h4>
-      <p>ส่งคำฟ้องและกำหนดวันนัดไต่สวน/พิจารณา</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">6</div>
-    <div class="step-bubble" data-step="06">
-      <h4>ไต่สวน/พิจารณาคดี</h4>
-      <p>ตรวจสอบข้อเท็จจริงของทั้งสองฝ่าย พร้อมหลักฐานประกอบการพิจารณาคดี</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">7</div>
-    <div class="step-bubble" data-step="07">
-      <h4>ศาลมีคำพิพากษา</h4>
-      <p>- ชนะคดี คู่กรณีต้องชำระหนี้หรือปฏิบัติตามคำสั่ง<br>- แพ้คดี สามารถยื่นอุทธรณ์ได้</p>
-    </div>
-  </div>
+  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>เตรียมเอกสาร</h4><p>- คำฟ้อง (ระบุคู่กรณี, เหตุผลฟ้อง, จำนวนเงิน)&#10;- หลักฐานประกอบ (สัญญา, ใบเสร็จ, ข้อความโต้ตอบ ฯลฯ)</p></div></div>
+  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>ยื่นคำฟ้อง</h4><p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่านระบบ e-Filing</p></div></div>
+  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ชำระค่าธรรมเนียมศาล</h4><p>ขึ้นอยู่กับทุนทรัพย์ที่ฟ้อง เช่น ร้อยละ 2 ของจำนวนเงิน</p></div></div>
+  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ตรวจสอบคำฟ้อง</h4><p>เจ้าหน้าที่ตรวจสอบความครบถ้วนของเอกสาร</p></div></div>
+  <div class="step-node"><div class="step-marker">5</div><div class="step-bubble"><h4>ศาลออกหมายเรียกคู่กรณี</h4><p>ส่งคำฟ้องและกำหนดวันนัดไต่สวน/พิจารณา</p></div></div>
+  <div class="step-node"><div class="step-marker">6</div><div class="step-bubble"><h4>ไต่สวน/พิจารณาคดี</h4><p>ตรวจสอบข้อเท็จจริงของทั้งสองฝ่าย พร้อมหลักฐานประกอบการพิจารณาคดี</p></div></div>
+  <div class="step-node"><div class="step-marker">7</div><div class="step-bubble"><h4>ศาลมีคำพิพากษา</h4><p>- ชนะคดี คู่กรณีต้องชำระหนี้หรือปฏิบัติตามคำสั่ง&#10;- แพ้คดี สามารถยื่นอุทธรณ์ได้</p></div></div>
 </div>
 
 <div id="proc-petty" class="timeline-path" style="display:none">
-  <div class="step-node">
-    <div class="step-marker">1</div>
-    <div class="step-bubble" data-step="01">
-      <h4>กรอกแบบฟอร์มฟ้องคดีเล็ก</h4>
-      <p>แบบฟอร์มเฉพาะของศาลแขวง</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">2</div>
-    <div class="step-bubble" data-step="02">
-      <h4>ยื่นคำฟ้อง</h4>
-      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง หรือออนไลน์ผ่านระบบ e-Filing</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">3</div>
-    <div class="step-bubble" data-step="03">
-      <h4>ชำระค่าธรรมเนียม</h4>
-      <p>ชำระตามอัตราคดีมโนสาเร่ (ไม่เกิน 1,000 บาท)</p>
-    </div>
-  </div>
+  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>กรอกแบบฟอร์มฟ้องคดีเล็ก</h4><p>แบบฟอร์มเฉพาะของศาลแขวง</p></div></div>
+  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>ยื่นคำฟ้อง</h4><p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่านระบบ e-Filing</p></div></div>
+  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ชำระค่าธรรมเนียม</h4><p>ชำระตามอัตราคดีมโนสาเร่ (2% ของทุนทรัพย์ แต่ไม่เกิน 1,000 บาท)</p></div></div>
+  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ศาลกำหนดวันนัด</h4><p>เจ้าหน้าที่จะกำหนดวันนัด ไกล่เกลี่ย ให้การ และสืบพยานในวันเดียวกัน</p></div></div>
+</div>
+
+<div id="proc-consumer" class="timeline-path" style="display:none">
+  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>ยื่นฟ้องด้วยวาจาหรือเป็นหนังสือ</h4><p>ผู้บริโภคสามารถยื่นฟ้องได้โดย "ไม่ต้องเสียค่าธรรมเนียมศาล" (ยกเว้นกรณีฟ้องโดยไม่มีเหตุผลสมควร)</p></div></div>
+  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>เจ้าพนักงานคดีช่วยบันทึกคำฟ้อง</h4><p>กรณีฟ้องด้วยวาจา เจ้าพนักงานจะช่วยร่างคำฟ้องให้</p></div></div>
+  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ศาลนัดไกล่เกลี่ยและพิจารณา</h4><p>เน้นความรวดเร็วและเป็นธรรมแก่ผู้บริโภค</p></div></div>
+</div>
+
+<div id="proc-criminal" class="timeline-path" style="display:none">
+  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>ผู้เสียหายแจ้งความ หรือจ้างทนายฟ้องเอง</h4><p>ยื่นคำฟ้องต่อศาลที่มีอำนาจพิจารณา (ศาลแขวงสำหรับคดีโทษจำคุกไม่เกิน 3 ปี)</p></div></div>
+  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>ไต่สวนมูลฟ้อง (กรณีราษฎรฟ้องเอง)</h4><p>ศาลจะไต่สวนว่าคดีมีมูลความจริงหรือไม่</p></div></div>
+  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ศาลประทับฟ้อง</h4><p>หากมีมูล ศาลจะรับคดีไว้พิจารณาและนัดสืบพยาน</p></div></div>
+  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>พิพากษาคดี</h4><p>ลงโทษตามกฎหมาย หรือยกฟ้องกรณีไม่มีความผิด</p></div></div>
+</div>
+
+<div id="proc-pre-mediate" class="timeline-path" style="display:none">
+  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>ยื่นคำร้องขอไกล่เกลี่ย (ป.วิ.พ. ม.20 ตรี)</h4><p>ยื่นได้ที่กลุ่มงานไกล่เกลี่ยและประนีประนอมข้อพิพาท หรือทางออนไลน์ (CIOS) "ฟรี ไม่เสียค่าใช้จ่าย"</p></div></div>
+  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>เจ้าหน้าที่ประสานงานคู่กรณี</h4><p>ติดต่ออีกฝ่ายเพื่อสอบถามความสมัครใจในการเข้าร่วมไกล่เกลี่ย</p></div></div>
+  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ดำเนินการไกล่เกลี่ย</h4><p>จัดให้นัดพบกันเพื่อเจรจาหาข้อยุติโดยมีผู้ประนีประนอมช่วยเหลือ</p></div></div>
+  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ผลการไกล่เกลี่ย</h4><p>- สำเร็จ: ทำสัญญาประนีประนอมยอมความ (ขอให้ศาลพิพากษาตามยอมได้)&#10;- ไม่สำเร็จ: ผู้ร้องสามารถไปฟ้องคดีตามปกติ</p></div></div>
+</div>
+
+<div id="proc-civil-mediate" class="timeline-path" style="display:none">
+  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>ศาลส่งคดีเข้าสู่กระบวนการไกล่เกลี่ย</h4><p>เกิดขึ้นหลังจากมีการฟ้องคดีแล้ว หรือคู่ความร้องขอ</p></div></div>
+  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>แต่งตั้งผู้ประนีประนอม</h4><p>ศาลแต่งตั้งบุคคลที่มีความรู้ความสามารถช่วยเจรจา</p></div></div>
+  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>เจรจาข้อพิพาท</h4><p>คู่ความตกลงรายละเอียดเพื่อยุติข้อขัดแย้ง</p></div></div>
+  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ทำสัญญาประนีประนอมยอมความ</h4><p>หากตกลงกันได้ ศาลจะพิพากษาให้เป็นไปตามสัญญาที่ตกลงกัน</p></div></div>
+</div>
+
+<div id="proc-e-mediate" class="timeline-path" style="display:none">
+  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>แสดงความประสงค์</h4><p>คู่ความแจ้งความประสงค์ต่อเจ้าหน้าที่กลุ่มงานไกล่เกลี่ยฯ</p></div></div>
+  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>เลือกช่องทางออนไลน์</h4><p>ผ่าน Application LINE, Zoom หรือระบบของสำนักงานศาลยุติธรรม</p></div></div>
+  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>นัดหมายและดำเนินการ</h4><p>เจรจาผ่านวิดีโอคอลโดยมีผู้ประนีประนอมเป็นคนกลาง</p></div></div>
+  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>กรณีไกล่เกลี่ยสำเร็จ</h4><p>นัดมาลงชื่อที่ศาล หรือลงลายมือชื่ออิเล็กทรอนิกส์ในสัญญาประนีประนอม/ถอนฟ้อง</p></div></div>
+  <div class="step-node"><div class="step-marker">5</div><div class="step-bubble"><h4>กรณีไกล่เกลี่ยไม่สำเร็จ</h4><p>ศาลพิจารณาทางอิเล็กทรอนิกส์เพื่อกำหนดวันพิจารณาต่อไป</p></div></div>
 </div>
 
 <div id="proc-filing" class="timeline-path" style="display:none">
-  <div class="step-node">
-    <div class="step-marker">1</div>
-    <div class="step-bubble" data-step="01">
-      <h4>คู่ความยื่นคำฟ้อง</h4>
-      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่าน e-Filing</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">2</div>
-    <div class="step-bubble" data-step="02">
-      <h4>เจ้าหน้าที่ตรวจสอบ</h4>
-      <p>ตรวจสอบคำฟ้อง และเอกสารเบื้องต้น ออกหมายเลขคดีดำ ลงสารบบข้อมูลคดี</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">3</div>
-    <div class="step-bubble" data-step="03">
-      <h4>เสนอศาล</h4>
-      <p>เสนอให้ศาลพิจารณาคำฟ้อง</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">4</div>
-    <div class="step-bubble" data-step="04">
-      <h4>ศาลสั่ง</h4>
-      <p>กรณีรับฟ้อง: ปลดหมาย ส่งหมายเรียก (ภายใน 1 วันทำการ)<br>กรณีไม่รับ: แจ้งคำสั่งให้ทราบทันที (ไม่เกิน 10 นาที)</p>
-    </div>
-  </div>
+  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>คู่ความยื่นคำฟ้อง</h4><p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่าน e-Filing</p></div></div>
+  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>เจ้าหน้าที่ตรวจเอกสาร</h4><p>ตรวจคำฟ้องและเอกสาร ออกหมายเลขคดีดำ ลงสารบบข้อมูลคดี</p></div></div>
+  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>เสนอให้ศาลพิจารณา</h4><p>เจ้าหน้าที่นำสำนวนเสนอให้ศาลมีคำสั่ง</p></div></div>
+  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ศาลสั่ง</h4><p>- กรณีรับฟ้อง: ปลดหมาย ส่งหมายเรียก (ภายใน 1 วันทำการ)&#10;- กรณีไม่รับ: แจ้งคำสั่งให้ทราบทันที (ไม่เกิน 10 นาที)</p></div></div>
 </div>
 
 <div id="proc-copy" class="timeline-path" style="display:none">
-  <div class="step-node">
-    <div class="step-marker">1</div>
-    <div class="step-bubble" data-step="01">
-      <h4>ยื่นคำร้อง</h4>
-      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง หรือออนไลน์ผ่าน CIOS, e-Filing</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">2</div>
-    <div class="step-bubble" data-step="02">
-      <h4>เจ้าหน้าที่ตรวจสอบ</h4>
-      <p>ตรวจสอบความเป็นคู่ความและสถานะคดี</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">3</div>
-    <div class="step-bubble" data-step="03">
-      <h4>เสนอศาล</h4>
-      <p>เสนอให้ศาลมีคำสั่งอนุญาต</p>
-    </div>
-  </div>
-  <div class="step-node">
-    <div class="step-marker">4</div>
-    <div class="step-bubble" data-step="04">
-      <h4>ชำระเงินและรับเอกสาร</h4>
-      <p>ชำระค่าธรรมเนียมและถ่ายเอกสาร/รับเอกสารที่รับรอง</p>
-    </div>
-  </div>
+  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>ยื่นคำร้อง</h4><p>- ที่ศาลแขวงชลบุรี แผนกรับฟ้อง หรือทางออนไลน์ผ่าน CIOS, e-Filing</p></div></div>
+  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>เจ้าหน้าที่ตรวจสอบ</h4><p>ตรวจสอบความเป็นคู่ความและสถานะคดีในระบบ</p></div></div>
+  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>เสนอศาล</h4><p>เสนอให้ศาลมีคำสั่งอนุญาตคัดถ่าย</p></div></div>
+  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ชำระเงินและรับเอกสาร</h4><p>ชำระค่าธรรมเนียมตามอัตรา และรับเอกสารที่ได้รับการรับรอง</p></div></div>
 </div>
 
 </div>
@@ -764,7 +717,7 @@ e-Filing v.4
 </div>
 
 <div class="calc-box">
-  <div style="font-weight: 800; margin-bottom: 12px; font-size: 14px; color: var(--primary);">คำนวณค่าธรรมเนียมศาล</div>
+  <div style="font-weight: 800; margin-bottom: 12px; font-size: 14px; color: var(--primary);">เครื่องคำนวณค่าธรรมเนียมศาล</div>
   <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์ (บาท)">
   <button onclick="calcFee()">คำนวณค่าขึ้นศาล</button>
   <div class="calc-result" id="feeResult">ค่าธรรมเนียมที่ต้องชำระ: - บาท</div>
@@ -865,7 +818,9 @@ if(e.state) showPage(e.state.page);
 
 function showPage(id,btn){
 document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+const target = document.getElementById(id);
+if(target) target.classList.add("active");
+
 document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
 if(btn) btn.classList.add("active");
 }
@@ -890,16 +845,17 @@ else navigate("blank");
 }
 }
 
-// ฟังก์ชันสลับ Timeline
+// ฟังก์ชันสลับ Timeline (Updated)
 function switchProcess(type, btn) {
   document.querySelectorAll('.tab-chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
   
   document.querySelectorAll('.timeline-path').forEach(p => p.style.display = 'none');
-  document.getElementById('proc-' + type).style.display = 'block';
+  const target = document.getElementById('proc-' + type);
+  if(target) target.style.display = 'block';
 }
 
-// ฟังก์ชันคำนวณตาม Logic ในไฟล์ Excel และกฎหมายศาลยุติธรรม
+// ฟังก์ชันคำนวณตาม Logic ในไฟล์ Excel และกฎหมายศาลยุติธรรม (คงเดิม)
 function calcFee(){
   const m = parseFloat(document.getElementById("money").value);
   const resultDiv = document.getElementById("feeResult");
