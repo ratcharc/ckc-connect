@@ -101,7 +101,7 @@ padding:20px;
 box-shadow:var(--shadow-lg);
 }
 
-/* ================= HERO CARD ================= */
+/* ================= HERO CARD (UPDATED) ================= */
 .hero-card{
 width:100%;
 aspect-ratio:16/9;
@@ -152,9 +152,10 @@ display:block;
   box-shadow: 0 4px 12px rgba(10, 48, 131, 0.05);
 }
 
+/* ปรับขนาดไอคอน และบังคับสีน้ำเงินตรงนี้ */
 .quick-circle .material-symbols-rounded {
   font-size: 26px;
-  color: var(--primary) !important;
+  color: var(--primary) !important; /* บังคับให้เป็นสีน้ำเงินหลักที่ตั้งไว้ใน :root */
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 }
 
@@ -175,26 +176,32 @@ color:var(--primary);
 margin:0 0 14px 0;
 }
 
-/* ================= POSTER GRID (REDESIGNED) ================= */
-.poster-grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  padding-top: 5px;
+/* ================= POSTER SCROLL (MODERN UPDATED) ================= */
+.poster-scroll{
+display:flex;
+overflow-x:auto;
+gap:18px;
+padding: 5px 5px 20px 5px;
+scrollbar-width: none;
 }
+.poster-scroll::-webkit-scrollbar { display: none; }
 
 .poster-card{
-  width: 100%;
-  cursor:pointer;
+flex:0 0 auto;
+width:180px;
+cursor:pointer;
+transition: transform 0.3s ease;
 }
+.poster-card:active { transform: scale(0.95); }
 
 .poster-image{
 width:100%;
-aspect-ratio:4/5;
+aspect-ratio:1/1.3;
 background:#dfe3f0;
-border-radius:14px; /* ปรับลดความมนตามคำขอ */
+border-radius:20px;
 overflow:hidden;
-box-shadow:var(--shadow-soft);
+box-shadow:var(--shadow-md);
+position: relative;
 }
 .poster-image img{
 width:100%;
@@ -204,12 +211,81 @@ display:block;
 }
 
 .poster-title{
-margin-top:8px;
-font-size:12px;
+margin-top:12px;
+font-size:13px;
 font-weight:700;
-line-height: 1.4;
 color: var(--text);
+line-height: 1.4;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
 }
+.more-label {
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 800;
+  display: block;
+  margin-top: 4px;
+}
+
+/* ================= ZOOM MODAL SYSTEM (NEW) ================= */
+#zoomModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#zoomModal.active { display: flex; animation: fadeIn 0.3s ease; }
+
+.zoom-container {
+  position: relative;
+  max-width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#zoomImg {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.zoom-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(255,255,255,0.2);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.zoom-btn-action {
+  margin-top: 20px;
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 14px;
+  box-shadow: 0 10px 20px rgba(10,48,131,0.3);
+  display: none; /* ซ่อนไว้ก่อน จะเปิดเฉพาะใบที่ 3 */
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
 /* ================= BOTTOM SHEET ================= */
 .bottom-sheet{
@@ -472,7 +548,7 @@ border: 1px solid transparent;
   align-items: center;
   justify-content: center;
   color: #94a3b8;
-  overflow: hidden;
+  overflow: hidden; /* เพิ่มเพื่อให้รูปไม่ล้น */
 }
 .preview-img-box {
   width: 100%;
@@ -496,7 +572,7 @@ border: 1px solid transparent;
   cursor: pointer;
 }
 
-/* ================= MODERN KNOWLEDGE CARDS ================= */
+/* ================= MODERN KNOWLEDGE CARDS (NEW) ================= */
 .knowledge-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -518,6 +594,23 @@ border: 1px solid transparent;
 .kn-btn-box:active { transform: scale(0.92); }
 .kn-btn-box span { font-size: 42px; }
 .kn-label { margin-top: 10px; font-weight: 800; font-size: 14px; color: var(--text); }
+
+.poster-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding-top: 10px;
+}
+.poster-item {
+  width: 100%;
+  aspect-ratio: 1080/1350;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  background: #eee;
+}
+.poster-item img { width: 100%; height: 100%; object-fit: cover; }
 
 .alphabet-scroller {
   display: flex;
@@ -563,7 +656,7 @@ border: 1px solid transparent;
   padding: 20px;
   box-shadow: var(--shadow-md);
   border-left: 5px solid var(--primary);
-  transition: 0.3s;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: hidden;
 }
@@ -576,6 +669,9 @@ border: 1px solid transparent;
   border-bottom-left-radius: 100%;
   opacity: 0.5;
   z-index: 0;
+}
+.vocab-card:active {
+  transform: scale(0.96);
 }
 .vocab-header {
   display: flex;
@@ -595,17 +691,20 @@ border: 1px solid transparent;
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  box-shadow: 0 4px 10px rgba(10,48,131,0.2);
 }
 .vocab-word {
   font-size: 17px;
   font-weight: 800;
   color: var(--primary);
+  letter-spacing: -0.3px;
 }
 .vocab-desc {
   font-size: 14px;
   color: var(--text);
   line-height: 1.6;
   margin: 0;
+  opacity: 0.85;
 }
 .vocab-tag {
   display: inline-flex;
@@ -620,7 +719,7 @@ border: 1px solid transparent;
   margin-top: 14px;
 }
 
-/* ================= CONTACT SECTION ================= */
+/* ================= CONTACT SECTION NEW STYLE ================= */
 .map-container {
   width: 100%;
   height: 220px;
@@ -637,6 +736,7 @@ border: 1px solid transparent;
   margin-bottom: 12px;
   display: flex;
   gap: 14px;
+  border: 1px solid #f1f5f9;
 }
 .contact-icon-box {
   width: 44px;
@@ -681,7 +781,7 @@ border: 1px solid transparent;
 .dept-name { font-size: 13px; font-weight: 600; color: var(--text); }
 .ext-num { font-weight: 800; color: var(--primary); }
 
-/* ================= GALLERY MODAL ================= */
+/* ================= HERO GALLERY MODAL (NEW) ================= */
 #heroGallery {
   position: fixed;
   inset: 0;
@@ -710,6 +810,7 @@ border: 1px solid transparent;
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
 .gallery-container::-webkit-scrollbar { display: none; }
@@ -723,12 +824,15 @@ border: 1px solid transparent;
   justify-content: center;
   padding: 20px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 .gallery-slide img {
   max-width: 100%;
   max-height: 90vh;
   border-radius: 12px;
-  transition: 0.3s;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
 }
 .gallery-dots {
   display: flex;
@@ -740,6 +844,7 @@ border: 1px solid transparent;
   width: 8px; height: 8px;
   border-radius: 50%;
   background: rgba(255,255,255,0.3);
+  transition: 0.3s;
 }
 .g-dot.active {
   background: #fff;
@@ -813,31 +918,37 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 </div>
 </div>
 
-<h3 class="subtitle-blue">บริการและข้อมูลข่าวสาร</h3>
-<div class="poster-grid-container">
-  <div class="poster-card" onclick="openSheet('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%871.png', 'สายด่วนไกล่เกลี่ยก่อนฟ้อง', 'กดที่ภาพเพื่อซูมอ่านรายละเอียด')">
+<h3 class="subtitle-blue">รายการโพส</h3>
+<div class="poster-scroll">
+  <div class="poster-card" onclick="openZoom('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%871.png')">
     <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%871.png"></div>
-    <div class="poster-title">สายด่วนไกล่เกลี่ยก่อนฟ้อง ดูเพิ่มเติม...</div>
+    <div class="poster-title">สายด่วนไกล่เกลี่ยก่อนฟ้อง</div>
+    <span class="more-label">ดูเพิ่มเติม...</span>
   </div>
-  <div class="poster-card" onclick="openSheet('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%872.png', 'บริการระบบ e-Filing สำหรับประชาชน', 'กดที่ภาพเพื่อซูมอ่านรายละเอียด')">
+  <div class="poster-card" onclick="openZoom('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%872.png')">
     <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%872.png"></div>
-    <div class="poster-title">บริการระบบ e-Filing สำหรับประชาชน ดูเพิ่มเติม...</div>
+    <div class="poster-title">การให้บริการระบบ e-filing สำหรับประชาชน</div>
+    <span class="more-label">ดูเพิ่มเติม...</span>
   </div>
-  <div class="poster-card" onclick="openSheetWithLink('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%873.png', 'การพิจารณาคดีทางอิเล็กทรอนิกส์', 'พิจารณาคดีออนไลน์ผ่านระบบอิเล็กทรอนิกส์', 'https://sites.google.com/view/cnbmc-ecourt-showonweb/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B9%81%E0%B8%A3%E0%B8%81?pli=1')">
+  <div class="poster-card" onclick="openZoom('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%873.png', 'https://sites.google.com/view/cnbmc-ecourt-showonweb/%E0%B8%AB%E0%B8%99%E0%B8%B2%E0%B9%81%E0%B8%A3%E0%B8%81?pli=1')">
     <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%873.png"></div>
-    <div class="poster-title">การพิจารณาคดีทางอิเล็กทรอนิกส์ ดูเพิ่มเติม...</div>
+    <div class="poster-title">การพิจารณาคดีทางอิเล็กทรอนิกส์</div>
+    <span class="more-label">ดูเพิ่มเติม...</span>
   </div>
-  <div class="poster-card" onclick="openSheet('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%874.png', 'ยื่นคำร้องขอปล่อยตัวชั่วคราวผ่าน CIOS', 'กดที่ภาพเพื่อซูมอ่านรายละเอียด')">
+  <div class="poster-card" onclick="openZoom('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%874.png')">
     <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%874.png"></div>
-    <div class="poster-title">ยื่นคำร้องขอปล่อยตัวชั่วคราวผ่าน CIOS ดูเพิ่มเติม..</div>
+    <div class="poster-title">การยื่นคำร้องขอปล่อยตัวชั่วคราวผ่านระบบ CIOS</div>
+    <span class="more-label">ดูเพิ่มเติม...</span>
   </div>
-  <div class="poster-card" onclick="openPreviewWithFooter('ขั้นตอนการยืนยันตัวตนเเละลงทะเบียน', 'https://drive.google.com/file/d/1DdrZiKa1xKeXGdoZvHQ5VkYoezJm8Sun/view?usp=drivesdk', 'เอกสารนี้จัดทำโดย สำนักงานศาลยุติธรรม\nศาลแขวงชลบุรีนำมาเผยแพร่เพื่ออำนวยความสะดวกแก่ประชาชน')">
+  <div class="poster-card" onclick="window.open('about:blank', '_blank')">
     <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%875.png"></div>
-    <div class="poster-title">ขั้นตอนการยืนยันตัวตนเเละลงทะเบียน ดูเพิ่มเติม...</div>
+    <div class="poster-title">ขั้นตอนการยืนยันตัวตนเเละลงทะเบียนใช้งาน</div>
+    <span class="more-label">ดูเพิ่มเติม...</span>
   </div>
-  <div class="poster-card" onclick="openSheet('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%876.png', 'การขอคัดถ่ายสำเนาคำพิพากษา', 'กดที่ภาพเพื่อซูมอ่านรายละเอียด')">
+  <div class="poster-card" onclick="openZoom('https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%876.png')">
     <div class="poster-image"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%82%E0%B8%9B%E0%B8%AA%E0%B8%A3%E0%B8%AD%E0%B8%876.png"></div>
-    <div class="poster-title">การขอคัดถ่ายสำเนาคำพิพากษา ดูเพิ่มเติม...</div>
+    <div class="poster-title">การขอคัดถ่ายสำเนาคำพิพากษา</div>
+    <span class="more-label">ดูเพิ่มเติม...</span>
   </div>
 </div>
 </div>
@@ -894,6 +1005,7 @@ COJ
 <section id="step-process">
 <div class="section-box">
 <h3>ขั้นตอนการฟ้องและยื่นคำร้อง</h3>
+
 <div class="tab-scroller">
   <div class="tab-chip active" onclick="switchProcess('civil', this)">คดีเเพ่งทั่วไป</div>
   <div class="tab-chip" onclick="switchProcess('petty', this)">คดีมโนสาเร่ (เเพ่ง)</div>
@@ -907,74 +1019,441 @@ COJ
 </div>
 
 <div id="proc-civil" class="timeline-path">
-  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>เตรียมเอกสาร</h4><p>- คำฟ้อง\n- หลักฐานประกอบ</p></div></div>
-  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>ยื่นคำฟ้อง</h4><p>ที่ศาลแขวงชลบุรี หรือ e-Filing</p></div></div>
-  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ชำระค่าธรรมเนียมศาล</h4><p>ตามทุนทรัพย์ที่ฟ้อง</p></div></div>
-  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ตรวจสอบคำฟ้อง</h4><p>เจ้าหน้าที่ตรวจสอบเอกสาร</p></div></div>
-  <div class="step-node"><div class="step-marker">5</div><div class="step-bubble"><h4>ศาลออกหมายเรียก</h4><p>ส่งคำฟ้องและกำหนดวันนัด</p></div></div>
-  <div class="step-node"><div class="step-marker">6</div><div class="step-bubble"><h4>ไต่สวน/พิจารณาคดี</h4><p>ตรวจสอบข้อเท็จจริง</p></div></div>
-  <div class="step-node"><div class="step-marker">7</div><div class="step-bubble"><h4>ศาลมีคำพิพากษา</h4><p>ตัดสินผลคดี</p></div></div>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>เตรียมเอกสาร</h4>
+      <p> - คำฟ้อง (ระบุคู่กรณี, เหตุผลฟ้อง, จำนวนเงิน)
+ - หลักฐานประกอบ (สัญญา, ใบเสร็จ, ข้อความโต้ตอบ ฯลฯ)</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>ยื่นคำฟ้อง</h4>
+      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่านระบบ e-Filing</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>ชำระค่าธรรมเนียมศาล</h4>
+      <p>ขึ้นอยู่กับทุนทรัพย์ที่ฟ้อง เช่น ร้อยละ 2 ของจำนวนเงิน</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>ตรวจสอบคำฟ้อง</h4>
+      <p>เจ้าหน้าที่ตรวจสอบความครบถ้วนของเอกสาร</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble">
+      <h4>ศาลออกหมายเรียกคู่กรณี</h4>
+      <p>ส่งคำฟ้องและกำหนดวันนัดไต่สวน/พิจารณา</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">6</div>
+    <div class="step-bubble">
+      <h4>ไต่สวน/พิจารณาคดี</h4>
+      <p>ตรวจสอบข้อเท็จจริงของทั้งสองฝ่าย พร้อมหลักฐานประกอบการพิจารณาคดี</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">7</div>
+    <div class="step-bubble">
+      <h4>ศาลมีคำพิพากษา</h4>
+      <p>ชนะคดี : คู่กรณีต้องชำระหนี้หรือปฏิบัติตามคำสั่ง
+แพ้คดี : สามารถยื่นอุทธรณ์ได้</p>
+    </div>
+  </div>
 </div>
 
 <div id="proc-petty" class="timeline-path" style="display:none">
-  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>กรอกแบบฟอร์มฟ้องคดีเล็ก</h4><p>แบบฟอร์มศาลแขวง</p></div></div>
-  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>ยื่นคำฟ้อง</h4><p>แผนกรับฟ้อง หรือ e-Filing</p></div></div>
-  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ชำระค่าธรรมเนียม</h4><p>ร้อยละ 2 (ไม่เกิน 1,000)</p></div></div>
-  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ตรวจสอบคำฟ้อง</h4><p>เจ้าหน้าที่ตรวจสอบเอกสาร</p></div></div>
-  <div class="step-node"><div class="step-marker">5</div><div class="step-bubble"><h4>นัดไกล่เกลี่ย</h4><p>เจรจาข้อยุติเบื้องต้น</p></div></div>
-  <div class="step-node"><div class="step-marker">6</div><div class="step-bubble"><h4>พิจารณาและออกคำพิพากษา</h4><p>ตัดสินกรณีตกลงไม่ได้</p></div></div>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>กรอกแบบฟอร์มฟ้องคดีเล็ก</h4>
+      <p>แบบฟอร์มเฉพาะของศาลแขวง</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>ยื่นคำฟ้อง</h4>
+      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่านระบบ e-Filing</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>ชำระค่าธรรมเนียม</h4>
+      <p>ร้อยละ 2 ของทุนทรัพย์ แต่ไม่เกิน 1,000 บาท</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>ตรวจสอบคำฟ้อง</h4>
+      <p>เจ้าหน้าที่ตรวจสอบความครบถ้วนของเอกสาร</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble">
+      <h4>นัดไกล่เกลี่ย</h4>
+      <p>ผู้ไกล่เกลี่ยจะเปิดโอกาสให้คู่กรณีเจราจาหาข้อยุติร่วมกันโดยสมัครใจก่อน</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">6</div>
+    <div class="step-bubble">
+      <h4>พิจารณาและออกคำพิพากษา</h4>
+      <p>กรณีที่ยอมความไม่ได้ ศาลจะเป็นผู้ตัดสิน</p>
+    </div>
+  </div>
 </div>
 
 <div id="proc-consumer" class="timeline-path" style="display:none">
-  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>รวบรวมหลักฐาน</h4><p>ใบเสร็จ สัญญา ภาพถ่าย</p></div></div>
-  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>เขียนคำฟ้อง</h4><p>ระบุข้อเรียกร้อง</p></div></div>
-  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ยื่นคำฟ้อง</h4><p>แผนกรับฟ้อง หรือ e-Filing</p></div></div>
-  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ชำระค่าธรรมเนียมศาล</h4><p>ตามอัตราคดีแพ่ง</p></div></div>
-  <div class="step-node"><div class="step-marker">5</div><div class="step-bubble"><h4>ตรวจเอกสารและหมายเรียก</h4><p>เรียกคู่กรณีนัดความ</p></div></div>
-  <div class="step-node"><div class="step-marker">6</div><div class="step-bubble"><h4>ไกล่เกลี่ย / พิจารณาคดี</h4></div></div>
-  <div class="step-node"><div class="step-marker">7</div><div class="step-bubble"><h4>ศาลออกคำพิพากษา</h4></div></div>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>รวบรวมหลักฐาน</h4>
+      <p>ใบเสร็จ, สัญญา, ข้อความการสื่อสาร, ภาพถ่ายสินค้า ฯลฯ</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>เขียนคำฟ้อง</h4>
+      <p>อาจมีการระบุข้อเรียกร้อง เช่น คืนเงิน, ชดเชยความเสียหาย ฯลฯ</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>ยื่นคำฟ้อง</h4>
+      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่านระบบ e-Filing</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>ชำระค่าธรรมเนียมศาล</h4>
+      <p>ตามอัตราค่าธรรมเนียมในคดีแพ่ง</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble">
+      <h4>ตรวจเอกสารและออกหมายเรียก</h4>
+      <p>คู่กรณีจะถูกเรียกมารับทราบคำฟ้อง</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">6</div>
+    <div class="step-bubble">
+      <h4>ไกล่เกลี่ย / พิจารณาคดี</h4>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">7</div>
+    <div class="step-bubble">
+      <h4>ศาลออกคำพิพากษา</h4>
+      <p>ชนะคดี : คู่กรณีต้องคืนเงินหรือชดเชย
+แพ้คดี : สามารถยื่นอุทธรณ์ได้</p>
+    </div>
+  </div>
 </div>
 
 <div id="proc-criminal" class="timeline-path" style="display:none">
-  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>ฟ้องตรงที่ศาล</h4><p>ผู้เสียหายยื่นคำฟ้อง</p></div></div>
-  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>ไต่สวนมูลฟ้อง</h4><p>ศาลพิจารณาว่าคดีมีมูลหรือไม่</p></div></div>
-  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ศาลรับฟ้อง</h4><p>ออกหมายเรียกจำเลย</p></div></div>
-  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>พิจารณาคดี</h4><p>สืบพยานหลักฐาน</p></div></div>
-  <div class="step-node"><div class="step-marker">5</div><div class="step-bubble"><h4>ศาลมีคำพิพากษา</h4><p>ตัดสินโทษหรือยกฟ้อง</p></div></div>
+  <h4 style="color:var(--muted); font-size:14px; margin: 10px 0;">กรณีเเจ้งความที่สถานีตำรวจ :</h4>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>แจ้งความที่สถานีตำรวจ</h4>
+      <p>รวบรวมหลักฐาน เช่น พยาน, รูปถ่าย, เอกสาร ฯลฯ</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>สอบสวนและส่งสำนวน</h4>
+      <p>- พนักงานสอบสวนจะส่งสำนวนให้พนักงานอัยการพิจารณา
+- หากเห็นควรสั่งฟ้อง จะยื่นฟ้องต่อศาล</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>ศาลออกหมายเรียกจำเลย</h4>
+      <p>นัดหมายจำเลยมารับทราบคำฟ้อง (จำเลยอาจรับสารภาพ / ปฏิเสธ)</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>ออกหมายเรียกจำเลยพิจารณาคดี</h4>
+      <p>หากจำเลยปฏิเสธ จะนัดสืบพยานโจทก์-จำเลย โดยศาลรับฟังพยานหลักฐานของคู่กรณีทั้งสองฝ่าย</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble">
+      <h4>ศาลพิพากษา</h4>
+      <p>จำคุก, ปรับ, หรือยกฟ้อง</p>
+    </div>
+  </div>
+  
+  <h4 style="color:var(--muted); font-size:14px; margin: 20px 0 10px 0;">กรณีฟ้องที่ศาลแขวงชลบุรี :</h4>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>จัดทำคำฟ้อง</h4>
+      <p>- ผู้เสียหาย / ทนาย จัดทำคำฟ้อง ระบุข้อเท็จจริง ข้อกฎหมาย และคำขอท้ายฟ้อง
+- แนบพยานหลักฐานที่เกี่ยวข้อง</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>ยื่นคำฟ้อง</h4>
+      <p>- ที่เเผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี)
+- ชำระค่าธรรมเนียม (ถ้ามี)</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>ศาลไต่สวนมูลฟ้อง</h4>
+      <p>- ศาลพิจารณาว่าคดีมีมูลพอที่จะรับไว้หรือไม่ ผู้ฟ้องต้องนำพยานเข้าไต่สวนเบื้องต้น
+- ศาลเห็นว่ามีมูล จะรับฟ้อง / ไม่มีมูล จะยกฟ้องตั้งเเต่ชั้นนี้</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>ออกหมายเรียกจำเลย</h4>
+      <p>นัดหมายจำเลยมารับทราบคำฟ้อง (จำเลยอาจรับสารภาพ / ปฏิเสธ)</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble">
+      <h4>พิจารณาคดี</h4>
+      <p>หากจำเลยปฏิเสธ จะนัดสืบพยานโจทก์-จำเลย โดยศาลรับฟังพยานหลักฐานของคู่กรณีทั้งสองฝ่าย</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">6</div>
+    <div class="step-bubble">
+      <h4>ศาลพิพากษา</h4>
+    </div>
+  </div>
 </div>
 
 <div id="proc-pre-mediate" class="timeline-path" style="display:none">
-  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>เตรียมเอกสาร</h4><p>สัญญา/หลักฐานข้อพิพาท</p></div></div>
-  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>ยื่นคำร้องไกล่เกลี่ย</h4><p>ที่ศูนย์ไกล่เกลี่ย หรือ CIOS</p></div></div>
-  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ประสานงานคู่กรณี</h4><p>สอบถามความสมัครใจ</p></div></div>
-  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>นัดดำเนินการไกล่เกลี่ย</h4><p>ตกลงเงื่อนไขข้อยุติ</p></div></div>
-  <div class="step-node"><div class="step-marker">5</div><div class="step-bubble"><h4>ทำสัญญายอมความ</h4><p>บันทึกผลการตกลง</p></div></div>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>เตรียมเอกสาร</h4>
+      <p>เอกสารเกี่ยวกับข้อพิพาท, สัญญา, หลักฐานต่างๆ</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>เขียนคำร้อง</h4>
+      <p>ระบุข้อพิพาท, ข้อเรียกร้อง ฯลฯ</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>ยื่นคำร้อง</h4>
+      <p>ที่ศาลเเขวง (ศูนย์ไกล่เกลี่ยข้อพิพาทประจำศาลเเขวงชลบุรี) หรือออนไลน์ผ่าน CIOS</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>พิจารณาคำร้อง</h4>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble">
+      <h4>ตรวจสอบคำร้อง พร้อมออกหลักฐานการรับ</h4>
+      <p>ส่งให้กับคู่กรณีอีกฝ่าย ผู้รับต้องตอบกลับภายใน 15 วัน นับตั้งเเต่ศาลมีคำสั่งระบฟ้ง</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">6</div>
+    <div class="step-bubble">
+      <h4>สอบถามความสมัครใจคู่กรณีอีกฝ่าย</h4>
+      <p>- กรณีสมัครใจเข้าร่วมไกล่เกลี่ย ศาลจะกำหนดวัน เวลานัด เเละ เสนอรายชื่อผู้ไกล่เกลี่ย พร้อมเเต่งตั้งผู้ใกล่เกลี่ย จากนั้นขอศาลพิพากษาตามข้อตกลง / สัญญายอมความ
+- กรณีไม่สมัครใจเข้าร่วมไกล่เกลี่ย ศาลจะจำหน่ายคำร้อง (ยุติการไกล่เกลี่ย) เเละเเจ้งให้ผู้ยื่นคำร้องทราบ (ผู้ยื่นคำร้องยังสามารถไปยื่นฟ้องคดีต่อได้)</p>
+    </div>
+  </div>
 </div>
 
 <div id="proc-civil-mediate" class="timeline-path" style="display:none">
-  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>แสดงความประสงค์</h4><p>ในวันนัดพิจารณาแรก</p></div></div>
-  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>จัดทำสำนวนไกล่เกลี่ย</h4><p>เจ้าหน้าที่รับเรื่อง</p></div></div>
-  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>เข้าสู่กระบวนการ</h4><p>มีผู้ประนีประนอมดูแล</p></div></div>
-  <div class="step-node"><div class="step-marker">4</div><div class="step-bubble"><h4>ผลการไกล่เกลี่ย</h4><p>ทำสัญญายอม/พิจารณาคดีต่อ</p></div></div>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>วันนัดไกล่เกลี่ย / สืบพยานนัดเเรก</h4>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>กรณีที่คู่ความประสงค์ไกล่เกลี่ย</h4>
+      <p>เเแจ้งหมายเลขคดี ที่ศูนย์ไกล่เกลี่ยข้อพิพาทประจำศาลเเขวงชลบุรี</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>เจ้าหน้าที่จัดทำสำนวนไกล่เกลี่ย</h4>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>ผู้พิพากษากำกับดูเเลการปฏิบัติงานศูนย์ไกล่เกลี่ยฯ</h4>
+      <p>เเต่งตั้งผู้ประนีประนอม เเละเชิญคู่ความเข้าห้องไกล่เกลี่ย</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble">
+      <h4>ผู้ประนีประนอมทำหน้าที่ไกล่เกลี่ย</h4>
+      <p>กรณีไกล่เกลี่ยสำเร็จ:
+- คู่ความทำสัญญาประนีประนอมยอมความ (2 ชุด) หรือคำร้องขอถอนฟ้อง 
+- พนักงานคดี / นิติกร ตรวจสอบสัญญาประนีประนอมยอมความ เเละอธิบายผลการทำสัญญาให้คู่ความทราบ
+- เสนอผู้พิพากษา พิพากษาตามยอม / มีคำสั่งถอนฟ้อง
+- เเเแจ้งคำสั่งศาล
+
+กรณีไกล่เกลี่ยไม่สำเร็จ:
+- ส่งสำนวนคืนระบบการพิจารณาคดีของศาล (สำนวนรอบเช้า ส่ง 10.00 น. / รอบบ่าย ส่ง 14.00 น.)</p>
+    </div>
+  </div>
 </div>
 
 <div id="proc-e-mediate" class="timeline-path" style="display:none">
-  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>ยื่นคำร้องออนไลน์</h4><p>ผ่านระบบ CIOS</p></div></div>
-  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>นัดหมายทางเทคนิค</h4><p>เตรียม Zoom/Google Meet</p></div></div>
-  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ไกล่เกลี่ยออนไลน์</h4><p>เจรจาผ่านวิดีโอคอล</p></div></div>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>เมื่อศาลเห็นสมควร หรือ คู่ความร้องขอ</h4>
+      <p>ที่ศาล หรือ ยื่นคำร้องในระบบ CIOS เพื่อขอไกล่เกลี่ยผ่านสื่ออิเล็กทรอนิกส์ หรือ ติดต่อกลุ่มงานไกล่เกลี่ยเเละประนีประนอมข้อพิพาท หมายเลขโทรศัพท์ 0-3828-7941 (ชลบุรี) หรือ 0-3801-5707 (ระยอง)</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>เจ้าหน้าที่จะประสานคู่ความ</h4>
+      <p>เพื่อเเแจ้งขั้นตอน เเละเตรียมช่องทางการไกล่เกลี่ย ช่องทางไกล่เกลี่ย เช่น Google Meet, Zoom, Microsoft Teams ฯลฯ</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>วันนัดดำเนินการไกล่เกลี่ย</h4>
+      <p>จะทำโดยผู้ประนีประนอมของศาลเเรงงานภาค 2</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>กรณีไกล่เกลี่ยสำเร็จ</h4>
+      <p>อาจดำเนินการตามขั้นตอนใดขั้นตอนหนึ่ง ดังนี้ 
+- นัดมาทำสัญญาประนีประนอมยอมความ / ถอนฟ้อง ที่ศาลในวันถัดไป
+- ศาลพิจารณาทางอิเล็กทรอนิกส์ เเละลงลายมือชื่ออิเล็กทรอนิกส์ ในสัญญาประนีประนอมยอมความ / ถอนฟ้อง</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble">
+      <h4>กรณีไกล่เกลี่ยไม่สำเร็จ</h4>
+      <p>ศาลพิจารณาทางอิเล็กทรอนิกส์ เพื่อกำหนดวันพิจารณาให้คู่ความ</p>
+    </div>
+  </div>
 </div>
 
 <div id="proc-filing" class="timeline-path" style="display:none">
-  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>ยื่นฟ้อง</h4><p>แผนกรับฟ้องหรือ e-Filing</p></div></div>
-  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>ตรวจเอกสาร</h4><p>ออกเลขคดีดำ</p></div></div>
-  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ศาลมีคำสั่ง</h4><p>รับฟ้อง/ไม่รับฟ้อง</p></div></div>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>คู่ความยื่นคำฟ้อง</h4>
+      <p>ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่าน e-Filing</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>เจ้าหน้าที่ตรวจคำฟ้อง</h4>
+      <p>เเละเอกสารเบื้องต้น ออกหมายเลขคดีดำ ลงสารบบข้อมูลคดี</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>เสนอให้ศาลพิจารณา</h4>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>ศาลสั่ง</h4>
+      <p>กรณีมีคำสั่งรับฟ้อง : ปลดหมาย ส่งหมายเรียก / หมายนัด (จะดำเนินการภายใน 1 วันทำการ นับตั้งเเต่ศาลมีคำสั่งรับฟ้ง)
+กรณีมีคำสั่งไม่รับฟ้อง : จะเเจ้งคำสั่งให้ผู้ยื่นฟ้องทราบ (ไม่เกิน 10 นาที)</p>
+    </div>
+  </div>
 </div>
 
 <div id="proc-copy" class="timeline-path" style="display:none">
-  <div class="step-node"><div class="step-marker">1</div><div class="step-bubble"><h4>ยื่นคำร้อง</h4><p>ระบุคดีที่ต้องการคัดถ่าย</p></div></div>
-  <div class="step-node"><div class="step-marker">2</div><div class="step-bubble"><h4>ตรวจสอบสำนวน</h4><p>เจ้าหน้าที่ค้นหาเอกสาร</p></div></div>
-  <div class="step-node"><div class="step-marker">3</div><div class="step-bubble"><h4>ชำระค่าธรรมเนียม</h4><p>ตามจำนวนแผ่นที่คัด</p></div></div>
+  <div class="step-node">
+    <div class="step-marker">1</div>
+    <div class="step-bubble">
+      <h4>คู่ความยื่นคำร้อง</h4>
+      <p>- ที่ศาลแขวงชลบุรี แผนกรับฟ้อง (กลุ่มงานบริหารจัดการคดี) หรือออนไลน์ผ่าน CIOS
+- พร้อมหลักฐานการขอรับบริการ (ใบคำร้อง + บัตรประชาชน)
+- กรณีที่ผู้ขอ ได้มอบฉันทะให้ผู้อื่นดำเนินการแทน ผู้รับมอบฉันทะจะต้องปฏิบัติดังนี้
+   แจ้งหมายเลขคดีเเก่เจ้าหน้าที่ศาล
+   นำหนังสือมอบอำนาจ แนบสำเนาบัตรประชาชนของผู้มอบฉันทะ (เซ็นรับรองสำเนาถูกต้อง)
+   บัตรประชาชน พร้อมสำเนาบัตรประชาชน ของผู้รับมอบฉันทะ นำมายื่นให้เจ้าหน้าที่ศาล</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">2</div>
+    <div class="step-bubble">
+      <h4>เจ้าหน้าที่ตรวจสอบเบื้องต้น</h4>
+      <p>ค้นหา / ติดตามสำนวนคดี ลงสารบบข้อมูล (ไม่เกิน 15 นาที)</p>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">3</div>
+    <div class="step-bubble">
+      <h4>เสนอศาลพิจารณา</h4>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">4</div>
+    <div class="step-bubble">
+      <h4>ศาลสั่ง</h4>
+    </div>
+  </div>
+  <div class="step-node">
+    <div class="step-marker">5</div>
+    <div class="step-bubble">
+      <h4>ปฏิบัติตามคำสั่งศาล / ส่งสำนวนให้งานอื่นที่เกี่ยวข้อง</h4>
+    </div>
+  </div>
 </div>
+
 </div>
 </section>
 
@@ -982,8 +1461,14 @@ COJ
 <div class="section-box">
 <h3>เลือกบริการ COJ</h3>
 <div class="service-grid">
-<div class="service-card" onclick="openLink('https://www.coj.go.th')"><div class="icon-pill"><span class="material-symbols-rounded">public</span></div>COJ (เว็บไซต์หลัก)</div>
-<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')"><div class="icon-pill"><span class="material-symbols-rounded">link</span></div>COJ Connect</div>
+<div class="service-card" onclick="openLink('https://www.coj.go.th')">
+<div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
+COJ (เว็บไซต์หลัก)
+</div>
+<div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
+<div class="icon-pill"><span class="material-symbols-rounded">link</span></div>
+COJ Connect
+</div>
 </div>
 </div>
 </section>
@@ -992,8 +1477,14 @@ COJ
 <div class="section-box">
 <h3>เลือกระบบ e-Filing</h3>
 <div class="service-grid">
-<div class="service-card" onclick="openLink('https://efiling3.coj.go.th')"><div class="icon-pill"><span class="material-symbols-rounded">gavel</span></div>e-Filing v.3</div>
-<div class="service-card" onclick="openLink('https://efiling4.coj.go.th')"><div class="icon-pill"><span class="material-symbols-rounded">rocket_launch</span></div>e-Filing v.4</div>
+<div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
+<div class="icon-pill"><span class="material-symbols-rounded">gavel</span></div>
+e-Filing v.3
+</div>
+<div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
+<div class="icon-pill"><span class="material-symbols-rounded">rocket_launch</span></div>
+e-Filing v.4
+</div>
 </div>
 </div>
 </section>
@@ -1001,54 +1492,91 @@ COJ
 <section id="fee">
 <div class="section-box">
 <h3>อัตราค่าธรรมเนียม (ค่าขึ้นศาล)</h3>
+
 <div id="feeAccordion">
-  <div class="accordion-item" onclick="this.classList.toggle('active')"><div class="accordion-header">คดีมโนสาเร่ (ทุนทรัพย์ไม่เกิน 3 แสน) <span class="material-symbols-rounded">expand_more</span></div><div class="accordion-content">2% ไม่เกิน 1,000 บาท</div></div>
-  <div class="accordion-item" onclick="this.classList.toggle('active')"><div class="accordion-header">คดีแพ่งทั่วไป (ทุนทรัพย์ไม่เกิน 50 ล้าน) <span class="material-symbols-rounded">expand_more</span></div><div class="accordion-content">2% ไม่เกิน 200,000 บาท</div></div>
-  <div class="accordion-item" onclick="this.classList.toggle('active')"><div class="accordion-header">คดีไม่มีทุนทรัพย์ <span class="material-symbols-rounded">expand_more</span></div><div class="accordion-content">200 บาท ต่อคดี</div></div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">คดีมโนสาเร่ (ทุนทรัพย์ไม่เกิน 3 แสนบาท) <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">2% ของจำนวนเงินที่เรียกร้อง แต่ “ไม่เกิน 1,000 บาท” ต่อคดี</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">คดีแพ่งทั่วไป (ทุนทรัพย์ไม่เกิน 50 ล้านบาท) <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">2% ของจำนวนทุนทรัพย์ที่เรียกร้อง แต่สูงสุดไม่เกิน 200,000 บาท</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">คดีแพ่งทั่วไป (ทุนทรัพย์เกิน 50 ล้านบาทขึ้นไป) <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">ส่วน 50 ล้านแรก คิดไม่เกิน 200,000 บาท และส่วนที่เกิน 50 ล้านบาท จะคิดเพิ่ม 0.1% ของจำนวนทุนทรัพย์ส่วนที่เกินนั้น</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">คดีไม่มีทุนทรัพย์ <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">อัตราค่าขึ้นศาล 200 บาท ต่อคดี (เช่น ฟ้องให้ศาลเพิกถอนโอนที่ดิน, ขอให้ศาลออกคำสั่งเฉพาะ)</div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">คดีที่มีทั้งทุนทรัพย์และไม่มีทุนทรัพย์ผสม <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">คิดตามเกณฑ์ทุนทรัพย์ (2% ของจำนวนเงิน) โดยผลรวมที่จ่ายต้องไม่ต่ำกว่า 200 บาท</div>
+  </div>
 </div>
+
 <div class="calc-box">
   <div style="font-weight: 800; margin-bottom: 12px; font-size: 14px; color: var(--primary);">คำนวณค่าธรรมเนียม</div>
   <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์ (บาท)">
   <button onclick="calcFee()">คำนวณ</button>
   <div class="calc-result" id="feeResult">ค่าธรรมเนียมที่ต้องชำระ: - บาท</div>
 </div>
-<div class="fee-note">หมายเหตุ: ศาลแขวงชลบุรี รับคดีทุนทรัพย์ไม่เกิน 300,000 บาท</div>
+
+<div class="fee-note">
+  <strong>หมายเหตุ:</strong> ศาลแขวงชลบุรี รับพิจารณาเฉพาะคดีที่มีทุนทรัพย์ไม่เกิน 300,000 บาท ทั้งนี้ อาจมีค่าใช้จ่ายอื่นๆ เพิ่มเติมขึ้นอยู่กับประเภทคดีและขั้นตอนของศาล
+</div>
+
 </div>
 </section>
 
 <section id="download">
 <div class="section-box">
 <h3>ดาวน์โหลดแบบฟอร์ม</h3>
-<div class="preview-list" id="formList"></div>
+<div class="preview-list" id="formList">
+  </div>
 </div>
 </section>
 
 <section id="knowledge">
 <div class="section-box">
 <h3>คลังความรู้</h3>
+
 <div id="kn-main-menu" class="knowledge-grid">
   <div class="kn-menu-card" onclick="openKnPoster()">
-    <div class="kn-btn-box" style="background: var(--primary); color: #fff;"><span class="material-symbols-rounded">account_balance</span></div>
-    <div class="kn-label">บทความน่ารู้</div>
+    <div class="kn-btn-box" style="background: var(--primary); color: #fff; box-shadow: var(--shadow-soft);">
+      <span class="material-symbols-rounded">account_balance</span>
+    </div>
+    <div class="kn-label">คลังความรู้</div>
   </div>
   <div class="kn-menu-card" onclick="openKnVocab()">
-    <div class="kn-btn-box" style="background: #fff; border: 1px solid #eee; color: var(--primary);"><span class="material-symbols-rounded">menu_book</span></div>
-    <div class="kn-label">คำศัพท์กฎหมาย</div>
+    <div class="kn-btn-box" style="background: #fff; border: 1px solid #eee; color: var(--primary); box-shadow: var(--shadow-md);">
+      <span class="material-symbols-rounded">menu_book</span>
+    </div>
+    <div class="kn-label">คำศัพท์ทางกฎหมาย</div>
   </div>
 </div>
+
 <div id="kn-poster-sub" style="display:none; margin-top:20px;">
   <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;" onclick="backToKnMain()">
-    <span class="material-symbols-rounded" style="cursor:pointer; color:var(--primary);">arrow_back</span><h3 style="margin:0;">บทความ & โปสเตอร์</h3>
+    <span class="material-symbols-rounded" style="cursor:pointer; color:var(--primary);">arrow_back</span>
+    <h3 style="margin:0;">บทความ & โปสเตอร์</h3>
   </div>
-  <div class="poster-grid-container" id="posterList"></div>
+  <div class="poster-grid-container" id="posterList">
+    </div>
 </div>
+
 <div id="kn-vocab-sub" style="display:none; margin-top:20px;">
   <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;" onclick="backToKnMain()">
-    <span class="material-symbols-rounded" style="cursor:pointer; color:var(--primary);">arrow_back</span><h3 style="margin:0;">คำศัพท์กฎหมาย</h3>
+    <span class="material-symbols-rounded" style="cursor:pointer; color:var(--primary);">arrow_back</span>
+    <h3 style="margin:0;">คำศัพท์ทางกฎหมาย</h3>
   </div>
-  <div class="alphabet-scroller" id="alphaFilter"></div>
+  <div class="alphabet-scroller" id="alphaFilter">
+    <div class="alpha-btn active" onclick="filterVocab('ทั้งหมด', this)">All</div>
+  </div>
   <div class="vocab-container" id="vocabList"></div>
 </div>
+
 </div>
 </section>
 
@@ -1065,24 +1593,108 @@ COJ
 <section id="contact">
 <div class="section-box">
   <h3>ติดต่อเรา</h3>
+  
   <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.253683838383!2d100.9785!3d13.3615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3102ca147c23a743%3A0x6b78d2b78114f484!2z4Lio4Liy4Lil4LmB4LiC4Lin4LiH4LiK4Lil4Lia4Li44Lij4Li1!5e0!3m2!1sth!2sth!4v1710000000000!5m2!1sth!2sth" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3882.253683838383!2d100.9785!3d13.3615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3102ca147c23a743%3A0x6b78d2b78114f484!2z4Lio4Liy4Lil4LmB4LiC4Lin4LiH4LiK4Lil4Lia4Li44Lij4Li1!5e0!3m2!1sth!2sth!4v1710000000000!5m2!1sth!2sth" 
+      width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
   </div>
+
   <div class="contact-item-modern">
     <div class="contact-icon-box"><span class="material-symbols-rounded">location_on</span></div>
-    <div class="contact-info-text"><div class="contact-label">ที่ตั้ง</div><div class="contact-value">ถนนพระยาสัจจา ต.บางปลาสร้อย อ.เมือง จ.ชลบุรี</div></div>
+    <div class="contact-info-text">
+      <div class="contact-label">ที่ตั้ง</div>
+      <div class="contact-value">
+        อาคารศาลแขวงชลบุรี, ถนนพระยาสัจจา, ตำบลบางปลาสร้อย อำเภอเมือง จังหวัดชลบุรี, 20000
+      </div>
+    </div>
   </div>
+
   <div class="contact-item-modern">
     <div class="contact-icon-box"><span class="material-symbols-rounded">call</span></div>
-    <div class="contact-info-text"><div class="contact-label">โทรศัพท์</div><div class="contact-value">038-261518</div></div>
+    <div class="contact-info-text">
+      <div class="contact-label">โทรศัพท์ & โทรสาร</div>
+      <div class="contact-value">
+        <strong>โทรศัพท์</strong><br>
+        038-261518<br>
+        038-288359<br>
+        038-274184<br>
+        038-275960<br>
+        038287661-4<br><br>
+        <strong>โทรสาร</strong><br>
+        038-287011
+      </div>
+    </div>
   </div>
-  <h3 style="margin-top:24px; font-size:16px;">เบอร์โทรภายใน</h3>
-  <div class="accordion-item" onclick="this.classList.toggle('active')"><div class="accordion-header">กลุ่มงานบริการประชาชนฯ <span class="ext-num">135, 130</span></div></div>
-  <div class="accordion-item" onclick="this.classList.toggle('active')"><div class="accordion-header">กลุ่มงานบริหารจัดการคดี <span class="ext-num">151, 156</span></div></div>
+
+  <div class="contact-item-modern">
+    <div class="contact-icon-box"><span class="material-symbols-rounded">mail</span></div>
+    <div class="contact-info-text">
+      <div class="contact-label">อีเมล</div>
+      <div class="contact-value">cnbmc@coj.go.th</div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px; font-size:16px;">กลุ่มงานเเละเบอร์ภายใน</h3>
+  
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">กลุ่มงานบริการประชาชนฯ <span class="ext-num">135, 130</span></div>
+  </div>
+
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">กลุ่มงานบริหารจัดการคดี <span class="material-symbols-rounded">expand_more</span></div>
+    <div class="accordion-content">
+      <div class="internal-phone-list">
+        <div class="phone-row"><span class="dept-name">สายตรงกลุ่มงาน</span> <span class="ext-num">151</span></div>
+        <div class="phone-row"><span class="dept-name">งานรับฟ้อง, E-Filing</span> <span class="ext-num">156, 159</span></div>
+        <div class="phone-row"><span class="dept-name">งานหมาย</span> <span class="ext-num">157</span></div>
+        <div class="phone-row"><span class="dept-name">งานอุทธรณ์ ฎีกา</span> <span class="ext-num">152</span></div>
+        <div class="phone-row"><span class="dept-name">งานห้องเก็บสำนวน</span> <span class="ext-num">162</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">กลุ่มงานไกล่เกลี่ยฯ <span class="ext-num">301, 302</span></div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">กลุ่มงานเจ้าพนักงานคดี <span class="ext-num">310, 303</span></div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">กลุ่มงานช่วยพิจารณาคดี <span class="ext-num">333, 331</span></div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">กลุ่มงานคลัง <span class="ext-num">120, 123</span></div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">กลุ่มงานช่วยอำนวยการ <span class="ext-num">111, 105</span></div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">กลุ่มงานตำรวจศาล <span class="ext-num">110</span></div>
+  </div>
+  <div class="accordion-item" onclick="this.classList.toggle('active')">
+    <div class="accordion-header">กลุ่มงานเทคโนโลยีฯ <span class="ext-num">109</span></div>
+  </div>
+
+</div>
+</section>
+
+<section id="blank">
+<div class="section-box">
+<h3>อยู่ระหว่างพัฒนา</h3>
 </div>
 </section>
 
 </main>
+
+<div id="zoomModal" onclick="closeZoom()">
+  <div class="zoom-container" onclick="event.stopPropagation()">
+    <div class="zoom-close" onclick="closeZoom()"><span class="material-symbols-rounded">close</span></div>
+    <img id="zoomImg" src="">
+    <a id="zoomAction" href="#" class="zoom-btn-action" target="_blank">คลิกเพื่อดูข้อมูลเพิ่มเติม</a>
+  </div>
+</div>
 
 <div class="bottom-sheet" id="sheet">
 <div class="sheet-header">
@@ -1090,18 +1702,25 @@ COJ
 <div class="sheet-back" onclick="closeSheet()"><span class="material-symbols-rounded">arrow_back</span></div>
 </div>
 <div class="sheet-content">
-<h2 id="sheetTitle">หัวข้อ</h2>
-<p id="sheetText">เนื้อหา...</p>
+<h2 id="sheetTitle">หัวข้อเนื้อหา</h2>
+<p id="sheetText">พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...</p>
 </div>
 </div>
 
 <div class="bottom-sheet" id="previewSheet">
   <div class="sheet-back" style="top:20px; left:20px;" onclick="closePreview()"><span class="material-symbols-rounded">close</span></div>
   <div class="sheet-content">
-    <h3 id="previewTitle" style="margin-top:40px; text-align:center;"></h3>
+    <h3 id="previewTitle" style="margin-top:40px; text-align:center;">ชื่อเอกสาร</h3>
     <div class="preview-sheet-body">
-      <div class="doc-placeholder" id="previewContainer"></div>
-      <button class="download-action-btn" id="confirmDownloadBtn"><span class="material-symbols-rounded">download</span>ดาวน์โหลด</button>
+      <div class="doc-placeholder" id="previewContainer">
+        <span class="material-symbols-rounded" style="font-size: 64px; margin-bottom: 10px;">description</span>
+        <p>กำลังเตรียมตัวอย่างเอกสาร...</p>
+        <p style="font-size: 12px;">(ตัวอย่างจะแสดงที่นี่)</p>
+      </div>
+      <button class="download-action-btn" id="confirmDownloadBtn">
+        <span class="material-symbols-rounded">download</span>
+        ดาวน์โหลดเอกสารลงเครื่อง
+      </button>
     </div>
   </div>
 </div>
@@ -1112,12 +1731,14 @@ COJ
     <div class="close-gallery" onclick="closeHeroGallery()"><span class="material-symbols-rounded">close</span></div>
   </div>
   <div class="gallery-container" id="galleryContainer" onscroll="updateDots()">
-    <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/e1.png"></div>
-    <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/e2.png"></div>
-    <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/e3.png"></div>
+    <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/e1.png" onclick="toggleZoom(this)"></div>
+    <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/e2.png" onclick="toggleZoom(this)"></div>
+    <div class="gallery-slide"><img src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/e3.png" onclick="toggleZoom(this)"></div>
   </div>
   <div class="gallery-dots" id="galleryDots">
-    <div class="g-dot active"></div><div class="g-dot"></div><div class="g-dot"></div>
+    <div class="g-dot active"></div>
+    <div class="g-dot"></div>
+    <div class="g-dot"></div>
   </div>
 </div>
 
@@ -1130,141 +1751,329 @@ COJ
 </nav>
 
 <script>
+// ข้อมูลคำศัพท์ทางกฎหมาย
 const lawVocabData = [
-  { word: "คดีแพ่ง", desc: "ข้อพิพาทสิทธิหน้าที่เอกชน", cat: "ประเภทคดี", icon: "balance" },
-  { word: "คดีอาญา", desc: "คดีเกี่ยวกับการลงโทษความผิด", cat: "ประเภทคดี", icon: "gavel" }
+  { word: "คดีแพ่ง", desc: "คดีที่เกิดจากข้อพิพาทระหว่างเอกชนเกี่ยวกับสิทธิหรือหน้าที่ตามกฎหมาย เช่น สัญญา หนี้ หรือทรัพย์สิน", cat: "ประเภทคดี", icon: "balance" },
+  { word: "คดีอาญา", desc: "คดีที่เกี่ยวกับการกระทำที่กฎหมายกำหนดว่าเป็นความผิด และมีโทษทางอาญา เช่น จำคุก ปรับ หรือทั้งจำทั้งปรับ", cat: "ประเภทคดี", icon: "gavel" },
+  { word: "คดีมโนสาเร่", desc: "คดีแพ่งที่มีทุนทรัพย์ไม่เกินจำนวนที่กฎหมายกำหนด ศาลใช้วิธีพิจารณาแบบรวดเร็วและเรียบง่าย", cat: "ประเภทคดี", icon: "speed" },
+  { word: "คดีพินัย", desc: "การกระทำความผิดเล็กน้อยตามกฎหมาย กฎหมายกำหนดให้ลงโทษเป็น ค่าปรับทางพินัย แทนโทษอาญา เพื่อความรวดเร็ว", cat: "ประเภทคดี", icon: "fact_check" },
+  { word: "คู่ความ", desc: "บุคคลที่มีฐานะเป็นฝ่ายในคดี เช่น โจทก์ จำเลย หรือผู้ร้องและผู้คัดค้าน", cat: "บุคคลในศาล", icon: "groups" },
+  { word: "หมายเรียก", desc: "เอกสารทางราชการที่ศาลหรือพนักงานสอบสวนออกให้บุคคลมาพบหรือมาศาล หากไม่มาอาจมีผลทางกฎหมาย ⚖️", cat: "เอกสารศาล", icon: "mail" },
+  { word: "อำนาจฟ้อง", desc: "สิทธิของบุคคลที่จะยื่นฟ้องคดีต่อศาลได้ตามกฎหมาย", cat: "สิทธิทางกฎหมาย", icon: "verified_user" },
+  { word: "ขอบเขตอำนาจศาล", desc: "ขอบเขตอำนาจของศาลในการรับพิจารณาคดีตามประเภทคดีหรือพื้นที่", cat: "ความรู้ทั่วไป", icon: "map" },
+  { word: "คำร้อง", desc: "หนังสือที่ยื่นต่อศาลเพื่อขอให้ศาลมีคำสั่งในเรื่องใดเรื่องหนึ่ง", cat: "เอกสารศาล", icon: "description" },
+  { word: "คำแถลง", desc: "การชี้แจงข้อเท็จจริงหรือข้อกฎหมายต่อศาลระหว่างการพิจารณาคดี", cat: "เอกสารศาล", icon: "record_voice_over" },
+  { word: "พยานวัตถุ", desc: "สิ่งของหรือวัตถุที่ใช้เป็นหลักฐานประกอบการพิจารณาคดี", cat: "พยานหลักฐาน", icon: "category" },
+  { word: "บัญชีพยาน", desc: "เอกสารที่คู่ความยื่นต่อศาลเพื่อแสดงรายชื่อพยานบุคคลหรือหลักฐานที่จะใช้พิสูจน์ข้อเท็จจริง", cat: "พยานหลักฐาน", icon: "list_alt" },
+  { word: "การไต่สวนมูลฟ้อง", desc: "ขั้นตอนที่ศาลพิจารณาเบื้องต้นว่าคดีอาญาที่เอกชนยื่นฟ้องมีมูลเพียงพอให้รับไว้หรือไม่", cat: "กระบวนการศาล", icon: "search" },
+  { word: "คำพิพากษาถึงที่สุด", desc: "คำพิพากษาที่ไม่สามารถอุทธรณ์หรือฎีกาได้อีก และมีผลผูกพันตามกฎหมาย", cat: "คำสั่งศาล", icon: "assignment_turned_in" },
+  { word: "คำพิพากษาตามยอม", desc: "คำพิพากษาที่ศาลมีตามข้อตกลงของคู่ความ เมื่อทั้งสองฝ่ายตกลงยอมความกัน", cat: "คำสั่งศาล", icon: "handshake" },
+  { word: "การประนีประนอมยอมความ", desc: "การที่คู่ความตกลงยุติข้อพิพาทกันโดยสมัครใจ เพื่อไม่ให้คดีดำเนินต่อ", cat: "กระบวนการศาล", icon: "volunteer_activism" },
+  { word: "การบังคับตามคำพิพากษา", desc: "ขั้นตอนที่ใช้ดำเนินการให้เป็นไปตามคำพิพากษา เช่น การยึดหรืออายัดทรัพย์", cat: "การบังคับคดี", icon: "gavel" },
+  { word: "การบังคับคดี", desc: "กระบวนการตามกฎหมายเพื่อให้เป็นไปตามคำพิพากษา เช่น การยึด อายัด หรือขายทอดตลาดทรัพย์", cat: "การบังคับคดี", icon: "account_balance_wallet" },
+  { word: "การยื่นอุทธรณ์", desc: "การยื่นคำร้องต่อศาลชั้นอุทธรณ์ เพื่อขอให้พิจารณาทบทวนคำพิพากษาหรือคำสั่งของศาลชั้นต้น", cat: "การโต้แย้งคำสั่ง", icon: "history_edu" },
+  { word: "การยื่นฎีกา", desc: "การขอให้ศาลฎีกาตรวจสอบคำพิพากษาของศาลอุทธรณ์ โดยมักพิจารณาในประเด็นข้อกฎหมาย", cat: "การโต้แย้งคำสั่ง", icon: "policy" }
 ];
 
+// ฟังก์ชันสำหรับ Zoom Modal (NEW)
+function openZoom(imgUrl, actionUrl = null) {
+  const modal = document.getElementById('zoomModal');
+  const img = document.getElementById('zoomImg');
+  const btn = document.getElementById('zoomAction');
+  
+  img.src = imgUrl;
+  if(actionUrl) {
+    btn.href = actionUrl;
+    btn.style.display = 'block';
+  } else {
+    btn.style.display = 'none';
+  }
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeZoom() {
+  document.getElementById('zoomModal').classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// ฟังก์ชันสำหรับ Hero Gallery
+function openHeroGallery() {
+  document.getElementById('heroGallery').style.display = 'flex';
+  document.body.style.overflow = 'hidden'; // กันเลื่อนหน้าหลัก
+}
+
+function closeHeroGallery() {
+  document.getElementById('heroGallery').style.display = 'none';
+  document.body.style.overflow = 'auto';
+  resetAllZoom();
+}
+
+function updateDots() {
+  const container = document.getElementById('galleryContainer');
+  const scrollPosition = container.scrollLeft;
+  const width = container.offsetWidth;
+  const index = Math.round(scrollPosition / width);
+  
+  const dots = document.querySelectorAll('.g-dot');
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
+function toggleZoom(img) {
+  if (img.style.transform === 'scale(2)') {
+    img.style.transform = 'scale(1)';
+    img.style.zIndex = '1';
+  } else {
+    resetAllZoom();
+    img.style.transform = 'scale(2)';
+    img.style.zIndex = '100';
+  }
+}
+
+function resetAllZoom() {
+  const imgs = document.querySelectorAll('.gallery-slide img');
+  imgs.forEach(img => img.style.transform = 'scale(1)');
+}
+
+// ฟังก์ชันสำหรับเมนูคลังความรู้ใหม่
+function openKnPoster() {
+  document.getElementById('kn-main-menu').style.display = 'none';
+  document.getElementById('kn-poster-sub').style.display = 'block';
+  renderPosterList();
+}
+
+function openKnVocab() {
+  document.getElementById('kn-main-menu').style.display = 'none';
+  document.getElementById('kn-vocab-sub').style.display = 'block';
+  initVocabList();
+}
+
+function backToKnMain() {
+  document.getElementById('kn-main-menu').style.display = 'grid';
+  document.getElementById('kn-poster-sub').style.display = 'none';
+  document.getElementById('kn-vocab-sub').style.display = 'none';
+}
+
+function renderPosterList() {
+  const list = document.getElementById("posterList");
+  list.innerHTML = "";
+  // สร้างตัวอย่างโปสเตอร์ 10 ใบ (1080x1350)
+  for (let i = 1; i <= 10; i++) {
+    const item = document.createElement("div");
+    item.className = "poster-item";
+    const imgUrl = `https://via.placeholder.com/1080x1350?text=Poster+${i}`;
+    item.onclick = () => openSheet(imgUrl);
+    item.innerHTML = `<img src="${imgUrl}">`;
+    list.appendChild(item);
+  }
+}
+
+function initVocabList() {
+  const list = document.getElementById("vocabList");
+  const alphaBox = document.getElementById("alphaFilter");
+  const letters = [...new Set(lawVocabData.map(item => item.word.charAt(0)))].sort();
+  alphaBox.innerHTML = '<div class="alpha-btn active" onclick="filterVocab(\'ทั้งหมด\', this)">All</div>';
+  letters.forEach(l => {
+    alphaBox.innerHTML += `<div class="alpha-btn" onclick="filterVocab('${l}', this)">${l}</div>`;
+  });
+  renderVocabCards(lawVocabData);
+}
+
+function renderVocabCards(data) {
+  const list = document.getElementById("vocabList");
+  list.innerHTML = "";
+  data.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "vocab-card";
+    card.innerHTML = `
+      <div class="vocab-header">
+        <div class="vocab-icon"><span class="material-symbols-rounded">${item.icon}</span></div>
+        <div class="vocab-word">${item.word}</div>
+      </div>
+      <p class="vocab-desc">${item.desc}</p>
+      <div class="vocab-tag">
+        <span class="material-symbols-rounded" style="font-size:14px;">label</span>
+        ${item.cat}
+      </div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+function filterVocab(char, btn) {
+  document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if(char === 'ทั้งหมด') {
+    renderVocabCards(lawVocabData);
+  } else {
+    const filtered = lawVocabData.filter(item => item.word.startsWith(char));
+    renderVocabCards(filtered);
+  }
+}
+
+// ข้อมูลเอกสาร 12 รายการ
 const documentData = [
   { name: "คำร้อง / คำเเถลง / คำขอ", link: "https://drive.google.com/file/d/1tiaOA8N6BSLgHDV8VNmH6RQPMJQOY7nc/view?usp=drivesdk" },
-  { name: "คำร้องขอปล่อยตัวชั่วคราว", link: "https://drive.google.com/file/d/1YTdA6lUntUd6_HEDm9n9GCo2SVsnuEgn/view?usp=drivesdk" }
+  { name: "คำร้องขอปล่อยตัวชั่วคราว", link: "https://drive.google.com/file/d/1YTdA6lUntUd6_HEDm9n9GCo2SVsnuEgn/view?usp=drivesdk" },
+  { name: "เเแบบพิมพ์ขอให้ศาลมีคำสั่งพิพากษาตามยอม คร.7", link: "https://drive.google.com/file/d/1tmUBWuT1D6D11Qn-5V2hd6T-4uX_QHcp/view?usp=drivesdk" },
+  { name: "บันทึกข้อตกลง/สัญญาประนีประนอมยอมความ", link: "https://drive.google.com/file/d/1PlSHEy062Lauj2JQx58EwhxhiGVvgmFP/view?usp=drivesdk" },
+  { name: "หนังสือมอบอำนาจ (ก่อนฟ้อง)", link: "https://cnbmc.coj.go.th/th/file/get/file/2021012777e4333adc5c096a3decf995a96f593d120351.doc" },
+  { name: "เเแบบพิมพ์คำร้องขอไกล่เกลี่ยก่อนฟ้อง ตาม ป.วิ.พ. ม.20 ตรี", link: "https://cnbmc.coj.go.th/th/file/get/file/202101126405c8afd603f2f52b4f0ea5f235b798155029.doc" },
+  { name: "หนังสือมอบอำนาจ (คดีอาญา)", link: "https://cnbmc.coj.go.th/th/file/get/file/20210114bb839ae714dca9116ba34854bdcd0db7114310.docx" },
+  { name: "เเแบบคำร้องขอไกล่เกลี่ยข้อพิพาทก่อนฟ้อง (ตาม พ.ร.บ.ไกล่เกลี่ยฯ)", link: "https://cnbmc.coj.go.th/th/file/get/file/202101123bcb0d51e9e66f3eec9d2456831910e0154946.docx" },
+  { name: "ใบเเแจ้งความประสงค์ในการขอรับเงินด้วยวิธีการโอน", link: "https://drive.google.com/file/d/1u5wogyi8bV21BjqtsWnaF4a3usorMagF/view?usp=drivesdk" },
+  { name: "แบบฟอร์มสัญญาประกัน", link: "https://drive.google.com/file/d/1kT6yU0GGOcE2Jvr5WAO4Ck81oZUJSviQ/view?usp=drivesdk" },
+  { name: "แบบฟอร์มคำร้องการยื่นขอปล่อยชั่วคราวผ่านระบบ CIOS", link: "https://drive.google.com/file/d/1NAmjaunVpp1xzfpEVK5QP5YKiO5MiIgn/view?usp=drivesdk" },
+  { name: "หนังสือมอบอำนาจ คดีทำยอม", link: "https://drive.google.com/file/d/1x2q9MA9KA5TIaNBMjxLBa_9XaifhIq2V/view?usp=drivesdk" }
 ];
 
-function navigate(id,btn){
-  history.pushState({page:id},"","#"+id);
-  showPage(id,btn);
-  if(id === 'knowledge') backToKnMain();
+function initDownloadList() {
+  const list = document.getElementById("formList");
+  list.innerHTML = "";
+  documentData.forEach(doc => {
+    const card = document.createElement("div");
+    card.className = "preview-card";
+    card.onclick = () => openPreview(doc.name, doc.link);
+    const isDoc = doc.link.includes('.doc');
+    const typeLabel = isDoc ? "DOC / DOCX" : "PDF / LINK";
+    card.innerHTML = `
+      <div class="file-icon-box">
+        <span class="material-symbols-rounded">${isDoc ? 'description' : 'picture_as_pdf'}</span>
+      </div>
+      <div class="file-info">
+        <div class="file-name">${doc.name}</div>
+        <div class="file-meta">เอกสารศาลแขวงชลบุรี • ${typeLabel}</div>
+      </div>
+      <span class="material-symbols-rounded preview-btn-minimal">visibility</span>
+    `;
+    list.appendChild(card);
+  });
 }
+
+window.onload = () => {
+  initDownloadList();
+};
+
+function navigate(id,btn){
+history.pushState({page:id},"","#"+id);
+showPage(id,btn);
+// รีเซ็ตหน้าย่อยคลังความรู้เมื่อมีการเปลี่ยนหน้า
+if(id === 'knowledge') backToKnMain();
+}
+
+window.onpopstate=e=>{
+if(e.state) showPage(e.state.page);
+};
 
 function showPage(id,btn){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  const target = document.getElementById(id);
-  if(target) target.classList.add("active");
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+const targetPage = document.getElementById(id);
+if(targetPage) targetPage.classList.add("active");
+
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+if(btn) btn.classList.add("active");
 }
 
-function openLink(url){ window.open(url,"_blank"); }
+function openLink(url){
+window.open(url,"_blank");
+}
 
 function toggleSearch(){
-  const b=document.getElementById("searchBox");
-  b.style.display=b.style.display==="block"?"none":"block";
+const b=document.getElementById("searchBox");
+b.style.display=b.style.display==="block"?"none":"block";
 }
 
 function doSearch(e){
-  if(e.key==="Enter"){
-    const q=e.target.value;
-    if(q.includes("e")) navigate("efiling");
-    else if(q.includes("ค่")) navigate("fee");
-    else navigate("home");
-  }
+if(e.key==="Enter"){
+const q=e.target.value;
+if(q.includes("e")) navigate("efiling");
+else if(q.includes("ค่")) navigate("fee");
+else if(q.includes("ดาว")) navigate("download");
+else if(q.includes("ขั้น")) navigate("step-process");
+else navigate("blank");
 }
-
-function calcFee(){
-  const m = parseFloat(document.getElementById("money").value);
-  const res = document.getElementById("feeResult");
-  if(!m) return;
-  let f = m * 0.02;
-  if(m <= 300000 && f > 1000) f = 1000;
-  res.innerHTML = "ค่าธรรมเนียม: " + f.toLocaleString() + " บาท";
-}
-
-/* POSTER ACTIONS */
-function openSheet(img, title, text){
-  document.getElementById("sheetImg").src=img;
-  document.getElementById("sheetTitle").innerText=title;
-  document.getElementById("sheetText").innerText=text;
-  const oldBtn = document.getElementById("extraLinkBtn");
-  if(oldBtn) oldBtn.remove();
-  document.getElementById("sheet").classList.add("active");
-}
-
-function openSheetWithLink(img, title, text, link){
-  openSheet(img, title, text);
-  const content = document.querySelector(".sheet-content");
-  const btn = document.createElement("button");
-  btn.id = "extraLinkBtn";
-  btn.className = "download-action-btn";
-  btn.style.marginTop = "20px";
-  btn.innerHTML = `<span class="material-symbols-rounded">open_in_new</span> คลิกเพื่อดูข้อมูลเพิ่มเติม`;
-  btn.onclick = () => window.open(link, "_blank");
-  content.appendChild(btn);
-}
-
-function openPreviewWithFooter(name, url, footer) {
-  document.getElementById("previewTitle").innerText = name;
-  const container = document.getElementById("previewContainer");
-  const fileId = url.split('/d/')[1].split('/')[0];
-  const thumb = `https://drive.google.com/thumbnail?id=${fileId}&sz=s1000`;
-  container.innerHTML = `
-    <img src="${thumb}" class="preview-img-box">
-    <p style="padding:12px; font-size:12px; color:#666; background:#f5f5f5; border-radius:10px; margin-top:10px; white-space:pre-wrap;">${footer}</p>
-  `;
-  document.getElementById("previewSheet").classList.add("active");
-  document.getElementById("confirmDownloadBtn").onclick = () => window.open(url, "_blank");
-}
-
-function closeSheet(){ document.getElementById("sheet").classList.remove("active"); }
-function closePreview(){ document.getElementById("previewSheet").classList.remove("active"); }
-
-/* GALLERY */
-function openHeroGallery(){ document.getElementById('heroGallery').style.display='flex'; }
-function closeHeroGallery(){ document.getElementById('heroGallery').style.display='none'; }
-function updateDots(){
-  const c = document.getElementById('galleryContainer');
-  const i = Math.round(c.scrollLeft / c.offsetWidth);
-  document.querySelectorAll('.g-dot').forEach((d,idx)=>d.classList.toggle('active', idx===i));
-}
-
-/* KNOWLEDGE SUB-MENU */
-function openKnPoster(){
-  document.getElementById('kn-main-menu').style.display='none';
-  document.getElementById('kn-poster-sub').style.display='block';
-  const list = document.getElementById("posterList");
-  list.innerHTML = "";
-  for(let i=1; i<=6; i++){
-    list.innerHTML += `<div class="poster-card" onclick="openSheet('https://via.placeholder.com/1080x1350', 'บทความที่ ${i}', 'รายละเอียด...')"><div class="poster-image"><img src="https://via.placeholder.com/1080x1350"></div></div>`;
-  }
-}
-function openKnVocab(){
-  document.getElementById('kn-main-menu').style.display='none';
-  document.getElementById('kn-vocab-sub').style.display='block';
-  const v = document.getElementById("vocabList");
-  v.innerHTML = "";
-  lawVocabData.forEach(i=>{
-    v.innerHTML += `<div class="vocab-card"><div class="vocab-header"><div class="vocab-icon"><span class="material-symbols-rounded">${i.icon}</span></div><div class="vocab-word">${i.word}</div></div><p class="vocab-desc">${i.desc}</p></div>`;
-  });
-}
-function backToKnMain(){
-  document.getElementById('kn-main-menu').style.display='grid';
-  document.getElementById('kn-poster-sub').style.display='none';
-  document.getElementById('kn-vocab-sub').style.display='none';
 }
 
 function switchProcess(type, btn) {
   document.querySelectorAll('.tab-chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.timeline-path').forEach(p => p.style.display = 'none');
-  const target = 'proc-' + type;
+  const target = {
+    'civil': 'proc-civil', 'petty': 'proc-petty', 'consumer': 'proc-consumer',
+    'criminal': 'proc-criminal', 'pre-mediate': 'proc-pre-mediate',
+    'civil-mediate': 'proc-civil-mediate', 'e-mediate': 'proc-e-mediate',
+    'filing': 'proc-filing', 'copy': 'proc-copy'
+  }[type];
   document.getElementById(target).style.display = 'block';
 }
 
-window.onload = () => {
-  const fl = document.getElementById("formList");
-  documentData.forEach(d => {
-    fl.innerHTML += `<div class="preview-card" onclick="window.open('${d.link}','_blank')"><div class="file-icon-box"><span class="material-symbols-rounded">description</span></div><div class="file-info"><div class="file-name">${d.name}</div></div></div>`;
-  });
-};
+function calcFee(){
+  const m = parseFloat(document.getElementById("money").value);
+  const resultDiv = document.getElementById("feeResult");
+  if(isNaN(m) || m <= 0) {
+    resultDiv.innerText = "ค่าธรรมเนียมที่ต้องชำระ: 0 บาท";
+    return;
+  }
+  let fee = 0;
+  if (m <= 300000) {
+    fee = m * 0.02;
+    if (fee > 1000) fee = 1000;
+  } else if (m <= 50000000) {
+    fee = m * 0.02;
+    if (fee > 200000) fee = 200000;
+  } else {
+    const baseFee = 200000;
+    const extraAmount = m - 50000000;
+    const extraFee = extraAmount * 0.001;
+    fee = baseFee + extraFee;
+  }
+  resultDiv.innerHTML = "ค่าธรรมเนียมที่ต้องชำระ: <span style='color:#f43f5e; font-size:18px;'>" + fee.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + "</span> บาท";
+}
+
+function openSheet(img){
+document.getElementById("sheetImg").src=img;
+document.getElementById("sheet").classList.add("active");
+}
+
+function closeSheet(){
+document.getElementById("sheet").classList.remove("active");
+}
+
+function getGoogleDrivePreview(url) {
+  if (url.includes('drive.google.com')) {
+    const fileId = url.split('/d/')[1].split('/')[0];
+    return `https://drive.google.com/thumbnail?id=${fileId}&sz=s1000`;
+  }
+  return null;
+}
+
+function openPreview(name, url) {
+  const isGoogleDrive = url.includes('drive.google.com');
+  if (isGoogleDrive) {
+    document.getElementById("previewTitle").innerText = name;
+    const container = document.getElementById("previewContainer");
+    const previewImgUrl = getGoogleDrivePreview(url);
+    container.innerHTML = `<img src="${previewImgUrl}" class="preview-img-box" alt="Document Preview">`;
+    document.getElementById("previewSheet").classList.add("active");
+    document.getElementById("confirmDownloadBtn").onclick = () => { window.open(url, "_blank"); };
+  } else {
+    window.open(url, "_blank");
+  }
+}
+
+function closePreview() {
+  document.getElementById("previewSheet").classList.remove("active");
+  setTimeout(() => {
+    document.getElementById("previewContainer").innerHTML = `
+      <span class="material-symbols-rounded" style="font-size: 64px; margin-bottom: 10px;">description</span>
+      <p>กำลังเตรียมตัวอย่างเอกสาร...</p>
+    `;
+  }, 400);
+}
 </script>
+
 </body>
 </html>
