@@ -480,6 +480,64 @@ border: 1px solid transparent;
   cursor: pointer;
 }
 
+/* ================= MODERN KNOWLEDGE CARDS ================= */
+.vocab-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+.vocab-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0,0,0,0.03);
+  transition: 0.3s;
+}
+.vocab-card:active {
+  transform: scale(0.97);
+}
+.vocab-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.vocab-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.vocab-word {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary);
+}
+.vocab-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.vocab-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  margin-top: 12px;
+  text-transform: uppercase;
+}
+
 /* ================= BOTTOM BAR ================= */
 nav{
 position:fixed;
@@ -1150,16 +1208,30 @@ e-Filing v.4
 <section id="knowledge">
 <div class="section-box">
 <h3>คลังความรู้</h3>
-<div class="poster-scroll">
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
-<div class="poster-title">คลังความรู้</div>
+
+<div class="tab-scroller">
+  <div class="tab-chip active" onclick="switchKnowledge('poster', this)">บทความ & โปสเตอร์</div>
+  <div class="tab-chip" onclick="switchKnowledge('vocab', this)">คำศัพท์ทางกฎหมาย</div>
 </div>
-<div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
-<div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
-<div class="poster-title">คำศัพท์ทางกฎหมาย</div>
+
+<div id="kn-poster">
+  <div class="poster-scroll">
+    <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+      <div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
+      <div class="poster-title">คลังความรู้</div>
+    </div>
+    <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
+      <div class="poster-image"><img src="https://via.placeholder.com/600x750"></div>
+      <div class="poster-title">กฎหมายใกล้ตัว</div>
+    </div>
+  </div>
 </div>
+
+<div id="kn-vocab" style="display:none">
+  <div class="vocab-container" id="vocabList">
+    </div>
 </div>
+
 </div>
 </section>
 
@@ -1230,7 +1302,64 @@ e-Filing v.4
 </nav>
 
 <script>
-// ข้อมูลเอกสาร 12 รายการ (ดึงข้อมูลมาจากส่วนที่คุณให้มา)
+// ข้อมูลคำศัพท์ทางกฎหมาย (20 คำ จัดหมวดหมู่ตามบริบท)
+const lawVocabData = [
+  { word: "คดีแพ่ง", desc: "คดีที่เกิดจากข้อพิพาทระหว่างเอกชนเกี่ยวกับสิทธิหรือหน้าที่ตามกฎหมาย เช่น สัญญา หนี้ หรือทรัพย์สิน", cat: "ประเภทคดี", icon: "balance" },
+  { word: "คดีอาญา", desc: "คดีที่เกี่ยวกับการกระทำที่กฎหมายกำหนดว่าเป็นความผิด และมีโทษทางอาญา เช่น จำคุก ปรับ หรือทั้งจำทั้งปรับ", cat: "ประเภทคดี", icon: "gavel" },
+  { word: "คดีมโนสาเร่", desc: "คดีแพ่งที่มีทุนทรัพย์ไม่เกินจำนวนที่กฎหมายกำหนด ศาลใช้วิธีพิจารณาแบบรวดเร็วและเรียบง่าย", cat: "ประเภทคดี", icon: "speed" },
+  { word: "คดีพินัย", desc: "การกระทำความผิดเล็กน้อยตามกฎหมาย กฎหมายกำหนดให้ลงโทษเป็น ค่าปรับทางพินัย แทนโทษอาญา เพื่อความรวดเร็ว", cat: "ประเภทคดี", icon: "fact_check" },
+  { word: "คู่ความ", desc: "บุคคลที่มีฐานะเป็นฝ่ายในคดี เช่น โจทก์ จำเลย หรือผู้ร้องและผู้คัดค้าน", cat: "บุคคลในศาล", icon: "groups" },
+  { word: "หมายเรียก", desc: "เอกสารทางราชการที่ศาลหรือพนักงานสอบสวนออกให้บุคคลมาพบหรือมาศาล หากไม่มาอาจมีผลทางกฎหมาย ⚖️", cat: "เอกสารศาล", icon: "mail" },
+  { word: "อำนาจฟ้อง", desc: "สิทธิของบุคคลที่จะยื่นฟ้องคดีต่อศาลได้ตามกฎหมาย", cat: "สิทธิทางกฎหมาย", icon: "verified_user" },
+  { word: "ขอบเขตอำนาจศาล", desc: "ขอบเขตอำนาจของศาลในการรับพิจารณาคดีตามประเภทคดีหรือพื้นที่", cat: "ความรู้ทั่วไป", icon: "map" },
+  { word: "คำร้อง", desc: "หนังสือที่ยื่นต่อศาลเพื่อขอให้ศาลมีคำสั่งในเรื่องใดเรื่องหนึ่ง", cat: "เอกสารศาล", icon: "description" },
+  { word: "คำแถลง", desc: "การชี้แจงข้อเท็จจริงหรือข้อกฎหมายต่อศาลระหว่างการพิจารณาคดี", cat: "เอกสารศาล", icon: "record_voice_over" },
+  { word: "พยานวัตถุ", desc: "สิ่งของหรือวัตถุที่ใช้เป็นหลักฐานประกอบการพิจารณาคดี", cat: "พยานหลักฐาน", icon: "category" },
+  { word: "บัญชีพยาน", desc: "เอกสารที่คู่ความยื่นต่อศาลเพื่อแสดงรายชื่อพยานบุคคลหรือหลักฐานที่จะใช้พิสูจน์ข้อเท็จจริง", cat: "พยานหลักฐาน", icon: "list_alt" },
+  { word: "การไต่สวนมูลฟ้อง", desc: "ขั้นตอนที่ศาลพิจารณาเบื้องต้นว่าคดีอาญาที่เอกชนยื่นฟ้องมีมูลเพียงพอให้รับไว้หรือไม่", cat: "กระบวนการศาล", icon: "search" },
+  { word: "คำพิพากษาถึงที่สุด", desc: "คำพิพากษาที่ไม่สามารถอุทธรณ์หรือฎีกาได้อีก และมีผลผูกพันตามกฎหมาย", cat: "คำสั่งศาล", icon: "assignment_turned_in" },
+  { word: "คำพิพากษาตามยอม", desc: "คำพิพากษาที่ศาลมีตามข้อตกลงของคู่ความ เมื่อทั้งสองฝ่ายตกลงยอมความกัน", cat: "คำสั่งศาล", icon: "handshake" },
+  { word: "การประนีประนอมยอมความ", desc: "การที่คู่ความตกลงยุติข้อพิพาทกันโดยสมัครใจ เพื่อไม่ให้คดีดำเนินต่อ", cat: "กระบวนการศาล", icon: "volunteer_activism" },
+  { word: "การบังคับตามคำพิพากษา", desc: "ขั้นตอนที่ใช้ดำเนินการให้เป็นไปตามคำพิพากษา เช่น การยึดหรืออายัดทรัพย์", cat: "การบังคับคดี", icon: "gavel" },
+  { word: "การบังคับคดี", desc: "กระบวนการตามกฎหมายเพื่อให้เป็นไปตามคำพิพากษา เช่น การยึด อายัด หรือขายทอดตลาดทรัพย์", cat: "การบังคับคดี", icon: "account_balance_wallet" },
+  { word: "การยื่นอุทธรณ์", desc: "การยื่นคำร้องต่อศาลชั้นอุทธรณ์ เพื่อขอให้พิจารณาทบทวนคำพิพากษาหรือคำสั่งของศาลชั้นต้น", cat: "การโต้แย้งคำสั่ง", icon: "history_edu" },
+  { word: "การยื่นฎีกา", desc: "การขอให้ศาลฎีกาตรวจสอบคำพิพากษาของศาลอุทธรณ์ โดยมักพิจารณาในประเด็นข้อกฎหมาย", cat: "การโต้แย้งคำสั่ง", icon: "policy" }
+];
+
+// ฟังก์ชันสร้าง Card คำศัพท์
+function initVocabList() {
+  const list = document.getElementById("vocabList");
+  list.innerHTML = "";
+  lawVocabData.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "vocab-card";
+    card.innerHTML = `
+      <div class="vocab-header">
+        <div class="vocab-icon"><span class="material-symbols-rounded">${item.icon}</span></div>
+        <div class="vocab-word">${item.word}</div>
+      </div>
+      <p class="vocab-desc">${item.desc}</p>
+      <div class="vocab-tag">${item.cat}</div>
+    `;
+    list.appendChild(card);
+  });
+}
+
+function switchKnowledge(type, btn) {
+  document.querySelectorAll('#knowledge .tab-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  
+  if(type === 'poster') {
+    document.getElementById('kn-poster').style.display = 'block';
+    document.getElementById('kn-vocab').style.display = 'none';
+  } else {
+    document.getElementById('kn-poster').style.display = 'none';
+    document.getElementById('kn-vocab').style.display = 'block';
+    initVocabList(); // โหลดคำศัพท์เมื่อกดเข้าเมนู
+  }
+}
+
+// ข้อมูลเอกสาร 12 รายการ
 const documentData = [
   { name: "คำร้อง / คำเเถลง / คำขอ", link: "https://drive.google.com/file/d/1tiaOA8N6BSLgHDV8VNmH6RQPMJQOY7nc/view?usp=drivesdk" },
   { name: "คำร้องขอปล่อยตัวชั่วคราว", link: "https://drive.google.com/file/d/1YTdA6lUntUd6_HEDm9n9GCo2SVsnuEgn/view?usp=drivesdk" },
@@ -1246,7 +1375,6 @@ const documentData = [
   { name: "หนังสือมอบอำนาจ คดีทำยอม", link: "https://drive.google.com/file/d/1x2q9MA9KA5TIaNBMjxLBa_9XaifhIq2V/view?usp=drivesdk" }
 ];
 
-// ฟังก์ชันสร้างรายการเอกสาร
 function initDownloadList() {
   const list = document.getElementById("formList");
   list.innerHTML = "";
@@ -1254,11 +1382,8 @@ function initDownloadList() {
     const card = document.createElement("div");
     card.className = "preview-card";
     card.onclick = () => openPreview(doc.name, doc.link);
-    
-    // ตรวจสอบนามสกุลไฟล์เพื่อแสดงชื่อประเภท
     const isDoc = doc.link.includes('.doc');
     const typeLabel = isDoc ? "DOC / DOCX" : "PDF / LINK";
-
     card.innerHTML = `
       <div class="file-icon-box">
         <span class="material-symbols-rounded">${isDoc ? 'description' : 'picture_as_pdf'}</span>
@@ -1273,7 +1398,6 @@ function initDownloadList() {
   });
 }
 
-// เรียกใช้ฟังก์ชันตอนหน้าเว็บโหลด
 window.onload = () => {
   initDownloadList();
 };
@@ -1319,18 +1443,12 @@ else navigate("blank");
 function switchProcess(type, btn) {
   document.querySelectorAll('.tab-chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
-  
   document.querySelectorAll('.timeline-path').forEach(p => p.style.display = 'none');
   const target = {
-    'civil': 'proc-civil',
-    'petty': 'proc-petty',
-    'consumer': 'proc-consumer',
-    'criminal': 'proc-criminal',
-    'pre-mediate': 'proc-pre-mediate',
-    'civil-mediate': 'proc-civil-mediate',
-    'e-mediate': 'proc-e-mediate',
-    'filing': 'proc-filing',
-    'copy': 'proc-copy'
+    'civil': 'proc-civil', 'petty': 'proc-petty', 'consumer': 'proc-consumer',
+    'criminal': 'proc-criminal', 'pre-mediate': 'proc-pre-mediate',
+    'civil-mediate': 'proc-civil-mediate', 'e-mediate': 'proc-e-mediate',
+    'filing': 'proc-filing', 'copy': 'proc-copy'
   }[type];
   document.getElementById(target).style.display = 'block';
 }
@@ -1338,29 +1456,23 @@ function switchProcess(type, btn) {
 function calcFee(){
   const m = parseFloat(document.getElementById("money").value);
   const resultDiv = document.getElementById("feeResult");
-  
   if(isNaN(m) || m <= 0) {
     resultDiv.innerText = "ค่าธรรมเนียมที่ต้องชำระ: 0 บาท";
     return;
   }
-
   let fee = 0;
-  
   if (m <= 300000) {
     fee = m * 0.02;
     if (fee > 1000) fee = 1000;
-  } 
-  else if (m <= 50000000) {
+  } else if (m <= 50000000) {
     fee = m * 0.02;
     if (fee > 200000) fee = 200000;
-  } 
-  else {
+  } else {
     const baseFee = 200000;
     const extraAmount = m - 50000000;
     const extraFee = extraAmount * 0.001;
     fee = baseFee + extraFee;
   }
-
   resultDiv.innerHTML = "ค่าธรรมเนียมที่ต้องชำระ: <span style='color:#f43f5e; font-size:18px;'>" + fee.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2}) + "</span> บาท";
 }
 
@@ -1373,41 +1485,30 @@ function closeSheet(){
 document.getElementById("sheet").classList.remove("active");
 }
 
-// ฟังก์ชันแปลงลิงก์ Drive เป็นรูปพรีวิวแบบชัดเจน
 function getGoogleDrivePreview(url) {
   if (url.includes('drive.google.com')) {
     const fileId = url.split('/d/')[1].split('/')[0];
-    // ใช้ thumbnailLink แบบปรับขนาดความชัด (sz=s1000)
     return `https://drive.google.com/thumbnail?id=${fileId}&sz=s1000`;
   }
   return null;
 }
 
-// ระบบ Preview และดาวน์โหลด (ปรับปรุงใหม่ตามเงื่อนไข)
 function openPreview(name, url) {
   const isGoogleDrive = url.includes('drive.google.com');
-
   if (isGoogleDrive) {
-    // ถ้าเป็น Google Drive ให้ทำตามข้อ 1: แสดงพรีวิว
     document.getElementById("previewTitle").innerText = name;
     const container = document.getElementById("previewContainer");
     const previewImgUrl = getGoogleDrivePreview(url);
-
     container.innerHTML = `<img src="${previewImgUrl}" class="preview-img-box" alt="Document Preview">`;
-    
     document.getElementById("previewSheet").classList.add("active");
-    document.getElementById("confirmDownloadBtn").onclick = () => {
-      window.open(url, "_blank");
-    };
+    document.getElementById("confirmDownloadBtn").onclick = () => { window.open(url, "_blank"); };
   } else {
-    // ถ้าไม่ใช่ Google Drive ให้ทำตามข้อ 2: เด้งไปตามลิงก์ทันที ไม่ต้องพรีวิว
     window.open(url, "_blank");
   }
 }
 
 function closePreview() {
   document.getElementById("previewSheet").classList.remove("active");
-  // รีเซ็ตค่าข้างในเมื่อปิด
   setTimeout(() => {
     document.getElementById("previewContainer").innerHTML = `
       <span class="material-symbols-rounded" style="font-size: 64px; margin-bottom: 10px;">description</span>
