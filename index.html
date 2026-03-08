@@ -20,6 +20,9 @@
   --shadow-lg:0 18px 40px rgba(0,0,0,.12);
   --shadow-md:0 10px 26px rgba(0,0,0,.1);
   --shadow-soft:0 10px 35px rgba(10,48,131,.18);
+  /* New Gradients for Vocab */
+  --grad-blue: linear-gradient(135deg, #0a3083 0%, #3b82f6 100%);
+  --grad-purple: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
 }
 
 body{
@@ -480,62 +483,112 @@ border: 1px solid transparent;
   cursor: pointer;
 }
 
-/* ================= MODERN KNOWLEDGE CARDS ================= */
+/* ================= MODERN KNOWLEDGE CARDS (UPGRADED) ================= */
+.alphabet-scroller {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 0;
+  margin-bottom: 15px;
+  scrollbar-width: none;
+}
+.alphabet-scroller::-webkit-scrollbar { display: none; }
+
+.alpha-btn {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  transition: 0.2s;
+}
+.alpha-btn.active {
+  background: var(--grad-blue);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--shadow-soft);
+}
+
 .vocab-container {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   margin-top: 10px;
 }
 .vocab-card {
   background: #fff;
   border-radius: 20px;
-  padding: 18px;
+  padding: 20px;
   box-shadow: var(--shadow-md);
-  border: 1px solid rgba(0,0,0,0.03);
-  transition: 0.3s;
+  border-left: 5px solid var(--primary);
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+.vocab-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 60px; height: 60px;
+  background: var(--primary-soft);
+  border-bottom-left-radius: 100%;
+  opacity: 0.5;
+  z-index: 0;
 }
 .vocab-card:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 .vocab-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 14px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
 }
 .vocab-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  background: var(--primary-soft);
-  color: var(--primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--grad-blue);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 20px;
+  box-shadow: 0 4px 10px rgba(10,48,131,0.2);
 }
 .vocab-word {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
   color: var(--primary);
+  letter-spacing: -0.3px;
 }
 .vocab-desc {
-  font-size: 13px;
-  color: var(--muted);
+  font-size: 14px;
+  color: var(--text);
   line-height: 1.6;
   margin: 0;
+  opacity: 0.85;
 }
 .vocab-tag {
-  display: inline-block;
-  padding: 4px 10px;
-  background: #f1f5f9;
-  border-radius: 8px;
-  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: var(--primary-soft);
+  border-radius: 30px;
+  font-size: 11px;
   font-weight: 700;
-  color: #64748b;
-  margin-top: 12px;
-  text-transform: uppercase;
+  color: var(--primary);
+  margin-top: 14px;
 }
 
 /* ================= BOTTOM BAR ================= */
@@ -1228,6 +1281,10 @@ e-Filing v.4
 </div>
 
 <div id="kn-vocab" style="display:none">
+  <div class="alphabet-scroller" id="alphaFilter">
+    <div class="alpha-btn active" onclick="filterVocab('ทั้งหมด', this)">All</div>
+    </div>
+  
   <div class="vocab-container" id="vocabList">
     </div>
 </div>
@@ -1326,11 +1383,25 @@ const lawVocabData = [
   { word: "การยื่นฎีกา", desc: "การขอให้ศาลฎีกาตรวจสอบคำพิพากษาของศาลอุทธรณ์ โดยมักพิจารณาในประเด็นข้อกฎหมาย", cat: "การโต้แย้งคำสั่ง", icon: "policy" }
 ];
 
-// ฟังก์ชันสร้าง Card คำศัพท์
+// ฟังก์ชันสร้าง UI คำศัพท์ใหม่ (Modern + Filter)
 function initVocabList() {
   const list = document.getElementById("vocabList");
+  const alphaBox = document.getElementById("alphaFilter");
+  
+  // สร้างปุ่ม ก-ฮ (เฉพาะที่มีคำศัพท์)
+  const letters = [...new Set(lawVocabData.map(item => item.word.charAt(0)))].sort();
+  alphaBox.innerHTML = '<div class="alpha-btn active" onclick="filterVocab(\'ทั้งหมด\', this)">All</div>';
+  letters.forEach(l => {
+    alphaBox.innerHTML += `<div class="alpha-btn" onclick="filterVocab('${l}', this)">${l}</div>`;
+  });
+
+  renderVocabCards(lawVocabData);
+}
+
+function renderVocabCards(data) {
+  const list = document.getElementById("vocabList");
   list.innerHTML = "";
-  lawVocabData.forEach(item => {
+  data.forEach(item => {
     const card = document.createElement("div");
     card.className = "vocab-card";
     card.innerHTML = `
@@ -1339,10 +1410,25 @@ function initVocabList() {
         <div class="vocab-word">${item.word}</div>
       </div>
       <p class="vocab-desc">${item.desc}</p>
-      <div class="vocab-tag">${item.cat}</div>
+      <div class="vocab-tag">
+        <span class="material-symbols-rounded" style="font-size:14px;">label</span>
+        ${item.cat}
+      </div>
     `;
     list.appendChild(card);
   });
+}
+
+function filterVocab(char, btn) {
+  document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  if(char === 'ทั้งหมด') {
+    renderVocabCards(lawVocabData);
+  } else {
+    const filtered = lawVocabData.filter(item => item.word.startsWith(char));
+    renderVocabCards(filtered);
+  }
 }
 
 function switchKnowledge(type, btn) {
@@ -1355,7 +1441,7 @@ function switchKnowledge(type, btn) {
   } else {
     document.getElementById('kn-poster').style.display = 'none';
     document.getElementById('kn-vocab').style.display = 'block';
-    initVocabList(); // โหลดคำศัพท์เมื่อกดเข้าเมนู
+    initVocabList(); 
   }
 }
 
