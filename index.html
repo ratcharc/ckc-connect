@@ -6,8 +6,10 @@
 <title>CKC Connect</title>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
 
-<style>
+<!-- เพิ่มไลบรารีอ่าน Excel -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
+<style>
 :root{
   --primary:#0a3083;
   --primary-soft:#eef2ff;
@@ -37,7 +39,7 @@ font-weight:800;
 color:var(--primary);
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 
 header{
 position:relative;
@@ -57,38 +59,14 @@ object-fit:cover;
 object-position:center;
 }
 
-/* SEARCH */
-
 .search-btn{
 position:absolute;
 top:16px;
-right:60px;
+right:16px;
 font-size:26px;
 color:#fff;
 cursor:pointer;
 z-index:2;
-}
-
-/* NEW NOTIFICATION ICON */
-
-.notify-btn{
-position:absolute;
-top:16px;
-right:16px;
-width:34px;
-height:34px;
-border-radius:50%;
-background:rgba(255,255,255,0.18);
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-z-index:2;
-}
-
-.notify-btn span{
-color:#fff;
-font-size:20px;
 }
 
 .search-box{
@@ -107,7 +85,7 @@ width:220px;
 box-shadow:var(--shadow-md);
 }
 
-/* MAIN */
+/* ===== MAIN ===== */
 
 main{
 padding:16px;
@@ -118,8 +96,6 @@ padding-bottom:140px;
 section{display:none}
 section.active{display:block}
 
-/* FLOAT CARD */
-
 .section-box{
 background:#ffffff;
 border-radius:var(--radius-lg);
@@ -127,7 +103,7 @@ padding:20px;
 box-shadow:var(--shadow-lg);
 }
 
-/* HERO CARD */
+/* HERO */
 
 .hero-card{
 width:100%;
@@ -167,17 +143,13 @@ cursor:pointer;
 width:64px;
 height:64px;
 border-radius:50%;
-background:#E4EFFF;
+background:var(--primary-soft);
 display:flex;
 align-items:center;
 justify-content:center;
 margin:0 auto 8px auto;
-box-shadow:none;
+box-shadow:var(--shadow-soft);
 color:var(--primary);
-}
-
-.quick-circle span{
-font-size:30px;
 }
 
 .quick-item span{
@@ -231,102 +203,38 @@ font-size:13px;
 font-weight:700;
 }
 
-/* BOTTOM SHEET */
+/* ================= ACCORDION ================= */
 
-.bottom-sheet{
-position:fixed;
-left:0;
-right:0;
-bottom:-100%;
-height:100%;
-background:#fff;
-border-top-left-radius:26px;
-border-top-right-radius:26px;
-box-shadow:var(--shadow-lg);
-transition:.4s ease;
-z-index:300;
+.accordion{
 display:flex;
 flex-direction:column;
+gap:10px;
+margin-bottom:18px;
 }
 
-.bottom-sheet.active{
-bottom:0;
-}
-
-.sheet-header{
-width:100%;
-aspect-ratio:16/9;
-background:#dfe3f0;
-position:relative;
-}
-
-.sheet-header img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-}
-
-.sheet-back{
-position:absolute;
-left:16px;
-top:50%;
-transform:translateY(-50%);
+.acc-item{
 background:#fff;
-width:44px;
-height:44px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
+border-radius:14px;
+overflow:hidden;
 box-shadow:var(--shadow-md);
+}
+
+.acc-btn{
+width:100%;
+border:none;
+padding:14px;
+text-align:left;
+font-weight:700;
+background:#eef2ff;
 cursor:pointer;
 }
 
-.sheet-content{
-padding:22px;
-overflow:auto;
-}
-
-/* SERVICE GRID */
-
-.service-grid{
-display:grid;
-grid-template-columns:1fr;
-gap:12px;
-}
-
-/* SERVICE CARD */
-
-.service-card{
-position:relative;
-background:var(--card);
-border-radius:var(--radius-md);
-padding:14px 46px 14px 60px;
+.acc-content{
+display:none;
+padding:14px;
 font-size:14px;
-font-weight:600;
-cursor:pointer;
-box-shadow:var(--shadow-md);
-transition:.25s ease;
-}
-
-.service-card:hover{
-transform:translateY(-2px);
-}
-
-.icon-pill{
-position:absolute;
-left:14px;
-top:50%;
-transform:translateY(-50%);
-width:34px;
-height:34px;
-border-radius:10px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:var(--primary-soft);
-color:var(--primary);
+background:#fff;
+line-height:1.6;
 }
 
 /* CALCULATOR */
@@ -363,8 +271,7 @@ padding:12px;
 border-radius:12px;
 font-weight:700;
 }
-
-/* DOWNLOAD */
+/* ================= DOWNLOAD ================= */
 
 .preview-list{
 display:grid;
@@ -390,7 +297,7 @@ font-size:13px;
 font-weight:700;
 }
 
-/* BOTTOM BAR */
+/* ================= BOTTOM BAR ================= */
 
 nav{
 position:fixed;
@@ -426,26 +333,21 @@ border-radius:14px;
 <body>
 
 <header>
-
 <img class="header-banner"
 src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
 
 <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
 
-<div class="notify-btn">
-<span class="material-symbols-rounded">notifications</span>
-</div>
-
 <div class="search-box" id="searchBox">
 <input type="text" placeholder="ค้นหาเมนู / บริการ" onkeydown="doSearch(event)">
 </div>
-
 </header>
 
 <main>
 
-<section id="home" class="active">
+<!-- ================= HOME ================= -->
 
+<section id="home" class="active">
 <div class="section-box">
 
 <h3>โพสล่าสุด</h3>
@@ -470,18 +372,18 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 <span>CIOS</span>
 </div>
 
+<div class="quick-item" onclick="navigate('cojpage',document.querySelector('nav button:nth-child(2)'))">
+<div class="quick-circle">
+<span class="material-symbols-rounded">account_balance</span>
+</div>
+<span>COJ</span>
+</div>
+
 <div class="quick-item" onclick="navigate('fee',document.querySelector('nav button:nth-child(2)'))">
 <div class="quick-circle">
 <span class="material-symbols-rounded">calculate</span>
 </div>
 <span>อัตราค่าธรรมเนียม</span>
-</div>
-
-<div class="quick-item" onclick="navigate('blank',document.querySelector('nav button:nth-child(2)'))">
-<div class="quick-circle">
-<span class="material-symbols-rounded">calendar_month</span>
-</div>
-<span>บัญชีนัดพิจารณาคดี</span>
 </div>
 
 <div class="quick-item" onclick="openLink('https://cios.coj.go.th/tracking/')">
@@ -492,10 +394,9 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 </div>
 
 </div>
-<!-- หัวข้อรอง -->
+
 <h3 class="subtitle-blue">รายการโพส</h3>
 
-<!-- POSTER SCROLL แนวตั้ง ขนาดจริง 4:5 -->
 <div class="poster-scroll">
 
 <div class="poster-card" onclick="openSheet('https://via.placeholder.com/600x750')">
@@ -520,85 +421,103 @@ src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8
 </div>
 
 </div>
+
 </div>
 </section>
 
 <!-- ================= SERVICE ================= -->
 
 <section id="service">
-
 <div class="section-box">
-
 <h3>ข้อมูลบริการ</h3>
 
 <div class="service-grid">
 
 <div class="service-card" onclick="navigate('fee')">
-<div class="icon-pill"><span class="material-symbols-rounded">calculate</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">calculate</span>
+</div>
 อัตราค่าธรรมเนียม (ค่าขึ้นศาล)
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<div class="icon-pill"><span class="material-symbols-rounded">list_alt</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">list_alt</span>
+</div>
 ขั้นตอนการฟ้องและยื่นคำร้อง
 </div>
 
 <div class="service-card" onclick="openLink('https://cios.coj.go.th/tracking/')">
-<div class="icon-pill"><span class="material-symbols-rounded">search</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">search</span>
+</div>
 ติดตามสำนวนคดี
 </div>
 
 <div class="service-card" onclick="navigate('efiling')">
-<div class="icon-pill"><span class="material-symbols-rounded">gavel</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">gavel</span>
+</div>
 e-Filing
 </div>
 
 <div class="service-card" onclick="openLink('https://cios.coj.go.th')">
-<div class="icon-pill"><span class="material-symbols-rounded">description</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">description</span>
+</div>
 CIOS
 </div>
 
 <div class="service-card" onclick="navigate('cojpage')">
-<div class="icon-pill"><span class="material-symbols-rounded">account_balance</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">account_balance</span>
+</div>
 COJ
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<div class="icon-pill"><span class="material-symbols-rounded">event_note</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">event_note</span>
+</div>
 ไกล่เกลี่ยและพิจารณาคดีทางอิเล็กทรอนิกส์
 </div>
 
 <div class="service-card" onclick="navigate('blank')">
-<div class="icon-pill"><span class="material-symbols-rounded">calendar_month</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">calendar_month</span>
+</div>
 บัญชีนัดพิจารณาคดีและพิจารณาคดีทางอิเล็กทรอนิกส์
 </div>
 
 <div class="service-card" onclick="navigate('download')">
-<div class="icon-pill"><span class="material-symbols-rounded">download</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">download</span>
+</div>
 ดาวน์โหลดแบบฟอร์ม
 </div>
 
 </div>
 </div>
 </section>
-
 <!-- ================= COJ PAGE ================= -->
 
 <section id="cojpage">
-
 <div class="section-box">
-
 <h3>เลือกบริการ COJ</h3>
 
 <div class="service-grid">
 
 <div class="service-card" onclick="openLink('https://www.coj.go.th')">
-<div class="icon-pill"><span class="material-symbols-rounded">public</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">public</span>
+</div>
 COJ (เว็บไซต์หลัก)
 </div>
 
 <div class="service-card" onclick="openLink('https://connect.coj.go.th/login')">
-<div class="icon-pill"><span class="material-symbols-rounded">link</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">link</span>
+</div>
 COJ Connect
 </div>
 
@@ -609,20 +528,22 @@ COJ Connect
 <!-- ================= EFILING ================= -->
 
 <section id="efiling">
-
 <div class="section-box">
-
 <h3>เลือกระบบ e-Filing</h3>
 
 <div class="service-grid">
 
 <div class="service-card" onclick="openLink('https://efiling3.coj.go.th')">
-<div class="icon-pill"><span class="material-symbols-rounded">gavel</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">gavel</span>
+</div>
 e-Filing v.3
 </div>
 
 <div class="service-card" onclick="openLink('https://efiling4.coj.go.th')">
-<div class="icon-pill"><span class="material-symbols-rounded">rocket_launch</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">rocket_launch</span>
+</div>
 e-Filing v.4
 </div>
 
@@ -633,31 +554,31 @@ e-Filing v.4
 <!-- ================= FEE ================= -->
 
 <section id="fee">
-
 <div class="section-box">
+
+<h3>อัตราค่าธรรมเนียม (ค่าขึ้นศาล)</h3>
+
+<div id="feeAccordion" class="accordion"></div>
 
 <h3>คำนวณค่าธรรมเนียม</h3>
 
 <div class="calc-box">
-
 <input type="number" id="money" placeholder="ใส่จำนวนทุนทรัพย์">
-
 <button onclick="calcFee()">คำนวณ</button>
-
-<div class="calc-result" id="feeResult">
-ค่าธรรมเนียม:
+<div class="calc-result" id="feeResult">ค่าธรรมเนียม:</div>
 </div>
 
-</div>
+<p style="margin-top:14px;font-size:13px;color:#64748b;">
+หมายเหตุ: ศาลแขวงชลบุรี รับพิจารณาเฉพาะคดีที่มีทุนทรัพย์ไม่เกิน 300,000 บาท ทั้งนี้ อาจมีค่าใช้จ่ายอื่นๆเพิ่มเติมขึ้นอยู่กับประเภทคดีและขั้นตอนของศาล
+</p>
+
 </div>
 </section>
 
 <!-- ================= DOWNLOAD ================= -->
 
 <section id="download">
-
 <div class="section-box">
-
 <h3>ดาวน์โหลดแบบฟอร์ม</h3>
 
 <div class="preview-list">
@@ -674,7 +595,6 @@ e-Filing v.4
 <!-- ================= KNOWLEDGE ================= -->
 
 <section id="knowledge">
-
 <div class="section-box">
 
 <h3>คลังความรู้</h3>
@@ -696,13 +616,13 @@ e-Filing v.4
 </div>
 
 </div>
+
 </div>
 </section>
 
 <!-- ================= OTHER ================= -->
 
 <section id="other">
-
 <div class="section-box">
 
 <h3>เพิ่มเติม</h3>
@@ -710,23 +630,27 @@ e-Filing v.4
 <div class="service-grid">
 
 <div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">help</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">help</span>
+</div>
 คำถามที่พบบ่อย (FAQ)
 </div>
 
 <div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">rate_review</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">rate_review</span>
+</div>
 แบบประเมินความพึงพอใจ
 </div>
 
 </div>
+
 </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
 
 <section id="contact">
-
 <div class="section-box">
 
 <h3>ติดต่อ</h3>
@@ -734,34 +658,37 @@ e-Filing v.4
 <div class="service-grid">
 
 <div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">location_on</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">location_on</span>
+</div>
 ที่อยู่ศาล
 </div>
 
 <div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">call</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">call</span>
+</div>
 เบอร์โทรศัพท์
 </div>
 
 <div class="service-card">
-<div class="icon-pill"><span class="material-symbols-rounded">language</span></div>
+<div class="icon-pill">
+<span class="material-symbols-rounded">language</span>
+</div>
 โซเชียลมีเดีย
 </div>
 
 </div>
+
 </div>
 </section>
 
 <!-- ================= BLANK ================= -->
 
 <section id="blank">
-
 <div class="section-box">
-
 <h3>อยู่ระหว่างพัฒนา</h3>
-
 </div>
-
 </section>
 
 </main>
@@ -781,13 +708,8 @@ e-Filing v.4
 </div>
 
 <div class="sheet-content">
-
 <h2>หัวข้อเนื้อหา</h2>
-
-<p>
-พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...
-</p>
-
+<p>พื้นที่สำหรับใส่เนื้อหาเพิ่มเติม...</p>
 </div>
 
 </div>
@@ -825,6 +747,8 @@ e-Filing v.4
 
 <script>
 
+/* ================= NAVIGATION ================= */
+
 function navigate(id,btn){
 
 history.pushState({page:id},"","#"+id);
@@ -851,11 +775,15 @@ if(btn) btn.classList.add("active");
 
 }
 
+/* ================= LINKS ================= */
+
 function openLink(url){
 
 window.open(url,"_blank");
 
 }
+
+/* ================= SEARCH ================= */
 
 function toggleSearch(){
 
@@ -883,15 +811,7 @@ else navigate("blank");
 
 }
 
-function calcFee(){
-
-const m=document.getElementById("money").value;
-
-const fee=Math.max(100,Math.floor(m*0.02));
-
-document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee+" บาท";
-
-}
+/* ================= BOTTOM SHEET ================= */
 
 function openSheet(img){
 
@@ -904,6 +824,98 @@ document.getElementById("sheet").classList.add("active");
 function closeSheet(){
 
 document.getElementById("sheet").classList.remove("active");
+
+}
+
+/* ================= READ EXCEL ================= */
+
+let feeTable=[];
+
+fetch("fee.xlsx")
+.then(r=>r.arrayBuffer())
+.then(data=>{
+
+const workbook=XLSX.read(data,{type:"array"});
+
+const sheet=workbook.Sheets["อัตราค่าธรรมเนียม"];
+
+const rows=XLSX.utils.sheet_to_json(sheet);
+
+feeTable=rows;
+
+createAccordion(rows);
+
+});
+
+/* ================= CREATE ACCORDION ================= */
+
+function createAccordion(rows){
+
+const box=document.getElementById("feeAccordion");
+
+rows.forEach(r=>{
+
+const item=document.createElement("div");
+
+item.className="acc-item";
+
+const btn=document.createElement("button");
+
+btn.className="acc-btn";
+
+btn.innerText=r["รายการ"];
+
+const content=document.createElement("div");
+
+content.className="acc-content";
+
+content.innerText=r["รายละเอียด"];
+
+btn.onclick=()=>{
+
+content.style.display=content.style.display==="block"?"none":"block";
+
+};
+
+item.appendChild(btn);
+
+item.appendChild(content);
+
+box.appendChild(item);
+
+});
+
+}
+
+/* ================= CALCULATOR ================= */
+
+function calcFee(){
+
+const money=parseFloat(document.getElementById("money").value)||0;
+
+let fee=0;
+
+if(money<=300000){
+
+fee=Math.min(money*0.02,1000);
+
+}
+
+else if(money<=50000000){
+
+fee=Math.min(money*0.02,200000);
+
+}
+
+else{
+
+fee=200000+(money-50000000)*0.001;
+
+}
+
+fee=Math.floor(fee);
+
+document.getElementById("feeResult").innerText="ค่าธรรมเนียม: "+fee.toLocaleString()+" บาท";
 
 }
 
