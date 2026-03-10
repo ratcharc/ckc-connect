@@ -2131,29 +2131,38 @@ function initDownloadList() {
   });
 }
 
-window.onload = () => { initDownloadList(); };
-  
-window.addEventListener('DOMContentLoaded', (event) => {
-    const hash = window.location.hash.substring(1);
-    if (!hash) {
-        showPage('home', document.querySelector('nav button:nth-child(1)'));
-    }
+window.addEventListener('DOMContentLoaded', () => {
+    initDownloadList();
+    const hash = window.location.hash.substring(1) || 'home';
+    const btn = document.querySelector(`nav button[onclick*="${hash}"]`);
+    showPage(hash, btn);
 });
-  
-function navigate(id,btn){
-history.pushState({page:id},"","#"+id);
-showPage(id,btn);
-if(id === 'knowledge') backToKnMain();
+
+function navigate(id, btn) {
+    history.pushState({page: id}, "", "#" + id);
+    showPage(id, btn);
+    if(id === 'knowledge') backToKnMain();
 }
 
-window.onpopstate=e=>{ if(e.state) showPage(e.state.page); };
+window.onpopstate = e => {
+    const id = e.state ? e.state.page : 'home';
+    const btn = document.querySelector(`nav button[onclick*="${id}"]`);
+    showPage(id, btn);
+};
 
-function showPage(id,btn){
-document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-const targetPage = document.getElementById(id);
-if(targetPage) targetPage.classList.add("active");
-document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-if(btn) btn.classList.add("active");
+function showPage(id, btn) {
+    document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+    const targetPage = document.getElementById(id);
+    if (targetPage) targetPage.classList.add("active");
+
+    document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+    
+    if (btn) {
+        btn.classList.add("active");
+    } else {
+        const fallbackBtn = document.querySelector(`nav button[onclick*="${id}"]`);
+        if (fallbackBtn) fallbackBtn.classList.add("active");
+    }
 }
 
 function openLink(url){ window.open(url,"_blank"); }
