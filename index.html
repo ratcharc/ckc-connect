@@ -943,8 +943,10 @@ border-radius:14px;
 <img class="header-banner"
 src="https://raw.githubusercontent.com/ratcharc/ckc-connect/main/%E0%B9%84%E0%B8%A1%E0%B9%88%E0%B8%A1%E0%B8%B5%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%AD%20227_20260207140426.png">
 <span class="material-symbols-rounded search-btn" onclick="toggleSearch()">search</span>
-<div class="search-box" id="searchBox">
-<input type="text" id="mainSearch" placeholder="ค้นหาเมนู / บริการ" oninput="runSearch(this.value)">
+<div class="search-box" id="searchBox" style="display:none; position:absolute; top:56px; right:16px; z-index:1000;">
+    <input type="text" id="mainSearch" placeholder="ค้นหาเมนู / บริการ" 
+           onkeyup="runSearch(this.value)" autocomplete="off">
+    <div id="search-results" style="background: white; width: 220px; border-radius: 12px; margin-top: 5px; box-shadow: var(--shadow-md); overflow: hidden; display: none; padding: 5px0;"></div>
 </div>
 </header>
 
