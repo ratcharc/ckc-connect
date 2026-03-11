@@ -2179,38 +2179,28 @@ function calcFee(){
   resultDiv.innerHTML = "ค่าธรรมเนียมที่ต้องชำระ: <span style='color:#f43f5e; font-size:18px;'>" + fee.toLocaleString() + "</span> บาท";
 }
 
-function openPreview(name, url) {
-  const isWordFile = url.toLowerCase().endsWith('.doc') || url.toLowerCase().endsWith('.docx');
+function initDownloadList() {
+  const list = document.getElementById("formList");
+  list.innerHTML = "";
   
-  if (isWordFile) {
-    window.open(url, "_blank");
-    return;
-  }
-
-  const frame = document.getElementById("previewPdfFrame");
-  const loading = document.getElementById("loadingState");
-  const sheet = document.getElementById("previewSheet");
-  
-  document.getElementById("previewTitle").innerText = name;
-  
-  const fileId = url.split('/d/')[1].split('/')[0];
-  const embedUrl = `https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?export=view&id=${fileId}`;
-  
-  frame.src = embedUrl;
-  frame.style.display = "block";
-  loading.style.display = "none";
-  
-  document.getElementById("confirmDownloadBtn").onclick = () => { window.open(url, "_blank"); };
-  
-  sheet.classList.add("active");
-}
-
-function closePreview() {
-  const sheet = document.getElementById("previewSheet");
-  const frame = document.getElementById("previewPdfFrame");
-  
-  sheet.classList.remove("active");
-  frame.src = "";
+  documentData.forEach(doc => {
+    const card = document.createElement("div");
+    card.className = "preview-card";
+    card.onclick = () => window.open(doc.link, "_blank");
+    
+    const isDoc = doc.link.toLowerCase().includes('.doc');
+    card.innerHTML = `
+      <div class="file-icon-box">
+        <span class="material-symbols-rounded">${isDoc ? 'description' : 'picture_as_pdf'}</span>
+      </div>
+      <div class="file-info">
+        <div class="file-name">${doc.name}</div>
+        <div class="file-meta">เอกสารศาลแขวงชลบุรี • ${isDoc ? "DOC" : "PDF"}</div>
+      </div>
+      <span class="material-symbols-rounded preview-btn-minimal">open_in_new</span>
+    `;
+    list.appendChild(card);
+  });
 }
 
   
