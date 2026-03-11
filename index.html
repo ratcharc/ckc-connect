@@ -2224,6 +2224,13 @@ function openPreview(name, url) {
   sheet.classList.add("active");
 }
 
+function closePreview() {
+  const sheet = document.getElementById("previewSheet");
+  const frame = document.getElementById("pdfFrame");
+  
+  sheet.classList.remove("active");
+  frame.src = "";
+}
   
 </script>
 
