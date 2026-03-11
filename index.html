@@ -1619,7 +1619,7 @@ e-Filing v.4
 <div id="kn-poster-sub" style="display:none; margin-top:20px;">
   <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px;" onclick="backToKnMain()">
     <span class="material-symbols-rounded" style="cursor:pointer; color:var(--primary);">arrow_back</span>
-    <h3 style="margin:0;">รายการ</h3>
+    <h3 style="margin:0;">ข้อมูลคลังความรู้</h3>
   </div>
   <div class="poster-grid-container" id="posterList">
     </div>
@@ -1771,7 +1771,7 @@ e-Filing v.4
     <div class="accordion-header">กลุ่มงานบริหารจัดการคดี <span class="material-symbols-rounded">expand_more</span></div>
     <div class="accordion-content">
       <div class="internal-phone-list">
-        <div class="phone-row"><span class="dept-name">สายตรงกลุ่มงาน</span> <span class="ext-num">151</span></div>
+        <div class="phone-row"><span class="dept-name">กลุ่มงานบริหาจัดการคดี</span> <span class="ext-num">151</span></div>
         <div class="phone-row"><span class="dept-name">งานรับฟ้อง, E-Filing</span> <span class="ext-num">156, 159</span></div>
         <div class="phone-row"><span class="dept-name">งานหมาย</span> <span class="ext-num">157</span></div>
         <div class="phone-row"><span class="dept-name">งานอุทธรณ์ ฎีกา</span> <span class="ext-num">152</span></div>
@@ -1853,10 +1853,14 @@ e-Filing v.4
   <div class="sheet-content">
     <h3 id="previewTitle" style="margin-top:40px; text-align:center;">ชื่อเอกสาร</h3>
     <div class="preview-sheet-body">
+      
       <div class="doc-placeholder" id="previewContainer">
+        <iframe id="pdfFrame" style="width:100%; height:50vh; border:none; display:none;"></iframe>
+        <div id="loadingState">
         <span class="material-symbols-rounded" style="font-size: 64px; margin-bottom: 10px;">description</span>
         <p>กำลังเตรียมตัวอย่างเอกสาร...</p>
         <p style="font-size: 12px;">(ตัวอย่างจะแสดงที่นี่)</p>
+      </div>
       </div>
       <button class="download-action-btn" id="confirmDownloadBtn">
         <span class="material-symbols-rounded">download</span>
@@ -2197,17 +2201,41 @@ function calcFee(){
 }
 
 function openPreview(name, url) {
-  const isGoogleDrive = url.includes('drive.google.com');
-  if (isGoogleDrive) {
-    document.getElementById("previewTitle").innerText = name;
-    document.getElementById("previewSheet").classList.add("active");
-    document.getElementById("confirmDownloadBtn").onclick = () => { window.open(url, "_blank"); };
-  } else { window.open(url, "_blank"); }
+  const frame = document.getElementById("pdfFrame");
+  const loading = document.getElementById("loadingState");
+  const sheet = document.getElementById("previewSheet");
+  
+  document.getElementById("previewTitle").innerText = name;
+  
+  if (url.includes('drive.google.com')) {
+    const embedUrl = url.replace(/\/view(\?usp=drivesdk)?$/, '/preview');
+    frame.src = embedUrl;
+    frame.style.display = "block";
+    loading.style.display = "none";
+  } else {
+    frame.style.display = "none";
+    loading.style.display = "block";
+  }
+  
+  document.getElementById("confirmDownloadBtn").onclick = () => { window.open(url, "_blank"); };
+  
+  sheet.classList.add("active");
 }
 
 function closePreview() {
-  document.getElementById("previewSheet").classList.remove("active");
+  const sheet = document.getElementById("previewSheet");
+  const frame = document.getElementById("pdfFrame");
+  const loading = document.getElementById("loadingState");
+  
+  sheet.classList.remove("active");
+  
+  setTimeout(() => {
+    frame.src = "";
+    frame.style.display = "none";
+    loading.style.display = "block";
+  }, 300);
 }
+
   
 </script>
 
