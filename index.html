@@ -1855,7 +1855,7 @@ e-Filing v.4
     <div class="preview-sheet-body">
       
       <div class="doc-placeholder" id="previewContainer">
-        <iframe id="pdfFrame" style="width:100%; height:50vh; border:none; display:none;"></iframe>
+        <iframe id="previewPdfFrame" style="width:100%; height:50vh; border:none; display:none;"></iframe>
         <div id="loadingState">
         <span class="material-symbols-rounded" style="font-size: 64px; margin-bottom: 10px;">description</span>
         <p>กำลังเตรียมตัวอย่างเอกสาร...</p>
@@ -2208,7 +2208,7 @@ function openPreview(name, url) {
     return;
   }
 
-  const frame = document.getElementById("pdfFrame");
+  const frame = document.getElementById("previewPdfFrame");
   const loading = document.getElementById("loadingState");
   const sheet = document.getElementById("previewSheet");
   
@@ -2228,7 +2228,7 @@ function openPreview(name, url) {
 
 function closePreview() {
   const sheet = document.getElementById("previewSheet");
-  const frame = document.getElementById("pdfFrame");
+  const frame = document.getElementById("previewPdfFrame");
   
   sheet.classList.remove("active");
   frame.src = "";
