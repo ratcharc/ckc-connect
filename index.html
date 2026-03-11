@@ -2201,39 +2201,27 @@ function calcFee(){
 }
 
 function openPreview(name, url) {
+  const isWordFile = url.toLowerCase().endsWith('.doc') || url.toLowerCase().endsWith('.docx');
+  
+  if (isWordFile) {
+    window.open(url, "_blank");
+    return;
+  }
+
   const frame = document.getElementById("pdfFrame");
   const loading = document.getElementById("loadingState");
   const sheet = document.getElementById("previewSheet");
   
   document.getElementById("previewTitle").innerText = name;
   
-  if (url.includes('drive.google.com')) {
-    const embedUrl = url.replace(/\/view(\?usp=drivesdk)?$/, '/preview');
-    frame.src = embedUrl;
-    frame.style.display = "block";
-    loading.style.display = "none";
-  } else {
-    frame.style.display = "none";
-    loading.style.display = "block";
-  }
+  const embedUrl = url.replace(/\/view(\?usp=drivesdk)?$/, '/preview');
+  frame.src = embedUrl;
+  frame.style.display = "block";
+  loading.style.display = "none";
   
   document.getElementById("confirmDownloadBtn").onclick = () => { window.open(url, "_blank"); };
   
   sheet.classList.add("active");
-}
-
-function closePreview() {
-  const sheet = document.getElementById("previewSheet");
-  const frame = document.getElementById("pdfFrame");
-  const loading = document.getElementById("loadingState");
-  
-  sheet.classList.remove("active");
-  
-  setTimeout(() => {
-    frame.src = "";
-    frame.style.display = "none";
-    loading.style.display = "block";
-  }, 300);
 }
 
   
