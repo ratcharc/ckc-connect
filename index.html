@@ -2214,7 +2214,9 @@ function openPreview(name, url) {
   
   document.getElementById("previewTitle").innerText = name;
   
-  const embedUrl = url.replace(/\/view(\?usp=drivesdk)?$/, '/preview');
+  const fileId = url.split('/d/')[1].split('/')[0];
+  const embedUrl = `https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?export=view&id=${fileId}`;
+  
   frame.src = embedUrl;
   frame.style.display = "block";
   loading.style.display = "none";
@@ -2231,6 +2233,7 @@ function closePreview() {
   sheet.classList.remove("active");
   frame.src = "";
 }
+
   
 </script>
 
