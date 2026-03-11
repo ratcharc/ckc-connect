@@ -948,6 +948,46 @@ nav button.active{
 background:rgba(255,255,255,.22);
 border-radius:14px;
 }
+.survey-banner {
+  margin-top: 30px;
+  background: var(--primary);
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s;
+}
+
+.survey-banner:active {
+  transform: scale(0.96);
+}
+
+.banner-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.banner-content .material-symbols-rounded {
+  font-size: 28px !important;
+  color: #fff !important;
+}
+
+.banner-content strong {
+  display: block;
+  font-size: 16px;
+}
+
+.banner-content p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+ 
 </style>
 </head>
 <body>
@@ -1655,12 +1695,6 @@ e-Filing v.4
 <section id="other">
 <div class="section-box">
 <h3>เพิ่มเติม</h3>
-<div class="service-grid">
-  <div class="service-card" onclick="openLink('https://docs.google.com/forms/d/e/1FAIpQLSdFcSTmiLhq9CbV8fyqkMtIa1Q74rJ1G_ID3YJPIkEIYeLeUw/viewform?usp=header')">
-    <div class="icon-pill"><span class="material-symbols-rounded">rate_review</span></div>
-    แบบประเมินความพึงพอใจ
-  </div>
-</div>
 
 <h3 style="margin-top:24px;">คำถามที่พบบ่อย (FAQ)</h3>
 <div id="faqList">
@@ -1724,9 +1758,21 @@ e-Filing v.4
     <div class="accordion-header">หากต้องการไกล่เกลี่ยก่อนขึ้นศาลสามารถทำได้หรือไม่ <span class="material-symbols-rounded">expand_more</span></div>
     <div class="accordion-content">สามารถแจ้งความประสงค์ต่อศาลเพื่อเข้ารับการไกล่เกลี่ยข้อพิพาทได้ </div>
   </div>
+</div> 
+  
+  <div class="survey-banner" onclick="openLink('https://docs.google.com/forms/d/e/1FAIpQLSdFcSTmiLhq9CbV8fyqkMtIa1Q74rJ1G_ID3YJPIkEIYeLeUw/viewform?usp=header')">
+   <div class="banner-content">
+      <span class="material-symbols-rounded">rate_review</span>
+      <div>
+        <strong>แบบประเมินความพึงพอใจ</strong>
+        <p>ร่วมประเมินการบริการของเรา</p>
+      </div>
+   </div>
+   <span class="material-symbols-rounded">chevron_right</span>
 </div>
-</div>
-</section>
+  
+</div> 
+</section> 
 
 <section id="contact">
 <div class="section-box">
