@@ -1,18 +1,17 @@
 {
   "name": "CKC Connect",
-  "short_name": "CKC",
-  "start_url": "index.html",
+  "short_name": "CKC Connect",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#156ee5",
-  "theme_color": "#156ee5",
+  "background_color": "#ffffff",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/icon-192.png",
+      "src": "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/Logov.2.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/icon-512.png",
+      "src": "https://raw.githubusercontent.com/ratcharc/ckc-connect/main/Logov.2.png",
       "sizes": "512x512",
       "type": "image/png"
     }
